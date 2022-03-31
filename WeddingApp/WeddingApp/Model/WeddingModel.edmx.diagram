@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb8954eeeab44102b4c14a78d5f0ec16" Name="Diagram1" ZoomLevel="39">
+        <EntityTypeShape EntityType="WeddingDataModel.BILL" Width="1.5" PointX="17.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.CUSTOMER" Width="1.5" PointX="14.125" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.DISH" Width="1.5" PointX="19.875" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.EMPLOYEE" Width="1.5" PointX="14.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.FUNCTION" Width="1.5" PointX="4" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.HALL" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.MENU" Width="1.5" PointX="17.125" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.PERMISSION" Width="1.5" PointX="8.375" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.ROLE" Width="1.5" PointX="11.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.SERVE" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.SERVICE" Width="1.5" PointX="6.125" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.SHIFT" Width="1.5" PointX="7" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.BOOKING" Width="1.5" PointX="10.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDataModel.SEARCH" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="WeddingDataModel.FK_BILLS_CUSTOMERID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_BILLS_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_BOOKING_CUSTOMERID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_MENU_CUSTOMERID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_SERVE_CUSTOMERID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_MENU_DISHID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_EMPLOYEES_ROLEID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_PERMISSION_FUNCTIONID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_BOOKING_HALLID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_SEARCH_HALLID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_PERMISSION_ROLEID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_SERVE_SERVICEID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_BOOKING_SHIFTID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDataModel.FK_SEARCH_SHIFTID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
