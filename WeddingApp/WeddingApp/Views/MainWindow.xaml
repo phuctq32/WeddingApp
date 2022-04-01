@@ -1,0 +1,382 @@
+﻿<Window x:Class="WeddingApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeddingApp.Views"
+        mc:Ignorable="d"
+        Height="820" Width="1420"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{x:Null}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Foreground="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
+        <Grid>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="170"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Image Source="/Resources/Images/login-image.png" Stretch="UniformToFill" Height="80" Width="80" Margin="0 20 0 60" ></Image>
+                    </Grid>
+
+                    <Separator Margin="20 151" BorderBrush="Black" Height="3" ></Separator>
+
+                    <Grid Grid.Row="1">
+
+                        <!--<ListView x:Name="listViewMenu">
+                            <ListViewItem
+                            Margin="20 20 20 10"
+                            FontSize="15" FontWeight="Bold"
+                            Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="Food" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Menu" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <ListViewItem
+                            Margin="20 10"
+                            FontSize="15" FontWeight="Bold"
+                            Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="Cart" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Giỏ hàng" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <ListViewItem
+                        Margin="20 10"
+                        FontSize="15" FontWeight="Bold"
+                        Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="ClipboardText" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Đơn hàng của tôi" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <ListViewItem
+                        Margin="20 10"
+                        FontSize="15" FontWeight="Bold"
+                        Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="AccountSettings" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Tài khoản" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <ListViewItem
+                                Margin="20 10"
+                                FontSize="15" FontWeight="Bold"
+                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="InfoCircle" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Thông tin" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <ListViewItem
+                                Margin="20 20 20 10"
+                                FontSize="15" FontWeight="Bold"
+                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsAdmin, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="ChartBar" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Thống kê" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <ListViewItem
+                                Margin="20 10"
+                                FontSize="15" FontWeight="Bold"
+                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsAdmin, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="Food" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Sản phẩm" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <ListViewItem
+                                Margin="20 10"
+                                FontSize="15" FontWeight="Bold"
+                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsAdmin, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="Receipt" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Đơn hàng" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <ListViewItem
+                                Margin="20 10"
+                                FontSize="15" FontWeight="Bold"
+                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsAdmin, Converter={StaticResource boolToVis}}">
+                                <ListViewItem.Template>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Name="icon" Margin="30 0 0 0" Height="30" Width="30" Kind="AccountSettings" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                                <TextBlock x:Name="text" Text="Tài khoản" Margin="20 16 0 0" ></TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="icon" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ListViewItem.Template>
+                            </ListViewItem>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SwitchTabCommand}"
+                                                       CommandParameter="{Binding ElementName=MainWD}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListView>-->
+
+                        <Button
+                        Background="Transparent"
+                        Width="100"
+                        Height="20"
+                        Padding="0"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        Margin="50 0 0 20"
+                        Foreground="Black"
+                        OverridesDefaultStyle="True"
+                        Command="{Binding LogOutCommand}"
+                        CommandParameter="{Binding ElementName=MainWD}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <StackPanel x:Name="stackpanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                        <materialDesign:PackIcon Kind="Logout" Height="20" Width="20"></materialDesign:PackIcon>
+                                        <TextBlock Text="Đăng xuất" FontSize="16" FontWeight="DemiBold" Margin="5 2 0 0"></TextBlock>
+                                    </StackPanel>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="stackpanel" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" CornerRadius="0 10 0 0" Background="white">
+                        <Grid>
+                            <uc:ControlBarUC x:Name="controlBar"></uc:ControlBarUC>
+                            <!--<Ellipse
+                            Width="40"
+                            Height="40"
+                            HorizontalAlignment="Right"
+                            Margin="0 10 210 0">
+                                <Ellipse.Fill>
+                                    <ImageBrush x:Name="ImgBrush" ImageSource="{Binding Source={StaticResource AccountVM}, Path=Avatar, Converter={StaticResource ImgConverter}, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill"></ImageBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            Foreground="Black"
+                            Text="{Binding Source={StaticResource AccountVM}, Path=Fullname, UpdateSourceTrigger=PropertyChanged}"
+                            HorizontalAlignment="Right"
+                            Margin="0 40 60 0" />-->
+                        </Grid>
+                    </Border>
+                    <Grid Grid.Row="1">
+                        <Border  CornerRadius="10" Background="#e0f2f1">
+                            <Grid x:Name="ucWindow">
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Rectangle
+            Fill="white"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            RadiusY="10"
+            RadiusX="10"
+            Panel.ZIndex="-2"
+            Effect="{StaticResource dropShadow}"
+            Margin="10">
+            </Rectangle>
+        </Grid>
+    </materialDesign:TransitioningContent>
+</Window>
