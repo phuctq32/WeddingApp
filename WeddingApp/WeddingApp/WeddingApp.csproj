@@ -150,6 +150,13 @@
   <ItemGroup>
     <Resource Include="Resources\Images\login-image.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\error_icon.png" />
+    <Resource Include="Resources\Images\information_icon.png" />
+    <Resource Include="Resources\Images\question_icon.png" />
+    <Resource Include="Resources\Images\success_icon.png" />
+    <Resource Include="Resources\Images\warning_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.4.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.4.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
