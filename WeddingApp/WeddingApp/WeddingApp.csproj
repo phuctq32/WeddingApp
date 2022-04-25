@@ -91,14 +91,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\UserControls\DishListUC.xaml.cs">
+      <DependentUpon>DishListUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ServiceListUC.xaml.cs">
+      <DependentUpon>ServiceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\WeddingHallUC.xaml.cs">
       <DependentUpon>WeddingHallUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\WeddingListUC.xaml.cs">
       <DependentUpon>WeddingListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WeddingDetailWindow.xaml.cs">
+      <DependentUpon>WeddingDetailWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\XAML\Colors.xaml">
       <SubType>Designer</SubType>
@@ -140,7 +149,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\DishListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\MenuUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ServiceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\WeddingListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WeddingDetailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

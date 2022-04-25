@@ -73,8 +73,6 @@
                                                 FontWeight="Medium"
                                                 Text="{Binding PRICE_, StringFormat=N0}"
                                                 VerticalAlignment="Center"
-                                                Opacity="{Binding ElementName=discount, Path= Text, Converter={StaticResource doubleToOpacity}}"
-                                                TextDecorations="{Binding ElementName=discount, Path= Text, Converter={StaticResource doubleToTxtDecorations}}"
                                                 Visibility="Visible">
                                     </TextBlock>
                                     <!--Phần đánh giá, nếu RATING_TIMES_ = 0 thì ẩn cái này đi-->
@@ -101,8 +99,7 @@
                                 <StackPanel
                                 x:Name="stack"
                                 Orientation="Horizontal"
-                                Margin="0 5"
-                                Visibility="{Binding ElementName=discount, Path= Text, Converter={StaticResource doubleToVis}}">
+                                Margin="0 5">
                                     <TextBlock
                                     x:Name="priceDiscount"
                                     Margin="0 0 20 0"
@@ -111,10 +108,11 @@
                                     FontWeight="Medium"
                                     VerticalAlignment="Center">
                                         <TextBlock.Text>
-                                            <MultiBinding Converter="{StaticResource priceToPriceDiscount}">
+                                            tét
+                                            <!--<MultiBinding Converter="{StaticResource priceToPriceDiscount}">
                                                 <Binding ElementName="price" Path="Text" />
                                                 <Binding ElementName="discount" Path="Text" />
-                                            </MultiBinding>
+                                            </MultiBinding>-->
                                         </TextBlock.Text>
                                     </TextBlock>
                                     <Border
@@ -154,7 +152,6 @@
                                 materialDesign:ButtonAssist.CornerRadius="10"
                                 HorizontalContentAlignment="Stretch"
                                 VerticalAlignment="Bottom"
-                                Command="{Binding Source={StaticResource MenuVM}, Path=AddToCartInProductDetailCommand}"
                                 CommandParameter="{Binding}">
                                 <Button.Content>
                                     <Grid>

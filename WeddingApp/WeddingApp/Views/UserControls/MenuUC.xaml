@@ -385,7 +385,6 @@
                                                                     VerticalContentAlignment="Center"
                                                                     HorizontalContentAlignment="Center"
                                                                     FontSize="14"
-                                                                    Command="{Binding Source={StaticResource CreateOrderVM}, Path=UpCommand}"
                                                                     CommandParameter="{Binding ElementName=amount}" />
                                                                     <Border
                                                                     BorderBrush="Gray"
@@ -414,7 +413,7 @@
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center">
                                                         <TextBlock.Text>
-                                                            <MultiBinding UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource unitToPrice}">
+                                                            <MultiBinding UpdateSourceTrigger="PropertyChanged">
                                                                 <Binding ElementName="discount" Path="Text" />
                                                                 <Binding ElementName="price" Path="Text" />
                                                                 <Binding ElementName="amount" Path="Text" />
