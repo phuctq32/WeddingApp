@@ -17,17 +17,15 @@ namespace WeddingApp.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SHIFT()
         {
-            this.BOOKINGs = new HashSet<BOOKING>();
-            this.SEARCHes = new HashSet<SEARCH>();
+            this.WEDDINGs = new HashSet<WEDDING>();
         }
     
         public int SHIFTID { get; set; }
-        public System.DateTime SHIFTSTART { get; set; }
-        public System.DateTime SHIFTEND { get; set; }
+        public string SHIFTNAME { get; set; }
+        public System.TimeSpan SHIFTSTART { get; set; }
+        public System.TimeSpan SHIFTEND { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BOOKING> BOOKINGs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SEARCH> SEARCHes { get; set; }
+        public virtual ICollection<WEDDING> WEDDINGs { get; set; }
     }
 }

@@ -16,9 +16,11 @@ namespace WeddingApp.Model
     {
         public int MENUID { get; set; }
         public int DISHID { get; set; }
-        public int CUSTOMERID { get; set; }
+        public int WEDDINGID { get; set; }
+        public Nullable<decimal> DISHCOST { get; set; }
+        public string NOTE { get; set; }
     
-        public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual DISH DISH { get; set; }
+        public virtual WEDDING WEDDING { get; set; }
     }
 }

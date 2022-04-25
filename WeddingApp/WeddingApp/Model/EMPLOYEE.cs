@@ -17,17 +17,18 @@ namespace WeddingApp.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EMPLOYEE()
         {
-            this.BILLS = new HashSet<BILL>();
+            this.INVOICES = new HashSet<INVOICE>();
         }
     
+        public string USERNAME { get; set; }
         public string EMPLOYEENAME { get; set; }
         public string PASSWORD { get; set; }
-        public string USERNAME { get; set; }
-        public Nullable<decimal> SALARY { get; set; }
-        public int ROLEID { get; set; }
+        public decimal SALARY { get; set; }
+        public Nullable<System.DateTime> STARTWORKING { get; set; }
+        public string ROLEID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BILL> BILLS { get; set; }
         public virtual ROLE ROLE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<INVOICE> INVOICES { get; set; }
     }
 }

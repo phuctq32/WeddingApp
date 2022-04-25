@@ -21,7 +21,7 @@ namespace WeddingApp.Model
             this.PERMISSIONs = new HashSet<PERMISSION>();
         }
     
-        public int ROLEID { get; set; }
+        public string ROLEID { get; set; }
         public string ROLENAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -15,7 +15,7 @@ namespace WeddingApp.Model
     public partial class PERMISSION
     {
         public int PERMISSIONID { get; set; }
-        public int ROLEID { get; set; }
+        public string ROLEID { get; set; }
         public int FUNCTIONID { get; set; }
     
         public virtual FUNCTION FUNCTION { get; set; }

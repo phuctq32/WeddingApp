@@ -15,10 +15,12 @@ namespace WeddingApp.Model
     public partial class SERVE
     {
         public int SERVEID { get; set; }
-        public int CUSTOMERID { get; set; }
+        public int WEDDINGID { get; set; }
         public int SERVICEID { get; set; }
+        public Nullable<decimal> SERVICECOST { get; set; }
+        public string NOTE { get; set; }
     
-        public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual SERVICE SERVICE { get; set; }
+        public virtual WEDDING WEDDING { get; set; }
     }
 }
