@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WeddingApp.Views.UserControls"
+             xmlns:local="clr-namespace:WeddingApp.Views.UserControls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="710" d:DesignWidth="1120">
 
@@ -18,10 +18,11 @@
                 <ColumnDefinition Width="0.3*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock
                 Text="STT"
@@ -79,13 +80,23 @@
                         TextWrapping="Wrap"
                         TextAlignment="Center" />
             <TextBlock
-                        Text="Số Lượng"
+                        Text="Số Lượng Bàn"
                         FontSize="18"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         FontWeight="Medium"
                         Foreground="Black"
                         Grid.Column="6"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center" />
+            <TextBlock
+                        Text="Chi tiết"
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Grid.Column="7"
                         TextWrapping="Wrap"
                         TextAlignment="Center" />
         </Grid>
@@ -97,10 +108,11 @@
                     <ColumnDefinition Width="0.3*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <!--mã sảnh-->
                 <TextBlock
@@ -163,7 +175,16 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center" />
 
-                <Separator Width="auto" Height="3" Margin="10 0" VerticalAlignment="Bottom" Grid.ColumnSpan="6"></Separator>
+                <Button
+                  Style="{StaticResource MaterialDesignIconForegroundButton}"
+                  ToolTip="MaterialDesignIconForegroundButton"
+                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Foreground="Black"
+                    Grid.Column="7">
+                    <materialDesign:PackIcon Kind="Details" />
+                </Button>
+
+                <Separator Width="auto" Height="3" Margin="10 0" VerticalAlignment="Bottom" Grid.ColumnSpan="8"></Separator>
             </Grid>
             <!--<ListView.ItemTemplate>
                         <DataTemplate>
