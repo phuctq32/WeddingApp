@@ -1,0 +1,369 @@
+﻿<UserControl x:Class="WeddingApp.Views.UserControls.ServiceSelectionUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WeddingApp.Views.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid Margin="20 20 20 50">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.Row="0"
+                        Background="White"
+                        CornerRadius="5"
+                        Margin="25 0">
+                        <Grid>
+                            <CheckBox
+                                x:Name="selectAllCheckBox"
+                                CommandParameter="{Binding ElementName=CartUserControl}"
+                                Width="17"
+                                Height="13"
+                                HorizontalAlignment="Left"
+                                Margin="12 0 0 0"
+                                Background="{StaticResource Orange2}" />
+                            <TextBlock
+                                Text="Dịch vụ"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="50 0 0 0"
+                                FontSize="18"
+                                FontWeight="DemiBold"
+                                Foreground="Black" />
+                            <TextBlock
+                                Text="Số lượng"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="167 0 0 0"
+                                FontSize="18"
+                                FontWeight="DemiBold"
+                                Foreground="Black" />
+                            <TextBlock
+                                Text="Giá"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0 0 100 0"
+                                FontSize="18"
+                                FontWeight="DemiBold"
+                                Foreground="Black" />
+                            <Button
+                                x:Name="deleteAllBtn"
+                                Grid.Column="4"
+                                Style="{StaticResource deleteBtn}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0 0 6 0"
+                                Command="{Binding DeleteIsCheckedCartCommand}"
+                                CommandParameter="{Binding ElementName=cartList}" />
+                        </Grid>
+                    </Border>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="29*" />
+                        </Grid.ColumnDefinitions>
+                        <ListView x:Name="cartList" Margin="0,0,-0.4,0" Background="{x:Null}" ScrollViewer.CanContentScroll="False"
+                                  Grid.ColumnSpan="2">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="120" Width="680">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="55"></ColumnDefinition>
+                                                <ColumnDefinition Width="300"></ColumnDefinition>
+                                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox
+                                                x:Name="selectCheckBox"
+                                                CommandParameter="{Binding ElementName=selectCheckBox}"
+                                                Grid.Column="0"
+                                                Margin="20 0"
+                                                Height="13"
+                                                Width="17"
+                                                HorizontalAlignment="Left"
+                                                Background="{StaticResource Orange2}" />
+                                            <!--hình, tên, giá giảm và chưa giảm của 1 món ăn-->
+                                            <Grid Grid.Column="1">
+                                                <!--hình ảnh-->
+                                                <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="0 0 0 0">
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="{Binding PRODUCT.IMAGE_}" Stretch="UniformToFill" />
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <StackPanel Orientation="Vertical">
+                                                    <!--tên món ăn-->
+                                                    <TextBlock
+                                                        MinHeight="40"
+
+                                                        MaxWidth="180"
+                                                        Text="{Binding PRODUCT.NAME_}"
+                                                        TextWrapping="Wrap"
+                                                        FontSize="15"
+                                                        FontWeight="SemiBold"
+                                                        Margin="70 20 0 0" />
+                                                    <StackPanel Orientation="Horizontal"
+                                                            Margin="90 0 0 0">
+                                                        <!--số tiền không giảm giá-->
+                                                        <TextBlock
+                                                            x:Name="price"
+                                                            Margin="10 5"
+                                                            Foreground="Black"
+                                                            FontSize="16"
+                                                            FontWeight="Medium"
+                                                            Text="{Binding PRODUCT.PRICE_, StringFormat=N0}"
+                                                            VerticalAlignment="Center">
+                                                        </TextBlock>
+
+                                                        <StackPanel
+                                                            x:Name="stack"
+                                                            Orientation="Horizontal"
+                                                            Margin="0 5">
+                                                            <materialDesign:PackIcon x:Name="arrow" Kind="ArrowRight" VerticalAlignment="Center" />
+                                                            <!--giá giảm-->
+                                                            <TextBlock
+                                                                Margin="10 0 10 0"
+                                                                Foreground="Red"
+                                                                FontSize="16"
+                                                                FontWeight="Medium"
+                                                                VerticalAlignment="Center">
+                                                                <TextBlock.Text>
+                                                                    <MultiBinding>
+                                                                        <Binding ElementName="price" Path="Text" />
+                                                                        <Binding ElementName="discount" Path="Text" />
+                                                                    </MultiBinding>
+                                                                </TextBlock.Text>
+                                                            </TextBlock>
+                                                            <!--discount-->
+                                                            <Border
+                                                                BorderBrush="Red"
+                                                                CornerRadius="5"
+                                                                BorderThickness="1">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock
+                                                                        Margin="5 0 0 0"
+                                                                        Foreground="Red"
+                                                                        FontSize="12"
+                                                                        FontWeight="Medium"
+                                                                        VerticalAlignment="Center">
+                                                                        -
+                                                                    </TextBlock>
+                                                                    <TextBlock
+                                                                        x:Name="discount"
+                                                                        Margin="0 0 5 0"
+                                                                        Foreground="Red"
+                                                                        FontSize="12"
+                                                                        FontWeight="Medium"
+                                                                        Text="{Binding PRODUCT.DISCOUNT_, StringFormat=P0}"
+                                                                        VerticalAlignment="Center">
+                                                                    </TextBlock>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                            <!--nút +- số lượng-->
+                                            <Grid Grid.Column="2">
+                                                <Grid x:Name="spinner" Width="70" Height="25">
+                                                    <Border>
+                                                        <Border.OpacityMask>
+                                                            <VisualBrush>
+                                                                <VisualBrush.Visual>
+                                                                    <Border
+                                                                        Background="Black"
+                                                                        SnapsToDevicePixels="True"
+                                                                        CornerRadius="4"
+                                                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
+                                                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Border.OpacityMask>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="20" />
+                                                                <ColumnDefinition />
+                                                                <ColumnDefinition Width="20" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock
+                                                                x:Name="amount"
+                                                                FontWeight="Medium"
+                                                                FontSize="12"
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"
+                                                                Padding="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding AMOUNT_}" />
+                                                            <Button
+                                                                Style="{StaticResource up_down_spinner_btn}"
+                                                                Grid.Column="0"
+                                                                Grid.Row="0"
+                                                                Width="auto"
+                                                                Height="auto"
+                                                                Content="-"
+                                                                VerticalContentAlignment="Center"
+                                                                HorizontalContentAlignment="Center"
+                                                                FontSize="16"
+                                                                CommandParameter="{Binding ElementName=amount}" />
+                                                            <Button
+                                                                Style="{StaticResource up_down_spinner_btn}"
+                                                                Grid.Column="2"
+                                                                Grid.Row="1"
+                                                                Width="auto"
+                                                                Height="auto"
+                                                                Content="+"
+                                                                VerticalContentAlignment="Center"
+                                                                HorizontalContentAlignment="Center"
+                                                                FontSize="14"
+                                                                CommandParameter="{Binding ElementName=amount}" />
+                                                            <Border
+                                                                BorderBrush="Gray"
+                                                                IsHitTestVisible="False"
+                                                                BorderThickness="1"
+                                                                CornerRadius="4"
+                                                                Grid.RowSpan="2"
+                                                                Grid.ColumnSpan="3" />
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </Grid>
+                                            <!--giá tiền tổng cộng-->
+                                            <TextBlock
+                                                Grid.Column="3"
+                                                FontSize="16"
+                                                FontWeight="DemiBold"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <MultiBinding UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding ElementName="discount" Path="Text" />
+                                                        <Binding ElementName="price" Path="Text" />
+                                                        <Binding ElementName="amount" Path="Text" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <!--nút xoá món ăn ra khỏi giỏ hàng-->
+                                            <Button
+                                                Grid.Column="4"
+                                                Style="{StaticResource deleteBtn}"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Margin="0 0 10 0"
+                                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
+                                        </Grid>
+
+                                        <!-- background -->
+                                        <Rectangle
+                                    x:Name="backgroundRec"
+                                    Fill="White"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    RadiusY="10"
+                                    RadiusX="10"
+                                    Panel.ZIndex="-2"
+                                    Margin="10">
+                                        </Rectangle>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <ContentPresenter />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid Margin="20 20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <TextBlock
+                        Text="Các dịch vụ đã chọn"
+                        HorizontalAlignment="Center"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Foreground="{StaticResource Orange2}"
+                        Margin="0 20" />
+                    </Grid>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+
+                        <TextBlock
+                                Text="Tổng cộng:"
+                                Foreground="Black"
+                                FontSize="20"
+                                VerticalAlignment="Top"
+                                Margin="20 10 0 0" />
+                        <TextBlock x:Name="totalPrice"
+                                Text="{Binding TotalPrice, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                Foreground="Black"
+                                FontWeight="Medium"
+                                FontSize="16"
+                                Width="110"
+                                TextAlignment="Right"
+                                VerticalAlignment="Top"
+                                Margin="45 10 0 0" />
+                    </StackPanel>
+                    <Grid Grid.Row="3">
+                        <Button Style="{StaticResource SearchBtn}"
+                                IsDefault="True"
+                                Command="{Binding OrderCommand}"
+                                CommandParameter="{Binding ElementName=CartUserControl}"
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                Margin="5 0"
+                                Height="40"
+                                Content="Xác nhận"
+                                FontSize="20" />
+                    </Grid>
+                    <Rectangle
+                            Fill="White"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            RadiusY="10"
+                            RadiusX="10"
+                            Panel.ZIndex="-2"
+                            Grid.RowSpan="4">
+                    </Rectangle>
+                </Grid>
+            </Grid>
+        </Grid>
+    </materialDesign:TransitioningContent>
+</UserControl>

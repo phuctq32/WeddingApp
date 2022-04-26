@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WeddingApp.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for ServiceListUC.xaml
+    /// Interaction logic for ServiceSelectionUC.xaml
     /// </summary>
-    public partial class ServiceListUC : UserControl
+    public partial class ServiceSelectionUC : UserControl
     {
-        public ServiceListUC()
+        public ServiceSelectionUC()
         {
             InitializeComponent();
         }
