@@ -110,19 +110,18 @@
                                 </TextBlock>
                                 <!--button xoá sửa-->
                                 <StackPanel Orientation="Horizontal" Grid.Column="4">
-                                    <Button Style="{StaticResource editBtn}"
-                                        VerticalAlignment="Center"
-                                        x:Name="editbtn"
-                                        HorizontalAlignment="Center"
-                                        Margin="20 0 0 0"
-                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                    <Button
+                                        Margin="20 0"
+                                          Style="{StaticResource MaterialDesignIconForegroundButton}"
+                                          ToolTip="Chỉnh sửa thông tin nhân viên"
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                        <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                     </Button>
-                                    <Button Style="{StaticResource deleteBtn}"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        x:Name="deletebtn"
-                                        Margin="50 0 0 0"
-                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                    <Button
+                                          Style="{StaticResource MaterialDesignIconForegroundButton}"
+                                          ToolTip="Xoá nhân viên"
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                        <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
                                     </Button>
                                 </StackPanel>
                             </Grid>
