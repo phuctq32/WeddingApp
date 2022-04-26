@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
+        xmlns:ucAdmin="clr-namespace:WeddingApp.Views.UserControls.Admin"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeddingApp.Views"
@@ -362,7 +363,7 @@
                     <Grid Grid.Row="1">
                         <Border  CornerRadius="10" Background="#e0f2f1">
                             <Grid x:Name="ucWindow">
-                                <uc:ServiceSelectionUC />
+                                <ucAdmin:EmployeeListUC />
                             </Grid>
                         </Border>
                     </Grid>
