@@ -91,7 +91,6 @@
                     </ListView>
                 </Border>
                 <uc:DishListUC Grid.Row="2" Visibility="Collapsed" />
-                <uc:DetailServiceListUC Grid.Row="2" Visibility="Visible" />
             </Grid>
             <Rectangle
             Fill="white"
