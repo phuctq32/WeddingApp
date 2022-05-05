@@ -175,6 +175,9 @@
     <Compile Include="Views\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddServiceWindow.xaml.cs">
+      <DependentUpon>AddServiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChangeEmployeeInformationWindow.xaml.cs">
       <DependentUpon>ChangeEmployeeInformationWindow.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,9 @@
     </Compile>
     <Compile Include="Views\EditDishWindow.xaml.cs">
       <DependentUpon>EditDishWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditServiceWindow.xaml.cs">
+      <DependentUpon>EditServiceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InvoiceWindow.xaml.cs">
       <DependentUpon>InvoiceWindow.xaml</DependentUpon>
@@ -199,14 +205,14 @@
     <Compile Include="Views\UserControls\Admin\DashBoardUC.xaml.cs">
       <DependentUpon>DashBoardUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Admin\EditDishUC.xaml.cs">
-      <DependentUpon>EditDishUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\Admin\EditServiceUC.xaml.cs">
-      <DependentUpon>EditServiceUC.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\Admin\DishListUC.xaml.cs">
+      <DependentUpon>DishListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Admin\EmployeeListUC.xaml.cs">
       <DependentUpon>EmployeeListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Admin\ServiceListUC.xaml.cs">
+      <DependentUpon>ServiceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
@@ -215,11 +221,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\UserControls\DetailDishListUC.xaml.cs">
+      <DependentUpon>DetailDishListUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\DetailServiceListUC.xaml.cs">
       <DependentUpon>DetailServiceListUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\DishListUC.xaml.cs">
-      <DependentUpon>DishListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
@@ -260,6 +266,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChangeEmployeeInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -273,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditDishWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -292,11 +306,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\Admin\EditDishUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\Admin\EditServiceUC.xaml">
+    <Page Include="Views\UserControls\Admin\DishListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,15 +314,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\Admin\ServiceListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\ControlBarUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\DetailServiceListUC.xaml">
+    <Page Include="Views\UserControls\DetailDishListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\DishListUC.xaml">
+    <Page Include="Views\UserControls\DetailServiceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

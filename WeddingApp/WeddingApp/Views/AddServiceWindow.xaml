@@ -1,12 +1,11 @@
-﻿<Window x:Class="WeddingApp.Views.AddDishWindow"
+﻿<Window x:Class="WeddingApp.Views.AddServiceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeddingApp.Views"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
+        xmlns:local="clr-namespace:WeddingApp.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         mc:Ignorable="d"
-        Title="AddDishWindow" Height="600" Width="800"
+        Title="AddServiceWindow" Height="600" Width="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -31,8 +30,8 @@
                     <RowDefinition Height="0.8*"></RowDefinition>
                     <RowDefinition Height="0.4*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <uc:ControlBarUC x:Name="controlBar" Grid.Row="0" Grid.ColumnSpan="2"></uc:ControlBarUC>
-                <TextBlock Text="Thêm món ăn"
+                <uc:ControlBarUC x:Name="controlBar" Grid.Row="0" Grid.ColumnSpan="2" />
+                <TextBlock Text="Thêm dịch vụ"
                        Margin="0 10 0 0"
                            VerticalAlignment="Bottom"
                            HorizontalAlignment="Center"
@@ -47,14 +46,14 @@
                     <!--tên món ăn-->
                     <StackPanel Orientation="Horizontal" Margin="0 20">
                         <materialDesign:PackIcon
-                                    Kind="Food"
+                                    Kind="RoomService"
                                     Width="30"
                                     Height="30"
                                     Foreground="{StaticResource Gray}"
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-15" />
                         <TextBox
-                            materialDesign:HintAssist.Hint="Tên món ăn"
+                            materialDesign:HintAssist.Hint="Tên dịch vụ"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             x:Name="txtName"
                             Foreground="Black"

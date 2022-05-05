@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WeddingApp.Views.UserControls.Admin
 {
     /// <summary>
-    /// Interaction logic for EditServiceUC.xaml
+    /// Interaction logic for DishListUC.xaml
     /// </summary>
-    public partial class EditServiceUC : UserControl
+    public partial class DishListUC : UserControl
     {
-        public EditServiceUC()
+        public DishListUC()
         {
             InitializeComponent();
         }

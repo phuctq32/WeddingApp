@@ -90,7 +90,7 @@
                         </ListViewItem>
                     </ListView>
                 </Border>
-                <uc:DishListUC Grid.Row="2" Visibility="Collapsed" />
+                <uc:DetailDishListUC Grid.Row="2" Visibility="Collapsed" />
             </Grid>
             <Rectangle
             Fill="white"

@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WeddingApp.Views.UserControls.Admin
+namespace WeddingApp.Views
 {
     /// <summary>
-    /// Interaction logic for EditDishUC.xaml
+    /// Interaction logic for EditServiceWindow.xaml
     /// </summary>
-    public partial class EditDishUC : UserControl
+    public partial class EditServiceWindow : Window
     {
-        public EditDishUC()
+        public EditServiceWindow()
         {
             InitializeComponent();
         }

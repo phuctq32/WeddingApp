@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WeddingApp.Views.UserControls
+namespace WeddingApp.Views
 {
     /// <summary>
-    /// Interaction logic for DishListUC.xaml
+    /// Interaction logic for AddServiceWindow.xaml
     /// </summary>
-    public partial class DishListUC : UserControl
+    public partial class AddServiceWindow : Window
     {
-        public DishListUC()
+        public AddServiceWindow()
         {
             InitializeComponent();
         }
