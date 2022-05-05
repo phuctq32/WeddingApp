@@ -8,21 +8,19 @@
              d:DesignHeight="450" d:DesignWidth="790">
     <Grid>
         <Grid>
-            <Grid Margin="10">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="AUTO"></RowDefinition>
-                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="1" Grid.RowSpan="2">
+                <Grid Grid.Row="0" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="400"></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
                             <ColumnDefinition Width="1.2*"></ColumnDefinition>
                             <ColumnDefinition Width="1.2*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
@@ -52,13 +50,14 @@
                     </Grid>
                     <ListView x:Name="ListOtherUser"
                             Grid.Row="1"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                              ScrollViewer.CanContentScroll="False">
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Visible"
+                            ScrollViewer.CanContentScroll="True">
                         <ListViewItem>
-                            <Grid Height="120" Width="760">
+                            <Grid Height="120" Width="755">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="400"></ColumnDefinition>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
                                         <ColumnDefinition Width="1.2*"></ColumnDefinition>
                                         <ColumnDefinition Width="1.2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
@@ -71,17 +70,536 @@
                                             Width="80"
                                             HorizontalAlignment="Left"
                                             Margin="40 0">
-                                            <Rectangle.Fill>
-                                                <ImageBrush ImageSource="/Resources/Images/login-image.png" Stretch="UniformToFill" />
-                                            </Rectangle.Fill>
                                         </Rectangle>
-                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="240" HorizontalAlignment="Right">
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
                                             <!--tên món ăn-->
                                             <TextBlock
-                                            Margin="0 20 10 0"
+                                            Margin="10 20 10 0"
                                             FontSize="17"
                                             VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap"
+                                            Text="Dịch vụ tên dài dài dài dài dài dài dài dài " />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--số lượng -->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="1">
+                                        100000000
+                                    </TextBlock>
+                                    <!--đơn giá-->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="2">
+                                        1000000000
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10">
+                                </Rectangle>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Grid Height="120" Width="730">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <!--hình ảnh-->
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
                                             HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                            Margin="10 20 10 0"
+                                            FontSize="17"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap"
+                                            Text="Dịch vụ tên dài dài dài dài dài dài ngắn dài " />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--số lượng -->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="1">
+                                        100000000
+                                    </TextBlock>
+                                    <!--đơn giá-->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="2">
+                                        1000000000
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10">
+                                </Rectangle>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Grid Height="120" Width="730">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <!--hình ảnh-->
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                            Margin="10 20 10 0"
+                                            FontSize="17"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap"
+                                            Text="Dịch vụ tên dài dài dài dài dài dài dài dài " />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--số lượng -->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="1">
+                                        100000000
+                                    </TextBlock>
+                                    <!--đơn giá-->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="2">
+                                        1000000000
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10">
+                                </Rectangle>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Grid Height="120" Width="730">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <!--hình ảnh-->
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                            Margin="10 20 10 0"
+                                            FontSize="17"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap"
+                                            Text="Dịch vụ tên dài dài dài dài dài dài dài dài " />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--số lượng -->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="1">
+                                        100000000
+                                    </TextBlock>
+                                    <!--đơn giá-->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="2">
+                                        1000000000
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10">
+                                </Rectangle>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Grid Height="120" Width="730">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <!--hình ảnh-->
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                            Margin="10 20 10 0"
+                                            FontSize="17"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap"
+                                            Text="Dịch vụ tên dài dài dài dài ngắn dài dài dài " />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--số lượng -->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="1">
+                                        100000000
+                                    </TextBlock>
+                                    <!--đơn giá-->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="2">
+                                        1000000000
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10">
+                                </Rectangle>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Grid Height="120" Width="730">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <!--hình ảnh-->
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                            Margin="10 20 10 0"
+                                            FontSize="17"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap"
+                                            Text="Dịch vụ tên dài dài ngắn dài dài dài dài dài " />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--số lượng -->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="1">
+                                        100000000
+                                    </TextBlock>
+                                    <!--đơn giá-->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="2">
+                                        1000000000
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10">
+                                </Rectangle>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Grid Height="120" Width="730">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <!--hình ảnh-->
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                            Margin="10 20 10 0"
+                                            FontSize="17"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap"
+                                            Text="Dịch vụ tên dài dài dài dài dài dài dài dài " />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--số lượng -->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="1">
+                                        100000000
+                                    </TextBlock>
+                                    <!--đơn giá-->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="2">
+                                        1000000000
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10">
+                                </Rectangle>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Grid Height="120" Width="730">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <!--hình ảnh-->
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                            Margin="10 20 10 0"
+                                            FontSize="17"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap"
+                                            Text="Dịch vụ tên dài dài dài dài dài dài dài dài " />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--số lượng -->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="1">
+                                        100000000
+                                    </TextBlock>
+                                    <!--đơn giá-->
+                                    <TextBlock
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"
+                                       Grid.Column="2">
+                                        1000000000
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10">
+                                </Rectangle>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Grid Height="120" Width="730">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <!--hình ảnh-->
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
+                                                    Width="auto"
+                                                    HorizontalAlignment="Center">
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                            Margin="10 20 10 0"
+                                            FontSize="17"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
                                             Foreground="Black"
                                             Grid.Column="2"
                                             TextWrapping="Wrap"
@@ -217,24 +735,6 @@
                         </ListView.ItemContainerStyle>
                     </ListView>
                 </Grid>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right"
-                        Grid.Row="3">
-                    <TextBlock Text="Tổng giá:"
-                           FontSize="30"
-                           VerticalAlignment="Bottom"
-                           HorizontalAlignment="Center"
-                           FontWeight="Medium"
-                           Foreground="Black"
-                           Grid.Column="0"></TextBlock>
-                    <TextBlock Text="{Binding Value}"
-                           FontSize="30"
-                           Margin="20 0"
-                           VerticalAlignment="Bottom"
-                           HorizontalAlignment="Center"
-                           FontWeight="Medium"
-                           Foreground="Black"
-                           Grid.Column="0"></TextBlock>
-                </StackPanel>
             </Grid>
             <!--<Rectangle
             Fill="White"
