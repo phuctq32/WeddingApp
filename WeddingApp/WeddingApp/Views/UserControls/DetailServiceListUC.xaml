@@ -26,7 +26,7 @@
                             <ColumnDefinition Width="1.2*"></ColumnDefinition>
                             <ColumnDefinition Width="1.2*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Món ăn"
+                        <TextBlock Text="Dịch vụ"
                            FontSize="20"
                            VerticalAlignment="Bottom"
                            HorizontalAlignment="Left"
