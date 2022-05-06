@@ -122,7 +122,7 @@ namespace WeddingApp.ViewModels
                 else
                 {
                     isLogin = false;
-                    //CustomMessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!", MessageBoxButton.OK, MessageBoxImage.Error);
                     parameter.txtPassword.Focus();
                 }
             }
