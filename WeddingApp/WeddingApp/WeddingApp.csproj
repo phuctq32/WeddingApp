@@ -178,6 +178,12 @@
     <Compile Include="Views\AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddWeddingHallTypeWindow.xaml.cs">
+      <DependentUpon>AddWeddingHallTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddWeddingHallWindow.xaml.cs">
+      <DependentUpon>AddWeddingHallWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChangeEmployeeInformationWindow.xaml.cs">
       <DependentUpon>ChangeEmployeeInformationWindow.xaml</DependentUpon>
     </Compile>
@@ -192,6 +198,12 @@
     </Compile>
     <Compile Include="Views\EditServiceWindow.xaml.cs">
       <DependentUpon>EditServiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditWeddingHallTypeWindow.xaml.cs">
+      <DependentUpon>EditWeddingHallTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditWeddingHallWindow.xaml.cs">
+      <DependentUpon>EditWeddingHallWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InvoiceWindow.xaml.cs">
       <DependentUpon>InvoiceWindow.xaml</DependentUpon>
@@ -213,6 +225,9 @@
     </Compile>
     <Compile Include="Views\UserControls\Admin\ServiceListUC.xaml.cs">
       <DependentUpon>ServiceListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Admin\WeddingHallTypeListUC.xaml.cs">
+      <DependentUpon>WeddingHallTypeListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
@@ -270,6 +285,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddWeddingHallTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddWeddingHallWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChangeEmployeeInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -287,6 +310,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditWeddingHallTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditWeddingHallWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -315,6 +346,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Admin\ServiceListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Admin\WeddingHallTypeListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
