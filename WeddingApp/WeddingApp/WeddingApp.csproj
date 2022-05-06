@@ -99,20 +99,15 @@
     <Compile Include="Model\BALLROOMTYPE.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Database.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Database.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Database.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Model\Database.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Database.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Model\DISH.cs">
       <DependentUpon>Database.tt</DependentUpon>
@@ -158,6 +153,21 @@
     </Compile>
     <Compile Include="Model\WEDDING.cs">
       <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WeddingDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeddingDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WeddingDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeddingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WeddingDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeddingDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
@@ -221,8 +231,12 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Database.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Database.edmx.diagram">
-      <DependentUpon>Database.edmx</DependentUpon>
+    <EntityDeploy Include="Model\WeddingDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WeddingDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\WeddingDB.edmx.diagram">
+      <DependentUpon>WeddingDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -253,22 +267,27 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Database.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Database.edmx</DependentUpon>
-      <LastGenOutput>Database.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Model\Database.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Database.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Database.cs</LastGenOutput>
     </Content>
-    <Content Include="WeddingDatabase.mdf">
+    <Content Include="Model\WeddingDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WeddingDB.edmx</DependentUpon>
+      <LastGenOutput>WeddingDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\WeddingDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WeddingDB.edmx</DependentUpon>
+      <LastGenOutput>WeddingDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="WeddingDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="WeddingDatabase_log.ldf">
+    <Content Include="WeddingDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>WeddingDatabase.mdf</DependentUpon>
+      <DependentUpon>WeddingDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
