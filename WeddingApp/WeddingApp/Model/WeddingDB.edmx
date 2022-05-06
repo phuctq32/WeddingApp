@@ -1,0 +1,1105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WeddingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BALLROOM">
+          <Key>
+            <PropertyRef Name="BALLROOMID" />
+          </Key>
+          <Property Name="BALLROOMID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BALLROOMNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MAXIMUMTABLE" Type="smallint" Nullable="false" />
+          <Property Name="TYPEID" Type="int" Nullable="false" />
+          <Property Name="NOTE" Type="text" />
+        </EntityType>
+        <EntityType Name="BALLROOMTYPE">
+          <Key>
+            <PropertyRef Name="TYPEID" />
+          </Key>
+          <Property Name="TYPEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TYPENAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="MINIMUMCOST" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DISHES">
+          <Key>
+            <PropertyRef Name="DISHID" />
+          </Key>
+          <Property Name="DISHID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DISHNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="COST" Type="money" Nullable="false" />
+          <Property Name="DISHDESCRIPTION" Type="ntext" />
+          <Property Name="DISHIMAGE" Type="varchar" MaxLength="256" />
+          <Property Name="TYPEID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DISHTYPE">
+          <Key>
+            <PropertyRef Name="TYPEID" />
+          </Key>
+          <Property Name="TYPEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TYPENAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEES">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+          </Key>
+          <Property Name="USERNAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMPLOYEENAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SALARY" Type="money" Nullable="false" />
+          <Property Name="STARTWORKING" Type="smalldatetime" />
+          <Property Name="ROLEID" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FUNCTIONS">
+          <Key>
+            <PropertyRef Name="FUNCTIONID" />
+          </Key>
+          <Property Name="FUNCTIONID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FUNCTIONNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INVOICES">
+          <Key>
+            <PropertyRef Name="INVOICEID" />
+          </Key>
+          <Property Name="INVOICEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOTALCOST" Type="money" Nullable="false" />
+          <Property Name="SERVICECOST" Type="money" Nullable="false" />
+          <Property Name="WEDDINGCOST" Type="money" Nullable="false" />
+          <Property Name="PAID" Type="smalldatetime" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="WEDDINGID" Type="int" Nullable="false" />
+          <Property Name="REMAININGCOST" Type="money" Nullable="false" />
+          <Property Name="STATUS" Type="tinyint" />
+          <Property Name="PENALTIES" Type="money" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENUID" />
+          </Key>
+          <Property Name="MENUID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DISHID" Type="int" Nullable="false" />
+          <Property Name="WEDDINGID" Type="int" Nullable="false" />
+          <Property Name="DISHCOST" Type="money" />
+          <Property Name="NOTE" Type="text" />
+        </EntityType>
+        <EntityType Name="PARAMETER">
+          <Key>
+            <PropertyRef Name="PARAMETERID" />
+          </Key>
+          <Property Name="PARAMETERID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PARAMETERVALUE" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERMISSION">
+          <Key>
+            <PropertyRef Name="PERMISSIONID" />
+          </Key>
+          <Property Name="PERMISSIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLEID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FUNCTIONID" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REPORTDETAIL">
+          <Key>
+            <PropertyRef Name="REPORTDATE" />
+          </Key>
+          <Property Name="REPORTDATE" Type="smalldatetime" Nullable="false" />
+          <Property Name="BOOKEDWEDDING" Type="smallint" />
+          <Property Name="PAIDWEDDING" Type="smallint" />
+          <Property Name="PROFIT" Type="money" />
+          <Property Name="RATIO" Type="float" />
+          <Property Name="REPORTMONTH" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="ROLEID" />
+          </Key>
+          <Property Name="ROLEID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ROLENAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SALESREPORT">
+          <Key>
+            <PropertyRef Name="REPORTMONTH" />
+          </Key>
+          <Property Name="REPORTMONTH" Type="smalldatetime" Nullable="false" />
+          <Property Name="BOOKEDWEDDING" Type="smallint" />
+          <Property Name="PAIDWEDDING" Type="smallint" />
+          <Property Name="PROFIT" Type="money" />
+        </EntityType>
+        <EntityType Name="SERVE">
+          <Key>
+            <PropertyRef Name="SERVEID" />
+          </Key>
+          <Property Name="SERVEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WEDDINGID" Type="int" Nullable="false" />
+          <Property Name="SERVICEID" Type="int" Nullable="false" />
+          <Property Name="SERVICECOST" Type="money" />
+          <Property Name="NOTE" Type="text" />
+        </EntityType>
+        <EntityType Name="SERVICE">
+          <Key>
+            <PropertyRef Name="SERVICEID" />
+          </Key>
+          <Property Name="SERVICEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERVICENAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="COST" Type="money" Nullable="false" />
+          <Property Name="SERVICEDESCRIPTION" Type="ntext" />
+          <Property Name="SERVICEIMAGE" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="SHIFTS">
+          <Key>
+            <PropertyRef Name="SHIFTID" />
+          </Key>
+          <Property Name="SHIFTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SHIFTNAME" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SHIFTSTART" Type="time" Precision="7" Nullable="false" />
+          <Property Name="SHIFTEND" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WEDDING">
+          <Key>
+            <PropertyRef Name="WEDDINGID" />
+          </Key>
+          <Property Name="WEDDINGID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GROOM" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BRIDE" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TELEPHONE" Type="char" MaxLength="10" />
+          <Property Name="DEPOSIT" Type="money" Nullable="false" />
+          <Property Name="WEDDINGDATE" Type="smalldatetime" Nullable="false" />
+          <Property Name="TABLEAMOUNT" Type="tinyint" Nullable="false" />
+          <Property Name="RESERVEAMOUNT" Type="tinyint" />
+          <Property Name="BOOKINGDATE" Type="smalldatetime" />
+          <Property Name="BALLROOMID" Type="int" Nullable="false" />
+          <Property Name="SHIFTID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BALLROOM_TYPEID">
+          <End Role="BALLROOMTYPE" Type="Self.BALLROOMTYPE" Multiplicity="1" />
+          <End Role="BALLROOM" Type="Self.BALLROOM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BALLROOMTYPE">
+              <PropertyRef Name="TYPEID" />
+            </Principal>
+            <Dependent Role="BALLROOM">
+              <PropertyRef Name="TYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DISHED_TYPEID">
+          <End Role="DISHTYPE" Type="Self.DISHTYPE" Multiplicity="1" />
+          <End Role="DISHES" Type="Self.DISHES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISHTYPE">
+              <PropertyRef Name="TYPEID" />
+            </Principal>
+            <Dependent Role="DISHES">
+              <PropertyRef Name="TYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEES_ROLEID">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ROLEID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="ROLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVOICES_EMPLOYEE">
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="1" />
+          <End Role="INVOICES" Type="Self.INVOICES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEES">
+              <PropertyRef Name="USERNAME" />
+            </Principal>
+            <Dependent Role="INVOICES">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVOICES_PAID">
+          <End Role="REPORTDETAIL" Type="Self.REPORTDETAIL" Multiplicity="1" />
+          <End Role="INVOICES" Type="Self.INVOICES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REPORTDETAIL">
+              <PropertyRef Name="REPORTDATE" />
+            </Principal>
+            <Dependent Role="INVOICES">
+              <PropertyRef Name="PAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVOICES_WEDDINGID">
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="1" />
+          <End Role="INVOICES" Type="Self.INVOICES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEDDING">
+              <PropertyRef Name="WEDDINGID" />
+            </Principal>
+            <Dependent Role="INVOICES">
+              <PropertyRef Name="WEDDINGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_DISHID">
+          <End Role="DISHES" Type="Self.DISHES" Multiplicity="1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISHES">
+              <PropertyRef Name="DISHID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="DISHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_WEDDINGID">
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEDDING">
+              <PropertyRef Name="WEDDINGID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="WEDDINGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERMISSION_FUNCTIONID">
+          <End Role="FUNCTIONS" Type="Self.FUNCTIONS" Multiplicity="1" />
+          <End Role="PERMISSION" Type="Self.PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCTIONS">
+              <PropertyRef Name="FUNCTIONID" />
+            </Principal>
+            <Dependent Role="PERMISSION">
+              <PropertyRef Name="FUNCTIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERMISSION_ROLEID">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="PERMISSION" Type="Self.PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ROLEID" />
+            </Principal>
+            <Dependent Role="PERMISSION">
+              <PropertyRef Name="ROLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REPORTDETAIL_REPORTMONTH">
+          <End Role="SALESREPORT" Type="Self.SALESREPORT" Multiplicity="0..1" />
+          <End Role="REPORTDETAIL" Type="Self.REPORTDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALESREPORT">
+              <PropertyRef Name="REPORTMONTH" />
+            </Principal>
+            <Dependent Role="REPORTDETAIL">
+              <PropertyRef Name="REPORTMONTH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVE_SERVICEID">
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="1" />
+          <End Role="SERVE" Type="Self.SERVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE">
+              <PropertyRef Name="SERVICEID" />
+            </Principal>
+            <Dependent Role="SERVE">
+              <PropertyRef Name="SERVICEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVE_WEDDINGID">
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="1" />
+          <End Role="SERVE" Type="Self.SERVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEDDING">
+              <PropertyRef Name="WEDDINGID" />
+            </Principal>
+            <Dependent Role="SERVE">
+              <PropertyRef Name="WEDDINGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WEDDING_BALLROOMID">
+          <End Role="BALLROOM" Type="Self.BALLROOM" Multiplicity="1" />
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BALLROOM">
+              <PropertyRef Name="BALLROOMID" />
+            </Principal>
+            <Dependent Role="WEDDING">
+              <PropertyRef Name="BALLROOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WEDDING_SHIFTID">
+          <End Role="SHIFTS" Type="Self.SHIFTS" Multiplicity="1" />
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIFTS">
+              <PropertyRef Name="SHIFTID" />
+            </Principal>
+            <Dependent Role="WEDDING">
+              <PropertyRef Name="SHIFTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WeddingDBModelStoreContainer">
+          <EntitySet Name="BALLROOM" EntityType="Self.BALLROOM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BALLROOMTYPE" EntityType="Self.BALLROOMTYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DISHES" EntityType="Self.DISHES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DISHTYPE" EntityType="Self.DISHTYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FUNCTIONS" EntityType="Self.FUNCTIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INVOICES" EntityType="Self.INVOICES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PARAMETER" EntityType="Self.PARAMETER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERMISSION" EntityType="Self.PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REPORTDETAIL" EntityType="Self.REPORTDETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALESREPORT" EntityType="Self.SALESREPORT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVE" EntityType="Self.SERVE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICE" EntityType="Self.SERVICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHIFTS" EntityType="Self.SHIFTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WEDDING" EntityType="Self.WEDDING" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BALLROOM_TYPEID" Association="Self.FK_BALLROOM_TYPEID">
+            <End Role="BALLROOMTYPE" EntitySet="BALLROOMTYPE" />
+            <End Role="BALLROOM" EntitySet="BALLROOM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DISHED_TYPEID" Association="Self.FK_DISHED_TYPEID">
+            <End Role="DISHTYPE" EntitySet="DISHTYPE" />
+            <End Role="DISHES" EntitySet="DISHES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEES_ROLEID" Association="Self.FK_EMPLOYEES_ROLEID">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVOICES_EMPLOYEE" Association="Self.FK_INVOICES_EMPLOYEE">
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+            <End Role="INVOICES" EntitySet="INVOICES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVOICES_PAID" Association="Self.FK_INVOICES_PAID">
+            <End Role="REPORTDETAIL" EntitySet="REPORTDETAIL" />
+            <End Role="INVOICES" EntitySet="INVOICES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVOICES_WEDDINGID" Association="Self.FK_INVOICES_WEDDINGID">
+            <End Role="WEDDING" EntitySet="WEDDING" />
+            <End Role="INVOICES" EntitySet="INVOICES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_DISHID" Association="Self.FK_MENU_DISHID">
+            <End Role="DISHES" EntitySet="DISHES" />
+            <End Role="MENU" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_WEDDINGID" Association="Self.FK_MENU_WEDDINGID">
+            <End Role="WEDDING" EntitySet="WEDDING" />
+            <End Role="MENU" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERMISSION_FUNCTIONID" Association="Self.FK_PERMISSION_FUNCTIONID">
+            <End Role="FUNCTIONS" EntitySet="FUNCTIONS" />
+            <End Role="PERMISSION" EntitySet="PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERMISSION_ROLEID" Association="Self.FK_PERMISSION_ROLEID">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="PERMISSION" EntitySet="PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REPORTDETAIL_REPORTMONTH" Association="Self.FK_REPORTDETAIL_REPORTMONTH">
+            <End Role="SALESREPORT" EntitySet="SALESREPORT" />
+            <End Role="REPORTDETAIL" EntitySet="REPORTDETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVE_SERVICEID" Association="Self.FK_SERVE_SERVICEID">
+            <End Role="SERVICE" EntitySet="SERVICE" />
+            <End Role="SERVE" EntitySet="SERVE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVE_WEDDINGID" Association="Self.FK_SERVE_WEDDINGID">
+            <End Role="WEDDING" EntitySet="WEDDING" />
+            <End Role="SERVE" EntitySet="SERVE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WEDDING_BALLROOMID" Association="Self.FK_WEDDING_BALLROOMID">
+            <End Role="BALLROOM" EntitySet="BALLROOM" />
+            <End Role="WEDDING" EntitySet="WEDDING" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WEDDING_SHIFTID" Association="Self.FK_WEDDING_SHIFTID">
+            <End Role="SHIFTS" EntitySet="SHIFTS" />
+            <End Role="WEDDING" EntitySet="WEDDING" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WeddingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BALLROOM">
+          <Key>
+            <PropertyRef Name="BALLROOMID" />
+          </Key>
+          <Property Name="BALLROOMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BALLROOMNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MAXIMUMTABLE" Type="Int16" Nullable="false" />
+          <Property Name="TYPEID" Type="Int32" Nullable="false" />
+          <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BALLROOMTYPE" Relationship="Self.FK_BALLROOM_TYPEID" FromRole="BALLROOM" ToRole="BALLROOMTYPE" />
+          <NavigationProperty Name="WEDDINGs" Relationship="Self.FK_WEDDING_BALLROOMID" FromRole="BALLROOM" ToRole="WEDDING" />
+        </EntityType>
+        <EntityType Name="BALLROOMTYPE">
+          <Key>
+            <PropertyRef Name="TYPEID" />
+          </Key>
+          <Property Name="TYPEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TYPENAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MINIMUMCOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="BALLROOMs" Relationship="Self.FK_BALLROOM_TYPEID" FromRole="BALLROOMTYPE" ToRole="BALLROOM" />
+        </EntityType>
+        <EntityType Name="DISH">
+          <Key>
+            <PropertyRef Name="DISHID" />
+          </Key>
+          <Property Name="DISHID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DISHNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DISHDESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DISHIMAGE" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="TYPEID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DISHTYPE" Relationship="Self.FK_DISHED_TYPEID" FromRole="DISHES" ToRole="DISHTYPE" />
+          <NavigationProperty Name="MENUs" Relationship="Self.FK_MENU_DISHID" FromRole="DISHES" ToRole="MENU" />
+        </EntityType>
+        <EntityType Name="DISHTYPE">
+          <Key>
+            <PropertyRef Name="TYPEID" />
+          </Key>
+          <Property Name="TYPEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TYPENAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DISHES" Relationship="Self.FK_DISHED_TYPEID" FromRole="DISHTYPE" ToRole="DISHES" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+          </Key>
+          <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMPLOYEENAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SALARY" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="STARTWORKING" Type="DateTime" Precision="0" />
+          <Property Name="ROLEID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ROLE" Relationship="Self.FK_EMPLOYEES_ROLEID" FromRole="EMPLOYEES" ToRole="ROLES" />
+          <NavigationProperty Name="INVOICES" Relationship="Self.FK_INVOICES_EMPLOYEE" FromRole="EMPLOYEES" ToRole="INVOICES" />
+        </EntityType>
+        <EntityType Name="FUNCTION">
+          <Key>
+            <PropertyRef Name="FUNCTIONID" />
+          </Key>
+          <Property Name="FUNCTIONID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FUNCTIONNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PERMISSIONs" Relationship="Self.FK_PERMISSION_FUNCTIONID" FromRole="FUNCTIONS" ToRole="PERMISSION" />
+        </EntityType>
+        <EntityType Name="INVOICE">
+          <Key>
+            <PropertyRef Name="INVOICEID" />
+          </Key>
+          <Property Name="INVOICEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOTALCOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SERVICECOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="WEDDINGCOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PAID" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WEDDINGID" Type="Int32" Nullable="false" />
+          <Property Name="REMAININGCOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="STATUS" Type="Byte" />
+          <Property Name="PENALTIES" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_INVOICES_EMPLOYEE" FromRole="INVOICES" ToRole="EMPLOYEES" />
+          <NavigationProperty Name="REPORTDETAIL" Relationship="Self.FK_INVOICES_PAID" FromRole="INVOICES" ToRole="REPORTDETAIL" />
+          <NavigationProperty Name="WEDDING" Relationship="Self.FK_INVOICES_WEDDINGID" FromRole="INVOICES" ToRole="WEDDING" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENUID" />
+          </Key>
+          <Property Name="MENUID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DISHID" Type="Int32" Nullable="false" />
+          <Property Name="WEDDINGID" Type="Int32" Nullable="false" />
+          <Property Name="DISHCOST" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DISH" Relationship="Self.FK_MENU_DISHID" FromRole="MENU" ToRole="DISHES" />
+          <NavigationProperty Name="WEDDING" Relationship="Self.FK_MENU_WEDDINGID" FromRole="MENU" ToRole="WEDDING" />
+        </EntityType>
+        <EntityType Name="PARAMETER">
+          <Key>
+            <PropertyRef Name="PARAMETERID" />
+          </Key>
+          <Property Name="PARAMETERID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PARAMETERVALUE" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERMISSION">
+          <Key>
+            <PropertyRef Name="PERMISSIONID" />
+          </Key>
+          <Property Name="PERMISSIONID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLEID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FUNCTIONID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FUNCTION" Relationship="Self.FK_PERMISSION_FUNCTIONID" FromRole="PERMISSION" ToRole="FUNCTIONS" />
+          <NavigationProperty Name="ROLE" Relationship="Self.FK_PERMISSION_ROLEID" FromRole="PERMISSION" ToRole="ROLES" />
+        </EntityType>
+        <EntityType Name="REPORTDETAIL">
+          <Key>
+            <PropertyRef Name="REPORTDATE" />
+          </Key>
+          <Property Name="REPORTDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BOOKEDWEDDING" Type="Int16" />
+          <Property Name="PAIDWEDDING" Type="Int16" />
+          <Property Name="PROFIT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RATIO" Type="Double" />
+          <Property Name="REPORTMONTH" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="INVOICES" Relationship="Self.FK_INVOICES_PAID" FromRole="REPORTDETAIL" ToRole="INVOICES" />
+          <NavigationProperty Name="SALESREPORT" Relationship="Self.FK_REPORTDETAIL_REPORTMONTH" FromRole="REPORTDETAIL" ToRole="SALESREPORT" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLEID" />
+          </Key>
+          <Property Name="ROLEID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="Self.FK_EMPLOYEES_ROLEID" FromRole="ROLES" ToRole="EMPLOYEES" />
+          <NavigationProperty Name="PERMISSIONs" Relationship="Self.FK_PERMISSION_ROLEID" FromRole="ROLES" ToRole="PERMISSION" />
+        </EntityType>
+        <EntityType Name="SALESREPORT">
+          <Key>
+            <PropertyRef Name="REPORTMONTH" />
+          </Key>
+          <Property Name="REPORTMONTH" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BOOKEDWEDDING" Type="Int16" />
+          <Property Name="PAIDWEDDING" Type="Int16" />
+          <Property Name="PROFIT" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="REPORTDETAILs" Relationship="Self.FK_REPORTDETAIL_REPORTMONTH" FromRole="SALESREPORT" ToRole="REPORTDETAIL" />
+        </EntityType>
+        <EntityType Name="SERVE">
+          <Key>
+            <PropertyRef Name="SERVEID" />
+          </Key>
+          <Property Name="SERVEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WEDDINGID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICEID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICECOST" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SERVICE" Relationship="Self.FK_SERVE_SERVICEID" FromRole="SERVE" ToRole="SERVICE" />
+          <NavigationProperty Name="WEDDING" Relationship="Self.FK_SERVE_WEDDINGID" FromRole="SERVE" ToRole="WEDDING" />
+        </EntityType>
+        <EntityType Name="SERVICE">
+          <Key>
+            <PropertyRef Name="SERVICEID" />
+          </Key>
+          <Property Name="SERVICEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SERVICENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SERVICEDESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SERVICEIMAGE" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SERVEs" Relationship="Self.FK_SERVE_SERVICEID" FromRole="SERVICE" ToRole="SERVE" />
+        </EntityType>
+        <EntityType Name="SHIFT">
+          <Key>
+            <PropertyRef Name="SHIFTID" />
+          </Key>
+          <Property Name="SHIFTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SHIFTNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SHIFTSTART" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="SHIFTEND" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="WEDDINGs" Relationship="Self.FK_WEDDING_SHIFTID" FromRole="SHIFTS" ToRole="WEDDING" />
+        </EntityType>
+        <EntityType Name="WEDDING">
+          <Key>
+            <PropertyRef Name="WEDDINGID" />
+          </Key>
+          <Property Name="WEDDINGID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GROOM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BRIDE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="DEPOSIT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="WEDDINGDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TABLEAMOUNT" Type="Byte" Nullable="false" />
+          <Property Name="RESERVEAMOUNT" Type="Byte" />
+          <Property Name="BOOKINGDATE" Type="DateTime" Precision="0" />
+          <Property Name="BALLROOMID" Type="Int32" Nullable="false" />
+          <Property Name="SHIFTID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BALLROOM" Relationship="Self.FK_WEDDING_BALLROOMID" FromRole="WEDDING" ToRole="BALLROOM" />
+          <NavigationProperty Name="INVOICES" Relationship="Self.FK_INVOICES_WEDDINGID" FromRole="WEDDING" ToRole="INVOICES" />
+          <NavigationProperty Name="MENUs" Relationship="Self.FK_MENU_WEDDINGID" FromRole="WEDDING" ToRole="MENU" />
+          <NavigationProperty Name="SERVEs" Relationship="Self.FK_SERVE_WEDDINGID" FromRole="WEDDING" ToRole="SERVE" />
+          <NavigationProperty Name="SHIFT" Relationship="Self.FK_WEDDING_SHIFTID" FromRole="WEDDING" ToRole="SHIFTS" />
+        </EntityType>
+        <Association Name="FK_BALLROOM_TYPEID">
+          <End Role="BALLROOMTYPE" Type="Self.BALLROOMTYPE" Multiplicity="1" />
+          <End Role="BALLROOM" Type="Self.BALLROOM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BALLROOMTYPE">
+              <PropertyRef Name="TYPEID" />
+            </Principal>
+            <Dependent Role="BALLROOM">
+              <PropertyRef Name="TYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WEDDING_BALLROOMID">
+          <End Role="BALLROOM" Type="Self.BALLROOM" Multiplicity="1" />
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BALLROOM">
+              <PropertyRef Name="BALLROOMID" />
+            </Principal>
+            <Dependent Role="WEDDING">
+              <PropertyRef Name="BALLROOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DISHED_TYPEID">
+          <End Role="DISHTYPE" Type="Self.DISHTYPE" Multiplicity="1" />
+          <End Role="DISHES" Type="Self.DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISHTYPE">
+              <PropertyRef Name="TYPEID" />
+            </Principal>
+            <Dependent Role="DISHES">
+              <PropertyRef Name="TYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_DISHID">
+          <End Role="DISHES" Type="Self.DISH" Multiplicity="1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISHES">
+              <PropertyRef Name="DISHID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="DISHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEES_ROLEID">
+          <End Role="ROLES" Type="Self.ROLE" Multiplicity="1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ROLEID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="ROLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVOICES_EMPLOYEE">
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="INVOICES" Type="Self.INVOICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEES">
+              <PropertyRef Name="USERNAME" />
+            </Principal>
+            <Dependent Role="INVOICES">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERMISSION_FUNCTIONID">
+          <End Role="FUNCTIONS" Type="Self.FUNCTION" Multiplicity="1" />
+          <End Role="PERMISSION" Type="Self.PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCTIONS">
+              <PropertyRef Name="FUNCTIONID" />
+            </Principal>
+            <Dependent Role="PERMISSION">
+              <PropertyRef Name="FUNCTIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVOICES_PAID">
+          <End Role="REPORTDETAIL" Type="Self.REPORTDETAIL" Multiplicity="1" />
+          <End Role="INVOICES" Type="Self.INVOICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REPORTDETAIL">
+              <PropertyRef Name="REPORTDATE" />
+            </Principal>
+            <Dependent Role="INVOICES">
+              <PropertyRef Name="PAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVOICES_WEDDINGID">
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="1" />
+          <End Role="INVOICES" Type="Self.INVOICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEDDING">
+              <PropertyRef Name="WEDDINGID" />
+            </Principal>
+            <Dependent Role="INVOICES">
+              <PropertyRef Name="WEDDINGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_WEDDINGID">
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEDDING">
+              <PropertyRef Name="WEDDINGID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="WEDDINGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERMISSION_ROLEID">
+          <End Role="ROLES" Type="Self.ROLE" Multiplicity="1" />
+          <End Role="PERMISSION" Type="Self.PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ROLEID" />
+            </Principal>
+            <Dependent Role="PERMISSION">
+              <PropertyRef Name="ROLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REPORTDETAIL_REPORTMONTH">
+          <End Role="SALESREPORT" Type="Self.SALESREPORT" Multiplicity="0..1" />
+          <End Role="REPORTDETAIL" Type="Self.REPORTDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALESREPORT">
+              <PropertyRef Name="REPORTMONTH" />
+            </Principal>
+            <Dependent Role="REPORTDETAIL">
+              <PropertyRef Name="REPORTMONTH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVE_SERVICEID">
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="1" />
+          <End Role="SERVE" Type="Self.SERVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE">
+              <PropertyRef Name="SERVICEID" />
+            </Principal>
+            <Dependent Role="SERVE">
+              <PropertyRef Name="SERVICEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVE_WEDDINGID">
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="1" />
+          <End Role="SERVE" Type="Self.SERVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEDDING">
+              <PropertyRef Name="WEDDINGID" />
+            </Principal>
+            <Dependent Role="SERVE">
+              <PropertyRef Name="WEDDINGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WEDDING_SHIFTID">
+          <End Role="SHIFTS" Type="Self.SHIFT" Multiplicity="1" />
+          <End Role="WEDDING" Type="Self.WEDDING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIFTS">
+              <PropertyRef Name="SHIFTID" />
+            </Principal>
+            <Dependent Role="WEDDING">
+              <PropertyRef Name="SHIFTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WeddingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BALLROOMs" EntityType="Self.BALLROOM" />
+          <EntitySet Name="BALLROOMTYPEs" EntityType="Self.BALLROOMTYPE" />
+          <EntitySet Name="DISHES" EntityType="Self.DISH" />
+          <EntitySet Name="DISHTYPEs" EntityType="Self.DISHTYPE" />
+          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="FUNCTIONS" EntityType="Self.FUNCTION" />
+          <EntitySet Name="INVOICES" EntityType="Self.INVOICE" />
+          <EntitySet Name="MENUs" EntityType="Self.MENU" />
+          <EntitySet Name="PARAMETERs" EntityType="Self.PARAMETER" />
+          <EntitySet Name="PERMISSIONs" EntityType="Self.PERMISSION" />
+          <EntitySet Name="REPORTDETAILs" EntityType="Self.REPORTDETAIL" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLE" />
+          <EntitySet Name="SALESREPORTs" EntityType="Self.SALESREPORT" />
+          <EntitySet Name="SERVEs" EntityType="Self.SERVE" />
+          <EntitySet Name="SERVICEs" EntityType="Self.SERVICE" />
+          <EntitySet Name="SHIFTS" EntityType="Self.SHIFT" />
+          <EntitySet Name="WEDDINGs" EntityType="Self.WEDDING" />
+          <AssociationSet Name="FK_BALLROOM_TYPEID" Association="Self.FK_BALLROOM_TYPEID">
+            <End Role="BALLROOMTYPE" EntitySet="BALLROOMTYPEs" />
+            <End Role="BALLROOM" EntitySet="BALLROOMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WEDDING_BALLROOMID" Association="Self.FK_WEDDING_BALLROOMID">
+            <End Role="BALLROOM" EntitySet="BALLROOMs" />
+            <End Role="WEDDING" EntitySet="WEDDINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DISHED_TYPEID" Association="Self.FK_DISHED_TYPEID">
+            <End Role="DISHTYPE" EntitySet="DISHTYPEs" />
+            <End Role="DISHES" EntitySet="DISHES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_DISHID" Association="Self.FK_MENU_DISHID">
+            <End Role="DISHES" EntitySet="DISHES" />
+            <End Role="MENU" EntitySet="MENUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEES_ROLEID" Association="Self.FK_EMPLOYEES_ROLEID">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVOICES_EMPLOYEE" Association="Self.FK_INVOICES_EMPLOYEE">
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+            <End Role="INVOICES" EntitySet="INVOICES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERMISSION_FUNCTIONID" Association="Self.FK_PERMISSION_FUNCTIONID">
+            <End Role="FUNCTIONS" EntitySet="FUNCTIONS" />
+            <End Role="PERMISSION" EntitySet="PERMISSIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVOICES_PAID" Association="Self.FK_INVOICES_PAID">
+            <End Role="REPORTDETAIL" EntitySet="REPORTDETAILs" />
+            <End Role="INVOICES" EntitySet="INVOICES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVOICES_WEDDINGID" Association="Self.FK_INVOICES_WEDDINGID">
+            <End Role="WEDDING" EntitySet="WEDDINGs" />
+            <End Role="INVOICES" EntitySet="INVOICES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_WEDDINGID" Association="Self.FK_MENU_WEDDINGID">
+            <End Role="WEDDING" EntitySet="WEDDINGs" />
+            <End Role="MENU" EntitySet="MENUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERMISSION_ROLEID" Association="Self.FK_PERMISSION_ROLEID">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="PERMISSION" EntitySet="PERMISSIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REPORTDETAIL_REPORTMONTH" Association="Self.FK_REPORTDETAIL_REPORTMONTH">
+            <End Role="SALESREPORT" EntitySet="SALESREPORTs" />
+            <End Role="REPORTDETAIL" EntitySet="REPORTDETAILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVE_SERVICEID" Association="Self.FK_SERVE_SERVICEID">
+            <End Role="SERVICE" EntitySet="SERVICEs" />
+            <End Role="SERVE" EntitySet="SERVEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVE_WEDDINGID" Association="Self.FK_SERVE_WEDDINGID">
+            <End Role="WEDDING" EntitySet="WEDDINGs" />
+            <End Role="SERVE" EntitySet="SERVEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WEDDING_SHIFTID" Association="Self.FK_WEDDING_SHIFTID">
+            <End Role="SHIFTS" EntitySet="SHIFTS" />
+            <End Role="WEDDING" EntitySet="WEDDINGs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WeddingDBModelStoreContainer" CdmEntityContainer="WeddingDBEntities">
+          <EntitySetMapping Name="BALLROOMs">
+            <EntityTypeMapping TypeName="WeddingDBModel.BALLROOM">
+              <MappingFragment StoreEntitySet="BALLROOM">
+                <ScalarProperty Name="BALLROOMID" ColumnName="BALLROOMID" />
+                <ScalarProperty Name="BALLROOMNAME" ColumnName="BALLROOMNAME" />
+                <ScalarProperty Name="MAXIMUMTABLE" ColumnName="MAXIMUMTABLE" />
+                <ScalarProperty Name="TYPEID" ColumnName="TYPEID" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BALLROOMTYPEs">
+            <EntityTypeMapping TypeName="WeddingDBModel.BALLROOMTYPE">
+              <MappingFragment StoreEntitySet="BALLROOMTYPE">
+                <ScalarProperty Name="TYPEID" ColumnName="TYPEID" />
+                <ScalarProperty Name="TYPENAME" ColumnName="TYPENAME" />
+                <ScalarProperty Name="MINIMUMCOST" ColumnName="MINIMUMCOST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DISHES">
+            <EntityTypeMapping TypeName="WeddingDBModel.DISH">
+              <MappingFragment StoreEntitySet="DISHES">
+                <ScalarProperty Name="DISHID" ColumnName="DISHID" />
+                <ScalarProperty Name="DISHNAME" ColumnName="DISHNAME" />
+                <ScalarProperty Name="COST" ColumnName="COST" />
+                <ScalarProperty Name="DISHDESCRIPTION" ColumnName="DISHDESCRIPTION" />
+                <ScalarProperty Name="DISHIMAGE" ColumnName="DISHIMAGE" />
+                <ScalarProperty Name="TYPEID" ColumnName="TYPEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DISHTYPEs">
+            <EntityTypeMapping TypeName="WeddingDBModel.DISHTYPE">
+              <MappingFragment StoreEntitySet="DISHTYPE">
+                <ScalarProperty Name="TYPEID" ColumnName="TYPEID" />
+                <ScalarProperty Name="TYPENAME" ColumnName="TYPENAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEES">
+            <EntityTypeMapping TypeName="WeddingDBModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEES">
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="EMPLOYEENAME" ColumnName="EMPLOYEENAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+                <ScalarProperty Name="STARTWORKING" ColumnName="STARTWORKING" />
+                <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FUNCTIONS">
+            <EntityTypeMapping TypeName="WeddingDBModel.FUNCTION">
+              <MappingFragment StoreEntitySet="FUNCTIONS">
+                <ScalarProperty Name="FUNCTIONID" ColumnName="FUNCTIONID" />
+                <ScalarProperty Name="FUNCTIONNAME" ColumnName="FUNCTIONNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVOICES">
+            <EntityTypeMapping TypeName="WeddingDBModel.INVOICE">
+              <MappingFragment StoreEntitySet="INVOICES">
+                <ScalarProperty Name="INVOICEID" ColumnName="INVOICEID" />
+                <ScalarProperty Name="TOTALCOST" ColumnName="TOTALCOST" />
+                <ScalarProperty Name="SERVICECOST" ColumnName="SERVICECOST" />
+                <ScalarProperty Name="WEDDINGCOST" ColumnName="WEDDINGCOST" />
+                <ScalarProperty Name="PAID" ColumnName="PAID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="WEDDINGID" ColumnName="WEDDINGID" />
+                <ScalarProperty Name="REMAININGCOST" ColumnName="REMAININGCOST" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="PENALTIES" ColumnName="PENALTIES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENUs">
+            <EntityTypeMapping TypeName="WeddingDBModel.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="MENUID" ColumnName="MENUID" />
+                <ScalarProperty Name="DISHID" ColumnName="DISHID" />
+                <ScalarProperty Name="WEDDINGID" ColumnName="WEDDINGID" />
+                <ScalarProperty Name="DISHCOST" ColumnName="DISHCOST" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARAMETERs">
+            <EntityTypeMapping TypeName="WeddingDBModel.PARAMETER">
+              <MappingFragment StoreEntitySet="PARAMETER">
+                <ScalarProperty Name="PARAMETERID" ColumnName="PARAMETERID" />
+                <ScalarProperty Name="PARAMETERVALUE" ColumnName="PARAMETERVALUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERMISSIONs">
+            <EntityTypeMapping TypeName="WeddingDBModel.PERMISSION">
+              <MappingFragment StoreEntitySet="PERMISSION">
+                <ScalarProperty Name="PERMISSIONID" ColumnName="PERMISSIONID" />
+                <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+                <ScalarProperty Name="FUNCTIONID" ColumnName="FUNCTIONID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REPORTDETAILs">
+            <EntityTypeMapping TypeName="WeddingDBModel.REPORTDETAIL">
+              <MappingFragment StoreEntitySet="REPORTDETAIL">
+                <ScalarProperty Name="REPORTDATE" ColumnName="REPORTDATE" />
+                <ScalarProperty Name="BOOKEDWEDDING" ColumnName="BOOKEDWEDDING" />
+                <ScalarProperty Name="PAIDWEDDING" ColumnName="PAIDWEDDING" />
+                <ScalarProperty Name="PROFIT" ColumnName="PROFIT" />
+                <ScalarProperty Name="RATIO" ColumnName="RATIO" />
+                <ScalarProperty Name="REPORTMONTH" ColumnName="REPORTMONTH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLES">
+            <EntityTypeMapping TypeName="WeddingDBModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLES">
+                <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+                <ScalarProperty Name="ROLENAME" ColumnName="ROLENAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALESREPORTs">
+            <EntityTypeMapping TypeName="WeddingDBModel.SALESREPORT">
+              <MappingFragment StoreEntitySet="SALESREPORT">
+                <ScalarProperty Name="REPORTMONTH" ColumnName="REPORTMONTH" />
+                <ScalarProperty Name="BOOKEDWEDDING" ColumnName="BOOKEDWEDDING" />
+                <ScalarProperty Name="PAIDWEDDING" ColumnName="PAIDWEDDING" />
+                <ScalarProperty Name="PROFIT" ColumnName="PROFIT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVEs">
+            <EntityTypeMapping TypeName="WeddingDBModel.SERVE">
+              <MappingFragment StoreEntitySet="SERVE">
+                <ScalarProperty Name="SERVEID" ColumnName="SERVEID" />
+                <ScalarProperty Name="WEDDINGID" ColumnName="WEDDINGID" />
+                <ScalarProperty Name="SERVICEID" ColumnName="SERVICEID" />
+                <ScalarProperty Name="SERVICECOST" ColumnName="SERVICECOST" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICEs">
+            <EntityTypeMapping TypeName="WeddingDBModel.SERVICE">
+              <MappingFragment StoreEntitySet="SERVICE">
+                <ScalarProperty Name="SERVICEID" ColumnName="SERVICEID" />
+                <ScalarProperty Name="SERVICENAME" ColumnName="SERVICENAME" />
+                <ScalarProperty Name="COST" ColumnName="COST" />
+                <ScalarProperty Name="SERVICEDESCRIPTION" ColumnName="SERVICEDESCRIPTION" />
+                <ScalarProperty Name="SERVICEIMAGE" ColumnName="SERVICEIMAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHIFTS">
+            <EntityTypeMapping TypeName="WeddingDBModel.SHIFT">
+              <MappingFragment StoreEntitySet="SHIFTS">
+                <ScalarProperty Name="SHIFTID" ColumnName="SHIFTID" />
+                <ScalarProperty Name="SHIFTNAME" ColumnName="SHIFTNAME" />
+                <ScalarProperty Name="SHIFTSTART" ColumnName="SHIFTSTART" />
+                <ScalarProperty Name="SHIFTEND" ColumnName="SHIFTEND" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WEDDINGs">
+            <EntityTypeMapping TypeName="WeddingDBModel.WEDDING">
+              <MappingFragment StoreEntitySet="WEDDING">
+                <ScalarProperty Name="WEDDINGID" ColumnName="WEDDINGID" />
+                <ScalarProperty Name="GROOM" ColumnName="GROOM" />
+                <ScalarProperty Name="BRIDE" ColumnName="BRIDE" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="DEPOSIT" ColumnName="DEPOSIT" />
+                <ScalarProperty Name="WEDDINGDATE" ColumnName="WEDDINGDATE" />
+                <ScalarProperty Name="TABLEAMOUNT" ColumnName="TABLEAMOUNT" />
+                <ScalarProperty Name="RESERVEAMOUNT" ColumnName="RESERVEAMOUNT" />
+                <ScalarProperty Name="BOOKINGDATE" ColumnName="BOOKINGDATE" />
+                <ScalarProperty Name="BALLROOMID" ColumnName="BALLROOMID" />
+                <ScalarProperty Name="SHIFTID" ColumnName="SHIFTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
