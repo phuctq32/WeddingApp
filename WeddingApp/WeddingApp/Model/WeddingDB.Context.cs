@@ -13,10 +13,10 @@ namespace WeddingApp.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WeddingDBEntities : DbContext
+    public partial class WeddingDBEntities2 : DbContext
     {
-        public WeddingDBEntities()
-            : base("name=WeddingDBEntities")
+        public WeddingDBEntities2()
+            : base("name=WeddingDBEntities2")
         {
         }
     

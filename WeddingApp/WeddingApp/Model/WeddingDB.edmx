@@ -811,7 +811,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WeddingDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WeddingDBEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BALLROOMs" EntityType="Self.BALLROOM" />
           <EntitySet Name="BALLROOMTYPEs" EntityType="Self.BALLROOMTYPE" />
           <EntitySet Name="DISHES" EntityType="Self.DISH" />
@@ -895,7 +895,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WeddingDBModelStoreContainer" CdmEntityContainer="WeddingDBEntities">
+        <EntityContainerMapping StorageEntityContainer="WeddingDBModelStoreContainer" CdmEntityContainer="WeddingDBEntities2">
           <EntitySetMapping Name="BALLROOMs">
             <EntityTypeMapping TypeName="WeddingDBModel.BALLROOM">
               <MappingFragment StoreEntitySet="BALLROOM">

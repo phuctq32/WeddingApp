@@ -23,8 +23,6 @@ namespace WeddingApp.Model
         public int BALLROOMID { get; set; }
         public string BALLROOMNAME { get; set; }
         public short MAXIMUMTABLE { get; set; }
-        public string BALLROOMIMAGE { get; set; }
-        public string BALLROOMDESCRIPTION { get; set; }
         public int TYPEID { get; set; }
         public string NOTE { get; set; }
     

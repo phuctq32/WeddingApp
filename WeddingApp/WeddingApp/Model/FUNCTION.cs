@@ -20,7 +20,7 @@ namespace WeddingApp.Model
             this.PERMISSIONs = new HashSet<PERMISSION>();
         }
     
-        public int FUNCTIONID { get; set; }
+        public string FUNCTIONID { get; set; }
         public string FUNCTIONNAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
