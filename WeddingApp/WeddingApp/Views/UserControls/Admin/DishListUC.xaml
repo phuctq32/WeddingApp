@@ -86,14 +86,14 @@
                                             HorizontalAlignment="Left"
                                             Margin="40 0">
                                             <Rectangle.Fill>
-                                                <ImageBrush ImageSource="{Binding DISH.DISHMAGE}" Stretch="UniformToFill" />
+                                                <ImageBrush ImageSource="{Binding DISHMAGE}" Stretch="UniformToFill" />
                                             </Rectangle.Fill>
                                         </Rectangle>
                                         <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="330" HorizontalAlignment="Right">
                                             <!--tên món ăn-->
                                             <TextBlock
                                             Margin="0 20 0 0"
-                                            Text="{Binding DISH.DISHNAME, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding DISHNAME, UpdateSourceTrigger=PropertyChanged}"
                                             FontSize="20"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Left"
@@ -109,7 +109,7 @@
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
-                                            Text="{Binding DISH.COST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding COST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                             VerticalAlignment="Center">
                                     </TextBlock>
 
