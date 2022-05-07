@@ -363,7 +363,6 @@
                     <Grid Grid.Row="1">
                         <Border  CornerRadius="10" Background="#e0f2f1">
                             <Grid x:Name="ucWindow">
-                                <ucAdmin:EmployeeListUC />
                             </Grid>
                         </Border>
                     </Grid>

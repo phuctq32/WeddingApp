@@ -105,14 +105,15 @@
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <Grid Height="100" Margin="10 5 10 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.9*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.9*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.9*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.9*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="26*"></ColumnDefinition>
+                    <ColumnDefinition Width="86*"></ColumnDefinition>
+                    <ColumnDefinition Width="86*"></ColumnDefinition>
+                    <ColumnDefinition Width="77*"></ColumnDefinition>
+                    <ColumnDefinition Width="77*"></ColumnDefinition>
+                    <ColumnDefinition Width="77*"></ColumnDefinition>
+                    <ColumnDefinition Width="77*"></ColumnDefinition>
+                    <ColumnDefinition Width="23*"></ColumnDefinition>
+                    <ColumnDefinition Width="20*" />
                 </Grid.ColumnDefinitions>
                 <!--mã sảnh-->
                 <TextBlock
@@ -121,7 +122,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontWeight="Medium"
-                            Foreground="Black" />
+                            Foreground="Black" Margin="22,37,21,36" />
 
                 <!--tên sảnh-->
                 <TextBlock
@@ -132,7 +133,7 @@
                             FontWeight="Medium"
                             Foreground="Black"
                             Grid.Column="1"
-                            TextWrapping="Wrap" />
+                            TextWrapping="Wrap" Margin="12,23" />
                 <!--Loại sảnh-->
                 <TextBlock
                             Text="Nguyễn Thị Tên Dài Quá"
@@ -142,7 +143,7 @@
                             FontWeight="Medium"
                             Foreground="Black"
                             Grid.Column="2"
-                    TextWrapping="Wrap" />
+                    TextWrapping="Wrap" Margin="15,23" />
                 <!--SỐ LƯỢNG BÀN TỐI ĐA-->
                 <TextBlock
                             Grid.Column="3"
@@ -150,7 +151,7 @@
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center" Margin="51,37,50.4,36" />
                 <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
                 <TextBlock
                             Grid.Column="4"
@@ -158,7 +159,7 @@
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center" Margin="50.6,37,50.8,36" />
 
                 <TextBlock
                             Grid.Column="5"
@@ -166,25 +167,25 @@
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center" Margin="51.2,37,50.2,36" />
                 <TextBlock
                             Grid.Column="6"
                             Text="10000"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center" Margin="50.8,37,50.6,36" />
 
                 <Button
                   Style="{StaticResource MaterialDesignIconForegroundButton}"
                   ToolTip="MaterialDesignIconForegroundButton"
                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Foreground="Black"
-                    Grid.Column="7">
+                    Grid.Column="7" Grid.ColumnSpan="2" Margin="19.4,26,19,26">
                     <materialDesign:PackIcon Kind="Details" />
                 </Button>
 
-                <Separator Width="auto" Height="3" Margin="10 0" VerticalAlignment="Bottom" Grid.ColumnSpan="8"></Separator>
+                <Separator Width="auto" Height="3" Margin="10 0" VerticalAlignment="Bottom" Grid.ColumnSpan="9"></Separator>
             </Grid>
             <!--<ListView.ItemTemplate>
                         <DataTemplate>
