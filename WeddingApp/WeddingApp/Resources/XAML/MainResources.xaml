@@ -3,4 +3,5 @@
                     xmlns:viewmodels="clr-namespace:WeddingApp.ViewModels">
     <viewmodels:ControlBarVM x:Key="controlBarVM"></viewmodels:ControlBarVM>
     <viewmodels:DashBoardVM x:Key="dashBoardVM"></viewmodels:DashBoardVM>
+    <viewmodels:EmployeeListVM x:Key="employeeListVM"></viewmodels:EmployeeListVM>
 </ResourceDictionary>

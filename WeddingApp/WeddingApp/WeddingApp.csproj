@@ -168,6 +168,7 @@
     </Compile>
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
+    <Compile Include="ViewModels\EmployeeListVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
