@@ -25,6 +25,28 @@
                             <StackPanel Orientation="Horizontal"></StackPanel>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
+
+                    <ListViewItem>
+                        <ListViewItem.Template>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <Border Height="40" Width="150" x:Name="border" BorderBrush="Transparent" BorderThickness="0 0 0 4" Margin="20 0">
+                                    <TextBlock x:Name="text" Text="Ngày" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"></TextBlock>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="text" Property="TextBlock.Foreground" Value="{DynamicResource Orange2}"></Setter>
+                                        <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Orange2}"></Setter>
+                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </ListViewItem.Template>
+                    </ListViewItem>
+
                     <ListViewItem>
                         <ListViewItem.Template>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -45,6 +67,7 @@
                             </ControlTemplate>
                         </ListViewItem.Template>
                     </ListViewItem>
+
                     <ListViewItem>
                         <ListViewItem.Template>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -73,6 +96,19 @@
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel>
+                    <Button
+                                x:Name="saveBtn"
+                            TabIndex="5"
+                            IsDefault="True"
+                            Style="{StaticResource GreenBtn}"
+                            Content="Xuất hoá đơn "
+                            Width="200"
+                            Height="40"
+                            Margin="0 20 0 0"
+                            FontSize="20"
+                            Foreground="White"
+                            Command="{Binding SaveInfoCommand}"
+                            CommandParameter="{Binding ElementName=changeInfoWD}" />
                     <Grid Margin="0 10 0 0">
                         <Rectangle Height="140" Margin="20" Fill="White" RadiusY="10" RadiusX="10">
                             <Rectangle.Effect>

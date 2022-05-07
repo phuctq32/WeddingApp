@@ -183,6 +183,12 @@
     <Compile Include="Views\AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddWeddingHallTypeWindow.xaml.cs">
+      <DependentUpon>AddWeddingHallTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddWeddingHallWindow.xaml.cs">
+      <DependentUpon>AddWeddingHallWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChangeEmployeeInformationWindow.xaml.cs">
       <DependentUpon>ChangeEmployeeInformationWindow.xaml</DependentUpon>
     </Compile>
@@ -198,6 +204,12 @@
     <Compile Include="Views\EditServiceWindow.xaml.cs">
       <DependentUpon>EditServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditWeddingHallTypeWindow.xaml.cs">
+      <DependentUpon>EditWeddingHallTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditWeddingHallWindow.xaml.cs">
+      <DependentUpon>EditWeddingHallWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InvoiceWindow.xaml.cs">
       <DependentUpon>InvoiceWindow.xaml</DependentUpon>
     </Compile>
@@ -206,6 +218,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Admin\CompletedInvoiceListUC.xaml.cs">
+      <DependentUpon>CompletedInvoiceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Admin\DashBoardUC.xaml.cs">
       <DependentUpon>DashBoardUC.xaml</DependentUpon>
@@ -219,6 +234,9 @@
     <Compile Include="Views\UserControls\Admin\ServiceListUC.xaml.cs">
       <DependentUpon>ServiceListUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Admin\WeddingHallTypeListUC.xaml.cs">
+      <DependentUpon>WeddingHallTypeListUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
@@ -231,6 +249,9 @@
     </Compile>
     <Compile Include="Views\UserControls\DetailServiceListUC.xaml.cs">
       <DependentUpon>DetailServiceListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\InvoiceListUC.xaml.cs">
+      <DependentUpon>InvoiceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
@@ -275,6 +296,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddWeddingHallTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddWeddingHallWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChangeEmployeeInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -295,6 +324,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditWeddingHallTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditWeddingHallWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\InvoiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -304,6 +341,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Admin\CompletedInvoiceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -323,6 +364,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\Admin\WeddingHallTypeListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\ControlBarUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -332,6 +377,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\DetailServiceListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\InvoiceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
