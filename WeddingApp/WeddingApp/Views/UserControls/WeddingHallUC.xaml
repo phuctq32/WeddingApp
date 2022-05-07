@@ -84,7 +84,7 @@
                     Content="Thêm"
                     Width="100"
                     Height="30"
-                    FontSize="20"
+                    FontSize="18"
                     Foreground="White"
                     VerticalAlignment="Center"
                     Grid.Column="6"
@@ -94,18 +94,20 @@
         <Separator Width="auto" Height="3" Margin="20 0" VerticalAlignment="Bottom"></Separator>
         <!--SOURCE CỦA LISTVIEW NÀY LÀ 1 LIST RECEIPT-->
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <Grid Height="100" Margin="10 5 10 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <!--mã sảnh-->
-                <TextBlock
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="100" Margin="10 5 10 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <!--mã sảnh-->
+                        <TextBlock
                             Text="1"
                             FontSize="20"
                             VerticalAlignment="Center"
@@ -113,8 +115,8 @@
                             FontWeight="Medium"
                             Foreground="Black" />
 
-                <!--tên sảnh-->
-                <TextBlock
+                        <!--tên sảnh-->
+                        <TextBlock
                             Text="Sảnh chính"
                             FontSize="20"
                             VerticalAlignment="Center"
@@ -123,8 +125,8 @@
                             Foreground="Black"
                             Grid.Column="1"
                             TextWrapping="Wrap" />
-                <!--Loại sảnh-->
-                <TextBlock
+                        <!--Loại sảnh-->
+                        <TextBlock
                             Text="A"
                             FontSize="20"
                             VerticalAlignment="Center"
@@ -132,25 +134,25 @@
                             FontWeight="Medium"
                             Foreground="Black"
                             Grid.Column="2" />
-                <!--SỐ LƯỢNG BÀN TỐI ĐA-->
-                <TextBlock
+                        <!--SỐ LƯỢNG BÀN TỐI ĐA-->
+                        <TextBlock
                             Grid.Column="3"
                             Text="10000"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center" />
-                <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
-                <TextBlock
+                        <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
+                        <TextBlock
                             Grid.Column="4"
                             Text="10000"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center" />
-                <!--GHI CHÚ-->
-                <ScrollViewer Grid.Column="5" Margin="0 0 0 3" VerticalScrollBarVisibility="Hidden">
-                    <TextBlock
+                        <!--GHI CHÚ-->
+                        <ScrollViewer Grid.Column="5" Margin="0 0 0 3" VerticalScrollBarVisibility="Hidden">
+                            <TextBlock
                                 Text="MỘT ĐOẠN VĂN RẤT DÀIIIIIIIIIIIIIIIIII
                                 IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
                                 IIIIIIIIIIIIIIIII
@@ -160,96 +162,32 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 TextWrapping="Wrap" />
-                </ScrollViewer>
+                        </ScrollViewer>
 
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="6">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="6">
 
-                    <Button
-                  Style="{StaticResource MaterialDesignIconForegroundButton}"
-                  ToolTip="MaterialDesignIconForegroundButton"
-                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            <Button
+                      Style="{StaticResource MaterialDesignIconForegroundButton}"
+                      ToolTip="MaterialDesignIconForegroundButton"
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Foreground="Black"
                         Margin="10 0">
-                        <materialDesign:PackIcon Kind="Edit" />
-                    </Button>
-                    <Button
+                                <materialDesign:PackIcon Kind="Edit" />
+                            </Button>
+                            <Button
                   Style="{StaticResource MaterialDesignIconForegroundButton}"
                   ToolTip="MaterialDesignIconForegroundButton"
                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Foreground="Black">
-                        <materialDesign:PackIcon Kind="Delete" />
-                    </Button>
-                </StackPanel>
+                                <materialDesign:PackIcon Kind="Delete" />
+                            </Button>
+                        </StackPanel>
 
-                <Separator Width="auto" Height="3" Margin="10 0" VerticalAlignment="Bottom" Grid.ColumnSpan="7"></Separator>
-            </Grid>
-            <!--<ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="100" Margin="10 5 10 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                -->
-            <!--mã đơn hàng-->
-            <!--
-                                <TextBlock
-                            Text="{Binding ID_}"
-                            FontSize="20"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            FontWeight="Medium"
-                            Foreground="Black" />
+                        <Separator Width="auto" Height="3" Margin="10 0" VerticalAlignment="Bottom" Grid.ColumnSpan="7"></Separator>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
-                                -->
-            <!--ngày mua-->
-            <!--
-                                <TextBlock
-                            Text="{Binding DATE_, StringFormat={}{0:dd/MM/yyyy}}"
-                            FontSize="20"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            FontWeight="Medium"
-                            Foreground="Black"
-                            Grid.Column="1" />
-                                -->
-            <!--số lượng món trong đơn-->
-            <!--{Binding Source={StaticResource MyOrderVM}, Path=SoLuong}-->
-            <!--cái thuộc tính này tính tổng tất cả các món trong đơn từ LIST RECEIPT_DETAIL bên VM mới được-->
-            <!--
-                                <TextBlock
-                            Text="{Binding RECEIPT_DETAIL.Count}"
-                            FontSize="20"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            FontWeight="Medium"
-                            Foreground="Black"
-                            Grid.Column="2" />
-                                -->
-            <!--giá tiền tổng cộng-->
-            <!--
-                                <TextBlock
-                            Grid.Column="3"
-                            Text="{Binding VALUE_, StringFormat=N0}"
-                            FontSize="20"
-                            FontWeight="DemiBold"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
-                                <Button
-                                        Style="{StaticResource detailBtn}"
-                                        Grid.Column="4"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Command="{Binding Source={StaticResource MyOrderVM}, Path=OpenOrderDetailWindowCommand}"
-                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
-                                <Separator Width="auto" Height="3" Margin="10 0" VerticalAlignment="Bottom" Grid.ColumnSpan="5"></Separator>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>-->
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Background" Value="Transparent" />

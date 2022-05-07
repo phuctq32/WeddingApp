@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:WeddingApp.Views"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         mc:Ignorable="d"
-        MinHeight="600" Width="800"
+        Height="auto" Width="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -164,14 +164,6 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="2" Margin="20 0" VerticalAlignment="Center">
-                        <!--<Grid Margin="10 0 10 0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Tổng cộng" Grid.Column="3" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Right" />
-                        </Grid>-->
                         <Rectangle Fill="Black" Height="1" Margin="5 0" Opacity="0.5" />
                         <Grid Margin="10">
                             <StackPanel>
