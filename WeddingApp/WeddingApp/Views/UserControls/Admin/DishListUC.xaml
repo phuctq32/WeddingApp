@@ -64,7 +64,7 @@
                 <!--list item-->
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      x:Name="ListView">
+                      x:Name="ListView" d:ItemsSource="{d:SampleData ItemCount=5}">
                           <!--ItemsSource="{Binding Source={StaticResource dishListVM}, Path=ListDish, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
                           
                     <ListView.ItemTemplate>
@@ -92,10 +92,9 @@
                                         <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="330" HorizontalAlignment="Right">
                                             <!--tên món ăn-->
                                             <TextBlock
-                                            Margin="0 20 0 0"
+                                            Margin="0 45 0 0"
                                             Text="{Binding DISHNAME, UpdateSourceTrigger=PropertyChanged}"
                                             FontSize="20"
-                                            VerticalAlignment="Center"
                                             HorizontalAlignment="Left"
                                             Foreground="Black"
                                             TextWrapping="Wrap" />
