@@ -16,7 +16,7 @@ namespace WeddingApp.Model
     {
         public int PERMISSIONID { get; set; }
         public string ROLEID { get; set; }
-        public int FUNCTIONID { get; set; }
+        public string FUNCTIONID { get; set; }
     
         public virtual FUNCTION FUNCTION { get; set; }
         public virtual ROLE ROLE { get; set; }
