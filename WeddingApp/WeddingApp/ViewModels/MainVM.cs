@@ -109,35 +109,35 @@ namespace WeddingApp.ViewModels
                     mainWindow.ucWindow.Children.Add(new InvoiceListUC());
                     break;
 
-                case 3:
-                    mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new AccountUC());
-                    break;
-
-                case 4:
-                    mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new ContactUC());
-                    break;
-
-                case 5:
+                case "DashBoardUC":
                     mainWindow.ucWindow.Children.Clear();
                     mainWindow.ucWindow.Children.Add(new DashBoardUC());
                     break;
 
-                case 6:
+                case "DishListUC":
                     mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new EditProductUC());
+                    mainWindow.ucWindow.Children.Add(new DishListUC());
                     break;
 
-                case 7:
+                case "EmployeeListUC":
                     mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new OrderManagementUC());
+                    mainWindow.ucWindow.Children.Add(new EmployeeListUC());
                     break;
 
-                case 8:
+                case "ServiceListUC":
                     mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new AccountUC());
+                    mainWindow.ucWindow.Children.Add(new ServiceListUC());
                     break;
+
+                case "WeddingHallTypeListUC":
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new WeddingHallTypeListUC());
+                    break;
+
+                //case 8:
+                //    mainWindow.ucWindow.Children.Clear();
+                //    mainWindow.ucWindow.Children.Add(new AccountUC());
+                //    break;
             }
         }
         private void LogOut(MainWindow mainWindow)

@@ -317,7 +317,7 @@
                                     </ControlTemplate>
                                 </ListViewItem.Template>
                             </ListViewItem>
-                            <ListViewItem
+                            <!--<ListViewItem
                                 Margin="20 10"
                                 FontSize="15" FontWeight="Bold"
                             Visibility="Visible"
@@ -345,7 +345,7 @@
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </ListViewItem.Template>
-                            </ListViewItem>
+                            </ListViewItem>-->
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding SwitchTabCommand}"
