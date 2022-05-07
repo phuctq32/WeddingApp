@@ -4,11 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
+        xmlns:helperslocal="clr-namespace:WeddingApp.Helpers"
+        xmlns:mainlocal="clr-namespace:WeddingApp"
         xmlns:ucAdmin="clr-namespace:WeddingApp.Views.UserControls.Admin"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeddingApp.Views"
         mc:Ignorable="d"
+        x:Name="MainWD"
+        DataContext="{StaticResource mainVM}"
         Height="820" Width="1420"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -21,7 +25,18 @@
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=MainWD}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <helperslocal:BooleanToVisibilityConverter x:Key="boolToVis"></helperslocal:BooleanToVisibilityConverter>
+        <mainlocal:CurrentAccount x:Key="currentAccount"></mainlocal:CurrentAccount>
+    </Window.Resources>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
+        
         <Grid>
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
@@ -43,11 +58,11 @@
 
                     <Grid Grid.Row="1">
 
-                        <!--<ListView x:Name="listViewMenu">
+                        <ListView x:Name="listViewMenu">
                             <ListViewItem
                             Margin="20 20 20 10"
                             FontSize="15" FontWeight="Bold"
-                            Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                            Visibility="Visible">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -75,7 +90,8 @@
                             <ListViewItem
                             Margin="20 10"
                             FontSize="15" FontWeight="Bold"
-                            Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                            Visibility="Collapsed"
+                                x:Name="EmployeeListUC">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -103,7 +119,7 @@
                             <ListViewItem
                         Margin="20 10"
                         FontSize="15" FontWeight="Bold"
-                        Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                            Visibility="Collapsed">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -131,7 +147,7 @@
                             <ListViewItem
                         Margin="20 10"
                         FontSize="15" FontWeight="Bold"
-                        Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                            Visibility="Collapsed">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -159,7 +175,7 @@
                             <ListViewItem
                                 Margin="20 10"
                                 FontSize="15" FontWeight="Bold"
-                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsUser, Converter={StaticResource boolToVis}}">
+                            Visibility="Collapsed">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -187,7 +203,7 @@
                             <ListViewItem
                                 Margin="20 20 20 10"
                                 FontSize="15" FontWeight="Bold"
-                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsAdmin, Converter={StaticResource boolToVis}}">
+                            Visibility="Collapsed">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -215,7 +231,7 @@
                             <ListViewItem
                                 Margin="20 10"
                                 FontSize="15" FontWeight="Bold"
-                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsAdmin, Converter={StaticResource boolToVis}}">
+                            Visibility="Collapsed">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -243,7 +259,7 @@
                             <ListViewItem
                                 Margin="20 10"
                                 FontSize="15" FontWeight="Bold"
-                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsAdmin, Converter={StaticResource boolToVis}}">
+                            Visibility="Collapsed">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -271,7 +287,7 @@
                             <ListViewItem
                                 Margin="20 10"
                                 FontSize="15" FontWeight="Bold"
-                                Visibility="{Binding Source={StaticResource currentAccount}, Path=IsAdmin, Converter={StaticResource boolToVis}}">
+                            Visibility="Collapsed">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
@@ -302,7 +318,7 @@
                                                        CommandParameter="{Binding ElementName=MainWD}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                        </ListView>-->
+                        </ListView>
 
                         <Button
                         Background="Transparent"
@@ -333,7 +349,7 @@
                         </Button>
                     </Grid>
                 </Grid>
-
+                
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="90"></RowDefinition>

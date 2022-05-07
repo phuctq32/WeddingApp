@@ -101,6 +101,7 @@
     </ApplicationDefinition>
     <Compile Include="CurrentAccount.cs" />
     <Compile Include="CustomMessageBox.cs" />
+    <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Models\BALLROOM.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
@@ -171,6 +172,7 @@
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>

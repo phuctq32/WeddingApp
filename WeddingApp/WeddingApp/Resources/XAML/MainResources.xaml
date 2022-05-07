@@ -4,4 +4,5 @@
     <viewmodels:ControlBarVM x:Key="controlBarVM"></viewmodels:ControlBarVM>
     <viewmodels:DashBoardVM x:Key="dashBoardVM"></viewmodels:DashBoardVM>
     <viewmodels:LoginVM x:Key="loginVM"></viewmodels:LoginVM>
+    <viewmodels:MainViewModel x:Key="mainVM"></viewmodels:MainViewModel>
 </ResourceDictionary>
