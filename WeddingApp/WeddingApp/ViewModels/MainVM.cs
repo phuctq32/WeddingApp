@@ -94,19 +94,19 @@ namespace WeddingApp.ViewModels
             ListViewItem listViewItem = listViewItems[index];
             switch (listViewItem.Name)
             {
-                case "":
+                case "WeddingHallUC":
                     mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new );
+                    mainWindow.ucWindow.Children.Add(new WeddingHallUC());
                     break;
 
-                case 1:
+                case "WeddingListUC":
                     mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new CartUC());
+                    mainWindow.ucWindow.Children.Add(new WeddingListUC());
                     break;
 
-                case 2:
+                case "InvoiceListUC":
                     mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new MyOrderUC());
+                    mainWindow.ucWindow.Children.Add(new InvoiceListUC());
                     break;
 
                 case 3:

@@ -53,16 +53,14 @@
                     <Grid Grid.Row="0">
                         <Image Source="/Resources/Images/login-image.png" Stretch="UniformToFill" Height="80" Width="80" Margin="0 20 0 60" ></Image>
                     </Grid>
-
                     <Separator Margin="20 151" BorderBrush="Black" Height="3" ></Separator>
-
                     <Grid Grid.Row="1">
-
                         <ListView x:Name="listViewMenu">
                             <ListViewItem
                             Margin="20 20 20 10"
                             FontSize="15" FontWeight="Bold"
-                            Visibility="Collapsed">
+                            Visibility="Collapsed"
+                                x:Name="BookingUC">
                                 <ListViewItem.Template>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                                         <Border Height="50" x:Name="border" CornerRadius="10" BorderBrush="Transparent" BorderThickness="1">
