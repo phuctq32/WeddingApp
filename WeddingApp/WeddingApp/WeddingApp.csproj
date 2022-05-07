@@ -214,6 +214,9 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Admin\CompletedInvoiceListUC.xaml.cs">
+      <DependentUpon>CompletedInvoiceListUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Admin\DashBoardUC.xaml.cs">
       <DependentUpon>DashBoardUC.xaml</DependentUpon>
     </Compile>
@@ -241,6 +244,9 @@
     </Compile>
     <Compile Include="Views\UserControls\DetailServiceListUC.xaml.cs">
       <DependentUpon>DetailServiceListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\InvoiceListUC.xaml.cs">
+      <DependentUpon>InvoiceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
@@ -333,6 +339,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\Admin\CompletedInvoiceListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\Admin\DashBoardUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -362,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\DetailServiceListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\InvoiceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -165,9 +165,9 @@
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="6">
 
                     <Button
-                  Style="{StaticResource MaterialDesignIconForegroundButton}"
-                  ToolTip="MaterialDesignIconForegroundButton"
-                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                      Style="{StaticResource MaterialDesignIconForegroundButton}"
+                      ToolTip="MaterialDesignIconForegroundButton"
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Foreground="Black"
                         Margin="10 0">
                         <materialDesign:PackIcon Kind="Edit" />
