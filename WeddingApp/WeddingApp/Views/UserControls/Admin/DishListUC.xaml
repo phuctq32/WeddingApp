@@ -56,7 +56,7 @@
                 <!--list item-->
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      x:Name="ListView">
+                      x:Name="ListView" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid MinHeight="120" Width="1110">
@@ -76,14 +76,14 @@
                                             HorizontalAlignment="Left"
                                             Margin="40 0">
                                             <Rectangle.Fill>
-                                                <ImageBrush Stretch="UniformToFill" />
+                                                <ImageBrush ImageSource="{Binding DISH.DISHMAGE}" Stretch="UniformToFill" />
                                             </Rectangle.Fill>
                                         </Rectangle>
                                         <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="330" HorizontalAlignment="Right">
                                             <!--tên món ăn-->
                                             <TextBlock
                                             Margin="0 20 0 0"
-                                            Text="{Binding NAME_, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding DISH.DISHNAME, UpdateSourceTrigger=PropertyChanged}"
                                             FontSize="20"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Left"
@@ -99,7 +99,7 @@
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
-                                            Text="{Binding PRICE_, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding DISH.COST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                             VerticalAlignment="Center">
                                     </TextBlock>
 

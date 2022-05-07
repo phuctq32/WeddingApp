@@ -24,5 +24,10 @@ namespace WeddingApp.Views.UserControls.Admin
         {
             InitializeComponent();
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
