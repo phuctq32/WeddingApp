@@ -113,7 +113,7 @@ namespace WeddingApp.ViewModels
                         //    CurrentAccount.IsUser = true;
                         //}
                         CurrentAccount.Username = CurrentAccount.Employee.USERNAME;
-
+                        CurrentAccount.Role = CurrentAccount.Employee.ROLEID;
                         MainWindow app = new MainWindow();
                         parameter.Close();
                         app.ShowDialog();

@@ -18,9 +18,8 @@ namespace WeddingApp
         {
         }
 
-        //public static bool IsAdmin { get; set; }
+        public static string Role { get; set; }
         //public static bool IsUser { get; set; }
-
 
         public static string Username { get => username; set => username = value; }
         public static string Password { get => password; set => password = value; }
