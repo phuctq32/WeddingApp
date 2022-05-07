@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="WeddingApp.Views.UserControls.Admin.DishListUC"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,7 +9,14 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="dishListUC"
              DataContext="{StaticResource dishListVM}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=dishListUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
+        
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
@@ -56,7 +64,9 @@
                 <!--list item-->
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      x:Name="ListView" d:ItemsSource="{d:SampleData ItemCount=5}">
+                      x:Name="ListView">
+                          <!--ItemsSource="{Binding Source={StaticResource dishListVM}, Path=ListDish, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
+                          
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid MinHeight="120" Width="1110">

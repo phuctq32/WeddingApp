@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WeddingApp.Model;
+using WeddingApp.Models;
 using WeddingApp.Views;
 using WeddingApp.Views.UserControls.Admin;
 using System.Windows.Data;
@@ -42,9 +42,8 @@ namespace WeddingApp.ViewModels
         }
         private void Load(DishListUC p)
         {
-            //ListDish = Data
-            //ListReceipt = Data.Ins.DB.RECEIPTs.Where(receipt => receipt.STATUS_ == "0").ToList();
-
+            ListDish = Data.Ins.DB.DISHES.ToList();
+            p.ListView.ItemsSource = ListDish;
         }
         public void OpenAddDishListWindow(DishListUC parameter)
         {
