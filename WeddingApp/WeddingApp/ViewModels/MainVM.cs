@@ -89,56 +89,57 @@ namespace WeddingApp.ViewModels
 
         private void SwitchTab(MainWindow mainWindow)
         {
-            switch (mainWindow.listViewMenu.SelectedIndex)
+            int index = mainWindow.listViewMenu.SelectedIndex;
+            List<ListViewItem> listViewItems  = mainWindow.listViewMenu.Items.Cast<ListViewItem>().ToList();
+            ListViewItem listViewItem = listViewItems[index];
+            switch (listViewItem.Name)
             {
-                case 0:
+                case "":
                     mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new MenuUC());
+                    mainWindow.ucWindow.Children.Add(new );
                     break;
 
-                    //    case 1:
-                    //        mainWindow.ucWindow.Children.Clear();
-                    //        mainWindow.ucWindow.Children.Add(new CartUC());
-                    //        break;
+                case 1:
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new CartUC());
+                    break;
 
-                    //    case 2:
-                    //        mainWindow.ucWindow.Children.Clear();
-                    //        mainWindow.ucWindow.Children.Add(new MyOrderUC());
-                    //        break;
+                case 2:
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new MyOrderUC());
+                    break;
 
-                    //    case 3:
-                    //        mainWindow.ucWindow.Children.Clear();
-                    //        mainWindow.ucWindow.Children.Add(new AccountUC());
-                    //        break;
+                case 3:
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new AccountUC());
+                    break;
 
-                    //    case 4:
-                    //        mainWindow.ucWindow.Children.Clear();
-                    //        mainWindow.ucWindow.Children.Add(new ContactUC());
-                    //        break;
+                case 4:
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new ContactUC());
+                    break;
 
-                    //    case 5:
-                    //        mainWindow.ucWindow.Children.Clear();
-                    //        mainWindow.ucWindow.Children.Add(new DashBoardUC());
-                    //        break;
+                case 5:
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new DashBoardUC());
+                    break;
 
-                    //    case 6:
-                    //        mainWindow.ucWindow.Children.Clear();
-                    //        mainWindow.ucWindow.Children.Add(new EditProductUC());
-                    //        break;
+                case 6:
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new EditProductUC());
+                    break;
 
-                    //    case 7:
-                    //        mainWindow.ucWindow.Children.Clear();
-                    //        mainWindow.ucWindow.Children.Add(new OrderManagementUC());
-                    //        break;
+                case 7:
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new OrderManagementUC());
+                    break;
 
-                    //    case 8:
-                    //        mainWindow.ucWindow.Children.Clear();
-                    //        mainWindow.ucWindow.Children.Add(new AccountUC());
-                    //        break;
-                    //}
+                case 8:
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new AccountUC());
+                    break;
             }
         }
-
         private void LogOut(MainWindow mainWindow)
         {
             if (CustomMessageBox.Show("Bạn có muốn đăng xuất?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
