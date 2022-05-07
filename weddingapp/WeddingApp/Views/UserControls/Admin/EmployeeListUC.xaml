@@ -64,19 +64,17 @@
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       x:Name="ListView">
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid MinHeight="110" Width="1110">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2.2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2.2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <!--tên nhân viên-->
-                                    <TextBlock
+                    <ListViewItem>
+                        <Grid MinHeight="110" Width="1110">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2.2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2.2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <!--tên nhân viên-->
+                                <TextBlock
                                     Grid.Column="0"
                                         Margin="25 15 0 10"
                                         Text="Nhân viên tên quá là dài luôn luôn luônNhân viên tên quá là dài luôn luôn luôn "
@@ -86,8 +84,8 @@
                                         Foreground="Black"
                                         TextWrapping="Wrap" />
 
-                                    <!--mức lương-->
-                                    <TextBlock
+                                <!--mức lương-->
+                                <TextBlock
                                     Grid.Column="1"
                                     Margin="10 5"
                                     Foreground="Black"
@@ -97,9 +95,9 @@
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
                                     1000000000000000
-                                    </TextBlock>
-                                    <!--ngày vào làm-->
-                                    <TextBlock
+                                </TextBlock>
+                                <!--ngày vào làm-->
+                                <TextBlock
                                     Grid.Column="2"
                                     Margin="10 5"
                                     Foreground="Black"
@@ -109,21 +107,165 @@
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
                                     99/99/9999
-                                    </TextBlock>
-                                    <!--button xoá sửa-->
-                                    <StackPanel Orientation="Horizontal" Grid.Column="4">
-                                        <Button
+                                </TextBlock>
+                                <!--button xoá sửa-->
+                                <StackPanel Orientation="Horizontal" Grid.Column="4">
+                                    <Button
                                         Margin="20 0"
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Chỉnh sửa thông tin nhân viên"
                                           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                            <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
-                                        </Button>
-                                        <Button
+                                        <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
+                                    </Button>
+                                    <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Xoá nhân viên"
                                           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                            <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
+                                        <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                            <Rectangle
+                            Fill="White"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            RadiusY="10"
+                            RadiusX="10"
+                            Panel.ZIndex="-2"
+                            Margin="10">
+                            </Rectangle>
+                        </Grid>
+                    </ListViewItem>
+                    <!--<ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid MinHeight="120" Width="1110">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2.2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        -->
+                    <!--hình ảnh-->
+                    <!--
+                                        <Rectangle
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="80"
+                                            Width="80"
+                                            HorizontalAlignment="Left"
+                                            Margin="40 0">
+                                            <Rectangle.Fill>
+                                                <ImageBrush Stretch="UniformToFill" />
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="330" HorizontalAlignment="Right">
+                                            -->
+                    <!--tên món ăn-->
+                    <!--
+                                            <TextBlock
+                                            Margin="0 20 0 0"
+                                            Text="{Binding NAME_, UpdateSourceTrigger=PropertyChanged}"
+                                            FontSize="20"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Foreground="Black"
+                                            Grid.Column="2"
+                                            TextWrapping="Wrap" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <StackPanel Orientation="Horizontal"
+                                            Margin="0"
+                                            Grid.Column="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                        <TextBlock x:Name="active" Text="{Binding ACTIVE_}"
+                                                   Visibility="Collapsed"></TextBlock>
+                                        -->
+                    <!--số tiền không giảm giá-->
+                    <!--
+                                        <TextBlock
+                                    x:Name="price"
+                                    Margin="10 5"
+                                    Foreground="Black"
+                                    FontSize="19"
+                                    FontWeight="Medium"
+                                    Text="{Binding PRICE_, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                    VerticalAlignment="Center">
+                                        </TextBlock>
+                                        -->
+                    <!--số tiền khi giảm giá kèm khung hiện giảm bao nhiêu %-->
+                    <!--khi item có % giảm giá > 0 thì phần này sẽ được visible còn phần trên-->
+                    <!--thì collapsed-->
+                    <!--
+                                        <StackPanel
+                                        x:Name="stack"
+                                        Orientation="Horizontal"
+                                        Margin="0 5">
+                                            <materialDesign:PackIcon x:Name="arrow" Kind="ArrowRight" VerticalAlignment="Center" />
+                                            -->
+                    <!--giá giảm-->
+                    <!--
+                                            <TextBlock
+                                            Margin="10 0 10 0"
+                                            Foreground="Red"
+                                            FontSize="20"
+                                            FontWeight="Medium"
+                                            VerticalAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <MultiBinding UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding UpdateSourceTrigger="PropertyChanged" ElementName="price" Path="Text" />
+                                                        <Binding UpdateSourceTrigger="PropertyChanged" ElementName="discount" Path="Text" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            -->
+                    <!--discount-->
+                    <!--
+                                            <Border
+                                                    BorderBrush="Red"
+                                                    CornerRadius="5"
+                                                    BorderThickness="1">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="5 0 0 0"
+                                                        Foreground="Red"
+                                                        FontSize="12"
+                                                        FontWeight="Medium"
+                                                        VerticalAlignment="Center">
+                                                        -
+                                                    </TextBlock>
+                                                    <TextBlock
+                                                        x:Name="discount"
+                                                        Margin="0 0 5 0"
+                                                        Foreground="Red"
+                                                        FontSize="12"
+                                                        FontWeight="Medium"
+                                                        Text="{Binding DISCOUNT_, StringFormat=P0, UpdateSourceTrigger=PropertyChanged}"
+                                                        VerticalAlignment="Center">
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    -->
+                    <!--button xoá sửa-->
+                    <!--
+                                    <StackPanel Orientation="Horizontal" Grid.Column="4">
+                                        <Button Style="{StaticResource editBtn}"
+                                        VerticalAlignment="Center"
+                                        x:Name="editbtn"
+                                        HorizontalAlignment="Center"
+                                        Margin="60 0 0 0"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                        </Button>
+                                        <Button Style="{StaticResource deleteBtn}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        x:Name="deletebtn"
+                                        Margin="50 0 0 0"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                         </Button>
                                     </StackPanel>
                                 </Grid>
@@ -138,7 +280,8 @@
                                 </Rectangle>
                             </Grid>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
+                    </ListView.ItemTemplate>-->
+
                     <!--loại bỏ hover, highlight effect của listview-->
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
