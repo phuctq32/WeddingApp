@@ -170,6 +170,7 @@
       <DependentUpon>WeddingDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AddHallTypeVM.cs" />
+    <Compile Include="ViewModels\AddHallVM.cs" />
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
     <Compile Include="ViewModels\InvoiceListVM.cs" />

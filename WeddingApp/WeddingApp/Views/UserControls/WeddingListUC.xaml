@@ -165,11 +165,12 @@
                         <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
                         <TextBlock
                             Grid.Column="4"
-                            Text="{Binding WEDDINGDATE, UpdateSourceTrigger=PropertyChanged}"
+                            Text="{Binding WEDDINGDATE, UpdateSourceTrigger=PropertyChanged, StringFormat={} {0:dd/MM/yyyy}}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" Margin="50.6,37,50.8,36" />
+                            VerticalAlignment="Center" 
+                            Margin="50.6,37,50.8,36" />
 
                         <TextBlock
                             Grid.Column="5"

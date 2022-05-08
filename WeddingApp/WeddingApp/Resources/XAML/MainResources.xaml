@@ -9,4 +9,5 @@
     <viewmodels:WeddingHallVM x:Key="weddingHallVM"></viewmodels:WeddingHallVM>
     <viewmodels:WeddingListVM x:Key="weddingListVM"></viewmodels:WeddingListVM>
     <viewmodels:AddHallTypeVM x:Key="addHallTypeVM"></viewmodels:AddHallTypeVM>
+    <viewmodels:AddHallVM x:Key="addHallVM"></viewmodels:AddHallVM>
 </ResourceDictionary>
