@@ -3,9 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
+             DataContext="{StaticResource weddingHallVM}"
+             x:Name="HallUC"
              d:DesignHeight="710" d:DesignWidth="1120">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=HallUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -88,12 +96,12 @@
                     Foreground="White"
                     VerticalAlignment="Center"
                     Grid.Column="6"
-                    Command="{Binding AddProductCommand}"
-                    CommandParameter="{Binding ElementName= EditUC}" />
+                    Command="{Binding AddHallCommand}"
+                    CommandParameter="{Binding ElementName= HallUC}" />
         </Grid>
         <Separator Width="auto" Height="3" Margin="20 0" VerticalAlignment="Bottom"></Separator>
         <!--SOURCE CỦA LISTVIEW NÀY LÀ 1 LIST RECEIPT-->
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="listBallroom" Visibility="Visible">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="100" Margin="10 5 10 0">
@@ -108,7 +116,7 @@
                         </Grid.ColumnDefinitions>
                         <!--mã sảnh-->
                         <TextBlock
-                            Text="1"
+                            Text="{Binding BALLROOMID, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -117,7 +125,7 @@
 
                         <!--tên sảnh-->
                         <TextBlock
-                            Text="Sảnh chính"
+                            Text="{Binding BALLROOMNAME, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -127,7 +135,7 @@
                             TextWrapping="Wrap" />
                         <!--Loại sảnh-->
                         <TextBlock
-                            Text="A"
+                            Text="{Binding BALLROOMTYPE.TYPENAME, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -137,7 +145,7 @@
                         <!--SỐ LƯỢNG BÀN TỐI ĐA-->
                         <TextBlock
                             Grid.Column="3"
-                            Text="10000"
+                            Text="{Binding MAXIMUMTABLE}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
@@ -145,7 +153,7 @@
                         <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
                         <TextBlock
                             Grid.Column="4"
-                            Text="10000"
+                            Text="{Binding BALLROOMTYPE.MINIMUMCOST, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
@@ -153,10 +161,7 @@
                         <!--GHI CHÚ-->
                         <ScrollViewer Grid.Column="5" Margin="0 0 0 3" VerticalScrollBarVisibility="Hidden">
                             <TextBlock
-                                Text="MỘT ĐOẠN VĂN RẤT DÀIIIIIIIIIIIIIIIIII
-                                IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-                                IIIIIIIIIIIIIIIII
-                                IIIIII"
+                                Text="{Binding NOTE, UpdateSourceTrigger= PropertyChanged}"
                                 FontSize="20"
                                 FontWeight="DemiBold"
                                 HorizontalAlignment="Center"
@@ -171,14 +176,18 @@
                       ToolTip="MaterialDesignIconForegroundButton"
                       IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Foreground="Black"
-                        Margin="10 0">
+                        Margin="10 0"
+                                Command="{Binding Source={StaticResource weddingHallVM}, Path = EditHallCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                 <materialDesign:PackIcon Kind="Edit" />
                             </Button>
                             <Button
                   Style="{StaticResource MaterialDesignIconForegroundButton}"
                   ToolTip="MaterialDesignIconForegroundButton"
                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Foreground="Black">
+                    Foreground="Black"
+                                Command="{Binding DeleteHallCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                 <materialDesign:PackIcon Kind="Delete" />
                             </Button>
                         </StackPanel>

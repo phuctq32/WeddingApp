@@ -4,8 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WeddingApp.Views.UserControls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             x:Name="invoiceListUC"
              mc:Ignorable="d"
+             DataContext="{StaticResource invoiceListVM}"
              d:DesignHeight="710" d:DesignWidth="1120">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=InvoiceListUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -91,7 +100,7 @@
         </Grid>
         <Separator Width="auto" Height="3" Margin="20 0" VerticalAlignment="Bottom"></Separator>
         <!--SOURCE CỦA LISTVIEW NÀY LÀ 1 LIST RECEIPT-->
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="invoiceList">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="100" Margin="10 5 10 0">
@@ -107,16 +116,16 @@
                         </Grid.ColumnDefinitions>
                         <!--mã sảnh-->
                         <TextBlock
-                            Text="1"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
+                            Text="{Binding WEDDINGID.BALLROOMID, UpdateSourceTrigger=PropertyChanged}"
                             FontWeight="Medium"
                             Foreground="Black" />
 
                         <!--tên sảnh-->
                         <TextBlock
-                            Text="Nguyễn Văn Tên Dài Dữ"
+                            Text="{Binding }"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"

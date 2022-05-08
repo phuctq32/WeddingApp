@@ -58,7 +58,7 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtFullname"
+                                    x:Name="txtHallname"
                                     TabIndex="2"
                                 materialDesign:HintAssist.Hint="Tên sảnh"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -84,7 +84,7 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtPhone"
+                                    x:Name="txtMaxTable"
                                     TabIndex="1"
                                 materialDesign:HintAssist.Hint="Số lượng bàn tối đa"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -114,6 +114,7 @@
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                     Width="100"
+                                    x:Name="comboBoxHallType"
                                     IsEnabled="False">
                                     <ComboBox.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -132,7 +133,7 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtAddress"
+                                    x:Name="txtMincost"
                                     TabIndex="2"
                                 materialDesign:HintAssist.Hint="Đơn giá bàn tối thiểu"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
