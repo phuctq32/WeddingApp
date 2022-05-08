@@ -23,16 +23,6 @@ namespace WeddingApp.ViewModels
                 OnPropertyChanged("ListDish");
             }
         }
-        private string dishName;
-        public string DishName
-        {
-            get => dishName;
-            set
-            {
-                dishName = value;
-                OnPropertyChanged("DishName");
-            }
-        }
         public ICommand OpenAddDishListWindowCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public DishListVM ()
