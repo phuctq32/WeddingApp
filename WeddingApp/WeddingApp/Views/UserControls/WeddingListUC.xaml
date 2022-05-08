@@ -110,7 +110,7 @@
         </Grid>
         <Separator Width="auto" Height="3" Margin="20 0" VerticalAlignment="Bottom"></Separator>
         <!--SOURCE CỦA LISTVIEW NÀY LÀ 1 LIST RECEIPT-->
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="weddingList">
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="weddingList" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="100" Margin="10 5 10 0">
@@ -170,7 +170,7 @@
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center" 
-                            Margin="50.6,37,50.8,36" />
+                            Margin="25,37,0,36" Width="146.3" />
 
                         <TextBlock
                             Grid.Column="5"
