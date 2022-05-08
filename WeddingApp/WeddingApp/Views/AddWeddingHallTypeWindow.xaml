@@ -61,17 +61,19 @@
                                         Foreground="{StaticResource Gray}"
                                         VerticalAlignment="Top"
                                         Margin="10,10,20,-18" />
-                                <ComboBox
-                                      materialDesign:HintAssist.Hint="Loại sảnh"
-                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
-                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                    Width="100">
-                                    <ComboBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <VirtualizingStackPanel />
-                                        </ItemsPanelTemplate>
-                                    </ComboBox.ItemsPanel>
-                                </ComboBox>
+                                <TextBox
+                                    TabIndex="2"
+                                    materialDesign:HintAssist.Hint="Loại sảnh"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    Foreground="Black"
+                                    FontSize="16"
+                                    materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                                    materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                                    Width="250"
+                                    VerticalContentAlignment="Center"
+                                    Height="50"
+                                    Padding="2,0,0,0">
+                                </TextBox>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0 20">
