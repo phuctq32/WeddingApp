@@ -4,9 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WeddingApp.Views.UserControls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
+             DataContext="{StaticResource weddingListVM}"
+             x:Name="weddingListUC"
              d:DesignHeight="710" d:DesignWidth="1120">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=weddingListUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -102,7 +110,7 @@
         </Grid>
         <Separator Width="auto" Height="3" Margin="20 0" VerticalAlignment="Bottom"></Separator>
         <!--SOURCE CỦA LISTVIEW NÀY LÀ 1 LIST RECEIPT-->
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="weddingList">
             <Grid Height="100" Margin="10 5 10 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="26*"></ColumnDefinition>
@@ -117,7 +125,7 @@
                 </Grid.ColumnDefinitions>
                 <!--mã sảnh-->
                 <TextBlock
-                            Text="1"
+                            Text="{Binding WEDDINGID, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -126,7 +134,7 @@
 
                 <!--tên sảnh-->
                 <TextBlock
-                            Text="Nguyễn Văn Tên Dài Dữ"
+                            Text="{Binding GROOM, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -136,7 +144,7 @@
                             TextWrapping="Wrap" Margin="12,23" />
                 <!--Loại sảnh-->
                 <TextBlock
-                            Text="Nguyễn Thị Tên Dài Quá"
+                            Text="{Binding BRIDE,UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -147,7 +155,7 @@
                 <!--SỐ LƯỢNG BÀN TỐI ĐA-->
                 <TextBlock
                             Grid.Column="3"
-                            Text="10000"
+                            Text="{Binding BALLROOM.BALLROOMNAME, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
@@ -155,7 +163,7 @@
                 <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
                 <TextBlock
                             Grid.Column="4"
-                            Text="10000"
+                            Text="{Binding WEDDINGDATE, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
@@ -163,14 +171,14 @@
 
                 <TextBlock
                             Grid.Column="5"
-                            Text="10000"
+                            Text="{Binding SHIFT.SHIFTSTART, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center" Margin="51.2,37,50.2,36" />
                 <TextBlock
                             Grid.Column="6"
-                            Text="10000"
+                            Text="{Binding TABLEAMOUNT, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
