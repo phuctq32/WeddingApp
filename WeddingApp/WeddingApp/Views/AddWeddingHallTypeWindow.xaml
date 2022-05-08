@@ -19,6 +19,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Foreground="{x:Null}"
         AllowsTransparency="True"
+        DataContext="{StaticResource addHallTypeVM}"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"

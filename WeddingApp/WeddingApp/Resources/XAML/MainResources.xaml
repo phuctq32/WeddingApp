@@ -8,4 +8,5 @@
     <viewmodels:InvoiceListVM x:Key="invoiceListVM"></viewmodels:InvoiceListVM>
     <viewmodels:WeddingHallVM x:Key="weddingHallVM"></viewmodels:WeddingHallVM>
     <viewmodels:WeddingListVM x:Key="weddingListVM"></viewmodels:WeddingListVM>
+    <viewmodels:AddHallTypeVM x:Key="addHallTypeVM"></viewmodels:AddHallTypeVM>
 </ResourceDictionary>
