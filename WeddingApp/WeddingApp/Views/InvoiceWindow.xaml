@@ -8,6 +8,7 @@
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         mc:Ignorable="d"
         Height="auto" Width="800"
+        SizeToContent="Height"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -22,17 +23,13 @@
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid x:Name="print">
             <uc:ControlBarUC x:Name="controlBar" Margin="10" Panel.ZIndex="99"></uc:ControlBarUC>
-            <Button x:Name="printBtn" Panel.ZIndex="99"
-                HorizontalAlignment="Left" Margin="20" Background="{StaticResource Orange1}" VerticalAlignment="Top"
-                CommandParameter="{Binding ElementName=InvoiceWd}">
-                <materialDesign:PackIcon Kind="Printer" />
-            </Button>
             <Grid Width="790">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100" />
                         <RowDefinition MinHeight="365" />
                         <RowDefinition Height="135" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock
@@ -185,6 +182,26 @@
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3">
+                        <CheckBox HorizontalAlignment="Center"
+                                  Content="Sử dụng quy định phạt"
+                                  Margin="10"
+                                  FontSize="18" />
+                        <Button
+                Style="{StaticResource GreenBtn}"
+                        Grid.Row="3"
+                Content="Xác nhận thanh toán"
+
+                Width="250"
+                Height="60"
+                FontSize="20"
+                Foreground="White"
+                VerticalAlignment="Center"
+                Margin="10 0"
+                        Command="{Binding AddButtonCommand}"
+                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
                     </StackPanel>
                 </Grid>
             </Grid>
