@@ -99,75 +99,80 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CurrentAccount.cs" />
     <Compile Include="CustomMessageBox.cs" />
-    <Compile Include="Model\BALLROOM.cs">
+    <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Models\BALLROOM.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\BALLROOMTYPE.cs">
+    <Compile Include="Models\BALLROOMTYPE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\DISH.cs">
+    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\DISH.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\DISHTYPE.cs">
+    <Compile Include="Models\DISHTYPE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\EMPLOYEE.cs">
+    <Compile Include="Models\EMPLOYEE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FUNCTION.cs">
+    <Compile Include="Models\FUNCTION.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\INVOICE.cs">
+    <Compile Include="Models\INVOICE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MENU.cs">
+    <Compile Include="Models\MENU.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PARAMETER.cs">
+    <Compile Include="Models\PARAMETER.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PERMISSION.cs">
+    <Compile Include="Models\PERMISSION.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\REPORTDETAIL.cs">
+    <Compile Include="Models\REPORTDETAIL.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ROLE.cs">
+    <Compile Include="Models\ROLE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SALESREPORT.cs">
+    <Compile Include="Models\SALESREPORT.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SERVE.cs">
+    <Compile Include="Models\SERVE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SERVICE.cs">
+    <Compile Include="Models\SERVICE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SHIFT.cs">
+    <Compile Include="Models\SHIFT.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WEDDING.cs">
+    <Compile Include="Models\WEDDING.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WeddingDB.Context.cs">
+    <Compile Include="Models\WeddingDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WeddingDB.cs">
+    <Compile Include="Models\WeddingDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WeddingDB.Designer.cs">
+    <Compile Include="Models\WeddingDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
+    <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
@@ -418,11 +423,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\WeddingDB.edmx">
+    <EntityDeploy Include="Models\WeddingDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WeddingDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\WeddingDB.edmx.diagram">
+    <None Include="Models\WeddingDB.edmx.diagram">
       <DependentUpon>WeddingDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -454,12 +459,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\WeddingDB.Context.tt">
+    <Content Include="Models\WeddingDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
       <LastGenOutput>WeddingDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\WeddingDB.tt">
+    <Content Include="Models\WeddingDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
       <LastGenOutput>WeddingDB.cs</LastGenOutput>

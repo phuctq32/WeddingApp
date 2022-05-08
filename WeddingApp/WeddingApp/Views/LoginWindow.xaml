@@ -15,7 +15,9 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{x:Null}"
         FontFamily="{DynamicResource MaterialDesignFont}"
+        DataContext="{StaticResource loginVM}"
         Foreground="{x:Null}"
+        x:Name="LoginWD"
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
@@ -47,7 +49,7 @@
                         <!--Control Bar-->
                         <uc:ControlBarUC Grid.Row="0" x:Name="controlBar"></uc:ControlBarUC>
 
-                        <!--Login Grid-->
+                            <!--Login Grid-->
                         <Grid Grid.Row="1" Margin="150 130">
                             <TextBlock Text="Đăng nhập"
                                     HorizontalAlignment="Center"
@@ -133,9 +135,9 @@
                             Padding="0"
                             Margin="65 55 0 0"
                             Background="Transparent"
-                            Cursor="Hand"
-                            Command="{Binding OpenForgotPasswordWDCommand}"
-                            CommandParameter="{Binding ElementName=LoginWD}">
+                            Cursor="Hand">
+                                <!--Command="{Binding OpenForgotPasswordWDCommand}"-->
+                            <!--CommandParameter="{Binding ElementName=LoginWD}">-->
                             </Button>
 
                             <Button
