@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WeddingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WeddingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BALLROOM">
           <Key>
             <PropertyRef Name="BALLROOMID" />
@@ -135,6 +135,7 @@
           <Property Name="SERVICEID" Type="int" Nullable="false" />
           <Property Name="SERVICECOST" Type="money" />
           <Property Name="NOTE" Type="text" />
+          <Property Name="AMOUNT" Type="tinyint" />
         </EntityType>
         <EntityType Name="SERVICE">
           <Key>
@@ -216,18 +217,6 @@
             </Principal>
             <Dependent Role="INVOICES">
               <PropertyRef Name="USERNAME" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_INVOICES_PAID">
-          <End Role="REPORTDETAIL" Type="Self.REPORTDETAIL" Multiplicity="1" />
-          <End Role="INVOICES" Type="Self.INVOICES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="REPORTDETAIL">
-              <PropertyRef Name="REPORTDATE" />
-            </Principal>
-            <Dependent Role="INVOICES">
-              <PropertyRef Name="PAID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -385,10 +374,6 @@
             <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
             <End Role="INVOICES" EntitySet="INVOICES" />
           </AssociationSet>
-          <AssociationSet Name="FK_INVOICES_PAID" Association="Self.FK_INVOICES_PAID">
-            <End Role="REPORTDETAIL" EntitySet="REPORTDETAIL" />
-            <End Role="INVOICES" EntitySet="INVOICES" />
-          </AssociationSet>
           <AssociationSet Name="FK_INVOICES_WEDDINGID" Association="Self.FK_INVOICES_WEDDINGID">
             <End Role="WEDDING" EntitySet="WEDDING" />
             <End Role="INVOICES" EntitySet="INVOICES" />
@@ -430,8 +415,7 @@
             <End Role="WEDDING" EntitySet="WEDDING" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WeddingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -588,6 +572,7 @@
           <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SERVICE" Relationship="Self.FK_SERVE_SERVICEID" FromRole="SERVE" ToRole="SERVICE" />
           <NavigationProperty Name="WEDDING" Relationship="Self.FK_SERVE_WEDDINGID" FromRole="SERVE" ToRole="WEDDING" />
+          <Property Name="AMOUNT" Type="Byte" />
         </EntityType>
         <EntityType Name="SERVICE">
           <Key>
@@ -1033,6 +1018,7 @@
           <EntitySetMapping Name="SERVEs">
             <EntityTypeMapping TypeName="WeddingDBModel.SERVE">
               <MappingFragment StoreEntitySet="SERVE">
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
                 <ScalarProperty Name="SERVEID" ColumnName="SERVEID" />
                 <ScalarProperty Name="WEDDINGID" ColumnName="WEDDINGID" />
                 <ScalarProperty Name="SERVICEID" ColumnName="SERVICEID" />

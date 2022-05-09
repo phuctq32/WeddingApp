@@ -21,12 +21,7 @@
 
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
         <Grid x:Name="print">
-            <uc:ControlBarUC x:Name="controlBar" Margin="10" Panel.ZIndex="99"></uc:ControlBarUC>
-            <Button x:Name="printBtn" Panel.ZIndex="99"
-                HorizontalAlignment="Left" Margin="20" Background="{StaticResource Orange1}" VerticalAlignment="Top"
-                CommandParameter="{Binding ElementName=InvoiceWd}">
-                <materialDesign:PackIcon Kind="Edit" />
-            </Button>
+            <uc:ControlBarUC x:Name="controlBar" Margin="10" Panel.ZIndex="99" Loaded="controlBar_Loaded"></uc:ControlBarUC>
             <Grid>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -59,43 +54,43 @@
                             <StackPanel Grid.Column="0" Background="Transparent">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tên chú rễ: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" x:Name="txtGroom"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tên cô dâu: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtBride"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Điện thoại:" FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtPhone"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Ngày đãi tiệc: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.ID_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="15" Margin="5" FontWeight="DemiBold" x:Name="txtWeddingDate"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Ca: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtShift"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Sảnh: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.DATE}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtHall"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="2">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tiền đặt cọc: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" x:Name="txtDeposit"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Số lượng bàn: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtTableAmount"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Số bàn dự trữ: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtReserve"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -117,7 +112,7 @@
                                     HorizontalAlignment="Center"
                                     CornerRadius="5"
                                     Effect="{StaticResource dropShadow1}">
-                                <ListView x:Name="statusListViewUser"
+                                <ListView
                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                     ScrollViewer.CanContentScroll="False"
                                     SelectedIndex="0">
@@ -173,8 +168,9 @@
                                     </ListViewItem>
                                 </ListView>
                             </Border>
-
-                            <uc:DetailServiceListUC Grid.Row="1" Visibility="Visible" />
+                            <Grid>
+                                <uc:DetailServiceListUC Grid.Row="1" Visibility="Visible" x:Name="listViewdish"/>
+                            </Grid>
                         </Grid>
                     </Grid>
 
@@ -192,19 +188,19 @@
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tổng tiền dịch vụ: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" x:Name="txtTotalService"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tổng tiền hoá đơn: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtTotal"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tiền đặt cọc:" FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtDeposit2"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Còn lại:" FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" x:Name="txtRemaining"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

@@ -192,6 +192,8 @@
                   ToolTip="MaterialDesignIconForegroundButton"
                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Foreground="Black"
+                            Command="{Binding Source= {StaticResource weddingListVM}, Path=OpenWeddingCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"
                     Grid.Column="7" Grid.ColumnSpan="2" Margin="19.4,26,19,26">
                             <materialDesign:PackIcon Kind="Details" />
                         </Button>

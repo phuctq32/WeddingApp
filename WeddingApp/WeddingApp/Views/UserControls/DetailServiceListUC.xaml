@@ -48,7 +48,7 @@
                            Foreground="Black"
                            Grid.Column="2" />
                     </Grid>
-                    <ListView x:Name="ListOtherUser"
+                    <ListView x:Name="ListServiceUse"
                             Grid.Row="1"
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                             ScrollViewer.VerticalScrollBarVisibility="Visible"
@@ -84,7 +84,7 @@
                                             Foreground="Black"
                                             Grid.Column="2"
                                             TextWrapping="Wrap"
-                                            Text="Dịch vụ tên dài dài dài dài dài dài dài dài " />
+                                            Text="{Binding}" />
                                             </StackPanel>
                                         </Grid>
                                         <!--số lượng -->
@@ -94,8 +94,8 @@
                                        HorizontalAlignment="Center"
                                        Foreground="Black"
                                        TextWrapping="Wrap"
-                                       Grid.Column="1">
-                                        100000000
+                                       Grid.Column="1"
+                                            Text="{Binding AMOUNT}">
                                         </TextBlock>
                                         <!--đơn giá-->
                                         <TextBlock
@@ -104,8 +104,8 @@
                                        HorizontalAlignment="Center"
                                        Foreground="Black"
                                        TextWrapping="Wrap"
-                                       Grid.Column="2">
-                                        1000000000
+                                       Grid.Column="2"
+                                            Text="{Binding DISHCOST}">
                                         </TextBlock>
                                     </Grid>
                                     <Rectangle

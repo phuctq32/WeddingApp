@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp.Models
+namespace WeddingApp
 {
     using System;
     using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace WeddingApp.Models
         public int SERVICEID { get; set; }
         public Nullable<decimal> SERVICECOST { get; set; }
         public string NOTE { get; set; }
+        public Nullable<byte> AMOUNT { get; set; }
     
         public virtual SERVICE SERVICE { get; set; }
         public virtual WEDDING WEDDING { get; set; }
