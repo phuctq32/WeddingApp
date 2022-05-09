@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WeddingApp.Views;
 using WeddingApp.Models;
+using System.Windows.Controls;
 
 namespace WeddingApp.ViewModels
 {
-    internal class AddHallVM
+    internal class AddHallVM : ViewModelBase
     {
         public ICommand LoadedCommand { get; set; }
+        public ICommand AddHallCommand { get; set; }
+        public string TypeName { get; set; }
+        private string _name { get => TypeName; set { TypeName = value; OnPropertyChanged("Typename"); } }
+        private AddWeddingHallWindow thisWindow;
 
         public AddHallVM()
         {
             LoadedCommand = new RelayCommand<AddWeddingHallWindow>(parameter => true, parameter => Load(parameter));
+            AddHallCommand = new RelayCommand<AddWeddingHallWindow>(parameter => true, parameter => Add(parameter));
         }
         public void Load(AddWeddingHallWindow addWeddingHallWindow)
         {
@@ -24,7 +30,31 @@ namespace WeddingApp.ViewModels
             {
                 addWeddingHallWindow.comboBoxType.Items.Add(item.TYPENAME);
             }
-
+            _name = addWeddingHallWindow.comboBoxType.SelectionBoxItem.ToString();
+            thisWindow = addWeddingHallWindow;
+            thisWindow.comboBoxType.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
+        }
+        public void SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+        {
+            string SelectedType = thisWindow.comboBoxType.SelectedItem.ToString();
+            thisWindow.txtMinPrice.Text = Data.Ins.DB.BALLROOMTYPEs.Where(x => x.TYPENAME == SelectedType).SingleOrDefault().MINIMUMCOST.ToString();
+        }
+        public void Add(AddWeddingHallWindow addWeddingHallWindow)
+        {
+            string HallName = addWeddingHallWindow.txtHallname.Text;
+            if(Data.Ins.DB.BALLROOMs.Where(x=>x.BALLROOMNAME == HallName).Count() >0)
+            {
+                CustomMessageBox.Show("Sảnh đã tồn tại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                BALLROOM newBallroom = new BALLROOM();
+                newBallroom.BALLROOMNAME = HallName;
+                newBallroom.MAXIMUMTABLE = Convert.ToInt16(addWeddingHallWindow.txtMaxtable.Text);
+                newBallroom.TYPEID = Convert.ToInt32(addWeddingHallWindow.comboBoxType.Text);
+                Data.Ins.DB.BALLROOMs.Add(newBallroom);
+                Data.Ins.DB.SaveChanges();
+            }
         }
     }
 }
