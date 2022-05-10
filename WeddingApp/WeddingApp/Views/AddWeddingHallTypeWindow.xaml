@@ -10,6 +10,7 @@
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         Height="auto"
         Width="440"
+        x:Name="addHallTypeUC"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -62,6 +63,7 @@
                                         VerticalAlignment="Top"
                                         Margin="10,10,20,-18" />
                                 <TextBox
+                                    x:Name="txtHallTypeName"
                                     TabIndex="2"
                                     materialDesign:HintAssist.Hint="Loại sảnh"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -85,7 +87,7 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtAddress"
+                                    x:Name="txtMinPrice"
                                     TabIndex="2"
                                 materialDesign:HintAssist.Hint="Đơn giá bàn tối thiểu"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -98,7 +100,7 @@
                                 VerticalContentAlignment="Center"
                                 Height="50"
                                 Padding="2,0,0,0"
-                                    IsEnabled="False">
+                                    IsEnabled="True">
                                 </TextBox>
                             </StackPanel>
 
@@ -113,8 +115,8 @@
                             Margin="0 20 0 0"
                             FontSize="20"
                             Foreground="White"
-                            Command="{Binding SaveInfoCommand}"
-                            CommandParameter="{Binding ElementName=changeInfoWD}">
+                            Command="{Binding AddHallTypeCommand}"
+                            CommandParameter="{Binding ElementName= addHallTypeUC}">
                             </Button>
                         </StackPanel>
                     </Grid>

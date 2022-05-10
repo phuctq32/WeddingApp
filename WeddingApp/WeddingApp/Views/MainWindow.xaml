@@ -31,10 +31,6 @@
                                    CommandParameter="{Binding ElementName=MainWD}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Window.Resources>
-        <helperslocal:BooleanToVisibilityConverter x:Key="boolToVis"></helperslocal:BooleanToVisibilityConverter>
-        <mainlocal:CurrentAccount x:Key="currentAccount"></mainlocal:CurrentAccount>
-    </Window.Resources>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         
         <Grid>

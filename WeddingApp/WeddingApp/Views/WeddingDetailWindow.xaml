@@ -168,8 +168,7 @@
                                     </ListViewItem>
                                 </ListView>
                             </Border>
-                            <Grid>
-                                <uc:DetailServiceListUC Grid.Row="1" Visibility="Visible" x:Name="listViewdish"/>
+                            <Grid x:Name="listViewdish">
                             </Grid>
                         </Grid>
                     </Grid>

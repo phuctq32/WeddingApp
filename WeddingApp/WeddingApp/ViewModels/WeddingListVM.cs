@@ -48,8 +48,10 @@ namespace WeddingApp.ViewModels
             weddingDetailWindow.txtTotalService.Text = iNVOICE.SERVICECOST.ToString("C0", cultureInfo);
             weddingDetailWindow.txtTotal.Text = iNVOICE.TOTALCOST.ToString("C0", cultureInfo);
             weddingDetailWindow.txtRemaining.Text = iNVOICE.REMAININGCOST.ToString("C0", cultureInfo);
-            weddingDetailWindow.listViewdish = new DetailServiceListUC();
-            weddingDetailWindow.listViewdish.ListServiceUse.ItemsSource = menu;
+            DetailDishListUC detailDishListUC = new DetailDishListUC();
+            detailDishListUC.ListDishUse.ItemsSource = menu;
+            weddingDetailWindow.listViewdish.Children.Clear();
+            weddingDetailWindow.listViewdish.Children.Add(detailDishListUC);
             weddingDetailWindow.ShowDialog();
         }
     }

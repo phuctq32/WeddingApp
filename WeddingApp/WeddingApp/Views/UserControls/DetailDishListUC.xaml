@@ -47,7 +47,7 @@
                            Foreground="Black"
                            Grid.Column="2" />
                 </Grid>
-                <ListView x:Name="ListOtherUser"
+                <ListView x:Name="ListDishUse"
                             Grid.Row="1"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                               ScrollViewer.CanContentScroll="False">
@@ -71,14 +71,14 @@
                                             HorizontalAlignment="Left"
                                             Margin="40 0">
                                             <Rectangle.Fill>
-                                                <ImageBrush ImageSource="{Binding PRODUCT.IMAGE_}" Stretch="UniformToFill" />
+                                                <ImageBrush ImageSource="{Binding DISH.DISHIMAGE}" Stretch="UniformToFill" />
                                             </Rectangle.Fill>
                                         </Rectangle>
                                         <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="300" HorizontalAlignment="Right">
                                             <!--tên món ăn-->
                                             <TextBlock
                                             Margin="0 20 0 0"
-                                            Text="{Binding PRODUCT.NAME_}"
+                                            Text="{Binding DISH.DISHNAME}"
                                             FontSize="17"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Left"
@@ -94,7 +94,8 @@
                                        HorizontalAlignment="Center"
                                        Foreground="Black"
                                        TextWrapping="Wrap"
-                                       Grid.Column="1">
+                                       Grid.Column="1"
+                                        Text="{Binding DISHCOST}">
                                     </TextBlock>
                                     <!--ghi chú-->
                                     <TextBlock
@@ -103,7 +104,8 @@
                                        HorizontalAlignment="Center"
                                        Foreground="Black"
                                        TextWrapping="Wrap"
-                                       Grid.Column="2">
+                                       Grid.Column="2"
+                                        Text="{Binding NOTE}">
                                     </TextBlock>
                                 </Grid>
                                 <Rectangle
