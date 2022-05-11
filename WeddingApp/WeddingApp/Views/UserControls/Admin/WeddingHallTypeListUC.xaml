@@ -4,8 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WeddingApp.Views.UserControls.Admin" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             x:Name="hallTypeListUC"
+             DataContext="{StaticResource hallTypeListVM}"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=hallTypeListUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
         <Grid>
             <Grid>
@@ -46,8 +55,8 @@
                     VerticalAlignment="Center"
                     Grid.Column="3"
                     Margin="0 10 0 0"
-                    Command="{Binding AddProductCommand}"
-                    CommandParameter="{Binding ElementName= EditUC}" />
+                    Command="{Binding AddHallTypeCommand}"
+                    CommandParameter="{Binding ElementName= hallTypeListUC}" />
                 </Grid>
 
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
@@ -69,7 +78,7 @@
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
-                                            Text="{Binding PRICE_, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding TYPENAME, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                             VerticalAlignment="Center" />
 
                                     <TextBlock
@@ -79,7 +88,7 @@
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
-                                            Text="{Binding PRICE_, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding MINIMUMCOST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                             VerticalAlignment="Center">
                                     </TextBlock>
 
@@ -88,13 +97,17 @@
                                         <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Cập nhật loại sảnh"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                            Command="{Binding Source ={StaticResource hallTypeListVM}, Path=EditHallTypeCommand}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                             <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                         </Button>
                                         <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Xoá loại sảnh"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                            Command="{Binding Source ={StaticResource hallTypeListVM}, Path=DeleteHallTypeCommand}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                             <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
                                         </Button>
                                     </StackPanel>
