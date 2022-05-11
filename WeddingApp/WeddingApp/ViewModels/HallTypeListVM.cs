@@ -46,7 +46,7 @@ namespace WeddingApp.ViewModels
         public void Delete(ListViewItem listViewItem)
         {
             BALLROOMTYPE deleteType = listViewItem.DataContext as BALLROOMTYPE;
-            if(CustomMessageBox.Show("Xóa loại sảnh?",System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.Yes)
+            if(CustomMessageBox.Show("Xóa loại sảnh?",System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
                 Data.Ins.DB.BALLROOMTYPEs.Remove(deleteType);
                 Data.Ins.DB.SaveChanges();
