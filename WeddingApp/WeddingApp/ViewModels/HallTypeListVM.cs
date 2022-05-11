@@ -38,10 +38,11 @@ namespace WeddingApp.ViewModels
         public void Edit(ListViewItem listViewItem)
         {
             BALLROOMTYPE editType = listViewItem.DataContext as BALLROOMTYPE;
-            AddWeddingHallTypeWindow addWeddingHallTypeWindow = new AddWeddingHallTypeWindow();
-            addWeddingHallTypeWindow.txtHallTypeName.Text = editType.TYPENAME;
-            addWeddingHallTypeWindow.txtMinPrice.Text = editType.MINIMUMCOST.ToString();
-            addWeddingHallTypeWindow.ShowDialog();
+            EditWeddingHallTypeWindow editWeddingHallTypeWindow = new EditWeddingHallTypeWindow();
+            editWeddingHallTypeWindow.TypeName.Items.Add(editType.TYPENAME);
+            editWeddingHallTypeWindow.TypeName.SelectedIndex = 0;
+            editWeddingHallTypeWindow.txtMinPrice.Text = editType.MINIMUMCOST.ToString();
+            editWeddingHallTypeWindow.ShowDialog();
         }
         public void Delete(ListViewItem listViewItem)
         {

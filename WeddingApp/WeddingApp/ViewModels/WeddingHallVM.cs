@@ -44,7 +44,8 @@ namespace WeddingApp.ViewModels
             EditWeddingHallWindow editWeddingHallWindow = new EditWeddingHallWindow();
             editWeddingHallWindow.txtHallname.Text = ballroom.BALLROOMNAME;
             editWeddingHallWindow.txtMaxTable.Text = ballroom.MAXIMUMTABLE.ToString();
-            editWeddingHallWindow.comboBoxHallType.Text = ballroom.TYPEID.ToString();
+            editWeddingHallWindow.comboBoxHallType.Items.Add(ballroom.BALLROOMTYPE.TYPENAME);
+            editWeddingHallWindow.comboBoxHallType.SelectedIndex = 0;
             editWeddingHallWindow.txtMincost.Text = ballroom.BALLROOMTYPE.MINIMUMCOST.ToString();
             editWeddingHallWindow.ShowDialog();
         }

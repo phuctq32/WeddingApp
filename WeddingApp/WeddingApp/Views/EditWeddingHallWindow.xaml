@@ -115,6 +115,7 @@
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                     Width="100"
                                     x:Name="comboBoxHallType"
+                                    Foreground="Black"
                                     IsEnabled="False">
                                     <ComboBox.ItemsPanel>
                                         <ItemsPanelTemplate>

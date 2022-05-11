@@ -62,8 +62,11 @@
                                         Margin="10,10,20,-18" />
                                 <ComboBox
                                       materialDesign:HintAssist.Hint="Loại sảnh"
+                                    x:Name="TypeName"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                    Foreground="Black"
+                                    IsEnabled="False"
                                     Width="100">
                                     <ComboBox.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -82,7 +85,7 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtAddress"
+                                    x:Name="txtMinPrice"
                                     TabIndex="2"
                                 materialDesign:HintAssist.Hint="Đơn giá bàn tối thiểu"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -95,7 +98,7 @@
                                 VerticalContentAlignment="Center"
                                 Height="50"
                                 Padding="2,0,0,0"
-                                    IsEnabled="False">
+                                    IsEnabled="True">
                                 </TextBox>
                             </StackPanel>
 
