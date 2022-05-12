@@ -185,7 +185,7 @@
                             Height="40"
                             FontSize="20"
                             Foreground="White"
-                            Command="{Binding PayCommand}"
+                            Command="{Binding Source={StaticResource invoiceListVM}, Path=PayCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
 
                         <Separator Width="auto" Height="3" Margin="10 0" VerticalAlignment="Bottom" Grid.ColumnSpan="8"></Separator>

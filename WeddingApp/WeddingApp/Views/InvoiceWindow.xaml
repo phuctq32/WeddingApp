@@ -50,29 +50,29 @@
                             <StackPanel Grid.Column="0" Background="Transparent">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tên chú rễ: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtGroom" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tên cô dâu: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtBride" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Ngày mua:" FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock Text="Đãi tiệc:" FontSize="15" Margin="5" />
+                                    <TextBlock x:Name ="txtWeddingDate" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Số lượng bàn: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtTableAmount" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Đơn giá bàn: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtTableCost" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tổng tiền bàn: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtWeddingCost" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -105,21 +105,21 @@
                                         </Grid.ColumnDefinitions>
                                         <Rectangle Fill="Black" Height="1" Opacity="0.5" Grid.ColumnSpan="4" VerticalAlignment="Top" />
                                         <!--TÊN MÓN ĂN-->
-                                        <TextBlock Text="{Binding PRODUCT.NAME_}" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" />
+                                        <TextBlock  Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" />
                                         <!--GIÁ MÓN ĂN-->
                                         <TextBlock
-                                                x:Name="priceDiscount"
+                                                Text="{Binding SERVICE.SERVICENAME}"
                                                 Margin="0 0 10 0"
                                                 FontWeight="Medium"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center"
                                                 Grid.Column="1">
                                         </TextBlock>
-                                        <TextBlock x:Name="price" Margin="0 0 7 0"
-                                                   Text="{Binding PRODUCT.PRICE_, StringFormat=N0}"
+                                        <TextBlock x:Name="txtServiceAmount" Margin="0 0 7 0"
+                                                   Text="{Binding AMOUNT}"
                                                    Grid.Column="1" HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
-                                                   Visibility="Collapsed" />
+                                                   Visibility="Visible" />
                                         <!--DISCOUNT CHO VÀO ĐỂ CÓ CÁI BINDING ĐỂ TÍNH THẰNG TỔNG CHỨ K HIỂN THỊ-->
                                         <Border
                                         BorderBrush="Transparent"
@@ -132,14 +132,14 @@
                                             FontSize="12"
                                             FontWeight="Medium"
                                             Text="{Binding PRODUCT.DISCOUNT_, StringFormat={}{0:P0}}"
-                                            Visibility="Collapsed"
+                                            Visibility="Visible"
                                             VerticalAlignment="Center">
                                             </TextBlock>
                                         </Border>
                                         <!--AMOUNT-->
-                                        <TextBlock x:Name="amount" Text="{Binding AMOUNT_}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock x:Name="txtServiceCost" Text="{Binding SERVICECOST}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                         <!--TÍNH GIÁ TỔNG BẰNG PRICE * AMOUNT-->
-                                        <TextBlock Grid.Column="3" HorizontalAlignment="Right" FontWeight="Medium"
+                                        <TextBlock x:Name="txtCalculate" Grid.Column="3" HorizontalAlignment="Right" FontWeight="Medium"
                                                TextWrapping="Wrap" VerticalAlignment="Center">
                                         </TextBlock>
                                     </Grid>
@@ -166,19 +166,19 @@
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tổng tiền dịch vụ: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.ID_}" FontSize="15" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtTotalServiceCost" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tổng tiền hoá đơn: " FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.USER.FULLNAME_}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtTotalCost" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tiền đặt cọc:" FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtDeposit" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Còn lại:" FontSize="15" Margin="5" />
-                                    <TextBlock Text="{Binding Receipt.DATE_, StringFormat={} {0:dd/MM/yyyy HH:mm}}" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtRemaining" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -187,6 +187,7 @@
                     <StackPanel Grid.Row="3">
                         <CheckBox HorizontalAlignment="Center"
                                   Content="Sử dụng quy định phạt"
+                                  x:Name="chkPenalty"
                                   Margin="10"
                                   FontSize="18" />
                         <Button
@@ -200,7 +201,7 @@
                 Foreground="White"
                 VerticalAlignment="Center"
                 Margin="10 0"
-                        Command="{Binding AddButtonCommand}"
+                        Command="{Binding PayButtonCommand}"
                         CommandParameter="{Binding ElementName=AddProductWD}"></Button>
                     </StackPanel>
                 </Grid>
