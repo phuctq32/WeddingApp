@@ -173,6 +173,8 @@
     <Compile Include="ViewModels\AddHallVM.cs" />
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
+    <Compile Include="ViewModels\EditHallTypeVM.cs" />
+    <Compile Include="ViewModels\EditHallVM.cs" />
     <Compile Include="ViewModels\HallTypeListVM.cs" />
     <Compile Include="ViewModels\InvoiceListVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />

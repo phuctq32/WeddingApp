@@ -3,12 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:WeddingApp.Views"
         mc:Ignorable="d"
         Title="EditWeddingHallTypeWindow" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         Height="auto"
+        DataContext="{StaticResource editHallTypeVM}"
+        x:Name="editHallTypeWD"
         Width="440"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -23,6 +25,12 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         SizeToContent="Height">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=editHallTypeWD}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
             <Grid Margin="10">
@@ -113,8 +121,8 @@
                             Margin="0 20 0 0"
                             FontSize="20"
                             Foreground="White"
-                            Command="{Binding SaveInfoCommand}"
-                            CommandParameter="{Binding ElementName=changeInfoWD}">
+                            Command="{Binding EditHallCommand}"
+                            CommandParameter="{Binding ElementName=editHallTypeWD}">
                             </Button>
                         </StackPanel>
                     </Grid>

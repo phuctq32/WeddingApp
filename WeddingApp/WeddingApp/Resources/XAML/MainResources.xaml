@@ -11,4 +11,6 @@
     <viewmodels:AddHallTypeVM x:Key="addHallTypeVM"></viewmodels:AddHallTypeVM>
     <viewmodels:AddHallVM x:Key="addHallVM"></viewmodels:AddHallVM>
     <viewmodels:HallTypeListVM x:Key="hallTypeListVM"></viewmodels:HallTypeListVM>
+    <viewmodels:EditHallVM x:Key="editHallVM"></viewmodels:EditHallVM>
+    <viewmodels:EditHallTypeVM x:Key="editHallTypeVM"></viewmodels:EditHallTypeVM>
 </ResourceDictionary>
