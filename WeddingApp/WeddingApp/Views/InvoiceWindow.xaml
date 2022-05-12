@@ -5,14 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WeddingApp.Views"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         mc:Ignorable="d"
         Height="auto" Width="800"
+        x:Name="invoiceWD"
         SizeToContent="Height"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
+        DataContext="{StaticResource invoiceVM}"
         TextOptions.TextRenderingMode="Auto"
         Background="{x:Null}"
         FontFamily="{DynamicResource MaterialDesignFont}"
@@ -20,6 +23,12 @@
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=invoiceWD}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid x:Name="print">
             <uc:ControlBarUC x:Name="controlBar" Margin="10" Panel.ZIndex="99"></uc:ControlBarUC>
@@ -177,6 +186,10 @@
                                     <TextBlock x:Name="txtDeposit" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tiền phạt:" FontSize="15" Margin="5" />
+                                    <TextBlock x:Name="txtPenalty" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Còn lại:" FontSize="15" Margin="5" />
                                     <TextBlock x:Name="txtRemaining" FontSize="12" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
@@ -189,7 +202,9 @@
                                   Content="Sử dụng quy định phạt"
                                   x:Name="chkPenalty"
                                   Margin="10"
-                                  FontSize="18" />
+                                  FontSize="18" 
+                                  Command="{Binding PenaltyCheckedCommand}"
+                                  CommandParameter="{Binding ElementName=invoiceWD}"/>
                         <Button
                 Style="{StaticResource GreenBtn}"
                         Grid.Row="3"
@@ -201,8 +216,8 @@
                 Foreground="White"
                 VerticalAlignment="Center"
                 Margin="10 0"
-                        Command="{Binding PayButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        Command="{Binding PenaltyCheckedCommand}"
+                        CommandParameter="{Binding ElementName=invoiceWD}"></Button>
                     </StackPanel>
                 </Grid>
             </Grid>
