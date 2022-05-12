@@ -79,8 +79,8 @@
                         <!--header-->
                         <Grid Margin="10 30 10 0" Height="18">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*" />
-                                <ColumnDefinition Width="1.5*" />
+                                <ColumnDefinition Width="0.3*" />
+                                <ColumnDefinition Width="1.7*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1.5*" />
@@ -93,20 +93,20 @@
                         </Grid>
                         <!--LISTVIEW RECEIPT_DETAIL-->
                         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="listView">
-                            <!--ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource FindAncestor, AncestorType=ListView}}">-->
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid HorizontalAlignment="Stretch" MinHeight="38" Width="730">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="0.3*" />
+                                            <ColumnDefinition Width="1.7*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1.5*" />
                                         </Grid.ColumnDefinitions>
                                         <Rectangle Fill="Black" Height="1" Opacity="0.5" Grid.ColumnSpan="4" VerticalAlignment="Top" />
-                                        <!--TÊN MÓN ĂN-->
+                                        <!--STT-->
                                         <TextBlock  Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" />
-                                        <!--GIÁ MÓN ĂN-->
+                                        <!--Tên dịch vụ-->
                                         <TextBlock
                                                 Text="{Binding SERVICE.SERVICENAME}"
                                                 Margin="0 0 10 0"
@@ -115,36 +115,22 @@
                                                 HorizontalAlignment="Center"
                                                 Grid.Column="1">
                                         </TextBlock>
+                                        <!--Số lượng-->
                                         <TextBlock x:Name="txtServiceAmount" Margin="0 0 7 0"
                                                    Text="{Binding AMOUNT}"
-                                                   Grid.Column="1" HorizontalAlignment="Center"
+                                                   Grid.Column="2" HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    Visibility="Visible" />
-                                        <!--DISCOUNT CHO VÀO ĐỂ CÓ CÁI BINDING ĐỂ TÍNH THẰNG TỔNG CHỨ K HIỂN THỊ-->
-                                        <Border
-                                        BorderBrush="Transparent"
-                                        CornerRadius="5"
-                                        BorderThickness="1">
-                                            <TextBlock
-                                            x:Name="discount"
-                                            Margin="5 0"
-                                            Foreground="Red"
-                                            FontSize="12"
-                                            FontWeight="Medium"
-                                            Text="{Binding PRODUCT.DISCOUNT_, StringFormat={}{0:P0}}"
-                                            Visibility="Visible"
-                                            VerticalAlignment="Center">
-                                            </TextBlock>
-                                        </Border>
-                                        <!--AMOUNT-->
-                                        <TextBlock x:Name="txtServiceCost" Text="{Binding SERVICECOST}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                        <!--TÍNH GIÁ TỔNG BẰNG PRICE * AMOUNT-->
-                                        <TextBlock x:Name="txtCalculate" Grid.Column="3" HorizontalAlignment="Right" FontWeight="Medium"
+                                        <!--Đơn giá-->
+                                        <TextBlock x:Name="txtServiceCost" Text="{Binding SERVICECOST}" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <!--Thành tiền-->
+                                        <TextBlock x:Name="txtCalculate" Grid.Column="4" HorizontalAlignment="Right" FontWeight="Medium"
                                                TextWrapping="Wrap" VerticalAlignment="Center">
                                         </TextBlock>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
+
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Setter Property="Background" Value="Transparent" />
