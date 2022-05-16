@@ -15,6 +15,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{x:Null}"
+        DataContext="{StaticResource dishListVM}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Foreground="{x:Null}"
         AllowsTransparency="True"
@@ -59,7 +60,7 @@
                         <TextBox
                             materialDesign:HintAssist.Hint="Tên món ăn"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                            x:Name="txtName"
+                            x:Name="txtName1"
                             Foreground="Black"
                             FontSize="16"
                             FontWeight="Medium"
@@ -84,7 +85,7 @@
 
                                 materialDesign:HintAssist.Hint="Giá"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                x:Name="txtPrice"
+                                x:Name="txtPrice1"
                                 Foreground="Black"
                                 FontSize="16"
                                 FontWeight="Medium"
@@ -180,8 +181,8 @@
                 Foreground="White"
                 VerticalAlignment="Center"
                 Margin="10 0"
-                        Command="{Binding AddButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        Command="{Binding EditCommand}"
+                        CommandParameter="{Binding ElementName=dishListVM}"></Button>
                     <Button
                 Style="{StaticResource GrayBtn}"
                 Content="Huỷ"

@@ -117,13 +117,18 @@
                                         <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Chỉnh sửa món ăn"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                          Command="{Binding Source ={StaticResource dishListVM}, Path=EditProductCommand}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                             <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                         </Button>
                                         <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Xoá món ăn"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                          Command="{Binding Source ={StaticResource dishListVM}, Path=DeleteProductCommand}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"
+                                            >
                                             <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
                                         </Button>
                                     </StackPanel>
