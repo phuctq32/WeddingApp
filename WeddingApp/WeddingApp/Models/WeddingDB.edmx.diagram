@@ -7,7 +7,7 @@
       <Diagram DiagramId="d43966704d9d4e5da07e050a648527f3" Name="Diagram1">
         <EntityTypeShape EntityType="WeddingDBModel.BALLROOM" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="WeddingDBModel.BALLROOMTYPE" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingDBModel.DISH" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.DISH" Width="2.375" PointX="8.25" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WeddingDBModel.DISHTYPE" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
         <EntityTypeShape EntityType="WeddingDBModel.EMPLOYEE" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WeddingDBModel.FUNCTION" Width="1.5" PointX="6" PointY="18.75" IsExpanded="true" />

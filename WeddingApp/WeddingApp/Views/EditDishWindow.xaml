@@ -190,7 +190,7 @@
                 Foreground="White"
                 VerticalAlignment="Center"
                 Margin="10 0"
-                        Command="{Binding EditCommand}"
+                        Command="{Binding UpdateCommand}"
                         CommandParameter="{Binding ElementName=dishListVM}"></Button>
                     <Button
                 Style="{StaticResource GrayBtn}"
