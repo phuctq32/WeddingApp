@@ -5,4 +5,5 @@
     <viewmodels:DashBoardVM x:Key="dashBoardVM"></viewmodels:DashBoardVM>
     <viewmodels:LoginVM x:Key="loginVM"></viewmodels:LoginVM>
     <viewmodels:MainViewModel x:Key="mainVM"></viewmodels:MainViewModel>
+    <viewmodels:SetWeddingInfoVM x:Key="setWeddingInfoVM"></viewmodels:SetWeddingInfoVM>
 </ResourceDictionary>
