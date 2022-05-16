@@ -17,6 +17,8 @@ namespace WeddingApp.ViewModels
         public ICommand SwitchTabCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
 
+        public static Stack<object> UCstack = new Stack<object>(); 
+
         //public string Fullname
         //{ get => CurrentAccount.User.FULLNAME_; set { CurrentAccount.User.FULLNAME_ = value; OnPropertyChanged("Fullname"); } }
         //public string Avatar
@@ -59,6 +61,12 @@ namespace WeddingApp.ViewModels
             });
             SwitchTabCommand = new RelayCommand<MainWindow>(p => true, (p) => SwitchTab(p));
             LogOutCommand = new RelayCommand<MainWindow>(p => true, (p) => LogOut(p));
+            SetWeddingInfomationUC setWeddingInfomationUC = new SetWeddingInfomationUC();
+            MenuUC menuUC = new MenuUC();
+            ServiceSelectionUC serviceSelectionUC = new ServiceSelectionUC();
+            UCstack.Push(setWeddingInfomationUC);
+            UCstack.Push(menuUC);
+            UCstack.Push(serviceSelectionUC);
         }
 
         private void Loaded(MainWindow mainWindow)
