@@ -6,28 +6,60 @@
              xmlns:local="clr-namespace:WeddingApp.Views.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             DataContext="{StaticResource setWeddingInfoVM}"
+             d:DesignHeight="710" d:DesignWidth="1120">
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <Grid Grid.Column="0">
-                <Grid Margin="20 20 20 50">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Button
+                        Style="{StaticResource SearchBtn}"
+                        CommandParameter="{Binding ElementName=CreateOrderWD}"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        Margin="30 20 0 20"
+                        Height="35"
+                        Width="80"
+                        FontSize="40">
+                    <Button.Content>
+                        <materialDesign:PackIcon Kind="ArrowLeftThick" Width="30" Height="30"/>
+                    </Button.Content>
+                </Button>
+                <TextBlock
+                        Text="Chọn dịch vụ"
+                        FontSize="40"
+                        Foreground="{StaticResource Orange2}"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Margin="0 20 0 0"/>
+            </Grid>
 
-                    <Border
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid Margin="20 20 20 50">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Border
                         Grid.Row="0"
                         Background="White"
                         CornerRadius="5"
                         Margin="25 0">
-                        <Grid>
-                            <CheckBox
+                            <Grid>
+                                <CheckBox
                                 x:Name="selectAllCheckBox"
                                 CommandParameter="{Binding ElementName=CartUserControl}"
                                 Width="17"
@@ -35,7 +67,7 @@
                                 HorizontalAlignment="Left"
                                 Margin="12 0 0 0"
                                 Background="{StaticResource Orange2}" />
-                            <TextBlock
+                                <TextBlock
                                 Text="Dịch vụ"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
@@ -43,7 +75,7 @@
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black" />
-                            <TextBlock
+                                <TextBlock
                                 Text="Số lượng"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -51,7 +83,7 @@
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black" />
-                            <TextBlock
+                                <TextBlock
                                 Text="Giá"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center"
@@ -59,7 +91,7 @@
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black" />
-                            <Button
+                                <Button
                                 x:Name="deleteAllBtn"
                                 Grid.Column="4"
                                 Style="{StaticResource deleteBtn}"
@@ -68,29 +100,29 @@
                                 Margin="0 0 6 0"
                                 Command="{Binding DeleteIsCheckedCartCommand}"
                                 CommandParameter="{Binding ElementName=cartList}" />
-                        </Grid>
-                    </Border>
+                            </Grid>
+                        </Border>
 
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="29*" />
-                        </Grid.ColumnDefinitions>
-                        <ListView x:Name="cartList" Margin="0,0,-0.4,0" Background="{x:Null}" ScrollViewer.CanContentScroll="False"
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="29*" />
+                            </Grid.ColumnDefinitions>
+                            <ListView x:Name="cartList" Margin="0,0,-0.4,0" Background="{x:Null}" ScrollViewer.CanContentScroll="False"
                                   Grid.ColumnSpan="2">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="120" Width="680">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="55"></ColumnDefinition>
-                                                <ColumnDefinition Width="300"></ColumnDefinition>
-                                                <ColumnDefinition Width="140"></ColumnDefinition>
-                                                <ColumnDefinition Width="140"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Height="120" Width="680">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="55"></ColumnDefinition>
+                                                    <ColumnDefinition Width="300"></ColumnDefinition>
+                                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
 
-                                            <CheckBox
+                                                <CheckBox
                                                 x:Name="selectCheckBox"
                                                 CommandParameter="{Binding ElementName=selectCheckBox}"
                                                 Grid.Column="0"
@@ -99,23 +131,23 @@
                                                 Width="17"
                                                 HorizontalAlignment="Left"
                                                 Background="{StaticResource Orange2}" />
-                                            <!--hình, tên, giá giảm và chưa giảm của 1 món ăn-->
-                                            <Grid Grid.Column="1">
-                                                <!--hình ảnh-->
-                                                <Rectangle
+                                                <!--hình, tên, giá giảm và chưa giảm của 1 món ăn-->
+                                                <Grid Grid.Column="1">
+                                                    <!--hình ảnh-->
+                                                    <Rectangle
                                             RadiusY="10"
                                             RadiusX="10"
                                             Height="80"
                                             Width="80"
                                             HorizontalAlignment="Left"
                                             Margin="0 0 0 0">
-                                                    <Rectangle.Fill>
-                                                        <ImageBrush ImageSource="{Binding PRODUCT.IMAGE_}" Stretch="UniformToFill" />
-                                                    </Rectangle.Fill>
-                                                </Rectangle>
-                                                <StackPanel Orientation="Vertical">
-                                                    <!--tên món ăn-->
-                                                    <TextBlock
+                                                        <Rectangle.Fill>
+                                                            <ImageBrush ImageSource="{Binding PRODUCT.IMAGE_}" Stretch="UniformToFill" />
+                                                        </Rectangle.Fill>
+                                                    </Rectangle>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <!--tên món ăn-->
+                                                        <TextBlock
                                                         MinHeight="40"
 
                                                         MaxWidth="180"
@@ -124,10 +156,10 @@
                                                         FontSize="15"
                                                         FontWeight="SemiBold"
                                                         Margin="70 20 0 0" />
-                                                    <StackPanel Orientation="Horizontal"
+                                                        <StackPanel Orientation="Horizontal"
                                                             Margin="90 0 0 0">
-                                                        <!--số tiền không giảm giá-->
-                                                        <TextBlock
+                                                            <!--số tiền không giảm giá-->
+                                                            <TextBlock
                                                             x:Name="price"
                                                             Margin="10 5"
                                                             Foreground="Black"
@@ -135,42 +167,42 @@
                                                             FontWeight="Medium"
                                                             Text="{Binding PRODUCT.PRICE_, StringFormat=N0}"
                                                             VerticalAlignment="Center">
-                                                        </TextBlock>
+                                                            </TextBlock>
 
-                                                        <StackPanel
+                                                            <StackPanel
                                                             x:Name="stack"
                                                             Orientation="Horizontal"
                                                             Margin="0 5">
-                                                            <materialDesign:PackIcon x:Name="arrow" Kind="ArrowRight" VerticalAlignment="Center" />
-                                                            <!--giá giảm-->
-                                                            <TextBlock
+                                                                <materialDesign:PackIcon x:Name="arrow" Kind="ArrowRight" VerticalAlignment="Center" />
+                                                                <!--giá giảm-->
+                                                                <TextBlock
                                                                 Margin="10 0 10 0"
                                                                 Foreground="Red"
                                                                 FontSize="16"
                                                                 FontWeight="Medium"
                                                                 VerticalAlignment="Center">
-                                                                <TextBlock.Text>
-                                                                    <MultiBinding>
-                                                                        <Binding ElementName="price" Path="Text" />
-                                                                        <Binding ElementName="discount" Path="Text" />
-                                                                    </MultiBinding>
-                                                                </TextBlock.Text>
-                                                            </TextBlock>
-                                                            <!--discount-->
-                                                            <Border
+                                                                    <TextBlock.Text>
+                                                                        <MultiBinding>
+                                                                            <Binding ElementName="price" Path="Text" />
+                                                                            <Binding ElementName="discount" Path="Text" />
+                                                                        </MultiBinding>
+                                                                    </TextBlock.Text>
+                                                                </TextBlock>
+                                                                <!--discount-->
+                                                                <Border
                                                                 BorderBrush="Red"
                                                                 CornerRadius="5"
                                                                 BorderThickness="1">
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <TextBlock
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock
                                                                         Margin="5 0 0 0"
                                                                         Foreground="Red"
                                                                         FontSize="12"
                                                                         FontWeight="Medium"
                                                                         VerticalAlignment="Center">
                                                                         -
-                                                                    </TextBlock>
-                                                                    <TextBlock
+                                                                        </TextBlock>
+                                                                        <TextBlock
                                                                         x:Name="discount"
                                                                         Margin="0 0 5 0"
                                                                         Foreground="Red"
@@ -178,36 +210,36 @@
                                                                         FontWeight="Medium"
                                                                         Text="{Binding PRODUCT.DISCOUNT_, StringFormat=P0}"
                                                                         VerticalAlignment="Center">
-                                                                    </TextBlock>
-                                                                </StackPanel>
-                                                            </Border>
+                                                                        </TextBlock>
+                                                                    </StackPanel>
+                                                                </Border>
+                                                            </StackPanel>
                                                         </StackPanel>
                                                     </StackPanel>
-                                                </StackPanel>
-                                            </Grid>
-                                            <!--nút +- số lượng-->
-                                            <Grid Grid.Column="2">
-                                                <Grid x:Name="spinner" Width="70" Height="25">
-                                                    <Border>
-                                                        <Border.OpacityMask>
-                                                            <VisualBrush>
-                                                                <VisualBrush.Visual>
-                                                                    <Border
+                                                </Grid>
+                                                <!--nút +- số lượng-->
+                                                <Grid Grid.Column="2">
+                                                    <Grid x:Name="spinner" Width="70" Height="25">
+                                                        <Border>
+                                                            <Border.OpacityMask>
+                                                                <VisualBrush>
+                                                                    <VisualBrush.Visual>
+                                                                        <Border
                                                                         Background="Black"
                                                                         SnapsToDevicePixels="True"
                                                                         CornerRadius="4"
                                                                         Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
                                                                         Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}" />
-                                                                </VisualBrush.Visual>
-                                                            </VisualBrush>
-                                                        </Border.OpacityMask>
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="20" />
-                                                                <ColumnDefinition />
-                                                                <ColumnDefinition Width="20" />
-                                                            </Grid.ColumnDefinitions>
-                                                            <TextBlock
+                                                                    </VisualBrush.Visual>
+                                                                </VisualBrush>
+                                                            </Border.OpacityMask>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="20" />
+                                                                    <ColumnDefinition />
+                                                                    <ColumnDefinition Width="20" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBlock
                                                                 x:Name="amount"
                                                                 FontWeight="Medium"
                                                                 FontSize="12"
@@ -216,7 +248,7 @@
                                                                 Padding="0"
                                                                 Grid.Column="1"
                                                                 Text="{Binding AMOUNT_}" />
-                                                            <Button
+                                                                <Button
                                                                 Style="{StaticResource up_down_spinner_btn}"
                                                                 Grid.Column="0"
                                                                 Grid.Row="0"
@@ -227,7 +259,7 @@
                                                                 HorizontalContentAlignment="Center"
                                                                 FontSize="16"
                                                                 CommandParameter="{Binding ElementName=amount}" />
-                                                            <Button
+                                                                <Button
                                                                 Style="{StaticResource up_down_spinner_btn}"
                                                                 Grid.Column="2"
                                                                 Grid.Row="1"
@@ -238,44 +270,44 @@
                                                                 HorizontalContentAlignment="Center"
                                                                 FontSize="14"
                                                                 CommandParameter="{Binding ElementName=amount}" />
-                                                            <Border
+                                                                <Border
                                                                 BorderBrush="Gray"
                                                                 IsHitTestVisible="False"
                                                                 BorderThickness="1"
                                                                 CornerRadius="4"
                                                                 Grid.RowSpan="2"
-                                                                Grid.ColumnSpan="3" />
-                                                        </Grid>
-                                                    </Border>
+                                                                Grid.ColumnSpan="3"/>
+                                                            </Grid>
+                                                        </Border>
+                                                    </Grid>
                                                 </Grid>
-                                            </Grid>
-                                            <!--giá tiền tổng cộng-->
-                                            <TextBlock
+                                                <!--giá tiền tổng cộng-->
+                                                <TextBlock
                                                 Grid.Column="3"
                                                 FontSize="16"
                                                 FontWeight="DemiBold"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center">
-                                                <TextBlock.Text>
-                                                    <MultiBinding UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding ElementName="discount" Path="Text" />
-                                                        <Binding ElementName="price" Path="Text" />
-                                                        <Binding ElementName="amount" Path="Text" />
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <!--nút xoá món ăn ra khỏi giỏ hàng-->
-                                            <Button
+                                                    <TextBlock.Text>
+                                                        <MultiBinding UpdateSourceTrigger="PropertyChanged">
+                                                            <Binding ElementName="discount" Path="Text" />
+                                                            <Binding ElementName="price" Path="Text" />
+                                                            <Binding ElementName="amount" Path="Text" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                                <!--nút xoá món ăn ra khỏi giỏ hàng-->
+                                                <Button
                                                 Grid.Column="4"
                                                 Style="{StaticResource deleteBtn}"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 Margin="0 0 10 0"
                                                 CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
-                                        </Grid>
+                                            </Grid>
 
-                                        <!-- background -->
-                                        <Rectangle
+                                            <!-- background -->
+                                            <Rectangle
                                     x:Name="backgroundRec"
                                     Fill="White"
                                     HorizontalAlignment="Stretch"
@@ -284,55 +316,55 @@
                                     RadiusX="10"
                                     Panel.ZIndex="-2"
                                     Margin="10">
-                                        </Rectangle>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
+                                            </Rectangle>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
 
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="{x:Type ListViewItem}">
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                <ContentPresenter />
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                        </ListView>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
 
-            <Grid Grid.Column="1">
-                <Grid Margin="20 20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="90" />
-                        <RowDefinition />
-                        <RowDefinition Height="100" />
-                        <RowDefinition Height="50" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <TextBlock
+                <Grid Grid.Column="1">
+                    <Grid Margin="20 20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="90" />
+                            <RowDefinition />
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock
                         Text="Các dịch vụ đã chọn"
                         HorizontalAlignment="Center"
                         FontSize="24"
                         FontWeight="Bold"
                         Foreground="{StaticResource Orange2}"
                         Margin="0 20" />
-                    </Grid>
+                        </Grid>
 
-                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <StackPanel Grid.Row="2" Orientation="Horizontal">
 
-                        <TextBlock
+                            <TextBlock
                                 Text="Tổng cộng:"
                                 Foreground="Black"
                                 FontSize="20"
                                 VerticalAlignment="Top"
                                 Margin="20 10 0 0" />
-                        <TextBlock x:Name="totalPrice"
+                            <TextBlock x:Name="totalPrice"
                                 Text="{Binding TotalPrice, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                 Foreground="Black"
                                 FontWeight="Medium"
@@ -341,9 +373,9 @@
                                 TextAlignment="Right"
                                 VerticalAlignment="Top"
                                 Margin="45 10 0 0" />
-                    </StackPanel>
-                    <Grid Grid.Row="3">
-                        <Button Style="{StaticResource SearchBtn}"
+                        </StackPanel>
+                        <Grid Grid.Row="3">
+                            <Button Style="{StaticResource SearchBtn}"
                                 IsDefault="True"
                                 Command="{Binding OrderCommand}"
                                 CommandParameter="{Binding ElementName=CartUserControl}"
@@ -352,8 +384,8 @@
                                 Height="40"
                                 Content="Xác nhận"
                                 FontSize="20" />
-                    </Grid>
-                    <Rectangle
+                        </Grid>
+                        <Rectangle
                             Fill="White"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
@@ -361,7 +393,8 @@
                             RadiusX="10"
                             Panel.ZIndex="-2"
                             Grid.RowSpan="4">
-                    </Rectangle>
+                        </Rectangle>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

@@ -180,6 +180,7 @@
     <Compile Include="ViewModels\InvoiceVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\SetWeddingInfoVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeddingHallVM.cs" />
     <Compile Include="ViewModels\WeddingListVM.cs" />
@@ -267,6 +268,9 @@
     </Compile>
     <Compile Include="Views\UserControls\ServiceSelectionUC.xaml.cs">
       <DependentUpon>ServiceSelectionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SetWeddingInfomationUC.xaml.cs">
+      <DependentUpon>SetWeddingInfomationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\WeddingHallUC.xaml.cs">
       <DependentUpon>WeddingHallUC.xaml</DependentUpon>
@@ -398,6 +402,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ServiceSelectionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\SetWeddingInfomationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

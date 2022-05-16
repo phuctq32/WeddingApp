@@ -14,4 +14,5 @@
     <viewmodels:EditHallVM x:Key="editHallVM"></viewmodels:EditHallVM>
     <viewmodels:EditHallTypeVM x:Key="editHallTypeVM"></viewmodels:EditHallTypeVM>
     <viewmodels:InvoiceVM x:Key="invoiceVM"></viewmodels:InvoiceVM>
+    <viewmodels:SetWeddingInfoVM x:Key="setWeddingInfoVM"></viewmodels:SetWeddingInfoVM>
 </ResourceDictionary>
