@@ -73,7 +73,7 @@
                                 <TextBox
                                     x:Name="txtEmployeeName"
                                     Text="{Binding EmployeeName}"
-                                    TabIndex="2"
+                                    TabIndex="0"
                                 materialDesign:HintAssist.Hint="Họ và tên"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 Foreground="Black"
@@ -99,7 +99,7 @@
                                 <TextBox
                                         x:Name="txtUsername"
                                         Text="{Binding UserName}"
-                                        TabIndex="0"
+                                        TabIndex="1"
                                     materialDesign:HintAssist.Hint="Tên đăng nhập"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     Foreground="Black"
@@ -123,7 +123,7 @@
                                     Margin="10,10,20,-14" />
                                 <PasswordBox
                                   x:Name="PasswordBox"
-                                    TabIndex="3"
+                                    TabIndex="2"
                                   materialDesign:HintAssist.Hint="Mật khẩu"
                                   materialDesign:HintAssist.Foreground="{StaticResource Gray}"
                                   materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
@@ -154,7 +154,7 @@
                                     Margin="10,10,20,-14" />
                                 <PasswordBox
                                   x:Name="RePasswordBox"
-                                    TabIndex="4"
+                                    TabIndex="3"
                                   materialDesign:HintAssist.Hint="Nhập lại mật khẩu"
                                   materialDesign:HintAssist.Foreground="{StaticResource Gray}"
                                   materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
@@ -186,7 +186,7 @@
                                 <TextBox
                                     x:Name="txtSalary"
                                     Text="{Binding Salary}"
-                                    TabIndex="2"
+                                    TabIndex="4"
                                 materialDesign:HintAssist.Hint="Mức lương"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 Foreground="Black"
