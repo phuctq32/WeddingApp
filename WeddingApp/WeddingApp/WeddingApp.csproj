@@ -99,76 +99,81 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CurrentAccount.cs" />
     <Compile Include="CustomMessageBox.cs" />
-    <Compile Include="Model\BALLROOM.cs">
+    <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Models\BALLROOM.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\BALLROOMTYPE.cs">
+    <Compile Include="Models\BALLROOMTYPE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\DISH.cs">
+    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\DISH.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\DISHTYPE.cs">
+    <Compile Include="Models\DISHTYPE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\EMPLOYEE.cs">
+    <Compile Include="Models\EMPLOYEE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FUNCTION.cs">
+    <Compile Include="Models\FUNCTION.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\INVOICE.cs">
+    <Compile Include="Models\INVOICE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MENU.cs">
+    <Compile Include="Models\MENU.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PARAMETER.cs">
+    <Compile Include="Models\PARAMETER.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PERMISSION.cs">
+    <Compile Include="Models\PERMISSION.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\REPORTDETAIL.cs">
+    <Compile Include="Models\REPORTDETAIL.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ROLE.cs">
+    <Compile Include="Models\ROLE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SALESREPORT.cs">
+    <Compile Include="Models\SALESREPORT.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SERVE.cs">
+    <Compile Include="Models\SERVE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SERVICE.cs">
+    <Compile Include="Models\SERVICE.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SHIFT.cs">
+    <Compile Include="Models\SHIFT.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WEDDING.cs">
+    <Compile Include="Models\WEDDING.cs">
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WeddingDB.Context.cs">
+    <Compile Include="Models\WeddingDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WeddingDB.cs">
+    <Compile Include="Models\WeddingDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WeddingDB.Designer.cs">
+    <Compile Include="Models\WeddingDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
+    <Compile Include="ViewModels\DishListVM.cs" />
     <Compile Include="ViewModels\EmployeeListVM.cs" />
+    <Compile Include="ViewModels\ServiceListVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
@@ -178,6 +183,12 @@
     </Compile>
     <Compile Include="Views\AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddWeddingHallTypeWindow.xaml.cs">
+      <DependentUpon>AddWeddingHallTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddWeddingHallWindow.xaml.cs">
+      <DependentUpon>AddWeddingHallWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ChangeEmployeeInformationWindow.xaml.cs">
       <DependentUpon>ChangeEmployeeInformationWindow.xaml</DependentUpon>
@@ -194,6 +205,12 @@
     <Compile Include="Views\EditServiceWindow.xaml.cs">
       <DependentUpon>EditServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditWeddingHallTypeWindow.xaml.cs">
+      <DependentUpon>EditWeddingHallTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditWeddingHallWindow.xaml.cs">
+      <DependentUpon>EditWeddingHallWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InvoiceWindow.xaml.cs">
       <DependentUpon>InvoiceWindow.xaml</DependentUpon>
     </Compile>
@@ -202,6 +219,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Admin\CompletedInvoiceListUC.xaml.cs">
+      <DependentUpon>CompletedInvoiceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Admin\DashBoardUC.xaml.cs">
       <DependentUpon>DashBoardUC.xaml</DependentUpon>
@@ -215,6 +235,9 @@
     <Compile Include="Views\UserControls\Admin\ServiceListUC.xaml.cs">
       <DependentUpon>ServiceListUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Admin\WeddingHallTypeListUC.xaml.cs">
+      <DependentUpon>WeddingHallTypeListUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
@@ -227,6 +250,9 @@
     </Compile>
     <Compile Include="Views\UserControls\DetailServiceListUC.xaml.cs">
       <DependentUpon>DetailServiceListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\InvoiceListUC.xaml.cs">
+      <DependentUpon>InvoiceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
@@ -271,6 +297,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddWeddingHallTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddWeddingHallWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChangeEmployeeInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -291,6 +325,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditWeddingHallTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditWeddingHallWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\InvoiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -300,6 +342,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Admin\CompletedInvoiceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -319,6 +365,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\Admin\WeddingHallTypeListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\ControlBarUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -328,6 +378,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\DetailServiceListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\InvoiceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -370,11 +424,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\WeddingDB.edmx">
+    <EntityDeploy Include="Models\WeddingDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WeddingDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\WeddingDB.edmx.diagram">
+    <None Include="Models\WeddingDB.edmx.diagram">
       <DependentUpon>WeddingDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -406,12 +460,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\WeddingDB.Context.tt">
+    <Content Include="Models\WeddingDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
       <LastGenOutput>WeddingDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\WeddingDB.tt">
+    <Content Include="Models\WeddingDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
       <LastGenOutput>WeddingDB.cs</LastGenOutput>

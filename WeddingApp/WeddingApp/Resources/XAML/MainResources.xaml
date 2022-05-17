@@ -4,4 +4,6 @@
     <viewmodels:ControlBarVM x:Key="controlBarVM"></viewmodels:ControlBarVM>
     <viewmodels:DashBoardVM x:Key="dashBoardVM"></viewmodels:DashBoardVM>
     <viewmodels:EmployeeListVM x:Key="employeeListVM"></viewmodels:EmployeeListVM>
+    <viewmodels:DishListVM x:Key="dishListVM"></viewmodels:DishListVM>
+    <viewmodels:ServiceListVM x:Key="serviceListVM"></viewmodels:ServiceListVM>
 </ResourceDictionary>
