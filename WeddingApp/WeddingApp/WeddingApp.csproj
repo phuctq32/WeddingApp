@@ -269,8 +269,8 @@
     <Compile Include="Views\UserControls\ServiceSelectionUC.xaml.cs">
       <DependentUpon>ServiceSelectionUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\SetWeddingInfomationUC.xaml.cs">
-      <DependentUpon>SetWeddingInfomationUC.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\SetWeddingInformationUC.xaml.cs">
+      <DependentUpon>SetWeddingInformationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\WeddingHallUC.xaml.cs">
       <DependentUpon>WeddingHallUC.xaml</DependentUpon>
@@ -405,7 +405,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\SetWeddingInfomationUC.xaml">
+    <Page Include="Views\UserControls\SetWeddingInformationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

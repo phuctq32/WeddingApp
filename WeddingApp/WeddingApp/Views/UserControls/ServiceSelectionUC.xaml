@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:WeddingApp.Views.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             DataContext="{StaticResource setWeddingInfoVM}"
              d:DesignHeight="710" d:DesignWidth="1120">
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
         <Grid>

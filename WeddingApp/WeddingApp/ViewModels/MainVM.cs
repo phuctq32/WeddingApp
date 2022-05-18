@@ -10,14 +10,16 @@ using System.Collections.Generic;
 
 namespace WeddingApp.ViewModels
 {
-    internal class MainViewModel : ViewModelBase
+    internal class MainVM : ViewModelBase
     {
         public ICommand LoadedCommand { get; set; }
         public ICommand CloseWindowCommand { get; set; }
         public ICommand SwitchTabCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
 
-        public static Stack<object> UCstack = new Stack<object>(); 
+        public static Stack<UIElement> NextUCs = new Stack<UIElement>();
+        public static Stack<UIElement> PreviousUCs = new Stack<UIElement>();
+        public static MainWindow mainwindow1;
 
         //public string Fullname
         //{ get => CurrentAccount.User.FULLNAME_; set { CurrentAccount.User.FULLNAME_ = value; OnPropertyChanged("Fullname"); } }
@@ -44,7 +46,7 @@ namespace WeddingApp.ViewModels
         public string Address
         { get => address; set { address = value; OnPropertyChanged("Address"); } }
 
-        public MainViewModel()
+        public MainVM()
         {
             LoadedCommand = new RelayCommand<MainWindow>(parameter => true, parameter => Loaded(parameter));
             CloseWindowCommand = CloseWindowCommand = new RelayCommand<UserControl>((p) => p == null ? false : true, p =>
@@ -64,11 +66,23 @@ namespace WeddingApp.ViewModels
             SetWeddingInfomationUC setWeddingInfomationUC = new SetWeddingInfomationUC();
             MenuUC menuUC = new MenuUC();
             ServiceSelectionUC serviceSelectionUC = new ServiceSelectionUC();
-            UCstack.Push(setWeddingInfomationUC);
-            UCstack.Push(menuUC);
-            UCstack.Push(serviceSelectionUC);
-        }
+            NextUCs.Push(setWeddingInfomationUC);
+            NextUCs.Push(menuUC);
+            NextUCs.Push(serviceSelectionUC);
 
+        }
+        public static void NextUC()
+        {
+            PreviousUCs.Push(NextUCs.Pop());
+            mainwindow1.ucWindow.Children.Clear();
+            mainwindow1.ucWindow.Children.Add(NextUCs.First());
+        }
+        public static void PreviousUC()
+        {
+            NextUCs.Push(PreviousUCs.Pop());
+            mainwindow1.ucWindow.Children.Clear();
+            mainwindow1.ucWindow.Children.Add(PreviousUCs.First());
+        }
         private void Loaded(MainWindow mainWindow)
         {
 
@@ -85,7 +99,7 @@ namespace WeddingApp.ViewModels
             });
             if (CurrentAccount.Role == "NV")
             {
-                mainWindow.ucWindow.Children.Add(new MenuUC());
+                mainWindow.ucWindow.Children.Add(new SetWeddingInfomationUC());
             }
             else
             {
@@ -93,6 +107,7 @@ namespace WeddingApp.ViewModels
             }
             mainWindow.controlBar.closeBtn.Command = CloseWindowCommand;
             mainWindow.controlBar.closeBtn.CommandParameter = mainWindow.controlBar;
+            mainwindow1 = mainWindow;
         }
 
         private void SwitchTab(MainWindow mainWindow)
@@ -142,10 +157,14 @@ namespace WeddingApp.ViewModels
                     mainWindow.ucWindow.Children.Add(new WeddingHallTypeListUC());
                     break;
 
-                //case 8:
-                //    mainWindow.ucWindow.Children.Clear();
-                //    mainWindow.ucWindow.Children.Add(new AccountUC());
-                //    break;
+                case "CompletedInvoiceListUC":
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new CompletedInvoiceListUC());
+                    break;
+                case "SetWeddingInformationUC":
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new SetWeddingInfomationUC());
+                    break;
             }
         }
         private void LogOut(MainWindow mainWindow)
