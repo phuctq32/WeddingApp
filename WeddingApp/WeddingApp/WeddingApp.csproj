@@ -169,6 +169,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddEmployeeVM.cs" />
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
     <Compile Include="ViewModels\DishListVM.cs" />

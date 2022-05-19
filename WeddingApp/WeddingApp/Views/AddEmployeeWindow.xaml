@@ -1,6 +1,6 @@
 ﻿<Window x:Class="WeddingApp.Views.AddEmployeeWindow"
         x:Name="AddEmployeeWD"
-        DataContext="{StaticResource employeeListVM}"
+        DataContext="{StaticResource addEmployeeVM}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
