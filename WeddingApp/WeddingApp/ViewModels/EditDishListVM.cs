@@ -37,6 +37,7 @@ namespace WeddingApp.ViewModels
             }
             dISH.COST = Convert.ToInt32(editProductWindow.txtPrice1.Text);
             dISH.DISHDESCRIPTION = editProductWindow.txtDescription.Text;
+           // dISH.DISHTYPE = editProductWindow.OutlinedComboBox.SelectedIndex.;
             Data.Ins.DB.SaveChanges();
             editProductWindow.Close();
             CustomMessageBox.Show("Sửa thành công món " + editProductWindow.txtName1.Text.ToString());

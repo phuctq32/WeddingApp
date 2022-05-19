@@ -88,12 +88,12 @@ namespace WeddingApp.ViewModels
             DISH newProduct = new DISH();
             newProduct.DISHNAME = parameter.txtName.Text;
             newProduct.COST = Convert.ToInt32(parameter.txtPrice.Text);
-            newProduct.TYPEID = parameter.OutlinedComboBox.SelectedIndex;
-            newProduct.DISHID = parameter.OutlinedComboBox.SelectedIndex;
+            //newProduct.TYPEID = parameter.OutlinedComboBox.SelectedIndex;
+            //newProduct.DISHID = parameter.OutlinedComboBox.SelectedIndex;
             newProduct.DISHIMAGE = "";
             newProduct.DISHDESCRIPTION = parameter.txtDescription.Text;
             Data.Ins.DB.DISHES.Add(newProduct);
-        //  Data.Ins.DB.SaveChanges();
+            //Data.Ins.DB.SaveChanges();
             parameter.addDishWindow.Close();
             
             CustomMessageBox.Show("Thêm thành công món " + parameter.txtName.Text.ToString());
