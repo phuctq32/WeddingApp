@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WeddingApp.Models;
 using WeddingApp.Views;
@@ -26,6 +28,13 @@ namespace WeddingApp.ViewModels
         public void Edit(EditDishWindow editProductWindow)
         {
             dISH.DISHNAME = editProductWindow.txtName1.Text;
+            if (!Regex.IsMatch(editProductWindow.txtPrice1.Text, @"^[0-9_]+$"))
+            {
+                editProductWindow.txtPrice1.Focus();
+                CustomMessageBox.Show("Giá không đúng định dạng!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                editProductWindow.txtPrice1.Text = "";
+                return;
+            }
             dISH.COST = Convert.ToInt32(editProductWindow.txtPrice1.Text);
             dISH.DISHDESCRIPTION = editProductWindow.txtDescription.Text;
             Data.Ins.DB.SaveChanges();
