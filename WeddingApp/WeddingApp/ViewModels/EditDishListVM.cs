@@ -27,6 +27,12 @@ namespace WeddingApp.ViewModels
         }
         public void Edit(EditDishWindow editProductWindow)
         {
+            if (string.IsNullOrEmpty(editProductWindow.txtName1.Text))
+            {
+                editProductWindow.txtName1.Focus();
+                CustomMessageBox.Show("Tên món ăn đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             dISH.DISHNAME = editProductWindow.txtName1.Text;
             if (!Regex.IsMatch(editProductWindow.txtPrice1.Text, @"^[0-9_]+$"))
             {

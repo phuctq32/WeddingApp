@@ -43,7 +43,6 @@ namespace WeddingApp.ViewModels
         public ICommand AddProductCommand { get; set; }
         public ICommand EditProductCommand { get; set; } // nút sửa
         public ICommand DeleteProductCommand { get; set; }
-        public DISH DISH;
         public DishListVM ()
         {
             LoadedCommand = new RelayCommand<DishListUC>(p => p == null ? false : true, p => Load(p));
@@ -72,11 +71,11 @@ namespace WeddingApp.ViewModels
                 return;
             }
 
-            if (!Regex.IsMatch(parameter.txtName.Text, @"^[a-zA-Z0-9_]+$"))
-            {
-                parameter.txtName.Focus();
-                return;
-            }
+            //if (!Regex.IsMatch(parameter.txtName.Text, @"^[a-zA-Z0-9_]+$"))
+            //{
+            //    parameter.txtName.Focus();
+            //    return;
+            //}
 
             if (!Regex.IsMatch(parameter.txtPrice.Text, @"^[0-9_]+$"))
             {
@@ -104,6 +103,7 @@ namespace WeddingApp.ViewModels
             EditDishWindow editDishWindow = new EditDishWindow();
             editDishWindow.txtPrice1.Text = editType.COST.ToString();
             editDishWindow.txtName1.Text = editType.DISHNAME;
+            editDishWindow.txtDescription.Text = editType.DISHDESCRIPTION;
            // editDishWindow.OutlinedComboBox.Text = editType.DISHTYPE.ToString();
             editDishWindow.ShowDialog();
         }
