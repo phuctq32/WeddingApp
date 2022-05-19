@@ -42,17 +42,15 @@ namespace WeddingApp.ViewModels
         public ICommand LoadedCommand { get; set; }
         public ICommand AddProductCommand { get; set; }
         public ICommand EditProductCommand { get; set; } // nút sửa
-        public ICommand UpdateCommand { get; set; } // nút cập nhật
         public ICommand DeleteProductCommand { get; set; }
-
+        public DISH DISH;
         public DishListVM ()
         {
             LoadedCommand = new RelayCommand<DishListUC>(p => p == null ? false : true, p => Load(p));
             OpenAddDishListWindowCommand = new RelayCommand<DishListUC>((parameter) => { return true; }, (parameter) => OpenAddDishListWindow(parameter));
             AddProductCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => Add(parameter));
-            EditProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Edit1(parameter));
+            EditProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Edit(parameter));
             DeleteProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Delete(parameter));
-            UpdateCommand = new RelayCommand<EditDishWindow>(parameter => true, parameter => Edit2(parameter));
         }
         private void Load(DishListUC p)
         {
@@ -62,17 +60,6 @@ namespace WeddingApp.ViewModels
         public void OpenAddDishListWindow(DishListUC parameter)
         {
             AddDishWindow addDishListWindow = new AddDishWindow();
-            //listdish = new List<DISH>();
-            //List<DISH> a = Data.Ins.DB.DISHES.ToList();
-            //int i = 1;
-            //foreach (DISH pRODUCT in a)
-            //{
-            //    if (i < Convert.ToInt32(pRODUCT.DISHID))
-            //    {
-            //        i = Convert.ToInt32(pRODUCT.DISHID)+1;
-            //        listdish.Add(pRODUCT);
-            //    }
-            //}
             addDishListWindow.ShowDialog();
         }
         public void Add(AddDishWindow parameter)
@@ -111,16 +98,13 @@ namespace WeddingApp.ViewModels
             
             CustomMessageBox.Show("Thêm thành công món " + parameter.txtName.Text.ToString());
         }
-        public void Edit1(ListViewItem listViewItem)
+        public void Edit(ListViewItem listViewItem)
         {
-
             DISH editType = listViewItem.DataContext as DISH;
             EditDishWindow editDishWindow = new EditDishWindow();
             editDishWindow.txtPrice1.Text = editType.COST.ToString();
             editDishWindow.txtName1.Text = editType.DISHNAME;
-            editDishWindow.OutlinedComboBox.Text = editType.DISHTYPE.ToString();
-            //editDishWindow.txtDescription.Text = editType.DISHDESCRIPTION.ToString();
-            //editDishWindow.recImage = "";
+           // editDishWindow.OutlinedComboBox.Text = editType.DISHTYPE.ToString();
             editDishWindow.ShowDialog();
         }
         public void Delete(ListViewItem listViewItem)
@@ -132,22 +116,6 @@ namespace WeddingApp.ViewModels
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
             }
-        }
-        public void Edit2(EditDishWindow editProductWindow)
-        {
-            DISH editDish = new DISH();
-        //if (string.IsNullOrEmpty(editProductWindow.txtName1.Text))
-        //{
-        //    editProductWindow.txtName1.Focus();
-        //    CustomMessageBox.Show("Tên món ăn đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //    return;
-        //}
-            editDish.DISHNAME = editProductWindow.txtName1.Text;
-            editDish.COST = Convert.ToInt32(editProductWindow.txtPrice1);
-            editDish.DISHDESCRIPTION = editProductWindow.txtDescription.Text;
-            Data.Ins.DB.SaveChanges();
-            editProductWindow.Close();
-            CustomMessageBox.Show("Sửa thành công món " + editProductWindow.txtName1.Text.ToString());
         }
     }
 }

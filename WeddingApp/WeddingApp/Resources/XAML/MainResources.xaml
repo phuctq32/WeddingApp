@@ -6,4 +6,6 @@
     <viewmodels:EmployeeListVM x:Key="employeeListVM"></viewmodels:EmployeeListVM>
     <viewmodels:DishListVM x:Key="dishListVM"></viewmodels:DishListVM>
     <viewmodels:ServiceListVM x:Key="serviceListVM"></viewmodels:ServiceListVM>
+    <viewmodels:DishTypeVM x:Key="dishTypeVM"></viewmodels:DishTypeVM>
+    <viewmodels:EditDishListVM x:Key="editDishListVM"></viewmodels:EditDishListVM>
 </ResourceDictionary>
