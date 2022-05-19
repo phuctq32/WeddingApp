@@ -5,6 +5,7 @@
     <viewmodels:DashBoardVM x:Key="dashBoardVM"></viewmodels:DashBoardVM>
     <viewmodels:EmployeeListVM x:Key="employeeListVM"></viewmodels:EmployeeListVM>
     <viewmodels:AddEmployeeVM x:Key="addEmployeeVM"></viewmodels:AddEmployeeVM>
+    <viewmodels:ChangeEmployeeVM x:Key="changeEmployeeVM"></viewmodels:ChangeEmployeeVM>
     <viewmodels:DishListVM x:Key="dishListVM"></viewmodels:DishListVM>
     <viewmodels:ServiceListVM x:Key="serviceListVM"></viewmodels:ServiceListVM>
 </ResourceDictionary>
