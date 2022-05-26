@@ -126,13 +126,19 @@
                                         Margin="20 0"
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Chỉnh sửa thông tin nhân viên"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Command="{Binding Source ={StaticResource employeeListVM}, Path=OpenChangeEmployeeInformationWindowCommand}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                            
                                             <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                         </Button>
                                         <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Xoá nhân viên"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Command="{Binding Source ={StaticResource employeeListVM}, Path=DeleteEmployeeCommand}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"
+                                            >
                                             <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
                                         </Button>
                                     </StackPanel>
