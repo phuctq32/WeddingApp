@@ -65,7 +65,7 @@ namespace WeddingApp.ViewModels
             CustomMessageBox.Show(parameter.txtEmployeeName.Text, MessageBoxButton.OK, MessageBoxImage.Information);
 
             // Check NAME
-            if (string.IsNullOrEmpty(EmployeeName))
+            if (string.IsNullOrEmpty(parameter.txtEmployeeName.Text))
             {
                 parameter.txtEmployeeName.Focus();
                 CustomMessageBox.Show("Họ và tên đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -127,10 +127,7 @@ namespace WeddingApp.ViewModels
 
             //setInfo after check
 
-            CurrentAccount.Employee.EMPLOYEENAME = parameter.txtEmployeeName.Text.Trim();
-            //CurrentAccount.Employee.ROLEID = parameter.txtPhone.Text.Trim();
-            CurrentAccount.Employee.PASSWORD = password.Trim();
-            CurrentAccount.Employee.SALARY = Salary;
+    
             try
             {
                 //try to update database

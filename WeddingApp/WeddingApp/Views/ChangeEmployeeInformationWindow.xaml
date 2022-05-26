@@ -21,7 +21,7 @@
         Foreground="{x:Null}"
         AllowsTransparency="True"
         WindowStyle="None"
-        x:Name="changeEmployeeWD"
+        x:Name="ChangeEmployeeWD"
         DataContext="{StaticResource changeEmployeeVM}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
@@ -219,7 +219,7 @@
                             FontSize="20"
                             Foreground="White"
                             Command="{Binding ChangeEmployeeCommand}"
-                            CommandParameter="{Binding ElementName=changeEmployeeWD}"/>
+                            CommandParameter="{Binding ElementName=ChangeEmployeeWD}"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
