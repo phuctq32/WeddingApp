@@ -57,15 +57,14 @@ namespace WeddingApp.ViewModels
             changeEmployeeWindow.txtUsername.Text = changeEmployee.USERNAME;
             changeEmployeeWindow.txtSalary.Text = changeEmployee.SALARY.ToString();
             changeEmployeeWindow.txtDate.Text = changeEmployee.STARTWORKING.ToString();
-            CustomMessageBox.Show(changeEmployeeWindow.txtEmployeeName.Text, MessageBoxButton.OK, MessageBoxImage.Information);
             changeEmployeeWindow.ShowDialog();
         }
         public void Delete(ListViewItem listViewItem)
         {
-            DISH deleteType = listViewItem.DataContext as DISH;
-            if (CustomMessageBox.Show("Xóa món ăn?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
+            EMPLOYEE employee = listViewItem.DataContext as EMPLOYEE;
+            if (CustomMessageBox.Show("Xóa nhân viên ?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
-                Data.Ins.DB.DISHES.Remove(deleteType);
+                Data.Ins.DB.EMPLOYEES.Remove(employee);
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
             }

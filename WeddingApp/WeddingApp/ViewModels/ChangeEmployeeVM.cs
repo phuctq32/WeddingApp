@@ -15,7 +15,6 @@ namespace WeddingApp.ViewModels
     internal class ChangeEmployeeVM : ViewModelBase
     {
         public ICommand ChangeEmployeeCommand { get; set; }
-
         public ICommand PasswordChangedCommand { get; set; }
         public ICommand RePasswordChangedCommand { get; set; }
 
@@ -46,24 +45,26 @@ namespace WeddingApp.ViewModels
 
         private DateTime date = DateTime.Now;
 
+
         public DateTime Date
         {
             get => date; set { date = value; OnPropertyChanged(); }
         }
         public ChangeEmployeeVM()
         {
-            
+
             ChangeEmployeeCommand = new RelayCommand<ChangeEmployeeInformationWindow>((parameter) => { return true; }, (parameter) => SaveChangesEmployee(parameter));
             PasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { Password = parameter.Password; });
             RePasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { RePassword = parameter.Password; });
 
         }
-
+       
         public void SaveChangesEmployee(ChangeEmployeeInformationWindow parameter)
         {
-            
-            CustomMessageBox.Show(parameter.txtEmployeeName.Text, MessageBoxButton.OK, MessageBoxImage.Information);
 
+             EMPLOYEE employee = Data.Ins.DB.EMPLOYEES.Where(x => x.EMPLOYEENAME == parameter.txtEmployeeName.Text).SingleOrDefault();
+
+            CustomMessageBox.Show(employee.EMPLOYEENAME, MessageBoxButton.OK, MessageBoxImage.Warning);
             // Check NAME
             if (string.IsNullOrEmpty(parameter.txtEmployeeName.Text))
             {
@@ -123,14 +124,14 @@ namespace WeddingApp.ViewModels
                 return;
             }
 
-            CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            //setInfo after check
-
     
             try
             {
                 //try to update database
+                employee.EMPLOYEENAME = "Sa Đam";
+                employee.USERNAME = parameter.txtUsername.Text;
+                employee.PASSWORD = Password;
+                employee.SALARY = Convert.ToInt32(parameter.txtSalary.Text);
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             }
