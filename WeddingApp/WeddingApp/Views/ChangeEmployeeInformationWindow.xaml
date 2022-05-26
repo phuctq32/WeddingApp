@@ -1,13 +1,12 @@
 ﻿<Window x:Class="WeddingApp.Views.ChangeEmployeeInformationWindow"
-        x:Name="ChangeEmployeeWD"
-        DataContext="{StaticResource changeEmployeeVM}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeddingApp.Views"
         mc:Ignorable="d"
-        Title="ChangeEmployeeInformationWindow" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="ChangeEmployeeInformationWindow" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         Height="680"
@@ -22,6 +21,8 @@
         Foreground="{x:Null}"
         AllowsTransparency="True"
         WindowStyle="None"
+        x:Name="changeEmployeeWD"
+        DataContext="{StaticResource changeEmployeeVM}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         SizeToContent="Height">
@@ -218,7 +219,7 @@
                             FontSize="20"
                             Foreground="White"
                             Command="{Binding ChangeEmployeeCommand}"
-                            CommandParameter="{Binding ElementName=ChangeEmployeeWD]}"/>
+                            CommandParameter="{Binding ElementName=changeEmployeeWD}"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>

@@ -61,10 +61,10 @@ namespace WeddingApp.ViewModels
 
         public void SaveChangesEmployee(ChangeEmployeeInformationWindow parameter)
         {
-
+            
             CustomMessageBox.Show(parameter.txtEmployeeName.Text, MessageBoxButton.OK, MessageBoxImage.Information);
 
-            /*// Check NAME
+            // Check NAME
             if (string.IsNullOrEmpty(EmployeeName))
             {
                 parameter.txtEmployeeName.Focus();
@@ -123,9 +123,9 @@ namespace WeddingApp.ViewModels
                 return;
             }
 
-            CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);*/
+            CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            /*//setInfo after check
+            //setInfo after check
 
             CurrentAccount.Employee.EMPLOYEENAME = parameter.txtEmployeeName.Text.Trim();
             //CurrentAccount.Employee.ROLEID = parameter.txtPhone.Text.Trim();
@@ -141,7 +141,7 @@ namespace WeddingApp.ViewModels
             {
                 CustomMessageBox.Show("Thay đổi không thành công", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            parameter.Close();*/
+            parameter.Close();
         }
     }
     
