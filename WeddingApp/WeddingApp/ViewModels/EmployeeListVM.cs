@@ -18,6 +18,7 @@ namespace WeddingApp.ViewModels
         public ICommand LoadedCommand { get; set; }
         public ICommand OpenAddEmployeeWindowCommand { get; set; }
         public ICommand OpenChangeEmployeeInformationWindowCommand { get; set; }
+        public ICommand DeleteEmployeeCommand { get; set; }
 
         private List<EMPLOYEE> listEmployee;
         public List<EMPLOYEE> ListEmployee
@@ -33,7 +34,9 @@ namespace WeddingApp.ViewModels
         {
             LoadedCommand = new RelayCommand<EmployeeListUC>((parameter) => { return true; }, (parameter) => load(parameter));
             OpenAddEmployeeWindowCommand = new RelayCommand<EmployeeListUC>((parameter) => { return true; }, (parameter) => OpenAddEmployee(parameter));
-            OpenChangeEmployeeInformationWindowCommand = new RelayCommand<EmployeeListUC>((parameter) => { return true; }, (parameter) => OpenChangeEmployee(parameter));
+            OpenChangeEmployeeInformationWindowCommand = new RelayCommand<ListViewItem>((parameter) => { return true; }, (parameter) => OpenChangeEmployee(parameter));
+            DeleteEmployeeCommand = new RelayCommand<ListViewItem>((parameter) => { return true; }, (parameter) => Delete(parameter));
+
         }
         public void load(EmployeeListUC parameter)
         {
@@ -46,11 +49,28 @@ namespace WeddingApp.ViewModels
             AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
             addEmployeeWindow.ShowDialog();
         } 
-        public void OpenChangeEmployee(EmployeeListUC parameter)
+        public void OpenChangeEmployee(ListViewItem listViewItem)
         {
+            EMPLOYEE changeEmployee = listViewItem.DataContext as EMPLOYEE;
             ChangeEmployeeInformationWindow changeEmployeeWindow = new ChangeEmployeeInformationWindow();
+            changeEmployeeWindow.txtEmployeeName.Text = changeEmployee.EMPLOYEENAME;
+            changeEmployeeWindow.txtUsername.Text = changeEmployee.USERNAME;
+            changeEmployeeWindow.txtSalary.Text = changeEmployee.SALARY.ToString();
+            changeEmployeeWindow.txtDate.Text = changeEmployee.STARTWORKING.ToString();
+            CustomMessageBox.Show(changeEmployeeWindow.txtEmployeeName.Text, MessageBoxButton.OK, MessageBoxImage.Information);
             changeEmployeeWindow.ShowDialog();
-        } 
-       
+        }
+        public void Delete(ListViewItem listViewItem)
+        {
+            DISH deleteType = listViewItem.DataContext as DISH;
+            if (CustomMessageBox.Show("Xóa món ăn?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
+            {
+                Data.Ins.DB.DISHES.Remove(deleteType);
+                Data.Ins.DB.SaveChanges();
+                CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
+            }
+        }
+
+
     }
 }

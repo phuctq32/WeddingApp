@@ -9,11 +9,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using WeddingApp.Models;
 using WeddingApp.Views;
-using WeddingApp.Views.UserControls.Admin;
 
 namespace WeddingApp.ViewModels
 {
-    class ChangeEmployeeVM : ViewModelBase
+    internal class ChangeEmployeeVM : ViewModelBase
     {
         public ICommand ChangeEmployeeCommand { get; set; }
 
@@ -63,10 +62,10 @@ namespace WeddingApp.ViewModels
         public void SaveChangesEmployee(ChangeEmployeeInformationWindow parameter)
         {
 
-            CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+            CustomMessageBox.Show(parameter.txtEmployeeName.Text, MessageBoxButton.OK, MessageBoxImage.Information);
 
-            // Check NAME
-            if (string.IsNullOrEmpty(parameter.txtEmployeeName.Text))
+            /*// Check NAME
+            if (string.IsNullOrEmpty(EmployeeName))
             {
                 parameter.txtEmployeeName.Focus();
                 CustomMessageBox.Show("Họ và tên đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -124,7 +123,7 @@ namespace WeddingApp.ViewModels
                 return;
             }
 
-            CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+            CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);*/
 
             /*//setInfo after check
 
