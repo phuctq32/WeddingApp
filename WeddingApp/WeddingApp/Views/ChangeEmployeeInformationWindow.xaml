@@ -8,7 +8,7 @@
         Title="ChangeEmployeeInformationWindow" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
-        Height="680"
+        Height="780"
         Width="440"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -115,18 +115,49 @@
                                 <TextBox
                                     x:Name="txtPhone"
                                     TabIndex="1"
-                                materialDesign:HintAssist.Hint="Mật khẩu"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                Foreground="Black"
-                                FontSize="16"
-                                FontWeight="Medium"
-                                materialDesign:HintAssist.Foreground="{StaticResource Gray}"
-                                materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
-                                Width="250"
-                                VerticalContentAlignment="Center"
-                                Height="50"
-                                Padding="2,0,0,0">
+                                    materialDesign:HintAssist.Hint="Mật khẩu"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    Foreground="Black"
+                                    FontSize="16"
+                                    FontWeight="Medium"
+                                    materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                                    materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                                    Width="250"
+                                    VerticalContentAlignment="Center"
+                                    Height="50"
+                                    Padding="2,0,0,0">
                                 </TextBox>
+                            </StackPanel>
+                            <!-- chức vụ -->
+                            <StackPanel Orientation="Horizontal" Margin="0 20">
+                                <materialDesign:PackIcon
+                                    Kind="Money"
+                                    Width="30"
+                                    Height="30"
+                                    Foreground="{StaticResource Gray}"
+                                    VerticalAlignment="Center"
+                                    Margin="10,10,20,-18" />
+                                <ComboBox
+                                    x:Name="comboBoxRoleList"
+                                    materialDesign:HintAssist.Hint="Chức vụ"
+                                    Foreground="Black"
+                                    FontSize="16"
+                                    FontWeight="Medium"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                    materialDesign:HintAssist.Foreground="Black"
+                                    materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                                    Width="150"
+                                    VerticalContentAlignment="Center"
+                                    Height="50"
+                                    IsEnabled="False"
+                                    Padding="2,8,0,0"
+                                    ItemsSource="{Binding}">
+                                    <ComboBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel />
+                                        </ItemsPanelTemplate>
+                                    </ComboBox.ItemsPanel>
+                                </ComboBox>
                             </StackPanel>
                             <!--địa chỉ-->
                             <StackPanel Orientation="Horizontal" Margin="0 20">
@@ -162,17 +193,17 @@
                             </StackPanel>
                             <Button
                                 x:Name="saveBtn"
-                            TabIndex="5"
-                            IsDefault="True"
-                            Style="{StaticResource GreenBtn}"
-                            Content="Lưu thay đổi"
-                            Width="270"
-                            Height="40"
-                            Margin="0 20 0 0"
-                            FontSize="20"
-                            Foreground="White"
-                            Command="{Binding SaveInfoCommand}"
-                            CommandParameter="{Binding ElementName=changeInfoWD}">
+                                TabIndex="5"
+                                IsDefault="True"
+                                Style="{StaticResource GreenBtn}"
+                                Content="Lưu thay đổi"
+                                Width="270"
+                                Height="40"
+                                Margin="0 20 0 0"
+                                FontSize="20"
+                                Foreground="White"
+                                Command="{Binding SaveInfoCommand}"
+                                CommandParameter="{Binding ElementName=changeInfoWD}">
                             </Button>
                         </StackPanel>
                     </Grid>

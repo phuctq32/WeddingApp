@@ -190,6 +190,9 @@
     <Compile Include="Views\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddRoleWindow.xaml.cs">
+      <DependentUpon>AddRoleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,9 @@
     </Compile>
     <Compile Include="Views\UserControls\Admin\EmployeeListUC.xaml.cs">
       <DependentUpon>EmployeeListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Admin\RoleListUC.xaml.cs">
+      <DependentUpon>RoleListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Admin\ServiceListUC.xaml.cs">
       <DependentUpon>ServiceListUC.xaml</DependentUpon>
@@ -302,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddRoleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -370,6 +380,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Admin\EmployeeListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Admin\RoleListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
