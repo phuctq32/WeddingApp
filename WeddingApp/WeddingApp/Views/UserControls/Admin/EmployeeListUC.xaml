@@ -74,7 +74,7 @@
                 <ListView x:Name="ListView"
                           Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          ItemsSource="{Binding ListEmployee, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding ListEmployee, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                     >
 
                     <ListView.ItemTemplate>

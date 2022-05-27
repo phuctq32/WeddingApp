@@ -150,6 +150,7 @@ namespace WeddingApp.ViewModels
             Data.Ins.DB.EMPLOYEES.Add(new EMPLOYEE() { EMPLOYEENAME = EmployeeName, USERNAME = UserName, PASSWORD = Password, SALARY = Salary, STARTWORKING = Date, ROLEID = "NV" });
             Data.Ins.DB.SaveChanges();
             CustomMessageBox.Show("Thêm nhân viên thành công", MessageBoxButton.OK);
+            parameter.Close();
         }
     }
 }

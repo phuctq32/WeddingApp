@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using WeddingApp.Models;
 using WeddingApp.Views;
@@ -30,8 +31,10 @@ namespace WeddingApp.ViewModels
                 OnPropertyChanged("ListEmployee");
             }
         }
+        public EmployeeListUC employeeListUC;
         public EmployeeListVM()
         {
+            //ListEmployee = Data.Ins.DB.EMPLOYEES.ToList();
             LoadedCommand = new RelayCommand<EmployeeListUC>((parameter) => { return true; }, (parameter) => load(parameter));
             OpenAddEmployeeWindowCommand = new RelayCommand<EmployeeListUC>((parameter) => { return true; }, (parameter) => OpenAddEmployee(parameter));
             OpenChangeEmployeeInformationWindowCommand = new RelayCommand<ListViewItem>((parameter) => { return true; }, (parameter) => OpenChangeEmployee(parameter));
@@ -41,13 +44,14 @@ namespace WeddingApp.ViewModels
         public void load(EmployeeListUC parameter)
         {
             ListEmployee = Data.Ins.DB.EMPLOYEES.ToList();
-            parameter.ListView.ItemsSource = ListEmployee;
+            employeeListUC = parameter;
         }
 
         public void OpenAddEmployee(EmployeeListUC parameter)
         {
             AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
             addEmployeeWindow.ShowDialog();
+            load(employeeListUC);
         } 
         public void OpenChangeEmployee(ListViewItem listViewItem)
         {
@@ -58,18 +62,23 @@ namespace WeddingApp.ViewModels
             changeEmployeeWindow.txtSalary.Text = changeEmployee.SALARY.ToString();
             changeEmployeeWindow.txtDate.Text = changeEmployee.STARTWORKING.ToString();
             changeEmployeeWindow.ShowDialog();
+            load(employeeListUC);
         }
-        public void Delete(ListViewItem listViewItem)
+        protected void Delete(ListViewItem listViewItem)
         {
             EMPLOYEE employee = listViewItem.DataContext as EMPLOYEE;
             if (CustomMessageBox.Show("Xóa nhân viên ?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
                 Data.Ins.DB.EMPLOYEES.Remove(employee);
                 Data.Ins.DB.SaveChanges();
+                ListEmployee = Data.Ins.DB.EMPLOYEES.ToList();
                 CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
             }
         }
 
-
+        private object GetAncestorOfType<T>(ListViewItem listViewItem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
