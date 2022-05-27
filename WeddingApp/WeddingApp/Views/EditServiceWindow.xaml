@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeddingApp.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
+        xmlns:local="clr-namespace:WeddingApp.Views" 
         mc:Ignorable="d"
-        Title="EditServiceWindow" Height="600" Width="800"
+        Title="EditServiceWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:uc="clr-namespace:WeddingApp.Views.UserControls" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Height="600" Width="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -16,7 +20,16 @@
         Foreground="{x:Null}"
         AllowsTransparency="True"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+         x:Name="editServiceWD"
+        DataContext="{StaticResource editServiceVM}"
+        >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=editServiceWD}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
             <Grid Margin="10">
@@ -80,7 +93,7 @@
 
                                 materialDesign:HintAssist.Hint="Giá"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                x:Name="txtPrice"
+                                x:Name="txtCost"
                                 Foreground="Black"
                                 FontSize="16"
                                 FontWeight="Medium"
@@ -123,7 +136,7 @@
                 Style="{StaticResource SearchBtn}"
                     materialDesign:ButtonAssist.CornerRadius="10"
                 Command="{Binding SelectImageCommand}"
-                CommandParameter="{Binding ElementName=AddProductWD}"
+                CommandParameter="{Binding ElementName=editServiceWD}"
                 ToolTip="Chọn ảnh"
                 Margin="17,0,23,-42"
                 HorizontalAlignment="Center"
@@ -176,8 +189,8 @@
                 Foreground="White"
                 VerticalAlignment="Center"
                 Margin="10 0"
-                        Command="{Binding AddButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        Command="{Binding EditServiceCommand}"
+                        CommandParameter="{Binding ElementName=editServiceWD}"></Button>
                     <Button
                 Style="{StaticResource GrayBtn}"
                 Content="Huỷ"
@@ -188,7 +201,7 @@
                 VerticalAlignment="Center"
                 Margin="10 0"
                         Command="{Binding CloseButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        CommandParameter="{Binding ElementName=editServiceVM}"></Button>
                 </StackPanel>
             </Grid>
             <Rectangle

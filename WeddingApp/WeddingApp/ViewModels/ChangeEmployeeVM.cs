@@ -130,11 +130,11 @@ namespace WeddingApp.ViewModels
                 employee.USERNAME = parameter.txtUsername.Text;
                 employee.SALARY = Convert.ToInt32(parameter.txtSalary.Text);
                 Data.Ins.DB.SaveChanges();
-                CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                CustomMessageBox.Show("Thay đổi thành công!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch
             {
-                CustomMessageBox.Show("Thay đổi không thành công", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Thay đổi không thành công!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             parameter.Close();
         }

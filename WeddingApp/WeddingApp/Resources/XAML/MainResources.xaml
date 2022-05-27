@@ -10,4 +10,5 @@
     <viewmodels:ServiceListVM x:Key="serviceListVM"></viewmodels:ServiceListVM>
     <viewmodels:DishTypeVM x:Key="dishTypeVM"></viewmodels:DishTypeVM>
     <viewmodels:EditDishListVM x:Key="editDishListVM"></viewmodels:EditDishListVM>
+    <viewmodels:EditServiceVM x:Key="editServiceVM"></viewmodels:EditServiceVM>
 </ResourceDictionary>

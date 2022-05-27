@@ -176,6 +176,7 @@
     <Compile Include="ViewModels\DishListVM.cs" />
     <Compile Include="ViewModels\DishTypeVM.cs" />
     <Compile Include="ViewModels\EditDishListVM.cs" />
+    <Compile Include="ViewModels\EditServiceVM.cs" />
     <Compile Include="ViewModels\EmployeeListVM.cs" />
     <Compile Include="ViewModels\ServiceListVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
