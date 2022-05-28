@@ -57,8 +57,8 @@
                     HorizontalAlignment="Right"
                     Grid.Column="3"
                     Margin="0 10 70 0"
-                    Command="{Binding }"
-                    CommandParameter="{Binding }" />
+                    Command="{Binding AddRoleCommand}"
+                    CommandParameter="{Binding ElementName=roleListUC}" />
             </Grid>
 
             <ListView 
@@ -100,15 +100,17 @@
                                 <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center">
                                     <Button
                                         Margin="20 0"
-                                        Style="{StaticResource forgotPasswordBtn}"
-                                        ToolTip="Chỉnh sửa chức năng"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                        Style="{StaticResource editBtn}"
+                                        ToolTip="Chỉnh sửa chức vụ"
+                                        Command="{Binding Source={StaticResource roleListVM}, Path=EditRoleCommand}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                         <materialDesign:PackIcon Kind="Edit" Height="40" Width="40"/>
                                     </Button>
                                     <Button
-                                        Style="{StaticResource forgotPasswordBtn}"
-                                        ToolTip="Xoá chức năng"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                        Style="{StaticResource deleteBtn}"
+                                        ToolTip="Xoá chức vụ"
+                                        Command="{Binding Source={StaticResource roleListVM}, Path=DeleteRoleCommand}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                         <materialDesign:PackIcon Kind="Delete" Height="40" Width="40"/>
                                     </Button>
                                 </StackPanel>

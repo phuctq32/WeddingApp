@@ -20,7 +20,7 @@ namespace WeddingApp.ViewModels
             set
             {
                 functions = value;
-                OnPropertyChanged("CurrentFunctions");
+                OnPropertyChanged("Functions");
             }
         }
         public List<FUNCTION> SelectedFunctions

@@ -64,7 +64,6 @@
                             VerticalAlignment="Center"/>
                         <TextBox 
                             x:Name="RoleNameTxt"
-                            Text=""
                             Width="150"
                             Style="{StaticResource MaterialDesignTextBox}"
                             materialDesign:HintAssist.Hint="Tên chức vụ"
