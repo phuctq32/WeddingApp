@@ -171,15 +171,18 @@
     </Compile>
     <Compile Include="ViewModels\AddHallTypeVM.cs" />
     <Compile Include="ViewModels\AddHallVM.cs" />
+    <Compile Include="ViewModels\AddRoleVM.cs" />
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
     <Compile Include="ViewModels\EditHallTypeVM.cs" />
     <Compile Include="ViewModels\EditHallVM.cs" />
+    <Compile Include="ViewModels\EditRoleVM.cs" />
     <Compile Include="ViewModels\HallTypeListVM.cs" />
     <Compile Include="ViewModels\InvoiceListVM.cs" />
     <Compile Include="ViewModels\InvoiceVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\RoleListVM.cs" />
     <Compile Include="ViewModels\SetWeddingInfoVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeddingHallVM.cs" />
