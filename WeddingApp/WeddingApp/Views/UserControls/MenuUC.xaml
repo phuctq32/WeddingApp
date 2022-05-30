@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              DataContext="{StaticResource menuVM}"
              x:Name="menuUC"
              d:DesignHeight="710" d:DesignWidth="1120">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=menuUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
             <Grid Margin="10">
@@ -187,7 +194,7 @@
                                                 Foreground="Black"
                                                 FontSize="17"
                                                 FontWeight="Medium"
-                                                Text="{Binding DISHCOST, StringFormat=N0}"
+                                                Text="{Binding COST, StringFormat=N0}"
                                                 VerticalAlignment="Center"
                                                 Visibility="Visible">
                                                     </TextBlock>
@@ -251,6 +258,7 @@
                                         materialDesign:ButtonAssist.CornerRadius="10"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalAlignment="Bottom"
+                                        Command="{Binding Source={StaticResource menuVM}, Path=AddToCartCommand}"
                                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                                 <Button.Content>
                                                     <Grid>
@@ -349,7 +357,7 @@
                                             HorizontalAlignment="Left"
                                             Margin="5 0 10 0">
                                                         <Rectangle.Fill>
-                                                            <ImageBrush ImageSource="{Binding PRODUCT.IMAGE_}" Stretch="UniformToFill" />
+                                                            <ImageBrush ImageSource="{Binding DISHIMAGE}" Stretch="UniformToFill" />
                                                         </Rectangle.Fill>
                                                     </Rectangle>
                                                     <StackPanel Orientation="Vertical" Grid.Column="1">
@@ -357,7 +365,7 @@
                                                         <TextBlock
                                                         MinHeight="45"
                                                         Width="110"
-                                                        Text="{Binding PRODUCT.NAME_}"
+                                                        Text="{Binding DISHNAME}"
                                                         TextWrapping="Wrap"
                                                         FontSize="13"
                                                         FontWeight="SemiBold"
@@ -432,8 +440,8 @@
                                                     Visibility="Collapsed" />
                                                     <TextBlock
                                                     x:Name="price"
-                                                    Text="{Binding PRODUCT.PRICE_, StringFormat=N0}"
-                                                    Visibility="Collapsed" />
+                                                    Text="{Binding COST, StringFormat=N0}"
+                                                    Visibility="Visible" />
                                                     <TextBlock
                                                 FontSize="16"
                                                 FontWeight="DemiBold"
