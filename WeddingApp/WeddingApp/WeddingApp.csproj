@@ -182,6 +182,7 @@
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\SetWeddingInfoVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WeddingDetailVM.cs" />
     <Compile Include="ViewModels\WeddingHallVM.cs" />
     <Compile Include="ViewModels\WeddingListVM.cs" />
     <Compile Include="Views\AddDishWindow.xaml.cs">
