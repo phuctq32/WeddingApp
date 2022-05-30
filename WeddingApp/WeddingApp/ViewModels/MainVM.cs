@@ -97,13 +97,13 @@ namespace WeddingApp.ViewModels
                 if (FunctionName.Contains(item.Name))
                     item.Visibility = Visibility.Visible;
             });
-            if (CurrentAccount.Role == "NV")
+            if (CurrentAccount.Role == "GD")
             {
-                mainWindow.ucWindow.Children.Add(new SetWeddingInfomationUC());
+                mainWindow.ucWindow.Children.Add(new DashBoardUC());
             }
             else
             {
-                mainWindow.ucWindow.Children.Add(new DashBoardUC());
+                mainWindow.ucWindow.Children.Add(NextUCs.First());
             }
             mainWindow.controlBar.closeBtn.Command = CloseWindowCommand;
             mainWindow.controlBar.closeBtn.CommandParameter = mainWindow.controlBar;

@@ -52,7 +52,7 @@
                         VerticalAlignment="Center"
                         Margin="10 20 20 0" />
                     <TextBox
-                        x:Name="phone"
+                        x:Name="txtphone"
                         materialDesign:HintAssist.Hint="Số điện thoại"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Foreground="Black"
@@ -85,7 +85,7 @@
                             VerticalAlignment="Center"
                             Margin="10 20 20 0" />
                         <TextBox
-                            x:Name="bride"
+                            x:Name="txtbride"
                             materialDesign:HintAssist.Hint="Tên chú rể"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             Foreground="Black"
@@ -112,7 +112,7 @@
                             VerticalAlignment="Center"
                             Margin="10 20 20 0" />
                         <TextBox
-                            x:Name="groom"
+                            x:Name="txtgroom"
                             materialDesign:HintAssist.Hint="Tên cô dâu"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             Foreground="Black"

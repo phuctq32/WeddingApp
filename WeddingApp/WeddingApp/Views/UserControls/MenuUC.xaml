@@ -163,7 +163,7 @@
                                                 RadiusX="10"
                                                 Margin="0">
                                                     <Rectangle.Fill>
-                                                        <ImageBrush ImageSource="{Binding IMAGE_}" Stretch="UniformToFill" />
+                                                        <ImageBrush ImageSource="{Binding DISHIMAGE}" Stretch="UniformToFill" />
                                                     </Rectangle.Fill>
                                                 </Rectangle>
                                                 <!--tên món ăn-->
@@ -175,7 +175,7 @@
                                                         Height="auto"
                                                         TextWrapping="Wrap"
                                                         VerticalAlignment="Center"
-                                                        Text="{Binding NAME_}">
+                                                        Text="{Binding DISHNAME}">
                                                 </TextBlock>
                                                 <TextBlock x:Name="active" Text="{Binding ACTIVE_}"
                                                    Visibility="Collapsed"></TextBlock>
@@ -187,7 +187,7 @@
                                                 Foreground="Black"
                                                 FontSize="17"
                                                 FontWeight="Medium"
-                                                Text="{Binding PRICE_, StringFormat=N0}"
+                                                Text="{Binding DISHCOST, StringFormat=N0}"
                                                 VerticalAlignment="Center"
                                                 Visibility="Visible">
                                                     </TextBlock>
