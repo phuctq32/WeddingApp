@@ -66,9 +66,9 @@ namespace WeddingApp.ViewModels
             SetWeddingInfomationUC setWeddingInfomationUC = new SetWeddingInfomationUC();
             MenuUC menuUC = new MenuUC();
             ServiceSelectionUC serviceSelectionUC = new ServiceSelectionUC();
-            NextUCs.Push(setWeddingInfomationUC);
-            NextUCs.Push(menuUC);
             NextUCs.Push(serviceSelectionUC);
+            NextUCs.Push(menuUC);
+            NextUCs.Push(setWeddingInfomationUC);
 
         }
         public static void NextUC()
@@ -79,9 +79,9 @@ namespace WeddingApp.ViewModels
         }
         public static void PreviousUC()
         {
-            NextUCs.Push(PreviousUCs.Pop());
             mainwindow1.ucWindow.Children.Clear();
             mainwindow1.ucWindow.Children.Add(PreviousUCs.First());
+            NextUCs.Push(PreviousUCs.Pop());
         }
         private void Loaded(MainWindow mainWindow)
         {

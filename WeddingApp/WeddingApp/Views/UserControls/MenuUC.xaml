@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             DataContext="{StaticResource setWeddingInfoVM}"
+             DataContext="{StaticResource menuVM}"
+             x:Name="menuUC"
              d:DesignHeight="710" d:DesignWidth="1120">
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
@@ -18,14 +19,15 @@
                 <Grid Grid.Row="0">
                     <Button
                         Style="{StaticResource SearchBtn}"
-                        CommandParameter="{Binding ElementName=CreateOrderWD}"
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Left"
                         materialDesign:ButtonAssist.CornerRadius="5"
                         Margin="30 20 0 20"
                         Height="35"
                         Width="80"
-                        FontSize="40">
+                        FontSize="40"
+                        Command="{Binding PreviousUCCommand}"
+                        CommandParameter="{Binding ElementName=menuUC}">
                         <Button.Content>
                             <materialDesign:PackIcon Kind="ArrowLeftThick" Width="30" Height="30"/>
                         </Button.Content>

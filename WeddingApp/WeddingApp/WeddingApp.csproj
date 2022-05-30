@@ -180,6 +180,7 @@
     <Compile Include="ViewModels\InvoiceVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\MenuVM.cs" />
     <Compile Include="ViewModels\SetWeddingInfoVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeddingDetailVM.cs" />
