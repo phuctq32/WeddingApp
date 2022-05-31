@@ -92,7 +92,7 @@
                                     AcceptsReturn="True"
                                     VerticalScrollBarVisibility="Disabled">
                                             <TextBox.InputBindings>
-                                                <KeyBinding Command="{Binding Path=SearchCommand}" CommandParameter="{Binding ElementName=CreateOrderWD}" Key="Enter" />
+                                                <KeyBinding Command="{Binding Path=SearchCommand}" CommandParameter="{Binding ElementName=menuUC}" Key="Enter" />
                                             </TextBox.InputBindings>
                                         </TextBox>
                                     </DockPanel>
@@ -126,7 +126,7 @@
                             <Button
                             x:Name="BtnSearch"
                             Command="{Binding SearchCommand}"
-                            CommandParameter="{Binding ElementName=CreateOrderWD}"
+                            CommandParameter="{Binding ElementName=menuUC}"
                             Style="{StaticResource SearchBtn}"
                             Width="110"
                             Height="40"
@@ -525,7 +525,8 @@
                             </StackPanel>
                             <Button
                                 Style="{StaticResource SearchBtn}"
-                                CommandParameter="{Binding ElementName=CreateOrderWD}"
+                                Command="{Binding NextUCCommand}"
+                                CommandParameter="{Binding ElementName=menuUC}"
                                 VerticalAlignment="Bottom"
                                 materialDesign:ButtonAssist.CornerRadius="5"
                                 Margin="10 10"

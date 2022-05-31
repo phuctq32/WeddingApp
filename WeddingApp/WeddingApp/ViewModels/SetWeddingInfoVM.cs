@@ -35,7 +35,7 @@ namespace WeddingApp.ViewModels
         }
         public void NextStep(SetWeddingInfomationUC setWeddingInfomationUC)
         {
-            if (!Regex.IsMatch(setWeddingInfomationUC.txtphone.Text, @"^(0)[7-9]|(3)[0-9]{8}$"))
+            if (!Regex.IsMatch(setWeddingInfomationUC.txtphone.Text, @"^(0)[7-9]|(3)|(5)[0-9]{8}$"))
             {
                 CustomMessageBox.Show("Vui lòng nhập đúng số điện thoại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
                 setWeddingInfomationUC.txtphone.Focus();
@@ -71,24 +71,23 @@ namespace WeddingApp.ViewModels
                     return;
                 }
             }
-            if (!string.IsNullOrEmpty(setWeddingInfomationUC.date.Text))
+            if (!string.IsNullOrEmpty(setWeddingInfomationUC.date.Text) && !string.IsNullOrEmpty(setWeddingInfomationUC.hallComboBox.Text))
             {
-                if (!string.IsNullOrEmpty(setWeddingInfomationUC.hallComboBox.Text))
+                if (!string.IsNullOrEmpty(setWeddingInfomationUC.comboBoxreversedTableAmount.Text) && !string.IsNullOrEmpty(setWeddingInfomationUC.comboBoxTableAmount.Text))
                 {
-                    if(!string.IsNullOrEmpty(setWeddingInfomationUC.comboBoxreversedTableAmount.Text))
+                    if (setWeddingInfomationUC.date.SelectedDate < DateTime.Now)
                     {
-                        if(!string.IsNullOrEmpty(setWeddingInfomationUC.comboBoxTableAmount.Text))
-                        {
-                            if (setWeddingInfomationUC.date.SelectedDate < DateTime.Now)
-                            {
-                                CustomMessageBox.Show("Ngày đãi tiệc không hợp lệ", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                            }
-                            else
-                            {
-                                MainVM.NextUC();
-                            }
-                        }
+                        CustomMessageBox.Show("Ngày đãi tiệc không hợp lệ", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                     }
+                    else
+                    {
+                        MainVM.WeddingHall = setWeddingInfomationUC.hallComboBox.Text;
+                        MainVM.NextUC();
+                    }
+                }
+                else
+                {
+                    CustomMessageBox.Show("Vui lòng nhập thông tin về số lượng bàn tiệc!", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 }
             }
             else

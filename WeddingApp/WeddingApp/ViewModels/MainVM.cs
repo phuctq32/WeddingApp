@@ -46,6 +46,8 @@ namespace WeddingApp.ViewModels
         public string Address
         { get => address; set { address = value; OnPropertyChanged("Address"); } }
 
+        public static string WeddingHall;
+
         public MainVM()
         {
             LoadedCommand = new RelayCommand<MainWindow>(parameter => true, parameter => Loaded(parameter));

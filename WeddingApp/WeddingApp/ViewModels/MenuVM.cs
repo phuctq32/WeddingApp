@@ -8,6 +8,8 @@ using WeddingApp.Models;
 using WeddingApp.Views.UserControls;
 using WeddingApp.Views;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace WeddingApp.ViewModels
 {
@@ -17,6 +19,7 @@ namespace WeddingApp.ViewModels
         public ICommand PreviousUCCommand { get; set; }
         public ICommand NextUCCommand { get; set; }
         public ICommand AddToCartCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
         private long totalPrice;
         public long TotalPrice
         {
@@ -27,6 +30,7 @@ namespace WeddingApp.ViewModels
                 OnPropertyChanged("TotalPrice");
             }
         }
+
         public MenuUC thisUC;
 
         public MenuVM()
@@ -35,17 +39,112 @@ namespace WeddingApp.ViewModels
             PreviousUCCommand = new RelayCommand<MenuUC>(p => true, p => PreviousUC(p));
             NextUCCommand = new RelayCommand<MenuUC>(p => true, p => NextUC(p));
             AddToCartCommand = new RelayCommand<ListViewItem>(p => true, p => AddToCart(p));
+            SearchCommand = new RelayCommand<MenuUC>(p => true, p => Search(p));
         }
         public void Loaded(MenuUC menuUC)
         {
             List<DISH> dishList = Data.Ins.DB.DISHES.ToList();
             menuUC.ViewListProducts.ItemsSource = dishList;
             thisUC = menuUC;
+            menuUC.combox.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
+        }
+        public void SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+        {
+            List<DISH> SortedDish;
+            switch (thisUC.combox.SelectedIndex)
+            {
+                case 0:
+                    SortedDish = Data.Ins.DB.DISHES.OrderBy(p => p.COST).ToList();
+                    thisUC.ViewListProducts.ItemsSource = SortedDish;
+                    break;
+                case 1:
+                    SortedDish = Data.Ins.DB.DISHES.OrderByDescending(p => p.COST).ToList();
+                    thisUC.ViewListProducts.ItemsSource = SortedDish;
+                    break;
+            }
+        }
+        public void Search(MenuUC menuUC)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(menuUC.ViewListProducts.ItemsSource);
+            view.Filter = CompareString;
+            CollectionViewSource.GetDefaultView(menuUC.ViewListProducts.ItemsSource).Refresh();
+        }
+
+        private bool CompareString(object item)
+        {
+            string a = (item as DISH).DISHNAME;
+            string Search = thisUC.SearchTxt.Text.Trim();
+            string b = Search;
+            a = RemoveSign4VietnameseString(a);
+            if (b != null)
+            {
+                b = RemoveSign4VietnameseString(b);
+            }
+            if (string.IsNullOrEmpty(b))
+                return true;
+            else
+                return (a.IndexOf(b, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+        private static readonly string[] VietnameseSigns = new string[]
+        {
+            "aAeEoOuUiIdDyY",
+
+            "áàạảãâấầậẩẫăắằặẳẵ",
+
+            "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+
+            "éèẹẻẽêếềệểễ",
+
+            "ÉÈẸẺẼÊẾỀỆỂỄ",
+
+            "óòọỏõôốồộổỗơớờợởỡ",
+
+            "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ",
+
+            "úùụủũưứừựửữ",
+
+            "ÚÙỤỦŨƯỨỪỰỬỮ",
+
+            "íìịỉĩ",
+
+            "ÍÌỊỈĨ",
+
+            "đ",
+
+            "Đ",
+
+            "ýỳỵỷỹ",
+
+            "ÝỲỴỶỸ"
+        };
+        public static string RemoveSign4VietnameseString(string str)
+        {
+            for (int i = 1; i < VietnameseSigns.Length; i++)
+            {
+                for (int j = 0; j < VietnameseSigns[i].Length; j++)
+                    str = str.Replace(VietnameseSigns[i][j], VietnameseSigns[0][i - 1]);
+            }
+            return str;
+        }
+        public bool isSearched(string a, string b)
+        {
+            if (string.CompareOrdinal(a, b) == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public void AddToCart(ListViewItem listViewItem)
         {
             DISH selectedDish = listViewItem.DataContext as DISH;
-            thisUC.carts.Items.Add(selectedDish);
+            if (!thisUC.carts.Items.Contains(selectedDish))
+            {
+                thisUC.carts.Items.Add(selectedDish);
+            }
+            TotalPrice = GetTotalPrice(thisUC.carts);
         }
         public void PreviousUC(MenuUC menuUC)
         {
@@ -53,22 +152,29 @@ namespace WeddingApp.ViewModels
         }
         public void NextUC(MenuUC menuUC)
         {
-            MainVM.NextUC();
+            int minimumCost = Convert.ToInt32(Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == MainVM.WeddingHall).SingleOrDefault().BALLROOMTYPE.MINIMUMCOST);
+            if (menuUC.carts.Items.Count < 5)
+            {
+                CustomMessageBox.Show("Vui lòng chọn tối thiểu 5 món", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+            else if(totalPrice < minimumCost)
+            {
+                CultureInfo cultureInfo = CultureInfo.GetCultureInfo("vi-VN");
+                CustomMessageBox.Show("Vui lòng chọn đơn giá tối thiểu " + minimumCost.ToString("C0", cultureInfo), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+            else
+            {
+                MainVM.NextUC();
+            }
         }
-        //private long GetTotalPrice(ListView listView)
-        //{
-        //    long res = 0;
-        //    foreach (var lvi in FindVisualChildren<ListViewItem>(listView))
-        //    {
-        //        CART cart = lvi.DataContext as CART;
-        //        var checkBox = GetVisualChild<CheckBox>(lvi);
-        //        if (checkBox.IsChecked == true)
-        //        {
-        //            ép kiểu Giá = số lượng* giá sản phẩm *discount
-        //            res += (long)((Int32)cart.AMOUNT_ * (Int32)cart.PRODUCT.PRICE_ * (1 - (decimal)cart.PRODUCT.DISCOUNT_));
-        //        }
-        //    }
-        //    return res;
-        //}
+        private long GetTotalPrice(ListView listView)
+        {
+            long res = 0;
+            foreach (DISH Cart in listView.Items)
+            {
+                res += Convert.ToInt32(Cart.COST);
+            }
+            return res;
+        }
     }
 }
