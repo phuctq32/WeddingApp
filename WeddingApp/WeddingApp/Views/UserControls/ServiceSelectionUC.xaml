@@ -180,8 +180,9 @@
                                                             Orientation="Horizontal"
                                                             Margin="0 5">
                                                                 <materialDesign:PackIcon x:Name="arrow" Kind="ArrowRight" VerticalAlignment="Center" />
-                                                                --><!--giá giảm-->
-                                                                <!--<TextBlock
+                                                                -->
+                                                            <!--giá giảm-->
+                                                            <!--<TextBlock
                                                                 Margin="10 0 10 0"
                                                                 Foreground="Red"
                                                                 FontSize="16"
@@ -194,7 +195,8 @@
                                                                         </MultiBinding>
                                                                     </TextBlock.Text>
                                                                 </TextBlock>-->
-                                                                <!--discount--><!--
+                                                            <!--discount-->
+                                                            <!--
                                                                 <Border
                                                                 BorderBrush="Red"
                                                                 CornerRadius="5"
@@ -361,7 +363,195 @@
                         Foreground="{StaticResource Orange2}"
                         Margin="0 20" />
                         </Grid>
+                        <Grid Grid.Row="1" Grid.RowSpan="2" Margin="10 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="79*"/>
+                                <RowDefinition Height="11*"/>
+                            </Grid.RowDefinitions>
+                            <ScrollViewer Grid.RowSpan="2">
+                                <ListView x:Name="carts" ScrollViewer.CanContentScroll="False">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="310" Height="100" Margin="0 0 20 0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30" />
+                                                    <ColumnDefinition Width="200" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0" Margin="10 10 0 10">
+                                                    <Button
+                                                    x:Name="deleteBtn"
+                                                    Content="x"
+                                                    FontSize="30"
+                                                    FontWeight="Light"
+                                                    Opacity="0.8"
+                                                    Style="{StaticResource forgotPasswordBtn}"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Visibility="Collapsed"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
+                                                </Grid>
+                                                <Grid Grid.Column="1" Margin="0 10">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <!--hình ảnh-->
+                                                    <Rectangle
+                                                Grid.Column="0"
+                                            RadiusY="10"
+                                            RadiusX="10"
+                                            Height="67"
+                                            Width="67"
+                                            HorizontalAlignment="Left"
+                                            Margin="5 0 10 0">
+                                                        <Rectangle.Fill>
+                                                            <ImageBrush ImageSource="{Binding DISHIMAGE}" Stretch="UniformToFill" />
+                                                        </Rectangle.Fill>
+                                                    </Rectangle>
+                                                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                                                        <!--tên món ăn-->
+                                                        <TextBlock
+                                                        MinHeight="45"
+                                                        Width="110"
+                                                        Text="{Binding DISHNAME}"
+                                                        TextWrapping="Wrap"
+                                                        FontSize="13"
+                                                        FontWeight="SemiBold"
+                                                        Margin="0 8 10 0" />
+                                                        <Grid x:Name="spinner" Width="65" Height="20" HorizontalAlignment="Left">
+                                                            <Border>
+                                                                <Border.OpacityMask>
+                                                                    <VisualBrush>
+                                                                        <VisualBrush.Visual>
+                                                                            <Border
+                                                                        Background="Black"
+                                                                        SnapsToDevicePixels="True"
+                                                                        CornerRadius="4"
+                                                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
+                                                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}" />
+                                                                        </VisualBrush.Visual>
+                                                                    </VisualBrush>
+                                                                </Border.OpacityMask>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="20" />
+                                                                        <ColumnDefinition />
+                                                                        <ColumnDefinition Width="20" />
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBlock
+                                                                    x:Name="amount"
+                                                                    FontWeight="Medium"
+                                                                    FontSize="10"
+                                                                    VerticalAlignment="Center"
+                                                                    HorizontalAlignment="Center"
+                                                                    Padding="0"
+                                                                    Grid.Column="1"
+                                                                    Text="{Binding AMOUNT_, UpdateSourceTrigger=PropertyChanged}" />
+                                                                    <Button
+                                                                    Style="{StaticResource up_down_spinner_btn}"
+                                                                    Grid.Column="0"
+                                                                    Grid.Row="0"
+                                                                    Width="auto"
+                                                                    Height="auto"
+                                                                    Content="-"
+                                                                    VerticalContentAlignment="Center"
+                                                                    HorizontalContentAlignment="Center"
+                                                                    FontSize="16"
+                                                                    CommandParameter="{Binding ElementName=amount}" />
+                                                                    <Button
+                                                                    Style="{StaticResource up_down_spinner_btn}"
+                                                                    Grid.Column="2"
+                                                                    Grid.Row="1"
+                                                                    Width="auto"
+                                                                    Height="auto"
+                                                                    Content="+"
+                                                                    VerticalContentAlignment="Center"
+                                                                    HorizontalContentAlignment="Center"
+                                                                    FontSize="14"
+                                                                    CommandParameter="{Binding ElementName=amount}" />
+                                                                    <Border
+                                                                    BorderBrush="Gray"
+                                                                    IsHitTestVisible="False"
+                                                                    BorderThickness="1"
+                                                                    CornerRadius="4"
+                                                                    Grid.RowSpan="2"
+                                                                    Grid.ColumnSpan="3" />
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid Grid.Column="3" Margin="0 10 10 10">
+                                                    <TextBlock
+                                                    x:Name="discount"
+                                                    Text="{Binding PRODUCT.DISCOUNT_, StringFormat=P0}"
+                                                    Visibility="Collapsed" />
+                                                    <TextBlock
+                                                    x:Name="price"
+                                                    Text="{Binding COST, StringFormat=N0}"
+                                                    Visibility="Visible" />
+                                                    <TextBlock
+                                                FontSize="16"
+                                                FontWeight="DemiBold"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                                        <!--<TextBlock.Text>
+                                                            <MultiBinding UpdateSourceTrigger="PropertyChanged">
+                                                                <Binding ElementName="discount" Path="Text" />
+                                                                <Binding ElementName="price" Path="Text" />
+                                                                <Binding ElementName="amount" Path="Text" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>-->
+                                                    </TextBlock>
+                                                </Grid>
+                                                <Rectangle
+                                                Grid.ColumnSpan="4"
+                                                Fill="White"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                RadiusY="10"
+                                                RadiusX="10"
+                                                Margin="10"
+                                                Panel.ZIndex="-2" />
+                                                <!--<i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseEnter">
+                                                        <i:InvokeCommandAction
+                                                        Command="{Binding Source={StaticResource CreateOrderVM}, Path=HoverItemCommand}"
+                                                        CommandParameter="{Binding ElementName=deleteBtn}" />
+                                                    </i:EventTrigger>
+                                                    <i:EventTrigger EventName="MouseLeave">
+                                                        <i:InvokeCommandAction
+                                                        Command="{Binding Source={StaticResource CreateOrderVM}, Path=CancelHoverItemCommand}"
+                                                        CommandParameter="{Binding ElementName=deleteBtn}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>-->
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
 
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                        <ContentPresenter />
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                </ListView>
+                            </ScrollViewer>
+                            <Rectangle
+                            Grid.RowSpan="2"
+                            Fill="{StaticResource GrayBackground}"
+                            RadiusY="1"
+                            RadiusX="1"
+                            Panel.ZIndex="-2"
+                            Margin="10,0,10,0" />
+                        </Grid>
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
 
                             <TextBlock
