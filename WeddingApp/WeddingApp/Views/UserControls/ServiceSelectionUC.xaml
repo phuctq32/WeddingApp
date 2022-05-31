@@ -4,9 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WeddingApp.Views.UserControls"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
+             x:Name="ServiceUC"
+             DataContext="{StaticResource serviceVM}"
              d:DesignHeight="710" d:DesignWidth="1120">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=ServiceUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
         <Grid>
             <Grid.RowDefinitions>
@@ -17,10 +26,11 @@
             <Grid Grid.Row="0">
                 <Button
                         Style="{StaticResource SearchBtn}"
-                        CommandParameter="{Binding ElementName=CreateOrderWD}"
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Left"
                         materialDesign:ButtonAssist.CornerRadius="5"
+                    Command="{Binding PreviousUCCommand}"
+                    CommandParameter="{Binding ElementName=ServiceUC}"
                         Margin="30 20 0 20"
                         Height="35"
                         Width="80"
@@ -90,15 +100,14 @@
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black" />
-                                <Button
+                                <!--<Button
                                 x:Name="deleteAllBtn"
                                 Grid.Column="4"
                                 Style="{StaticResource deleteBtn}"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center"
                                 Margin="0 0 6 0"
-                                Command="{Binding DeleteIsCheckedCartCommand}"
-                                CommandParameter="{Binding ElementName=cartList}" />
+                                />-->
                             </Grid>
                         </Border>
 
@@ -107,7 +116,7 @@
                                 <ColumnDefinition Width="2*" />
                                 <ColumnDefinition Width="29*" />
                             </Grid.ColumnDefinitions>
-                            <ListView x:Name="cartList" Margin="0,0,-0.4,0" Background="{x:Null}" ScrollViewer.CanContentScroll="False"
+                            <ListView x:Name="ServiceList" Margin="0,0,-0.4,0" Background="{x:Null}" ScrollViewer.CanContentScroll="False"
                                   Grid.ColumnSpan="2">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
@@ -123,7 +132,6 @@
 
                                                 <CheckBox
                                                 x:Name="selectCheckBox"
-                                                CommandParameter="{Binding ElementName=selectCheckBox}"
                                                 Grid.Column="0"
                                                 Margin="20 0"
                                                 Height="13"
@@ -141,16 +149,15 @@
                                             HorizontalAlignment="Left"
                                             Margin="0 0 0 0">
                                                         <Rectangle.Fill>
-                                                            <ImageBrush ImageSource="{Binding PRODUCT.IMAGE_}" Stretch="UniformToFill" />
+                                                            <ImageBrush ImageSource="{Binding SERVICEIMAGE}" Stretch="UniformToFill" />
                                                         </Rectangle.Fill>
                                                     </Rectangle>
                                                     <StackPanel Orientation="Vertical">
                                                         <!--tên món ăn-->
                                                         <TextBlock
                                                         MinHeight="40"
-
                                                         MaxWidth="180"
-                                                        Text="{Binding PRODUCT.NAME_}"
+                                                        Text="{Binding SERVICENAME}"
                                                         TextWrapping="Wrap"
                                                         FontSize="15"
                                                         FontWeight="SemiBold"
@@ -164,17 +171,17 @@
                                                             Foreground="Black"
                                                             FontSize="16"
                                                             FontWeight="Medium"
-                                                            Text="{Binding PRODUCT.PRICE_, StringFormat=N0}"
+                                                            Text="{Binding COST, StringFormat=N0}"
                                                             VerticalAlignment="Center">
                                                             </TextBlock>
 
-                                                            <StackPanel
+                                                            <!--<StackPanel
                                                             x:Name="stack"
                                                             Orientation="Horizontal"
                                                             Margin="0 5">
                                                                 <materialDesign:PackIcon x:Name="arrow" Kind="ArrowRight" VerticalAlignment="Center" />
-                                                                <!--giá giảm-->
-                                                                <TextBlock
+                                                                --><!--giá giảm-->
+                                                                <!--<TextBlock
                                                                 Margin="10 0 10 0"
                                                                 Foreground="Red"
                                                                 FontSize="16"
@@ -186,8 +193,8 @@
                                                                             <Binding ElementName="discount" Path="Text" />
                                                                         </MultiBinding>
                                                                     </TextBlock.Text>
-                                                                </TextBlock>
-                                                                <!--discount-->
+                                                                </TextBlock>-->
+                                                                <!--discount--><!--
                                                                 <Border
                                                                 BorderBrush="Red"
                                                                 CornerRadius="5"
@@ -212,7 +219,7 @@
                                                                         </TextBlock>
                                                                     </StackPanel>
                                                                 </Border>
-                                                            </StackPanel>
+                                                            </StackPanel>-->
                                                         </StackPanel>
                                                     </StackPanel>
                                                 </Grid>
@@ -257,7 +264,7 @@
                                                                 VerticalContentAlignment="Center"
                                                                 HorizontalContentAlignment="Center"
                                                                 FontSize="16"
-                                                                CommandParameter="{Binding ElementName=amount}" />
+                                                                />
                                                                 <Button
                                                                 Style="{StaticResource up_down_spinner_btn}"
                                                                 Grid.Column="2"
@@ -268,7 +275,7 @@
                                                                 VerticalContentAlignment="Center"
                                                                 HorizontalContentAlignment="Center"
                                                                 FontSize="14"
-                                                                CommandParameter="{Binding ElementName=amount}" />
+                                                                />
                                                                 <Border
                                                                 BorderBrush="Gray"
                                                                 IsHitTestVisible="False"
@@ -287,22 +294,22 @@
                                                 FontWeight="DemiBold"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center">
-                                                    <TextBlock.Text>
+                                                    <!--<TextBlock.Text>
                                                         <MultiBinding UpdateSourceTrigger="PropertyChanged">
                                                             <Binding ElementName="discount" Path="Text" />
                                                             <Binding ElementName="price" Path="Text" />
                                                             <Binding ElementName="amount" Path="Text" />
                                                         </MultiBinding>
-                                                    </TextBlock.Text>
+                                                    </TextBlock.Text>-->
                                                 </TextBlock>
                                                 <!--nút xoá món ăn ra khỏi giỏ hàng-->
-                                                <Button
+                                                <!--<Button
                                                 Grid.Column="4"
                                                 Style="{StaticResource deleteBtn}"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 Margin="0 0 10 0"
-                                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
+                                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />-->
                                             </Grid>
 
                                             <!-- background -->
