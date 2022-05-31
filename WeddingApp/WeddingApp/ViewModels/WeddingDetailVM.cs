@@ -29,6 +29,7 @@ namespace WeddingApp.ViewModels
             {
                 case 0:
                     DetailDishListUC detailDishListUC = new DetailDishListUC();
+                    //List<DISH> Menu = Data.Ins.DB.DISHES
                     weddingDetailWindow.listViewdish.Children.Clear();
                     weddingDetailWindow.listViewdish.Children.Add(detailDishListUC);
                     break;

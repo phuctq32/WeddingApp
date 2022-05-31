@@ -35,6 +35,7 @@ namespace WeddingApp.ViewModels
             List<MENU> menu = Data.Ins.DB.MENUs.Where(x => x.WEDDINGID == selectedWedding.WEDDINGID).ToList();
             WeddingDetailWindow weddingDetailWindow = new WeddingDetailWindow();
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("vi-VN");
+            weddingDetailWindow.txtWeddingID.Text = selectedWedding.WEDDINGID.ToString();
             weddingDetailWindow.txtGroom.Text = selectedWedding.GROOM;
             weddingDetailWindow.txtBride.Text = selectedWedding.BRIDE;
             weddingDetailWindow.txtPhone.Text = selectedWedding.TELEPHONE;
