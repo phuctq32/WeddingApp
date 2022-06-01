@@ -181,13 +181,13 @@ namespace WeddingApp.ViewModels
         public void WeddingInformationSave(SetWeddingInfomationUC setWeddingInfomationUC)
         {
             newWedding.BALLROOMID = Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == setWeddingInfomationUC.hallComboBox.Text).SingleOrDefault().BALLROOMID;
-            newWedding.BOOKINGDATE = DateTime.Now;
+            newWedding.BOOKINGDATE = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy"));
             newWedding.BRIDE = setWeddingInfomationUC.txtbride.Text;
             newWedding.GROOM = setWeddingInfomationUC.txtgroom.Text;
             newWedding.TELEPHONE = setWeddingInfomationUC.txtphone.Text;
             newWedding.RESERVEAMOUNT = Convert.ToByte(setWeddingInfomationUC.comboBoxreversedTableAmount.Text);
             newWedding.TABLEAMOUNT = Convert.ToByte(setWeddingInfomationUC.comboBoxTableAmount.Text);
-            newWedding.WEDDINGDATE = DateTime.Parse(setWeddingInfomationUC.date.Text);
+            newWedding.WEDDINGDATE = DateTime.Parse(setWeddingInfomationUC.date.SelectedDate.Value.ToString("dd/MM/yyyy"));
             newWedding.SHIFTID = 1; //Chưa làm comboBox
         }
 
