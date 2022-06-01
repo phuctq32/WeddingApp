@@ -161,7 +161,7 @@
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" Margin="51,37,50.4,36" />
+                            VerticalAlignment="Center" Margin="0,0,0,0" />
                         <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
                         <TextBlock
                             Grid.Column="4"
@@ -170,7 +170,7 @@
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center" 
-                            Margin="25,37,0,36" Width="146.3" />
+                            Margin="0,0,0,0" Width="146.3" />
 
                         <TextBlock
                             Grid.Column="5"
@@ -178,14 +178,14 @@
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" Margin="51.2,37,50.2,36" />
+                            VerticalAlignment="Center" Margin="0,0,0,0" />
                         <TextBlock
                             Grid.Column="6"
                             Text="{Binding TABLEAMOUNT, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center" Margin="50.8,37,50.6,36" />
+                            VerticalAlignment="Center" Margin="0,0,0,0" />
 
                         <Button
                   Style="{StaticResource MaterialDesignIconForegroundButton}"

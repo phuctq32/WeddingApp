@@ -51,7 +51,7 @@
                 <ListView x:Name="ListDishUse"
                             Grid.Row="1"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                              ScrollViewer.CanContentScroll="False">
+                              ScrollViewer.CanContentScroll="False" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="120" Width="750">

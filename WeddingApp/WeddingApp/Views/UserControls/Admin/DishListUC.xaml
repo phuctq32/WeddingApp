@@ -16,7 +16,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
-        
+
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
@@ -30,14 +30,12 @@
                         <ColumnDefinition Width="2.2*"></ColumnDefinition>
                         <ColumnDefinition Width="1.2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Món ăn"
+                    <TextBlock 
+                           Text="Món ăn"
                            FontSize="24"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left"
                            FontWeight="Medium"
                            Foreground="Black"
-                           Grid.Column="0"
-                           Margin="50 10 0 0"></TextBlock>
+                           Grid.Column="0" TextAlignment="Left" TextWrapping="Wrap" Width="120" Margin="77,29,140,0"/>
                     <TextBlock Text="Giá"
                            FontSize="24"
                            VerticalAlignment="Center"
@@ -65,8 +63,8 @@
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       x:Name="ListView" d:ItemsSource="{d:SampleData ItemCount=5}">
-                          <!--ItemsSource="{Binding Source={StaticResource dishListVM}, Path=ListDish, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
-                          
+                    <!--ItemsSource="{Binding Source={StaticResource dishListVM}, Path=ListDish, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid MinHeight="120" Width="1110">
@@ -109,7 +107,7 @@
                                             FontSize="19"
                                             FontWeight="Medium"
                                             Text="{Binding COST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
-                                            VerticalAlignment="Center">
+                                            VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Left">
                                     </TextBlock>
 
                                     <!--button xoá sửa-->
