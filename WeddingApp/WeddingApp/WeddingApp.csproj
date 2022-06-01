@@ -186,6 +186,11 @@
     <Compile Include="ViewModels\ServiceVM.cs" />
     <Compile Include="ViewModels\RoleListVM.cs" />
     <Compile Include="ViewModels\SetWeddingInfoVM.cs" />
+    <Compile Include="ViewModels\DishListVM.cs" />
+    <Compile Include="ViewModels\DishTypeVM.cs" />
+    <Compile Include="ViewModels\EditDishListVM.cs" />
+    <Compile Include="ViewModels\EmployeeListVM.cs" />
+    <Compile Include="ViewModels\ServiceListVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeddingDetailVM.cs" />
     <Compile Include="ViewModels\WeddingHallVM.cs" />

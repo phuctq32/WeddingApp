@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:WeddingApp.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         mc:Ignorable="d"
+        x:Name="addDishWindow"
+        DataContext="{StaticResource dishListVM}"
         Title="AddDishWindow" Height="600" Width="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -14,7 +16,6 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{x:Null}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Foreground="{x:Null}"
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
@@ -41,11 +42,20 @@
                            Foreground="{StaticResource Orange1}"
                            Grid.Column="0"
                        Grid.ColumnSpan="2"></TextBlock>
-                <!--tên, giá, khuyến mãi-->
-                <StackPanel Orientation="Vertical" Grid.Row="1" Margin="40 30 0 0"
+                <!--tên, giá, loại-->
+                <StackPanel Orientation="Vertical" Grid.Row="1" Margin="40 20 0 0"
                             VerticalAlignment="Center">
+                    <ComboBox
+                        x:Name="OutlinedComboBox"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                        materialDesign:HintAssist.Hint="Loại của món ăn"
+                        Width="256">
+                        <ComboBoxItem>Món chính</ComboBoxItem>
+                        <ComboBoxItem>Tráng miệng</ComboBoxItem>
+                    </ComboBox>
                     <!--tên món ăn-->
-                    <StackPanel Orientation="Horizontal" Margin="0 20">
+                    <StackPanel Orientation="Horizontal" Margin="0 10">
                         <materialDesign:PackIcon
                                     Kind="Food"
                                     Width="30"
@@ -177,8 +187,8 @@
                 Foreground="White"
                 VerticalAlignment="Center"
                 Margin="10 0"
-                        Command="{Binding AddButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        Command="{Binding AddProductCommand}"
+                        CommandParameter="{Binding ElementName=addDishWindow}"></Button>
                     <Button
                 Style="{StaticResource GrayBtn}"
                 Content="Huỷ"
@@ -189,7 +199,7 @@
                 VerticalAlignment="Center"
                 Margin="10 0"
                         Command="{Binding CloseButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        CommandParameter="{Binding ElementName=addDishWindow}"></Button>
                 </StackPanel>
             </Grid>
             <Rectangle
