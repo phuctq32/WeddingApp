@@ -46,6 +46,7 @@ namespace WeddingApp.ViewModels
             InvoiceWindow invoiceWindow = new InvoiceWindow();
             List<SERVE> listServe = Data.Ins.DB.SERVEs.Where(x=>x.WEDDINGID == paidInvoice.WEDDINGID).ToList();
             invoiceWindow.listView.ItemsSource = listServe;
+            invoiceWindow.txtWeddingID.Text = paidInvoice.WEDDINGID.ToString();
             invoiceWindow.txtGroom.Text = paidInvoice.WEDDING.GROOM;
             invoiceWindow.txtBride.Text = paidInvoice.WEDDING.BRIDE;
             invoiceWindow.txtDeposit.Text = paidInvoice.WEDDING.DEPOSIT.ToString("C0", cultureInfo);

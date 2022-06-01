@@ -34,8 +34,7 @@ namespace WeddingApp.ViewModels
         public void Loaded(InvoiceWindow invoiceWindow)
         {
             thisWD = invoiceWindow;
-            ListViewItem firstItem = (ListViewItem)invoiceWindow.listView.Items[0];
-            SERVE serve = firstItem.DataContext as SERVE;
+            int WeddingID = Convert.ToInt32(invoiceWindow.txtWeddingID.Text);
             if (Penalty.PARAMETERVALUE == 1)
             {
                 invoiceWindow.chkPenalty.IsChecked = true;
@@ -44,12 +43,12 @@ namespace WeddingApp.ViewModels
             {
                 invoiceWindow.chkPenalty.IsChecked = false;
             }
-            thisInvoice = Data.Ins.DB.INVOICES.Where(x => x.WEDDINGID == 2).SingleOrDefault();
+            thisInvoice = Data.Ins.DB.INVOICES.Where(x => x.WEDDINGID == WeddingID).SingleOrDefault();
             double penalty;
-            if (thisInvoice.WEDDING.WEDDINGDATE >DateTime.Now && isPenalty.PARAMETERVALUE == 1)
+            if (thisInvoice.WEDDING.WEDDINGDATE < DateTime.Now && isPenalty.PARAMETERVALUE == 1)
             {
                 TimeSpan a = thisInvoice.WEDDING.WEDDINGDATE.Date - DateTime.Now.Date;
-                penalty = Penalty.PARAMETERVALUE * Convert.ToInt32(invoiceWindow.txtTotalCost.Text) * a.Days;
+                penalty = Penalty.PARAMETERVALUE * Convert.ToInt32(thisInvoice.TOTALCOST) * a.Days;
             }
             else
             {

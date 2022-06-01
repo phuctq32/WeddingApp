@@ -25,16 +25,20 @@ namespace WeddingApp.ViewModels
         }
         public void SwitchTab(WeddingDetailWindow weddingDetailWindow)
         {
+            int WeddingID = Convert.ToInt32(weddingDetailWindow.txtWeddingID.Text);
             switch (weddingDetailWindow.listViewTab.SelectedIndex)
             {
                 case 0:
                     DetailDishListUC detailDishListUC = new DetailDishListUC();
-                    //List<DISH> Menu = Data.Ins.DB.DISHES
+                    List<MENU> Menu = Data.Ins.DB.MENUs.Where(x=>x.WEDDINGID == WeddingID).ToList();
+                    detailDishListUC.ListDishUse.ItemsSource = Menu;
                     weddingDetailWindow.listViewdish.Children.Clear();
                     weddingDetailWindow.listViewdish.Children.Add(detailDishListUC);
                     break;
                 case 1:
                     DetailServiceListUC detailServiceListUC = new DetailServiceListUC();
+                    List<SERVE> Serve = Data.Ins.DB.SERVEs.Where(x => x.WEDDINGID == WeddingID).ToList();
+                    detailServiceListUC.ListServiceUse.ItemsSource = Serve;
                     weddingDetailWindow.listViewdish.Children.Clear();
                     weddingDetailWindow.listViewdish.Children.Add(detailServiceListUC);
                     break;

@@ -70,7 +70,8 @@
                             <Grid>
                                 <CheckBox
                                 x:Name="selectAllCheckBox"
-                                CommandParameter="{Binding ElementName=CartUserControl}"
+                                    Command="{Binding AllCheckedCommand}"
+                                CommandParameter="{Binding ElementName=ServiceUC}"
                                 Width="17"
                                 Height="13"
                                 HorizontalAlignment="Left"
@@ -84,14 +85,14 @@
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black" />
-                                <TextBlock
+                                <!--<TextBlock
                                 Text="Số lượng"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Margin="167 0 0 0"
                                 FontSize="18"
                                 FontWeight="DemiBold"
-                                Foreground="Black" />
+                                Foreground="Black" />-->
                                 <TextBlock
                                 Text="Giá"
                                 HorizontalAlignment="Right"
@@ -137,7 +138,9 @@
                                                 Height="13"
                                                 Width="17"
                                                 HorizontalAlignment="Left"
-                                                Background="{StaticResource Orange2}" />
+                                                Background="{StaticResource Orange2}" 
+                                                    Command="{Binding Source={StaticResource serviceVM}, Path=CheckedCommand}"
+                                                    CommandParameter="{Binding ElementName=selectCheckBox}"/>
                                                 <!--hình, tên, giá giảm và chưa giảm của 1 món ăn-->
                                                 <Grid Grid.Column="1">
                                                     <!--hình ảnh-->
@@ -165,7 +168,7 @@
                                                         <StackPanel Orientation="Horizontal"
                                                             Margin="90 0 0 0">
                                                             <!--số tiền không giảm giá-->
-                                                            <TextBlock
+                                                            <!--<TextBlock
                                                             x:Name="price"
                                                             Margin="10 5"
                                                             Foreground="Black"
@@ -173,7 +176,7 @@
                                                             FontWeight="Medium"
                                                             Text="{Binding COST, StringFormat=N0}"
                                                             VerticalAlignment="Center">
-                                                            </TextBlock>
+                                                            </TextBlock>-->
 
                                                             <!--<StackPanel
                                                             x:Name="stack"
@@ -226,7 +229,7 @@
                                                     </StackPanel>
                                                 </Grid>
                                                 <!--nút +- số lượng-->
-                                                <Grid Grid.Column="2">
+                                                <!--<Grid Grid.Column="2">
                                                     <Grid x:Name="spinner" Width="70" Height="25">
                                                         <Border>
                                                             <Border.OpacityMask>
@@ -255,7 +258,7 @@
                                                                 HorizontalAlignment="Center"
                                                                 Padding="0"
                                                                 Grid.Column="1"
-                                                                Text="{Binding AMOUNT_}" />
+                                                                Text="1" />
                                                                 <Button
                                                                 Style="{StaticResource up_down_spinner_btn}"
                                                                 Grid.Column="0"
@@ -263,6 +266,8 @@
                                                                 Width="auto"
                                                                 Height="auto"
                                                                 Content="-"
+                                                                Command="{Binding Source={StaticResource serviceVM}, Path=DownCommand}"
+                                                                CommandParameter="{Binding ElementName=amount}"
                                                                 VerticalContentAlignment="Center"
                                                                 HorizontalContentAlignment="Center"
                                                                 FontSize="16" />
@@ -275,6 +280,8 @@
                                                                 Content="+"
                                                                 VerticalContentAlignment="Center"
                                                                 HorizontalContentAlignment="Center"
+                                                                Command="{Binding Source={StaticResource serviceVM}, Path=UpCommand}"
+                                                                CommandParameter="{Binding ElementName=amount}"
                                                                 FontSize="14" />
                                                                 <Border
                                                                 BorderBrush="Gray"
@@ -285,15 +292,16 @@
                                                                 Grid.ColumnSpan="3" />
                                                             </Grid>
                                                         </Border>
-                                                    </Grid>
-                                                </Grid>
+                                                    </Grid>-->
+                                                <!--</Grid>-->
                                                 <!--giá tiền tổng cộng-->
                                                 <TextBlock
                                                 Grid.Column="3"
                                                 FontSize="16"
                                                 FontWeight="DemiBold"
                                                 HorizontalAlignment="Center"
-                                                VerticalAlignment="Center">
+                                                VerticalAlignment="Center"
+                                                Text="{Binding COST}"    >
                                                     <!--<TextBlock.Text>
                                                         <MultiBinding UpdateSourceTrigger="PropertyChanged">
                                                             <Binding ElementName="discount" Path="Text" />
@@ -404,7 +412,7 @@
                                             HorizontalAlignment="Left"
                                             Margin="5 0 10 0">
                                                         <Rectangle.Fill>
-                                                            <ImageBrush ImageSource="{Binding DISHIMAGE}" Stretch="UniformToFill" />
+                                                            <ImageBrush ImageSource="{Binding SERVICE.SERVICEIMAGE}" Stretch="UniformToFill" />
                                                         </Rectangle.Fill>
                                                     </Rectangle>
                                                     <StackPanel Orientation="Vertical" Grid.Column="1">
@@ -412,7 +420,7 @@
                                                         <TextBlock
                                                         MinHeight="45"
                                                         Width="110"
-                                                        Text="{Binding DISHNAME}"
+                                                        Text="{Binding SERVICE.SERVICENAME}"
                                                         TextWrapping="Wrap"
                                                         FontSize="13"
                                                         FontWeight="SemiBold"
@@ -445,7 +453,7 @@
                                                                     HorizontalAlignment="Center"
                                                                     Padding="0"
                                                                     Grid.Column="1"
-                                                                    Text="{Binding AMOUNT_, UpdateSourceTrigger=PropertyChanged}" />
+                                                                    Text="1" />
                                                                     <Button
                                                                     Style="{StaticResource up_down_spinner_btn}"
                                                                     Grid.Column="0"
@@ -456,6 +464,7 @@
                                                                     VerticalContentAlignment="Center"
                                                                     HorizontalContentAlignment="Center"
                                                                     FontSize="16"
+                                                                        Command="{Binding Source={StaticResource serviceVM}, Path=DownCommand}"
                                                                     CommandParameter="{Binding ElementName=amount}" />
                                                                     <Button
                                                                     Style="{StaticResource up_down_spinner_btn}"
@@ -467,6 +476,7 @@
                                                                     VerticalContentAlignment="Center"
                                                                     HorizontalContentAlignment="Center"
                                                                     FontSize="14"
+                                                                        Command="{Binding Source={StaticResource serviceVM}, Path=UpCommand}"
                                                                     CommandParameter="{Binding ElementName=amount}" />
                                                                     <Border
                                                                     BorderBrush="Gray"
@@ -487,7 +497,7 @@
                                                     Visibility="Collapsed" />
                                                     <TextBlock
                                                     x:Name="price"
-                                                    Text="{Binding COST, StringFormat=N0}"
+                                                    Text="{Binding SERVICECOST, StringFormat=N0}"
                                                     Visibility="Visible" />
                                                     <TextBlock
                                                 FontSize="16"
@@ -571,8 +581,8 @@
                         <Grid Grid.Row="3">
                             <Button Style="{StaticResource SearchBtn}"
                                 IsDefault="True"
-                                Command="{Binding OrderCommand}"
-                                CommandParameter="{Binding ElementName=CartUserControl}"
+                                Command="{Binding ConfirmCommand}"
+                                CommandParameter="{Binding ElementName=ServiceUC}"
                                 materialDesign:ButtonAssist.CornerRadius="5"
                                 Margin="5 0"
                                 Height="40"

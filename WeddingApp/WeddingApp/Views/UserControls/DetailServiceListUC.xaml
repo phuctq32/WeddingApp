@@ -84,7 +84,7 @@
                                             Foreground="Black"
                                             Grid.Column="2"
                                             TextWrapping="Wrap"
-                                            Text="{Binding}" />
+                                            Text="{Binding SERVICE.SERVICENAME}" />
                                             </StackPanel>
                                         </Grid>
                                         <!--số lượng -->
@@ -105,7 +105,7 @@
                                        Foreground="Black"
                                        TextWrapping="Wrap"
                                        Grid.Column="2"
-                                            Text="{Binding DISHCOST}">
+                                            Text="{Binding SERVICECOST}">
                                         </TextBlock>
                                     </Grid>
                                     <Rectangle
