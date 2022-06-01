@@ -251,6 +251,9 @@
     <Compile Include="Views\UserControls\Admin\EmployeeListUC.xaml.cs">
       <DependentUpon>EmployeeListUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Admin\ReportChartUC.xaml.cs">
+      <DependentUpon>ReportChartUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Admin\ServiceListUC.xaml.cs">
       <DependentUpon>ServiceListUC.xaml</DependentUpon>
     </Compile>
@@ -377,6 +380,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Admin\EmployeeListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Admin\ReportChartUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
