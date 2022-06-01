@@ -66,7 +66,7 @@
                 Grid.ColumnSpan="3"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 x:Name="roleList"
-                ItemsSource="{Binding Roles, UpdateSourceTrigger=PropertyChanged}">
+                ItemsSource="{Binding Roles, UpdateSourceTrigger=PropertyChanged}" d:ItemsSource="{d:SampleData ItemCount=5}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid MinHeight="110" Width="1110">
@@ -103,14 +103,14 @@
                                         Style="{StaticResource editBtn}"
                                         ToolTip="Chỉnh sửa chức vụ"
                                         Command="{Binding Source={StaticResource roleListVM}, Path=EditRoleCommand}"
-                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" Height="30">
                                         <materialDesign:PackIcon Kind="Edit" Height="40" Width="40"/>
                                     </Button>
                                     <Button
                                         Style="{StaticResource deleteBtn}"
                                         ToolTip="Xoá chức vụ"
                                         Command="{Binding Source={StaticResource roleListVM}, Path=DeleteRoleCommand}"
-                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" Height="30">
                                         <materialDesign:PackIcon Kind="Delete" Height="40" Width="40"/>
                                     </Button>
                                 </StackPanel>
