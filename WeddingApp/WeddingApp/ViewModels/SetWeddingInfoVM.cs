@@ -30,6 +30,11 @@ namespace WeddingApp.ViewModels
             {
                 setWeddingInfomationUC.hallComboBox.Items.Add(item.BALLROOMNAME);
             }
+            List<SHIFT> listShift = Data.Ins.DB.SHIFTS.ToList();
+            foreach(var item in listShift)
+            {
+                setWeddingInfomationUC.ShiftComboBox.Items.Add(item.SHIFTNAME);
+            }
             setWeddingInfomationUC.hallComboBox.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(SelectionChanged);
             thisUC = setWeddingInfomationUC;
         }
@@ -81,6 +86,15 @@ namespace WeddingApp.ViewModels
                     }
                     else
                     {
+                        List<WEDDING> wedding = Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == DateTime.Parse(setWeddingInfomationUC.date.Text)).ToList();
+                        foreach(var item in wedding)
+                        {
+                            if(item.SHIFT.SHIFTNAME == setWeddingInfomationUC.ShiftComboBox.Text && item.BALLROOM.BALLROOMNAME == setWeddingInfomationUC.hallComboBox.Text)
+                            {
+                                CustomMessageBox.Show("Sảnh đã được đặt", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error)
+                                    return;
+                            }
+                        }
                         MainVM.WeddingHall = setWeddingInfomationUC.hallComboBox.Text;
                         MainVM.NextUC();
                     }

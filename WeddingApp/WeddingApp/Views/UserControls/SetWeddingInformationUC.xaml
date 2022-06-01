@@ -152,19 +152,24 @@
                         VerticalContentAlignment="Center">
                     </DatePicker>
                 </StackPanel>
-
-                <StackPanel
-                    Grid.Row="4"
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel
+                    Grid.Column="0"
                     Orientation="Horizontal"
                     Margin="50 0 0 0 ">
-                    <materialDesign:PackIcon
+
+                        <materialDesign:PackIcon
                         Kind="BankOutline"
                         Width="30"
                         Height="30"
                         Foreground="{StaticResource Gray}"
                         VerticalAlignment="Center"
                         Margin="10 20 20 0" />
-                    <ComboBox
+                        <ComboBox
                         x:Name="hallComboBox"
                         materialDesign:HintAssist.Hint="Chọn sảnh"
                         Foreground="Black"
@@ -176,9 +181,35 @@
                         VerticalContentAlignment="Center"
                         Height="50"
                         Padding="2,0,0,0">
-                    </ComboBox>
-                </StackPanel>
-
+                        </ComboBox>
+                        
+                    </StackPanel>
+                    <StackPanel
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    Margin="50 0 0 0 ">
+                        <materialDesign:PackIcon
+                        Kind="Timer"
+                        Width="30"
+                        Height="30"
+                        Foreground="{StaticResource Gray}"
+                        VerticalAlignment="Center"
+                        Margin="10 20 20 0" />
+                        <ComboBox
+                        x:Name="ShiftComboBox"
+                        materialDesign:HintAssist.Hint="Chọn ca"
+                        Foreground="Black"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                        materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                        Width="150"
+                        VerticalContentAlignment="Center"
+                        Height="50"
+                        Padding="2,0,0,0">
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
