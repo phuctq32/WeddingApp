@@ -207,7 +207,7 @@
                 Foreground="White"
                 VerticalAlignment="Center"
                 Margin="10 0"
-                        Command="{Binding PenaltyCheckedCommand}"
+                        Command="{Binding PayButtonCommand}"
                         CommandParameter="{Binding ElementName=invoiceWD}"></Button>
                     </StackPanel>
                 </Grid>

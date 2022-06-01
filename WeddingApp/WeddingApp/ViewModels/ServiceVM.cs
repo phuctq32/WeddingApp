@@ -197,7 +197,7 @@ namespace WeddingApp.ViewModels
             INVOICE newInvoice = new INVOICE();
             newInvoice.WEDDINGCOST = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",",""));
             newInvoice.SERVICECOST = Convert.ToInt32(serviceSelectionUC.totalPrice.Text.Replace(",", ""));
-            newInvoice.STATUS = 0;
+            newInvoice.STATUS = 1;
             newInvoice.TOTALCOST = newInvoice.WEDDINGCOST + newInvoice.SERVICECOST;
             newInvoice.REMAININGCOST = newInvoice.TOTALCOST * (decimal)0.9;
             newWedding.DEPOSIT = newInvoice.TOTALCOST * (decimal)0.1;
