@@ -34,8 +34,7 @@
                            HorizontalAlignment="Left"
                            FontWeight="Medium"
                            Foreground="Black"
-                           Grid.Column="0"
-                           Margin="50 10 0 0"></TextBlock>
+                           Grid.Column="0" Width="120" Height="51" Margin="145,29,140,0"/>
                     <TextBlock Text="Giá"
                            FontSize="24"
                            VerticalAlignment="Center"
@@ -63,7 +62,7 @@
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                             x:Name="ListView"
-                           ItemsSource="{Binding ListService, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                           ItemsSource="{Binding ListService, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}"
                           >
                     
                     <ListView.ItemTemplate>
@@ -104,16 +103,16 @@
                                     <TextBlock
                                             Grid.Column="1"
                                             x:Name="price"
-                                            Margin="10 5"
+                                            Margin="0,0,0,0"
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
                                             Text="{Binding COST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
-                                            VerticalAlignment="Center">
+                                            VerticalAlignment="Center" HorizontalAlignment="Center">
                                     </TextBlock>
 
                                     <!--button xoá sửa-->
-                                    <StackPanel Orientation="Horizontal" Grid.Column="4">
+                                    <StackPanel Orientation="Horizontal" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Chỉnh sửa món ăn"

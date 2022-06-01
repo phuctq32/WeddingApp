@@ -38,12 +38,11 @@
                            Grid.Column="0"
                            Margin="50 10 0 0"></TextBlock>
                     <TextBlock Text="Đơn giá bàn tối thiểu"
-                           FontSize="24"
+                           FontSize="20"
                            VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
+                           HorizontalAlignment="Left"
                            FontWeight="Medium"
-                           Foreground="Black"
-                           Grid.Column="1"></TextBlock>
+                           Foreground="Black" Width="193" Grid.Column="1" Margin="10,0,0,0"/>
                     <!--button thêm-->
                     <Button
                     Style="{StaticResource GreenBtn}"
@@ -61,7 +60,7 @@
 
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      x:Name="ListView">
+                      x:Name="ListView" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid MinHeight="120" Width="1110">
@@ -74,12 +73,12 @@
                                     <TextBlock
                                             Grid.Column="0"
                                             x:Name="type"
-                                            Margin="10 5"
+                                            Margin="50,5,10,5"
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
                                             Text="{Binding TYPENAME, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
-                                            VerticalAlignment="Center" />
+                                            VerticalAlignment="Center" HorizontalAlignment="Left" />
 
                                     <TextBlock
                                             Grid.Column="1"
@@ -89,11 +88,11 @@
                                             FontSize="19"
                                             FontWeight="Medium"
                                             Text="{Binding MINIMUMCOST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
-                                            VerticalAlignment="Center">
+                                            VerticalAlignment="Center" HorizontalAlignment="Left">
                                     </TextBlock>
 
                                     <!--button xoá sửa-->
-                                    <StackPanel Orientation="Horizontal" Grid.Column="4">
+                                    <StackPanel Orientation="Horizontal" Grid.Column="4" HorizontalAlignment="Center">
                                         <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Cập nhật loại sảnh"
