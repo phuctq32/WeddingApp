@@ -29,4 +29,5 @@
     <viewmodels:DishTypeVM x:Key="dishTypeVM"></viewmodels:DishTypeVM>
     <viewmodels:EditDishListVM x:Key="editDishListVM"></viewmodels:EditDishListVM>
     <viewmodels:EditServiceVM x:Key="editServiceVM"></viewmodels:EditServiceVM>
+    <viewmodels:CompleteInvoiceVM x:Key="completeInvoiceVM"></viewmodels:CompleteInvoiceVM>
 </ResourceDictionary>

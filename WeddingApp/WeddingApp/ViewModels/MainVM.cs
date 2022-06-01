@@ -167,6 +167,11 @@ namespace WeddingApp.ViewModels
                     mainWindow.ucWindow.Children.Clear();
                     mainWindow.ucWindow.Children.Add(new SetWeddingInfomationUC());
                     break;
+
+                case "RoleListUC":
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new RoleListUC());
+                    break;
             }
         }
         private void LogOut(MainWindow mainWindow)

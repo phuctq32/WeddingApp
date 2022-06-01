@@ -58,7 +58,7 @@ namespace WeddingApp.ViewModels
         public ChangeEmployeeVM()
         {
             
-            LoadedCommand = new RelayCommand<ChangeEmployeeInformationWindow>(parameter => true, parameter => Loaded(parameter));
+            //LoadedCommand = new RelayCommand<ChangeEmployeeInformationWindow>(parameter => true, parameter => Loaded(parameter));
             ChangeEmployeeCommand = new RelayCommand<ChangeEmployeeInformationWindow>((parameter) => { return true; }, (parameter) => SaveChangesEmployee(parameter));
             PasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { Password = parameter.Password; });
             RePasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { RePassword = parameter.Password; });

@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WeddingApp.Views.UserControls.Admin" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:WeddingApp.Views.UserControls.Admin" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             x:Name="CompleteInvoiceUC"
+             DataContext="{StaticResource completeInvoiceVM}"
              mc:Ignorable="d"
              d:DesignHeight="710" d:DesignWidth="1120">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=CompleteInvoiceUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -91,7 +101,7 @@
         </Grid>
         <Separator Width="auto" Height="3" Margin="20 0" VerticalAlignment="Bottom"></Separator>
         <!--SOURCE CỦA LISTVIEW NÀY LÀ 1 LIST RECEIPT-->
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="listViewInvoice" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
