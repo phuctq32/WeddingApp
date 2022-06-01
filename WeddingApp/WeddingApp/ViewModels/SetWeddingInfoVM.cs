@@ -86,7 +86,8 @@ namespace WeddingApp.ViewModels
                     }
                     else
                     {
-                        List<WEDDING> wedding = Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == DateTime.Parse(setWeddingInfomationUC.date.Text)).ToList();
+                        DateTime WeddingDate = DateTime.Parse(setWeddingInfomationUC.date.Text);
+                        List<WEDDING> wedding = Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == WeddingDate).ToList();
                         foreach(var item in wedding)
                         {
                             if(item.SHIFT.SHIFTNAME == setWeddingInfomationUC.ShiftComboBox.Text && item.BALLROOM.BALLROOMNAME == setWeddingInfomationUC.hallComboBox.Text)
