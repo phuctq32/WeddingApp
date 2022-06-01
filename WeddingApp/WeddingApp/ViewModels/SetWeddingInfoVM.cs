@@ -86,7 +86,8 @@ namespace WeddingApp.ViewModels
                     }
                     else
                     {
-                        DateTime WeddingDate = DateTime.Parse(setWeddingInfomationUC.date.Text);
+                        string datestring = setWeddingInfomationUC.date.SelectedDate.Value.ToString("dd/MM/yyyy");
+                        DateTime WeddingDate = DateTime.Parse(datestring);
                         List<WEDDING> wedding = Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == WeddingDate).ToList();
                         foreach(var item in wedding)
                         {
