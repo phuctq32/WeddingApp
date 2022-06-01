@@ -15,6 +15,9 @@
     <viewmodels:EditHallTypeVM x:Key="editHallTypeVM"></viewmodels:EditHallTypeVM>
     <viewmodels:InvoiceVM x:Key="invoiceVM"></viewmodels:InvoiceVM>
     <viewmodels:SetWeddingInfoVM x:Key="setWeddingInfoVM"></viewmodels:SetWeddingInfoVM>
+    <viewmodels:AddRoleVM x:Key="addRoleVM"></viewmodels:AddRoleVM>
+    <viewmodels:EditRoleVM x:Key="editRoleVM"></viewmodels:EditRoleVM>
+    <viewmodels:RoleListVM x:Key="roleListVM"></viewmodels:RoleListVM>
     <viewmodels:WeddingDetailVM x:Key="weddingDetailVM"></viewmodels:WeddingDetailVM>
     <viewmodels:MenuVM x:Key="menuVM"></viewmodels:MenuVM>
     <viewmodels:ServiceVM x:Key="serviceVM"></viewmodels:ServiceVM>

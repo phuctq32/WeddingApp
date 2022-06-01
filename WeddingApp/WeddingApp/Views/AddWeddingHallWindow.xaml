@@ -163,17 +163,17 @@
 
                             <Button
                                 x:Name="saveBtn"
-                            TabIndex="5"
-                            IsDefault="True"
-                            Style="{StaticResource GreenBtn}"
-                            Content="Thêm"
-                            Width="200"
-                            Height="40"
-                            Margin="0 20 0 0"
-                            FontSize="20"
-                            Foreground="White"
-                            Command="{Binding SaveInfoCommand}"
-                            CommandParameter="{Binding ElementName=changeInfoWD}">
+                                TabIndex="5"
+                                IsDefault="True"
+                                Style="{StaticResource GreenBtn}"
+                                Content="Thêm"
+                                Width="200"
+                                Height="40"
+                                Margin="0 20 0 0"
+                                FontSize="20"
+                                Foreground="White"
+                                Command="{Binding SaveInfoCommand}"
+                                CommandParameter="{Binding ElementName=changeInfoWD}"> 
                             </Button>
                         </StackPanel>
                     </Grid>

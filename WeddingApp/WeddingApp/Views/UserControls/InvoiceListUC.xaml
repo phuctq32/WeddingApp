@@ -98,7 +98,7 @@
                         TextWrapping="Wrap"
                         TextAlignment="Center" />
         </Grid>
-        <Separator Width="auto" Height="3" Margin="20 0" VerticalAlignment="Bottom"></Separator>
+        Margin="100 10 100 80"
         <!--SOURCE CỦA LISTVIEW NÀY LÀ 1 LIST RECEIPT-->
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="invoiceList" ItemsSource="{Binding ListInvoice}">
             <ListView.ItemTemplate>
