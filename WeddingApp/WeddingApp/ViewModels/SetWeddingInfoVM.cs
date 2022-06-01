@@ -91,8 +91,8 @@ namespace WeddingApp.ViewModels
                         {
                             if(item.SHIFT.SHIFTNAME == setWeddingInfomationUC.ShiftComboBox.Text && item.BALLROOM.BALLROOMNAME == setWeddingInfomationUC.hallComboBox.Text)
                             {
-                                CustomMessageBox.Show("Sảnh đã được đặt", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error)
-                                    return;
+                                CustomMessageBox.Show("Sảnh đã được đặt", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                                return;
                             }
                         }
                         MainVM.WeddingHall = setWeddingInfomationUC.hallComboBox.Text;
