@@ -136,8 +136,7 @@ namespace WeddingApp.ViewModels
             SERVE serve = new SERVE();
             serve.SERVICEID = selectedService.SERVICEID;
             serve.SERVICECOST = selectedService.COST;
-            var lv2 = FindChild<TextBlock>(lv1, "amount");
-            serve.AMOUNT = Convert.ToByte(lv2.Text);
+            serve.AMOUNT = 1;
             if (parameter.IsChecked == true)
             {
                 Listserve.Add(serve);
