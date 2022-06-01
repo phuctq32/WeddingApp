@@ -43,6 +43,7 @@ namespace WeddingApp.ViewModels
         public ICommand AddProductCommand { get; set; }
         public ICommand EditProductCommand { get; set; } // nút sửa
         public ICommand DeleteProductCommand { get; set; }
+        public ICommand CloseButtonCommand { get; set; }
         public DishListVM ()
         {
             LoadedCommand = new RelayCommand<DishListUC>(p => p == null ? false : true, p => Load(p));
@@ -50,6 +51,7 @@ namespace WeddingApp.ViewModels
             AddProductCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => Add(parameter));
             EditProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Edit(parameter));
             DeleteProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Delete(parameter));
+            CloseButtonCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => CloseButton(parameter));
         }
         private void Load(DishListUC p)
         {
@@ -116,6 +118,16 @@ namespace WeddingApp.ViewModels
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
             }
+        }
+        public void CloseButton(AddDishWindow addProductWindow)
+        {
+            //if (!string.IsNullOrEmpty(IMAGE_))
+            //{
+            //    BlobClient blobClient = new BlobClient(connectionString, containerName, Current_Product.ID_ + "." + Current_Product.IMAGE_.Split('.')[5]);
+            //    blobClient.Delete();
+            //    IMAGE_ = "";
+            //}
+            addProductWindow.Close();
         }
     }
 }

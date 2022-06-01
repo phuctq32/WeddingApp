@@ -199,7 +199,7 @@
                 VerticalAlignment="Center"
                 Margin="10 0"
                         Command="{Binding CloseButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        CommandParameter="{Binding ElementName=addDishWindow}"></Button>
                 </StackPanel>
             </Grid>
             <Rectangle
