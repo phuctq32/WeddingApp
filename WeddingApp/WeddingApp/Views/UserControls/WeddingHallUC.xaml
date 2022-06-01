@@ -68,7 +68,7 @@
                         Padding="0" />
             <TextBlock
                         Text="Đơn giá
-                bàn tối thiểu"
+                               bàn tối thiểu"
                         FontSize="18"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
