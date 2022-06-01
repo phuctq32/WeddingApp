@@ -1,5 +1,6 @@
 ﻿<UserControl x:Class="WeddingApp.Views.UserControls.Admin.EmployeeListUC"
              x:Name="employeeListUC"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +10,12 @@
              MinHeight="120" Width="1110"
               DataContext="{StaticResource employeeListVM}"
              >
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=employeeListUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
         <Grid>
             <Grid>
@@ -65,9 +71,12 @@
                 <!--header-->
 
                 <!--list item-->
-                <ListView Grid.Row="1" Grid.ColumnSpan="4"
+                <ListView x:Name="ListView"
+                          Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      x:Name="ListView">
+                          ItemsSource="{Binding ListEmployee, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                    >
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid MinHeight="110" Width="1110">
@@ -82,7 +91,7 @@
                                     <TextBlock
                                     Grid.Column="0"
                                         Margin="25 15 0 10"
-                                        Text="{Binding }"
+                                        Text="{Binding EMPLOYEENAME}"
                                         FontSize="22"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
@@ -96,10 +105,9 @@
                                     Foreground="Black"
                                     FontSize="19"
                                     FontWeight="Medium"
-                                    Text="{Binding PRICE_, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SALARY, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
-                                    1000000000000000
                                     </TextBlock>
                                     <!--ngày vào làm-->
                                     <TextBlock
@@ -108,10 +116,9 @@
                                     Foreground="Black"
                                     FontSize="19"
                                     FontWeight="Medium"
-                                    Text="{Binding PRICE_, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding STARTWORKING, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
-                                    99/99/9999
                                     </TextBlock>
                                     <!--button xoá sửa-->
                                     <StackPanel Orientation="Horizontal" Grid.Column="4">
@@ -119,13 +126,19 @@
                                         Margin="20 0"
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Chỉnh sửa thông tin nhân viên"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Command="{Binding Source ={StaticResource employeeListVM}, Path=OpenChangeEmployeeInformationWindowCommand}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                            
                                             <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                         </Button>
                                         <Button
                                           Style="{StaticResource MaterialDesignIconForegroundButton}"
                                           ToolTip="Xoá nhân viên"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Command="{Binding Source ={StaticResource employeeListVM}, Path=DeleteEmployeeCommand}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"
+                                            >
                                             <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
                                         </Button>
                                     </StackPanel>

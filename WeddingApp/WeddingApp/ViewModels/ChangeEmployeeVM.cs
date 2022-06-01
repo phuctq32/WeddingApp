@@ -9,11 +9,13 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using WeddingApp.Models;
 using WeddingApp.Views;
+using WeddingApp.Views.UserControls.Admin;
 
 namespace WeddingApp.ViewModels
 {
     internal class ChangeEmployeeVM : ViewModelBase
     {
+        
         public ICommand ChangeEmployeeCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -52,23 +54,23 @@ namespace WeddingApp.ViewModels
         {
             get => date; set { date = value; OnPropertyChanged(); }
         }
+
         public ChangeEmployeeVM()
         {
-
+            
             LoadedCommand = new RelayCommand<ChangeEmployeeInformationWindow>(parameter => true, parameter => Loaded(parameter));
             ChangeEmployeeCommand = new RelayCommand<ChangeEmployeeInformationWindow>((parameter) => { return true; }, (parameter) => SaveChangesEmployee(parameter));
             PasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { Password = parameter.Password; });
             RePasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { RePassword = parameter.Password; });
 
         }
-        public void Loaded(ChangeEmployeeInformationWindow parameter)
-        {
-            current_Employee = Data.Ins.DB.EMPLOYEES.Where(x => x.EMPLOYEENAME == parameter.txtEmployeeName.Text).SingleOrDefault();
-        }
+        
         public void SaveChangesEmployee(ChangeEmployeeInformationWindow parameter)
         {
-            
 
+             EMPLOYEE employee = Data.Ins.DB.EMPLOYEES.Where(x => x.USERNAME == parameter.txtUsername.Text).SingleOrDefault();
+
+            //CustomMessageBox.Show(employee.EMPLOYEENAME, MessageBoxButton.OK, MessageBoxImage.Warning);
             // Check NAME
             if (string.IsNullOrEmpty(parameter.txtEmployeeName.Text))
             {
@@ -79,11 +81,12 @@ namespace WeddingApp.ViewModels
 
 
             //Check Password
-            if (string.IsNullOrEmpty(parameter.PasswordBox.Password))
+            if (!string.IsNullOrEmpty(parameter.PasswordBox.Password))
             {
                 parameter.PasswordBox.Focus();
                 parameter.PasswordBox.Password = "";
-                CustomMessageBox.Show("Mật khẩu trống", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //CustomMessageBox.Show("Mật khẩu trống", MessageBoxButton.OK, MessageBoxImage.Warning);
+                employee.PASSWORD = Password;
                 return;
             }
             if (parameter.PasswordBox.Password.Contains(" "))
@@ -93,13 +96,7 @@ namespace WeddingApp.ViewModels
                 return;
             }
             //check repassword
-            if (string.IsNullOrEmpty(parameter.RePasswordBox.Password))
-            {
-                parameter.RePasswordBox.Focus();
-                parameter.RePasswordBox.Password = "";
-                CustomMessageBox.Show("Chưa xác nhận mật khẩu", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            
             if (parameter.RePasswordBox.Password.Contains(" "))
             {
                 parameter.RePasswordBox.Focus();
@@ -132,16 +129,15 @@ namespace WeddingApp.ViewModels
             try
             {
                 //try to update database
-                current_Employee.EMPLOYEENAME = "Sa Đam";
-                current_Employee.USERNAME = parameter.txtUsername.Text;
-                current_Employee.PASSWORD = Password; 
-                current_Employee.SALARY = Convert.ToInt32(parameter.txtSalary.Text);
+                employee.EMPLOYEENAME = parameter.txtEmployeeName.Text;
+                employee.USERNAME = parameter.txtUsername.Text;
+                employee.SALARY = Convert.ToInt32(parameter.txtSalary.Text);
                 Data.Ins.DB.SaveChanges();
-                CustomMessageBox.Show("Thay đổi thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                CustomMessageBox.Show("Thay đổi thành công!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch
             {
-                CustomMessageBox.Show("Thay đổi không thành công", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show("Thay đổi không thành công!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             parameter.Close();
         }

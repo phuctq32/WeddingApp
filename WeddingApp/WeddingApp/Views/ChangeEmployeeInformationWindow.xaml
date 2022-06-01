@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeddingApp.Views"
         mc:Ignorable="d"
-        Title="ChangeEmployeeInformationWindow" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="ChangeEmployeeInformationWindow" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         Height="780"
@@ -20,17 +21,32 @@
         Foreground="{x:Null}"
         AllowsTransparency="True"
         WindowStyle="None"
+        x:Name="ChangeEmployeeWD"
+        DataContext="{StaticResource changeEmployeeVM}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         SizeToContent="Height">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=employeeListUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
             <Grid Margin="10">
-                <uc:ControlBarUC></uc:ControlBarUC>
+                <uc:ControlBarUC Margin="0,-40,0,0"></uc:ControlBarUC>
                 <StackPanel>
+                    <!--nhập thông tin đăng ký-->
+                    <!--nhập thông tin đăng ký-->
+                    <!--nhập thông tin đăng ký-->
+                    <!--nhập thông tin đăng ký-->
+                    <!--nhập thông tin đăng ký-->
+                    <!--nhập thông tin đăng ký-->
+                    <!--nhập thông tin đăng ký-->
                     <Label
-                x:Name="lblChangeinfo"
-                Content="Thay đổi thông tin"
+                x:Name="lblAddEmployee"
+                Content="Thêm nhân viên"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Foreground="{StaticResource Orange1}"
@@ -39,7 +55,7 @@
                 VerticalContentAlignment="Center"
                 FontSize="40"
                 FontWeight="Bold"
-                Margin="0,30,0,0" />
+                Margin="60,0,60,25" Height="46" />
                     <!--nhập thông tin đăng ký-->
                     <Grid
                         x:Name="grdInformation"
@@ -49,7 +65,7 @@
                         Visibility="Visible">
 
                         <StackPanel Orientation="Vertical"
-                                    VerticalAlignment="Stretch">
+                                    VerticalAlignment="Stretch" Margin="0,-87,0.4,86.8">
                             <!--họ tên-->
                             <StackPanel x:Name="nameStack"
                                 Orientation="Horizontal" Margin="0 20">
@@ -61,8 +77,9 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtFullname"
-                                    TabIndex="2"
+                                    x:Name="txtEmployeeName"
+                                    Text="{Binding EmployeeName}"
+                                    TabIndex="0"
                                 materialDesign:HintAssist.Hint="Họ và tên"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 Foreground="Black"
@@ -73,8 +90,7 @@
                                 Width="250"
                                 VerticalContentAlignment="Center"
                                 Height="50"
-                                Padding="2,0,0,0">
-                                </TextBox>
+                                Padding="2,0,0,0"/>
                             </StackPanel>
                             <!--Tên đăng nhập-->
                             <StackPanel x:Name="usernameStack"
@@ -87,8 +103,9 @@
                                         VerticalAlignment="Top"
                                         Margin="10,10,20,-18" />
                                 <TextBox
-                                        x:Name="txtMail"
-                                        TabIndex="0"
+                                        x:Name="txtUsername"
+                                        Text="{Binding UserName}"
+                                        TabIndex="1"
                                     materialDesign:HintAssist.Hint="Tên đăng nhập"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     Foreground="Black"
@@ -99,35 +116,71 @@
                                     Width="250"
                                     VerticalContentAlignment="Center"
                                     Height="50"
-                                    Padding="2,0,0,0">
-                                </TextBox>
+                                    Padding="2,0,0,0"/>
                             </StackPanel>
-                            <!--Mật khẩu-->
-                            <StackPanel x:Name="phoneStack"
-                                Orientation="Horizontal" Margin="0 20">
+                            <!--password-->
+                            <StackPanel Orientation="Horizontal" Margin="0 20">
                                 <materialDesign:PackIcon
                                     Kind="Password"
                                     Width="30"
                                     Height="30"
                                     Foreground="{StaticResource Gray}"
                                     VerticalAlignment="Center"
-                                    Margin="10,10,20,-18" />
-                                <TextBox
-                                    x:Name="txtPhone"
-                                    TabIndex="1"
-                                    materialDesign:HintAssist.Hint="Mật khẩu"
-                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    Margin="10,10,20,-14" />
+                                <PasswordBox
+                                  x:Name="PasswordBox"
+                                    TabIndex="2"
+                                  materialDesign:HintAssist.Hint="Mật khẩu"
+                                  materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                                  materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                   VerticalContentAlignment="Center"
                                     Foreground="Black"
+                                    Width="250"
+                                    Height="50"
                                     FontSize="16"
                                     FontWeight="Medium"
-                                    materialDesign:HintAssist.Foreground="{StaticResource Gray}"
-                                    materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
-                                    Width="250"
-                                    VerticalContentAlignment="Center"
-                                    Height="50"
-                                    Padding="2,0,0,0">
-                                </TextBox>
+                                    Padding="2,0,0,0" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="PasswordChanged">
+                                            <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
+                                                   CommandParameter="{Binding ElementName=PasswordBox}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </PasswordBox>
                             </StackPanel>
+                            <!--repassword-->
+                            <StackPanel Orientation="Horizontal" Margin="0 20">
+                                <materialDesign:PackIcon
+                                    Kind="Password"
+                                    Width="30"
+                                    Height="30"
+                                    Foreground="{StaticResource Gray}"
+                                    VerticalAlignment="Center"
+                                    Margin="10,10,20,-14" />
+                                <PasswordBox
+                                  x:Name="RePasswordBox"
+                                    TabIndex="3"
+                                  materialDesign:HintAssist.Hint="Nhập lại mật khẩu"
+                                  materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                                  materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                  VerticalContentAlignment="Center"
+                                    Foreground="Black"
+                                    Width="250"
+                                    Height="50"
+                                    FontSize="16"
+                                    FontWeight="Medium"
+                                    Padding="2,0,0,0" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="PasswordChanged">
+                                            <i:InvokeCommandAction Command="{Binding RePasswordChangedCommand}" 
+                                                   CommandParameter="{Binding ElementName=RePasswordBox}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </PasswordBox>
+                            </StackPanel>
+                            <!--lương-->
                             <!-- chức vụ -->
                             <StackPanel Orientation="Horizontal" Margin="0 20">
                                 <materialDesign:PackIcon
@@ -169,8 +222,9 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtAddress"
-                                    TabIndex="2"
+                                    x:Name="txtSalary"
+                                    Text="{Binding Salary}"
+                                    TabIndex="4"
                                 materialDesign:HintAssist.Hint="Mức lương"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 Foreground="Black"
@@ -181,30 +235,29 @@
                                 Width="250"
                                 VerticalContentAlignment="Center"
                                 Height="50"
-                                Padding="2,0,0,0">
-                                </TextBox>
+                                Padding="2,0,0,0"/>
                             </StackPanel>
                             <!--ngày vào làm-->
                             <StackPanel Orientation="Horizontal" Margin="20 20">
-                                <DatePicker
+                                <DatePicker Foreground="Black"
+                                            x:Name="txtDate"
+                                  SelectedDate="{Binding Date, Mode=TwoWay}"
                                   Width="250"
                                   materialDesign:HintAssist.Hint="Chọn ngày vào làm"
                                   Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                             </StackPanel>
                             <Button
-                                x:Name="saveBtn"
-                                TabIndex="5"
-                                IsDefault="True"
-                                Style="{StaticResource GreenBtn}"
-                                Content="Lưu thay đổi"
-                                Width="270"
-                                Height="40"
-                                Margin="0 20 0 0"
-                                FontSize="20"
-                                Foreground="White"
-                                Command="{Binding SaveInfoCommand}"
-                                CommandParameter="{Binding ElementName=changeInfoWD}">
-                            </Button>
+                            TabIndex="5"
+                            IsDefault="True"
+                            Style="{StaticResource GreenBtn}"
+                            Content="Lưu thay đổi"
+                            Width="270"
+                            Height="40"
+                            Margin="0 20 0 0"
+                            FontSize="20"
+                            Foreground="White"
+                            Command="{Binding ChangeEmployeeCommand}"
+                            CommandParameter="{Binding ElementName=ChangeEmployeeWD}"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -218,7 +271,7 @@
             RadiusX="10"
             Panel.ZIndex="-2"
             Effect="{StaticResource dropShadow}"
-            Margin="10">
+            Margin="10,-31,10,10">
             </Rectangle>
         </Grid>
     </materialDesign:TransitioningContent>
