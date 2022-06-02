@@ -13,6 +13,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
             <ComboBox
+                Foreground="Black"
                         x:Name="monthComboBox"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
                         IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
@@ -39,6 +40,7 @@
                 <ComboBoxItem>12</ComboBoxItem>
             </ComboBox>
             <ComboBox
+                Foreground="Black"
                         x:Name="yearComboBox"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
                         IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
@@ -49,8 +51,6 @@
             </ComboBox>
             <Button
                             x:Name="saveBtn"
-                            TabIndex="5"
-                            IsDefault="True"
                             Style="{StaticResource GreenBtn}"
                             Content="Xuất hoá đơn "
                             Width="200"
@@ -58,8 +58,7 @@
                             Margin="0 20 0 0"
                             FontSize="20"
                             Foreground="White"
-                            Command="{Binding btnExportCommand}"
-                            CommandParameter="{Binding ElementName=dashBoardWD}" />
+                IsEnabled="True" />
 
             <Grid>
                 <Rectangle Height="130" Margin="20" Fill="White" RadiusY="10" RadiusX="10">
@@ -78,8 +77,8 @@
                                                  Foreground="White"
                                                  Width="25" Height="25" />
                     </Border>
-                    <TextBlock Text="Doanh thu" FontWeight="Bold" HorizontalAlignment="Right" Margin="15" FontSize="24" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding TotalValue, StringFormat=N0}"
+                    <TextBlock Foreground="Black" Text="Doanh thu" FontWeight="Bold" HorizontalAlignment="Right" Margin="15" FontSize="24" VerticalAlignment="Top" />
+                    <TextBlock Foreground="Black" Text="{Binding TotalValue, StringFormat=N0}"
                                TextWrapping="Wrap"
                                HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                Margin="10 10 5 15" FontSize="30" />
@@ -96,9 +95,9 @@
 
                         <materialDesign:PackIcon Kind="Cart" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Foreground="White" Width="25" Height="25" />
                     </Border>
-                    <TextBlock Text="Số đơn hàng" FontWeight="Bold" HorizontalAlignment="Right" Margin="15" FontSize="24" VerticalAlignment="Top" />
+                    <TextBlock Foreground="Black" Text="Số đơn hàng" FontWeight="Bold" HorizontalAlignment="Right" Margin="15" FontSize="24" VerticalAlignment="Top" />
 
-                    <TextBlock Text="{Binding TotalReceipt, StringFormat=N0}"
+                    <TextBlock Foreground="Black" Text="{Binding TotalReceipt, StringFormat=N0}"
                                HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                Margin="20 10" FontSize="40" />
                 </Grid>
@@ -119,9 +118,9 @@
                                                  Margin="5" Foreground="White"
                                                  Width="25" Height="25" />
                     </Border>
-                    <TextBlock Text="Số khách hàng" FontWeight="Bold" HorizontalAlignment="Right" Margin="15 15 5 15" FontSize="24" VerticalAlignment="Top" />
+                    <TextBlock Foreground="Black" Text="Số khách hàng" FontWeight="Bold" HorizontalAlignment="Right" Margin="15 15 5 15" FontSize="24" VerticalAlignment="Top" />
 
-                    <TextBlock Text="{Binding TotalCustomer, StringFormat=N0}"
+                    <TextBlock Foreground="Black" Text="{Binding TotalCustomer, StringFormat=N0}"
                                HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                Margin="10" FontSize="40" />
                 </Grid>

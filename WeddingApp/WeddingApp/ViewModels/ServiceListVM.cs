@@ -22,6 +22,7 @@ namespace WeddingApp.ViewModels
         public ICommand DeleteServiceCommand { get; set; }
 
         private List<SERVICE> listService;
+
         public List<SERVICE> ListService
         {
             get => listService;
@@ -33,23 +34,27 @@ namespace WeddingApp.ViewModels
         }
 
         public ServiceListUC serviceListUC;
+
         public ServiceListVM()
         {
             LoadedCommand = new RelayCommand<ServiceListUC>((parameter) => { return true; }, (parameter) => load(parameter));
             OpenAddServiceListWindowCommand = new RelayCommand<ServiceListUC>((parameter) => { return true; }, (parameter) => OpenAddServiceListWindow(parameter));
             OpenEditServiceListWindowCommand = new RelayCommand<ListViewItem>((parameter) => { return true; }, (parameter) => OpenEditServiceListWindow(parameter));
         }
+
         public void load(ServiceListUC parameter)
         {
             ListService = Data.Ins.DB.SERVICEs.ToList();
             serviceListUC = parameter;
         }
+
         public void OpenAddServiceListWindow(ServiceListUC parameter)
         {
             AddServiceWindow addServiceWindow = new AddServiceWindow();
             addServiceWindow.ShowDialog();
             load(serviceListUC);
         }
+
         public void OpenEditServiceListWindow(ListViewItem listViewItem)
         {
             SERVICE service = listViewItem.DataContext as SERVICE;
@@ -60,10 +65,11 @@ namespace WeddingApp.ViewModels
             editServiceWindow.ShowDialog();
             load(serviceListUC);
         }
+
         protected void Delete(ListViewItem listViewItem)
         {
             SERVICE service = listViewItem.DataContext as SERVICE;
-            if (CustomMessageBox.Show("Xóa nhân viên ?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+            if (CustomMessageBox.Show("Xóa dịch vụ ?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
                 Data.Ins.DB.SERVICEs.Remove(service);
                 Data.Ins.DB.SaveChanges();
@@ -71,6 +77,5 @@ namespace WeddingApp.ViewModels
                 CustomMessageBox.Show("Xóa thành công", MessageBoxButton.OK);
             }
         }
-
     }
 }
