@@ -544,10 +544,10 @@
       <LastGenOutput>WeddingDB.cs</LastGenOutput>
     </Content>
     <Content Include="WeddingDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="WeddingDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>WeddingDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>
