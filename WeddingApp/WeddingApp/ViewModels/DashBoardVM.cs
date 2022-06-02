@@ -36,8 +36,7 @@ namespace WeddingApp.ViewModels
         DateTime now = DateTime.Now;
         // private List<ReC> receipts;
         int month = 1;
-        int day = 1;
-        int tmp = 0;
+        int day = 0;
         public DashBoardVM()
         {
             SwitchTabCommand = new RelayCommand<DashBoardUC>(p => true, (p) => SwitchTab(p));
@@ -94,13 +93,12 @@ namespace WeddingApp.ViewModels
                     dashBoardindow.selectGrid.Children.Clear();
                     dashBoardindow.selectGrid.Children.Add(monthChartUC);
 
-                    if (tmp==1)
+
+                    for (int i = 0; i < day; i++)
                     {
-                        for (int i = 0; i < day; i++)
-                        {
-                            SeriesCollection[0].Values.RemoveAt(0);
-                        }
-                    }    
+                        SeriesCollection[0].Values.RemoveAt(0);
+                    }
+                      
 
                     month = now.Month;
                     day = DateTime.DaysInMonth(2022, month);
@@ -123,7 +121,6 @@ namespace WeddingApp.ViewModels
 
 
                     Formatter = value => value.ToString();
-                    tmp = 1;
 
                     monthChartUC.monthComboBox.SelectedIndex = now.Month;
                     monthChartUC.yearComboBox.Visibility = Visibility.Collapsed;
@@ -134,12 +131,9 @@ namespace WeddingApp.ViewModels
                     dashBoardindow.selectGrid.Children.Clear();
                     dashBoardindow.selectGrid.Children.Add(yearChartUC);
 
-                    if (tmp == 1)
+                    for (int i = 0; i < day; i++)
                     {
-                        for (int i = 0; i < day; i++)
-                        {
-                            SeriesCollection[0].Values.RemoveAt(0);
-                        }
+                        SeriesCollection[0].Values.RemoveAt(0);
                     }
 
                     //-----------------------------
@@ -164,7 +158,6 @@ namespace WeddingApp.ViewModels
 
 
                     Formatter = value => value.ToString();
-                    tmp = 1;
                     //-----------------------------
 
                     yearChartUC.yearComboBox.SelectedIndex = 0;
