@@ -140,7 +140,7 @@
                                         <!--Thành tiền-->
                                         <TextBlock x:Name="txtCalculate" Grid.Column="4" HorizontalAlignment="Right" FontWeight="Medium"
                                                TextWrapping="Wrap" VerticalAlignment="Center"
-                                                   Text="{Binding COST}">
+                                                   Text="{Binding COST, StringFormat=N0}">
                                         </TextBlock>
                                     </Grid>
                                 </DataTemplate>

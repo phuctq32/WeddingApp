@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:WeddingApp.Views" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         mc:Ignorable="d"
         Title="CompletedInvoiceWindow" Height="auto" Width="800"
-        x:Name="invoiceWD"
+        x:Name="CompleteinvoiceWD"
         SizeToContent="Height"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
-        DataContext="{StaticResource invoiceVM}"
+        DataContext="{StaticResource completeInvoiceWDVM}"
         TextOptions.TextRenderingMode="Auto"
         Background="{x:Null}"
         FontFamily="{DynamicResource MaterialDesignFont}"
@@ -23,7 +23,7 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}"
-                                   CommandParameter="{Binding ElementName=invoiceWD}" />
+                                   CommandParameter="{Binding ElementName=CompleteinvoiceWD}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
@@ -136,7 +136,7 @@
                                         <!--Thành tiền-->
                                         <TextBlock x:Name="txtCalculate" Grid.Column="4" HorizontalAlignment="Right" FontWeight="Medium"
                                                TextWrapping="Wrap" VerticalAlignment="Center"
-                                                   Text="{Binding COST}">
+                                                   Text="{Binding COST, StringFormat=N0}">
                                         </TextBlock>
                                     </Grid>
                                 </DataTemplate>

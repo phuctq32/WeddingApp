@@ -424,6 +424,7 @@
                                                         TextWrapping="Wrap"
                                                         FontSize="13"
                                                         FontWeight="SemiBold"
+                                                            Foreground="Black"
                                                         Margin="0 8 10 0" />
                                                         <Grid x:Name="spinner" Width="65" Height="20" HorizontalAlignment="Left">
                                                             <Border>

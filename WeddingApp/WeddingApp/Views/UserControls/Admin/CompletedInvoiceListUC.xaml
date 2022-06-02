@@ -182,7 +182,9 @@
                   ToolTip="MaterialDesignIconForegroundButton"
                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Foreground="Black"
-                    Grid.Column="7">
+                    Grid.Column="7"
+                            Command="{Binding Source={StaticResource completeInvoiceVM}, Path=DetailCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                             <materialDesign:PackIcon Kind="Details" />
                         </Button>
 

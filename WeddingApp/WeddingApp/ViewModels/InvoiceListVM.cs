@@ -51,7 +51,7 @@ namespace WeddingApp.ViewModels
             invoiceWindow.txtDeposit.Text = paidInvoice.WEDDING.DEPOSIT.ToString("C0", cultureInfo);
             invoiceWindow.txtRemaining.Text = paidInvoice.REMAININGCOST.ToString("C0", cultureInfo);
             invoiceWindow.txtTableAmount.Text = paidInvoice.WEDDING.TABLEAMOUNT.ToString();
-            invoiceWindow.txtTableCost.Text = paidInvoice.WEDDINGCOST.ToString("C0", cultureInfo);
+            invoiceWindow.txtTableCost.Text = Convert.ToInt32(paidInvoice.TABLECOST).ToString("C0", cultureInfo);
             invoiceWindow.txtTotalCost.Text = paidInvoice.TOTALCOST.ToString("C0", cultureInfo);
             invoiceWindow.txtTotalServiceCost.Text = paidInvoice.SERVICECOST.ToString("C0", cultureInfo);
             invoiceWindow.txtWeddingCost.Text = paidInvoice.WEDDINGCOST.ToString("C0", cultureInfo);
