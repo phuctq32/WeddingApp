@@ -24,6 +24,7 @@ namespace WeddingApp
         public decimal REMAININGCOST { get; set; }
         public Nullable<byte> STATUS { get; set; }
         public Nullable<decimal> PENALTIES { get; set; }
+        public Nullable<decimal> TABLECOST { get; set; }
     
         public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual REPORTDETAIL REPORTDETAIL { get; set; }

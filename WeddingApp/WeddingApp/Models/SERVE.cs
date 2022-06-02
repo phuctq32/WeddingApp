@@ -20,6 +20,7 @@ namespace WeddingApp
         public Nullable<decimal> SERVICECOST { get; set; }
         public string NOTE { get; set; }
         public Nullable<byte> AMOUNT { get; set; }
+        public Nullable<decimal> COST { get; set; }
     
         public virtual SERVICE SERVICE { get; set; }
         public virtual WEDDING WEDDING { get; set; }

@@ -73,6 +73,7 @@
           <Property Name="REMAININGCOST" Type="money" Nullable="false" />
           <Property Name="STATUS" Type="tinyint" />
           <Property Name="PENALTIES" Type="money" />
+          <Property Name="TABLECOST" Type="money" />
         </EntityType>
         <EntityType Name="MENU">
           <Key>
@@ -136,6 +137,7 @@
           <Property Name="SERVICECOST" Type="money" />
           <Property Name="NOTE" Type="text" />
           <Property Name="AMOUNT" Type="tinyint" />
+          <Property Name="COST" Type="money" />
         </EntityType>
         <EntityType Name="SERVICE">
           <Key>
@@ -499,6 +501,7 @@
           <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_INVOICES_EMPLOYEE" FromRole="INVOICES" ToRole="EMPLOYEES" />
           <NavigationProperty Name="REPORTDETAIL" Relationship="Self.FK_INVOICES_PAID" FromRole="INVOICES" ToRole="REPORTDETAIL" />
           <NavigationProperty Name="WEDDING" Relationship="Self.FK_INVOICES_WEDDINGID" FromRole="INVOICES" ToRole="WEDDING" />
+          <Property Name="TABLECOST" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="MENU">
           <Key>
@@ -573,6 +576,7 @@
           <NavigationProperty Name="SERVICE" Relationship="Self.FK_SERVE_SERVICEID" FromRole="SERVE" ToRole="SERVICE" />
           <NavigationProperty Name="WEDDING" Relationship="Self.FK_SERVE_WEDDINGID" FromRole="SERVE" ToRole="WEDDING" />
           <Property Name="AMOUNT" Type="Byte" />
+          <Property Name="COST" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="SERVICE">
           <Key>
@@ -944,6 +948,7 @@
           <EntitySetMapping Name="INVOICES">
             <EntityTypeMapping TypeName="WeddingDBModel.INVOICE">
               <MappingFragment StoreEntitySet="INVOICES">
+                <ScalarProperty Name="TABLECOST" ColumnName="TABLECOST" />
                 <ScalarProperty Name="INVOICEID" ColumnName="INVOICEID" />
                 <ScalarProperty Name="TOTALCOST" ColumnName="TOTALCOST" />
                 <ScalarProperty Name="SERVICECOST" ColumnName="SERVICECOST" />
@@ -1018,6 +1023,7 @@
           <EntitySetMapping Name="SERVEs">
             <EntityTypeMapping TypeName="WeddingDBModel.SERVE">
               <MappingFragment StoreEntitySet="SERVE">
+                <ScalarProperty Name="COST" ColumnName="COST" />
                 <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
                 <ScalarProperty Name="SERVEID" ColumnName="SERVEID" />
                 <ScalarProperty Name="WEDDINGID" ColumnName="WEDDINGID" />

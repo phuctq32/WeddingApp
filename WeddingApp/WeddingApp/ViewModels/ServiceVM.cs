@@ -71,6 +71,7 @@ namespace WeddingApp.ViewModels
             {
                 amount--;
                 cart.AMOUNT = Convert.ToByte(amount);
+                cart.COST = cart.AMOUNT * cart.SERVICECOST;
                 parameter.Text = amount.ToString();
             }
 
@@ -94,6 +95,7 @@ namespace WeddingApp.ViewModels
                 //Tăng số lượng của sản phẩm
                 amount++;
                 cart.AMOUNT = Convert.ToByte(amount);
+                cart.COST = cart.AMOUNT * cart.SERVICECOST;
                 parameter.Text = amount.ToString();
                 TotalPrice = GetTotalPrice(thisUC.carts);
             }
@@ -107,6 +109,23 @@ namespace WeddingApp.ViewModels
             foreach (var item in FindVisualChildren<CheckBox>(parameter.ServiceList))
             {
                 item.IsChecked = newVal;
+            }
+            if(newVal)
+            { 
+                foreach (SERVICE item in parameter.ServiceList.Items)
+                {
+                    SERVE serve = new SERVE();
+                    serve.SERVICEID = item.SERVICEID;
+                    serve.SERVICECOST = item.COST;
+                    serve.AMOUNT = 1;
+                    serve.COST = serve.SERVICECOST * serve.AMOUNT;
+                    parameter.carts.Items.Add(serve);
+
+                }
+            }
+            else
+            {
+                parameter.carts.Items.Clear();
             }
             TotalPrice = GetTotalPrice(parameter.carts);
             //FoodCount = GetFoodCount(parameter.cartList);
@@ -138,6 +157,7 @@ namespace WeddingApp.ViewModels
             serve.SERVICEID = selectedService.SERVICEID;
             serve.SERVICECOST = selectedService.COST;
             serve.AMOUNT = 1;
+            serve.COST = serve.SERVICECOST * serve.AMOUNT;
             if (parameter.IsChecked == true)
             {
                 Listserve.Add(serve);
@@ -182,7 +202,7 @@ namespace WeddingApp.ViewModels
         public void WeddingInformationSave(SetWeddingInfomationUC setWeddingInfomationUC)
         {
             newWedding.BALLROOMID = Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == setWeddingInfomationUC.hallComboBox.Text).SingleOrDefault().BALLROOMID;
-            newWedding.BOOKINGDATE = DateTime.Parse(DateTime.Now.ToString());
+            newWedding.BOOKINGDATE = DateTime.Parse(DateTime.Now.ToShortDateString());
             newWedding.BRIDE = setWeddingInfomationUC.txtbride.Text;
             newWedding.GROOM = setWeddingInfomationUC.txtgroom.Text;
             newWedding.TELEPHONE = setWeddingInfomationUC.txtphone.Text;
