@@ -13,12 +13,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WeddingApp.Models;
 using WeddingApp.Views.UserControls.Admin;
 
 namespace WeddingApp.ViewModels
 {
     internal class DashBoardVM : ViewModelBase
     {
+
+        public ICommand selectCommand { get; set; }
         public ICommand SwitchTabCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public ICommand btnExportCommand { get; set; }
@@ -30,43 +33,50 @@ namespace WeddingApp.ViewModels
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
         public Func<double, string> YFormatter { get; set; }
-
+        DateTime now = DateTime.Now;
         // private List<ReC> receipts;
-
+        int month = 1;
+        int day = 1;
+        int tmp = 0;
         public DashBoardVM()
         {
             SwitchTabCommand = new RelayCommand<DashBoardUC>(p => true, (p) => SwitchTab(p));
             LoadedCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => Loaded(parameter));
             btnExportCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
+            selectCommand = new RelayCommand<ComboBox>((parameter) => true, (parameter) => selectMonth(parameter));
 
-            DateTime now = DateTime.Now;
             SeriesCollection = new SeriesCollection
 
-            {
-                new ColumnSeries
-                {
-                    Title = "2015",
-                    Values = new ChartValues<double> { 10, 50, 39, 50 }
-                }
-            };
-
-            //adding series will update and animate the chart automatically
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = "2016",
-                Values = new ChartValues<double> { 11, 56, 42 }
-            });
-
-            //also adding values updates and animates the chart automatically
-            SeriesCollection[1].Values.Add(48d);
-
-            Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
-            Formatter = value => value.ToString();
+                    {
+                        new ColumnSeries
+                        {
+                            Title = "Doanh Thu",
+                            Values = new ChartValues<double> {}
+                        }
+                    };
         }
 
         private ReportChartUC monthChartUC = new ReportChartUC();
         private ReportChartUC yearChartUC = new ReportChartUC();
 
+        private void selectMonth(ComboBox item)
+        {
+            for (int i = 0; i < day; i++)
+            {
+                SeriesCollection[0].Values.RemoveAt(0);
+            }
+            month = item.SelectedIndex+1;
+            day = DateTime.DaysInMonth(2022, month);
+            //Labels = new string[day];
+            for (int i = 1; i <= day; i++)
+            {
+                Labels[i - 1] = "Ngày " + i.ToString();
+
+                /*data = Data.Ins.DB.*/
+                SeriesCollection[0].Values.Add(i + 0d);
+            }
+
+        }
         private void SwitchTab(DashBoardUC dashBoardindow)
         {
             int index = dashBoardindow.statusListViewUser.SelectedIndex;
@@ -83,12 +93,81 @@ namespace WeddingApp.ViewModels
                 case "Tháng":
                     dashBoardindow.selectGrid.Children.Clear();
                     dashBoardindow.selectGrid.Children.Add(monthChartUC);
+
+                    if (tmp==1)
+                    {
+                        for (int i = 0; i < day; i++)
+                        {
+                            SeriesCollection[0].Values.RemoveAt(0);
+                        }
+                    }    
+
+                    month = now.Month;
+                    day = DateTime.DaysInMonth(2022, month);
+                    
+
+                    Labels = new string[40];
+                    for (int i = 1; i <= day; i++)
+                    {
+                        Labels[i - 1] = "Ngày " + i.ToString();
+
+                        /*data = Data.Ins.DB.*/
+                        SeriesCollection[0].Values.Add(i + 0d);
+                    }
+
+
+                    //adding series will update and animate the chart automatically
+
+
+                    //also adding values updates and animates the chart automatically
+
+
+                    Formatter = value => value.ToString();
+                    tmp = 1;
+
+                    monthChartUC.monthComboBox.SelectedIndex = now.Month;
                     monthChartUC.yearComboBox.Visibility = Visibility.Collapsed;
                     break;
 
                 case "Năm":
+
                     dashBoardindow.selectGrid.Children.Clear();
                     dashBoardindow.selectGrid.Children.Add(yearChartUC);
+
+                    if (tmp == 1)
+                    {
+                        for (int i = 0; i < day; i++)
+                        {
+                            SeriesCollection[0].Values.RemoveAt(0);
+                        }
+                    }
+
+                    //-----------------------------
+                    day = 12;
+
+                    
+
+                    Labels = new string[day];
+                    for (int i = 1; i <= day; i++)
+                    {
+                        Labels[i - 1] = "Tháng " + i.ToString();
+
+                        /*data = Data.Ins.DB.*/
+                        SeriesCollection[0].Values.Add(i + 0d);
+                    }
+
+
+                    //adding series will update and animate the chart automatically
+
+
+                    //also adding values updates and animates the chart automatically
+
+
+                    Formatter = value => value.ToString();
+                    tmp = 1;
+                    //-----------------------------
+
+                    yearChartUC.yearComboBox.SelectedIndex = 0;
                     yearChartUC.monthComboBox.Visibility = Visibility.Collapsed;
                     break;
             }
