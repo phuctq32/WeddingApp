@@ -51,8 +51,8 @@
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="7*" />
-                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="1.8*" />
+                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid x:Name="menu" Grid.Column="0" Margin="20 40 10 0">
@@ -139,11 +139,27 @@
                             Text="Tìm kiếm" FontSize="17" />
                             </Button>
                         </StackPanel>
+                        <Border
+                        Background="#e0f7fa"
+                        BorderThickness="0"
+                        Grid.Row="1"
+                        Margin="20 0 20 20"
+                        ClipToBounds="True">
+                            <Border
+                            Background="Transparent" 
+                            BorderBrush="LightGray" 
+                            BorderThickness="1" 
+                            Margin="-2">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0" BlurRadius="10" />
+                                </Border.Effect>
+                            </Border>
+                        </Border>
                         <Grid Grid.Row="1">
                             <!--Lưu ý: các phần binding chỉ là để test bên VM
                 binding thì tự nhập tên mới-->
                             <ListView x:Name="ViewListProducts"
-                              Margin="20 0 0 10"
+                              Margin="30 0 20 20"
                               Width="auto"
                               Height="auto"
                               ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}"
@@ -199,53 +215,6 @@
                                                 Visibility="Visible">
                                                     </TextBlock>
                                                 </Grid>
-                                                <!--số tiền khi giảm giá kèm khung hiện giảm bao nhiêu %
-                                    khi item có % giảm giá > 0 thì phần này sẽ được visible còn phần trên
-                                    thì collapsed-->
-                                                <StackPanel
-                                                x:Name="stack"
-                                                Orientation="Horizontal"
-                                                Margin="10 5">
-                                                    <TextBlock
-                                                x:Name="priceDiscount"
-
-                                                Margin="0 0 10 0"
-                                                    Foreground="Red"
-                                                    FontSize="17"
-                                                    FontWeight="Medium"
-                                                    VerticalAlignment="Center">
-                                                        <!--<TextBlock.Text>
-                                                            <MultiBinding>
-                                                                <Binding ElementName="price" Path="Text" />
-                                                                <Binding ElementName="discount" Path="Text" />
-                                                            </MultiBinding>
-                                                        </TextBlock.Text>-->
-                                                    </TextBlock>
-                                                    <Border
-                                                    BorderBrush="Red"
-                                                    CornerRadius="5"
-                                                    BorderThickness="1">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock
-                                                        Margin="5 0 0 0"
-                                                        Foreground="Red"
-                                                        FontSize="12"
-                                                        FontWeight="Medium"
-                                                        VerticalAlignment="Center">
-                                                        -
-                                                            </TextBlock>
-                                                            <TextBlock
-                                                        x:Name="discount"
-                                                        Margin="0 0 5 0"
-                                                        Foreground="Red"
-                                                        FontSize="12"
-                                                        FontWeight="Medium"
-                                                        Text="{Binding DISCOUNT_, StringFormat=P0}"
-                                                        VerticalAlignment="Center">
-                                                            </TextBlock>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </StackPanel>
                                             </StackPanel>
                                             <!--nút bấm thêm vào giỏ hàng-->
                                             <Button
@@ -304,7 +273,6 @@
                     <Grid x:Name="receipt" Grid.Column="1" Margin="10 20 10 10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="70" />
-                            <RowDefinition MinHeight="90" MaxHeight="120" />
                             <RowDefinition />
                             <RowDefinition Height="100" />
                         </Grid.RowDefinitions>
@@ -313,20 +281,19 @@
                             <TextBlock
                         Text="Các món đã chọn"
                         HorizontalAlignment="Center"
-                        FontSize="20"
+                        FontSize="25"
                         FontWeight="Bold"
                         Foreground="{StaticResource Orange2}"
                         Margin="0 20" />
                         </Grid>
-                        <Grid Grid.Row="1" Grid.RowSpan="2" Margin="10 0">
-                            <ScrollViewer>
+                        <Grid Grid.Row="1" Margin="10">
+                            <ScrollViewer Margin="10 0">
                                 <ListView x:Name="carts" ScrollViewer.CanContentScroll="False">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Width="310" Height="100" Margin="0 0 20 0">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="30" />
-                                                    <ColumnDefinition Width="200" />
+                                                    <ColumnDefinition Width="50" />
                                                     <ColumnDefinition />
                                                 </Grid.ColumnDefinitions>
                                                 <Grid Grid.Column="0" Margin="10 10 0 10">
@@ -349,13 +316,13 @@
                                                     </Grid.ColumnDefinitions>
                                                     <!--hình ảnh-->
                                                     <Rectangle
-                                                Grid.Column="0"
-                                            RadiusY="10"
-                                            RadiusX="10"
-                                            Height="67"
-                                            Width="67"
-                                            HorizontalAlignment="Left"
-                                            Margin="5 0 10 0">
+                                                        Grid.Column="0"
+                                                        RadiusY="10"
+                                                        RadiusX="10"
+                                                        Height="67"
+                                                        Width="67"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="5 0 10 0">
                                                         <Rectangle.Fill>
                                                             <ImageBrush ImageSource="{Binding DISHIMAGE}" Stretch="UniformToFill" />
                                                         </Rectangle.Fill>
@@ -364,97 +331,17 @@
                                                         <!--tên món ăn-->
                                                         <TextBlock
                                                         MinHeight="45"
-                                                        Width="110"
                                                         Text="{Binding DISHNAME}"
                                                         TextWrapping="Wrap"
-                                                        FontSize="13"
+                                                        FontSize="15"
                                                         FontWeight="SemiBold"
-                                                        Margin="0 8 10 0" />
-                                                        <Grid x:Name="spinner" Width="65" Height="20" HorizontalAlignment="Left">
-                                                            <Border>
-                                                                <Border.OpacityMask>
-                                                                    <VisualBrush>
-                                                                        <VisualBrush.Visual>
-                                                                            <Border
-                                                                        Background="Black"
-                                                                        SnapsToDevicePixels="True"
-                                                                        CornerRadius="4"
-                                                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
-                                                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}" />
-                                                                        </VisualBrush.Visual>
-                                                                    </VisualBrush>
-                                                                </Border.OpacityMask>
-                                                                <Grid>
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="20" />
-                                                                        <ColumnDefinition />
-                                                                        <ColumnDefinition Width="20" />
-                                                                    </Grid.ColumnDefinitions>
-                                                                    <TextBlock
-                                                                    x:Name="amount"
-                                                                    FontWeight="Medium"
-                                                                    FontSize="10"
-                                                                    VerticalAlignment="Center"
-                                                                    HorizontalAlignment="Center"
-                                                                    Padding="0"
-                                                                    Grid.Column="1"
-                                                                    Text="{Binding AMOUNT_, UpdateSourceTrigger=PropertyChanged}" />
-                                                                    <Button
-                                                                    Style="{StaticResource up_down_spinner_btn}"
-                                                                    Grid.Column="0"
-                                                                    Grid.Row="0"
-                                                                    Width="auto"
-                                                                    Height="auto"
-                                                                    Content="-"
-                                                                    VerticalContentAlignment="Center"
-                                                                    HorizontalContentAlignment="Center"
-                                                                    FontSize="16"
-                                                                    CommandParameter="{Binding ElementName=amount}" />
-                                                                    <Button
-                                                                    Style="{StaticResource up_down_spinner_btn}"
-                                                                    Grid.Column="2"
-                                                                    Grid.Row="1"
-                                                                    Width="auto"
-                                                                    Height="auto"
-                                                                    Content="+"
-                                                                    VerticalContentAlignment="Center"
-                                                                    HorizontalContentAlignment="Center"
-                                                                    FontSize="14"
-                                                                    CommandParameter="{Binding ElementName=amount}" />
-                                                                    <Border
-                                                                    BorderBrush="Gray"
-                                                                    IsHitTestVisible="False"
-                                                                    BorderThickness="1"
-                                                                    CornerRadius="4"
-                                                                    Grid.RowSpan="2"
-                                                                    Grid.ColumnSpan="3" />
-                                                                </Grid>
-                                                            </Border>
-                                                        </Grid>
+                                                        Margin="0 8 20 0" />
+                                                        <TextBlock
+                                                            x:Name="price"
+                                                            Text="{Binding COST, StringFormat=N0}"
+                                                            FontSize="15"
+                                                            Visibility="Visible" />
                                                     </StackPanel>
-                                                </Grid>
-                                                <Grid Grid.Column="3" Margin="0 10 10 10">
-                                                    <TextBlock
-                                                    x:Name="discount"
-                                                    Text="{Binding PRODUCT.DISCOUNT_, StringFormat=P0}"
-                                                    Visibility="Collapsed" />
-                                                    <TextBlock
-                                                    x:Name="price"
-                                                    Text="{Binding COST, StringFormat=N0}"
-                                                    Visibility="Visible" />
-                                                    <TextBlock
-                                                FontSize="16"
-                                                FontWeight="DemiBold"
-                                                VerticalAlignment="Center"
-                                                HorizontalAlignment="Center">
-                                                        <!--<TextBlock.Text>
-                                                            <MultiBinding UpdateSourceTrigger="PropertyChanged">
-                                                                <Binding ElementName="discount" Path="Text" />
-                                                                <Binding ElementName="price" Path="Text" />
-                                                                <Binding ElementName="amount" Path="Text" />
-                                                            </MultiBinding>
-                                                        </TextBlock.Text>-->
-                                                    </TextBlock>
                                                 </Grid>
                                                 <Rectangle
                                                 Grid.ColumnSpan="4"
@@ -465,21 +352,22 @@
                                                 RadiusX="10"
                                                 Margin="10"
                                                 Panel.ZIndex="-2" />
-                                                <!--<i:Interaction.Triggers>
+                                                <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseEnter">
                                                         <i:InvokeCommandAction
-                                                        Command="{Binding Source={StaticResource CreateOrderVM}, Path=HoverItemCommand}"
+                                                        Command="{Binding Source={StaticResource menuVM}, Path=HoverItemCommand}"
                                                         CommandParameter="{Binding ElementName=deleteBtn}" />
                                                     </i:EventTrigger>
                                                     <i:EventTrigger EventName="MouseLeave">
                                                         <i:InvokeCommandAction
-                                                        Command="{Binding Source={StaticResource CreateOrderVM}, Path=CancelHoverItemCommand}"
+                                                        Command="{Binding Source={StaticResource menuVM}, Path=CancelHoverItemCommand}"
                                                         CommandParameter="{Binding ElementName=deleteBtn}" />
                                                     </i:EventTrigger>
-                                                </i:Interaction.Triggers>-->
+                                                </i:Interaction.Triggers>
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
+
 
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListViewItem}">
@@ -505,7 +393,7 @@
                             Panel.ZIndex="-2"
                             Margin="10 0" />
                         </Grid>
-                        <Grid Grid.Row="3" Margin="10 0 10 10">
+                        <Grid Grid.Row="2" Margin="10 0 10 10">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
                                 Text="Tổng cộng:"
@@ -518,7 +406,7 @@
                                 x:Name="txtTotalprice"
                                     Foreground="Black"
                                 FontWeight="Medium"
-                                FontSize="16"
+                                FontSize="20"
                                 Width="110"
                                 TextAlignment="Right"
                                 VerticalAlignment="Top"
@@ -549,16 +437,6 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Rectangle
-            Fill="#fafafa"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            RadiusY="10"
-            RadiusX="10"
-            Panel.ZIndex="-2"
-            Effect="{StaticResource dropShadow}"
-            Margin="10">
-            </Rectangle>
         </Grid>
     </materialDesign:TransitioningContent>
 </UserControl>

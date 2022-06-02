@@ -10,6 +10,7 @@ using WeddingApp.Views;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Globalization;
+using System.Windows;
 
 namespace WeddingApp.ViewModels
 {
@@ -20,6 +21,8 @@ namespace WeddingApp.ViewModels
         public ICommand NextUCCommand { get; set; }
         public ICommand AddToCartCommand { get; set; }
         public ICommand SearchCommand { get; set; }
+        public ICommand HoverItemCommand { get; set; }
+        public ICommand CancelHoverItemCommand { get; set; }
         private long totalPrice;
         public long TotalPrice
         {
@@ -40,6 +43,8 @@ namespace WeddingApp.ViewModels
             NextUCCommand = new RelayCommand<MenuUC>(p => true, p => NextUC(p));
             AddToCartCommand = new RelayCommand<ListViewItem>(p => true, p => AddToCart(p));
             SearchCommand = new RelayCommand<MenuUC>(p => true, p => Search(p));
+            HoverItemCommand = new RelayCommand<Button>((paramter) => paramter == null ? false : true, (parameter) => HoverItem(parameter));
+            CancelHoverItemCommand = new RelayCommand<Button>((paramter) => paramter == null ? false : true, (parameter) => CancelHoverItem(parameter));
         }
         public void Loaded(MenuUC menuUC)
         {
@@ -175,6 +180,15 @@ namespace WeddingApp.ViewModels
                 res += Convert.ToInt32(Cart.COST);
             }
             return res;
+        }
+        private void HoverItem(Button deleteBtn)
+        {
+            deleteBtn.Visibility = Visibility.Visible;
+        }
+
+        private void CancelHoverItem(Button deleteBtn)
+        {
+            deleteBtn.Visibility = Visibility.Collapsed;
         }
     }
 }
