@@ -46,13 +46,43 @@ namespace WeddingApp.ViewModels
         private void EditRole(ListViewItem parameter)
         {
             ROLE role = parameter.DataContext as ROLE;
-            EditRoleWindow editRoleWindow = new EditRoleWindow();
-            editRoleWindow.RoleNameTxt.Text = role.ROLENAME.ToString();
-            editRoleWindow.ShowDialog();
-        }
-        private void DeleteRole()
-        {
+            List<PERMISSION> permissions = Data.Ins.DB.PERMISSIONs.Where(x => x.ROLEID == role.ROLEID).ToList();
 
+
+            EditRoleWindow editRoleWindow = new EditRoleWindow();
+
+            //editRoleWindow.functionList.ItemsSource = Data.Ins.DB.FUNCTIONS.ToList();
+            editRoleWindow.Show();
+            foreach (var p in permissions)
+            {
+                foreach (var lvi in FindVisualChildren<ListViewItem>(editRoleWindow.functionList))
+                {
+                    FUNCTION func = lvi.DataContext as FUNCTION;
+                    if (p.FUNCTIONID == func.FUNCTIONID)
+                    {
+                        CheckBox checkBox = GetVisualChild<CheckBox>(lvi);
+                        checkBox.IsChecked = true;
+                    }
+                }
+            }
+            editRoleWindow.RoleNameTxt.Text = role.ROLENAME.ToString();
+        }
+        private void DeleteRole(ListViewItem parameter)
+        {
+            if (CustomMessageBox.Show("Xóa chức vụ?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
+            {
+                try
+                {
+                    ROLE roleToRemove = parameter.DataContext as ROLE;
+                    Data.Ins.DB.ROLES.Remove(roleToRemove);
+                    Data.Ins.DB.SaveChanges();
+                    CustomMessageBox.Show("Xóa thành công!", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Asterisk);
+                }
+                catch
+                {
+                    CustomMessageBox.Show("Lỗi cơ sở dữ liệu!", System.Windows.MessageBoxImage.Error);
+                }
+            }
         }
     }
 }
