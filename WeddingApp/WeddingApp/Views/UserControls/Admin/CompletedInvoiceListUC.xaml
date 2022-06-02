@@ -127,7 +127,7 @@
 
                         <!--tên sảnh-->
                         <TextBlock
-                            Text="Nguyễn Văn Tên Dài Dữ"
+                            Text="{Binding WEDDING.GROOM}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -137,7 +137,7 @@
                             TextWrapping="Wrap" />
                         <!--Loại sảnh-->
                         <TextBlock
-                            Text="Nguyễn Thị Tên Dài Quá"
+                            Text="{Binding WEDDING.BRIDE}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -148,7 +148,7 @@
                         <!--SỐ LƯỢNG BÀN TỐI ĐA-->
                         <TextBlock
                             Grid.Column="3"
-                            Text="10000"
+                            Text="{Binding WEDDING.BALLROOM.BALLROOMNAME}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
@@ -156,7 +156,7 @@
                         <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
                         <TextBlock
                             Grid.Column="4"
-                            Text="10000"
+                            Text="{Binding WEDDING.WEDDINGDATE, StringFormat={} {0:dd/MM/yyyy}}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
@@ -164,14 +164,14 @@
 
                         <TextBlock
                             Grid.Column="5"
-                            Text="10000"
+                            Text="{Binding WEDDING.SHIFT.SHIFTSTART}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center" />
                         <TextBlock
                             Grid.Column="6"
-                            Text="10000"
+                            Text="{Binding WEDDING.TABLEAMOUNT}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"
