@@ -288,7 +288,10 @@
                         </Grid>
                         <Grid Grid.Row="1" Margin="10">
                             <ScrollViewer Margin="10 0">
-                                <ListView x:Name="carts" ScrollViewer.CanContentScroll="False">
+                                <ListView 
+                                    x:Name="carts" 
+                                    ScrollViewer.CanContentScroll="False"
+                                    ItemsSource="{Binding Path=SelectedDishes, UpdateSourceTrigger=PropertyChanged}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Width="310" Height="100" Margin="0 0 20 0">
@@ -298,16 +301,17 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Grid Grid.Column="0" Margin="10 10 0 10">
                                                     <Button
-                                                    x:Name="deleteBtn"
-                                                    Content="x"
-                                                    FontSize="30"
-                                                    FontWeight="Light"
-                                                    Opacity="0.8"
-                                                    Style="{StaticResource forgotPasswordBtn}"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Visibility="Collapsed"
-                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
+                                                        x:Name="deleteBtn"
+                                                        Content="x"
+                                                        FontSize="30"
+                                                        FontWeight="Light"
+                                                        Opacity="0.8"
+                                                        Style="{StaticResource forgotPasswordBtn}"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Visibility="Collapsed"
+                                                        Command="{Binding Source={StaticResource menuVM}, Path=DeleteCartCommand}"
+                                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
                                                 </Grid>
                                                 <Grid Grid.Column="1" Margin="0 10">
                                                     <Grid.ColumnDefinitions>

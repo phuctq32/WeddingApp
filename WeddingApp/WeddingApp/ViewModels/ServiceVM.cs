@@ -14,6 +14,10 @@ namespace WeddingApp.ViewModels
 {
     internal class ServiceVM : ViewModelBase
     {
+        private long totalPrice;
+        private List<SERVE> serveList;
+        private WEDDING newWedding = new WEDDING();
+
         public ICommand LoadedCommand { get; set; }
         public ICommand PreviousUCCommand { get; set; }
         public ICommand CheckedCommand { get; set; }
@@ -21,10 +25,8 @@ namespace WeddingApp.ViewModels
         public ICommand DownCommand { get; set; }
         public ICommand UpCommand { get; set; }
         public ICommand ConfirmCommand  { get; set; }
-        public ServiceSelectionUC thisUC;
-        private long totalPrice;
-        private List<SERVE> serveList;
-        private WEDDING newWedding = new WEDDING();
+        public ICommand DeleteCartCommand { get; set; }
+        
         public long TotalPrice
         {
             get => totalPrice;
@@ -52,12 +54,12 @@ namespace WeddingApp.ViewModels
             CheckedCommand = new RelayCommand<CheckBox>((parameter) => { return true; }, (parameter) => Checked(parameter));
             AllCheckedCommand = new RelayCommand<ServiceSelectionUC>((parameter) => { return true; }, (parameter) => AllChecked(parameter));
             ConfirmCommand = new RelayCommand<ServiceSelectionUC>(p => true, p => Confirm(p));
+            DeleteCartCommand = new RelayCommand<ListViewItem>(p => p == null ? false : true, (p) => DeleteCart(p));
         }
         public void Loaded(ServiceSelectionUC serviceSelectionUC)
         {
             List<SERVICE> service = Data.Ins.DB.SERVICEs.ToList();
-            serviceSelectionUC.ServiceList.ItemsSource = service; 
-            thisUC = serviceSelectionUC;
+            serviceSelectionUC.ServiceList.ItemsSource = service;
             ServeList = new List<SERVE>();
         }    
         public void PreviousUC()
@@ -196,6 +198,31 @@ namespace WeddingApp.ViewModels
             }
             return res;
         }
+        private void DeleteCart(ListViewItem parameter)
+        {
+            SERVE serveToDelete = parameter.DataContext as SERVE;
+
+            var serviceSelectionUC = GetAncestorOfType<ServiceSelectionUC>(parameter);
+            foreach (var lvi in FindVisualChildren<ListViewItem>(serviceSelectionUC.ServiceList))
+            {
+                SERVICE service = lvi.DataContext as SERVICE;
+                if (service.SERVICEID == serveToDelete.SERVICEID)
+                {
+                    CheckBox checkBox = GetVisualChild<CheckBox>(lvi);
+                    if (checkBox.IsChecked == true)
+                    {
+                        checkBox.IsChecked = false;
+                    }
+                }
+            }
+
+            List<SERVE> temp = new List<SERVE>();
+            ServeList.ForEach(item => temp.Add(item));
+            temp.Remove(serveToDelete);
+            ServeList = temp;
+            TotalPrice = GetTotalPrice(ServeList);
+        }
+
         public void Confirm(ServiceSelectionUC serviceSelectionUC)
         {
             if(CustomMessageBox.Show("Xác nhận đặt tiệc?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
@@ -206,7 +233,7 @@ namespace WeddingApp.ViewModels
                 InvoiceSave(serviceSelectionUC, menuUC);
                 MenuSave(menuUC);
                 ServeSave(serviceSelectionUC);
-                CustomMessageBox.Show("Đặt tiệc thành công", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
+                CustomMessageBox.Show("Đặt tiệc thành công!", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Asterisk);
             }
         }
 
@@ -255,7 +282,6 @@ namespace WeddingApp.ViewModels
                     rEPORTDETAIL.BOOKEDWEDDING = 1;
                     rEPORTDETAIL.PAIDWEDDING= 0;
                     rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
-                    
                 }
             }
             Data.Ins.DB.INVOICES.Add(newInvoice);
