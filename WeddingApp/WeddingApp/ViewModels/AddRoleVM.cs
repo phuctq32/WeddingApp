@@ -100,7 +100,7 @@ namespace WeddingApp.ViewModels
                     string roleID = "";
                     foreach (var word in strRoleName)
                     {
-                        roleID += word[0];
+                        roleID += word[0].ToString().ToUpper();
                     }
 
                     ROLE newRole = new ROLE();
