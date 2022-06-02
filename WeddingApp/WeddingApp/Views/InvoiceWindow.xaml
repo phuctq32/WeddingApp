@@ -106,7 +106,7 @@
                             <TextBlock Text="Thành tiền" Grid.Column="4" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Right" />
                         </Grid>
                         <!--LISTVIEW RECEIPT_DETAIL-->
-                        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="listView">
+                        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="listView" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid HorizontalAlignment="Stretch" MinHeight="38" Width="730">
@@ -119,7 +119,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Rectangle Fill="Black" Height="1" Opacity="0.5" Grid.ColumnSpan="4" VerticalAlignment="Top" />
                                         <!--STT-->
-                                        <TextBlock  Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" />
+                                        <TextBlock  Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Index}"/>
                                         <!--Tên dịch vụ-->
                                         <TextBlock
                                                 Text="{Binding SERVICE.SERVICENAME}"
@@ -136,10 +136,11 @@
                                                    VerticalAlignment="Center"
                                                    Visibility="Visible" />
                                         <!--Đơn giá-->
-                                        <TextBlock x:Name="txtServiceCost" Text="{Binding SERVICECOST}" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock x:Name="txtServiceCost" Text="{Binding SERVICECOST, StringFormat=N0}" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                         <!--Thành tiền-->
                                         <TextBlock x:Name="txtCalculate" Grid.Column="4" HorizontalAlignment="Right" FontWeight="Medium"
-                                               TextWrapping="Wrap" VerticalAlignment="Center">
+                                               TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{Binding COST}">
                                         </TextBlock>
                                     </Grid>
                                 </DataTemplate>

@@ -20,6 +20,7 @@ namespace WeddingApp.ViewModels
         public ICommand PenaltyCheckedCommand { get; set; }
 
         public InvoiceWindow thisWD;
+        private double penalty;
 
         public PARAMETER isPenalty = Data.Ins.DB.PARAMETERs.Where(x => x.PARAMETERID == "PHAT").SingleOrDefault();
         public PARAMETER Penalty = Data.Ins.DB.PARAMETERs.Where(x => x.PARAMETERID == "MUCPHAT").SingleOrDefault();
@@ -33,8 +34,11 @@ namespace WeddingApp.ViewModels
         }
         public void Loaded(InvoiceWindow invoiceWindow)
         {
+
             thisWD = invoiceWindow;
             int WeddingID = Convert.ToInt32(invoiceWindow.txtWeddingID.Text);
+            List<SERVE> listServe = Data.Ins.DB.SERVEs.Where(x => x.WEDDINGID == WeddingID).ToList();
+            invoiceWindow.listView.ItemsSource = listServe;
             if (Penalty.PARAMETERVALUE == 1)
             {
                 invoiceWindow.chkPenalty.IsChecked = true;
@@ -44,7 +48,7 @@ namespace WeddingApp.ViewModels
                 invoiceWindow.chkPenalty.IsChecked = false;
             }
             thisInvoice = Data.Ins.DB.INVOICES.Where(x => x.WEDDINGID == WeddingID).SingleOrDefault();
-            double penalty;
+            
             if (thisInvoice.WEDDING.WEDDINGDATE < DateTime.Now && isPenalty.PARAMETERVALUE == 1)
             {
                 TimeSpan a = thisInvoice.WEDDING.WEDDINGDATE.Date - DateTime.Now.Date;
@@ -61,7 +65,7 @@ namespace WeddingApp.ViewModels
             if(CustomMessageBox.Show("Thanh toán hóa đơn hiện tại?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
                 thisInvoice.STATUS = 2;
-                thisInvoice.PENALTIES = Convert.ToDecimal(invoiceWindow.txtPenalty.Text);
+                thisInvoice.PENALTIES = (decimal)penalty;
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Thanh toán thành công", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
             }

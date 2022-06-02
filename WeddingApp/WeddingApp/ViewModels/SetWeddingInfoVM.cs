@@ -8,6 +8,7 @@ using WeddingApp.Views.UserControls;
 using WeddingApp.Models;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace WeddingApp.ViewModels
 {
@@ -76,7 +77,7 @@ namespace WeddingApp.ViewModels
                     return;
                 }
             }
-            if (!string.IsNullOrEmpty(setWeddingInfomationUC.date.Text) && !string.IsNullOrEmpty(setWeddingInfomationUC.hallComboBox.Text))
+            if (!string.IsNullOrEmpty(setWeddingInfomationUC.date.Text) && !string.IsNullOrEmpty(setWeddingInfomationUC.hallComboBox.Text) && !string.IsNullOrEmpty(setWeddingInfomationUC.ShiftComboBox.Text))
             {
                 if (!string.IsNullOrEmpty(setWeddingInfomationUC.comboBoxreversedTableAmount.Text) && !string.IsNullOrEmpty(setWeddingInfomationUC.comboBoxTableAmount.Text))
                 {
@@ -86,8 +87,7 @@ namespace WeddingApp.ViewModels
                     }
                     else
                     {
-                        string datestring = setWeddingInfomationUC.date.SelectedDate.Value.ToString("dd/MM/yyyy");
-                        DateTime WeddingDate = DateTime.Parse(datestring);
+                        DateTime WeddingDate = DateTime.Parse(setWeddingInfomationUC.date.SelectedDate.Value.ToString());
                         List<WEDDING> wedding = Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == WeddingDate).ToList();
                         foreach(var item in wedding)
                         {
