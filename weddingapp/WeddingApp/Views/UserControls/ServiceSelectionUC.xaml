@@ -389,11 +389,11 @@
                                 Text="{Binding TotalPrice, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                 Foreground="Black"
                                 FontWeight="Medium"
-                                FontSize="16"
+                                FontSize="20"
                                 Width="110"
                                 TextAlignment="Right"
                                 VerticalAlignment="Top"
-                                Margin="45 10 0 0" />
+                                Margin="90 10 0 0" />
                         </StackPanel>
                         <Grid Grid.Row="3">
                             <Button Style="{StaticResource SearchBtn}"

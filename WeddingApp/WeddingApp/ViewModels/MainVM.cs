@@ -101,10 +101,12 @@ namespace WeddingApp.ViewModels
             });
             if (CurrentAccount.Role == "GD")
             {
+                mainWindow.listViewMenu.SelectedIndex = 1;
                 mainWindow.ucWindow.Children.Add(new DashBoardUC());
             }
             else
             {
+                mainWindow.listViewMenu.SelectedIndex = 0;
                 mainWindow.ucWindow.Children.Add(NextUCs.First());
             }
             mainWindow.controlBar.closeBtn.Command = CloseWindowCommand;
