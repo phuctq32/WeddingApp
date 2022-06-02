@@ -31,4 +31,5 @@
     <viewmodels:EditServiceVM x:Key="editServiceVM"></viewmodels:EditServiceVM>
     <viewmodels:CompleteInvoiceVM x:Key="completeInvoiceVM"></viewmodels:CompleteInvoiceVM>
     <viewmodels:CompleteInvoiceWindowVM x:Key="completeInvoiceWDVM"></viewmodels:CompleteInvoiceWindowVM>
+    <viewmodels:AddDishVM x:Key="addDishVM"></viewmodels:AddDishVM>
 </ResourceDictionary>

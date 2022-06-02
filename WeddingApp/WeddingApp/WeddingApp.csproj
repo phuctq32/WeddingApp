@@ -183,6 +183,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddDishVM.cs" />
     <Compile Include="ViewModels\AddHallTypeVM.cs" />
     <Compile Include="ViewModels\AddHallVM.cs" />
     <Compile Include="ViewModels\AddRoleVM.cs" />

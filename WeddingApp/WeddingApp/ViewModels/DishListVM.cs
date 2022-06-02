@@ -40,7 +40,6 @@ namespace WeddingApp.ViewModels
 
         public ICommand OpenAddDishListWindowCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
-        public ICommand AddProductCommand { get; set; }
         public ICommand EditProductCommand { get; set; } // nút sửa
         public ICommand DeleteProductCommand { get; set; }
         public ICommand CloseButtonCommand { get; set; }
@@ -48,7 +47,6 @@ namespace WeddingApp.ViewModels
         {
             LoadedCommand = new RelayCommand<DishListUC>(p => p == null ? false : true, p => Load(p));
             OpenAddDishListWindowCommand = new RelayCommand<DishListUC>((parameter) => { return true; }, (parameter) => OpenAddDishListWindow(parameter));
-            AddProductCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => Add(parameter));
             EditProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Edit(parameter));
             DeleteProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Delete(parameter));
             CloseButtonCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => CloseButton(parameter));
@@ -63,42 +61,7 @@ namespace WeddingApp.ViewModels
             AddDishWindow addDishListWindow = new AddDishWindow();
             addDishListWindow.ShowDialog();
         }
-        public void Add(AddDishWindow parameter)
-        {
-            // Check Foodname
-            if (string.IsNullOrEmpty(parameter.txtName.Text))
-            {
-                parameter.txtName.Focus();
-                CustomMessageBox.Show("Tên món ăn đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            //if (!Regex.IsMatch(parameter.txtName.Text, @"^[a-zA-Z0-9_]+$"))
-            //{
-            //    parameter.txtName.Focus();
-            //    return;
-            //}
-
-            if (!Regex.IsMatch(parameter.txtPrice.Text, @"^[0-9_]+$"))
-            {
-                parameter.txtPrice.Focus();
-                CustomMessageBox.Show("Giá không đúng định dạng!", MessageBoxButton.OK, MessageBoxImage.Warning);
-                parameter.txtPrice.Text = "";
-                return;
-            }
-            DISH newProduct = new DISH();
-            newProduct.DISHNAME = parameter.txtName.Text;
-            newProduct.COST = Convert.ToInt32(parameter.txtPrice.Text);
-            //newProduct.TYPEID = parameter.OutlinedComboBox.SelectedIndex;
-            //newProduct.DISHID = parameter.OutlinedComboBox.SelectedIndex;
-            newProduct.DISHIMAGE = "";
-            newProduct.DISHDESCRIPTION = parameter.txtDescription.Text;
-            Data.Ins.DB.DISHES.Add(newProduct);
-            //Data.Ins.DB.SaveChanges();
-            parameter.addDishWindow.Close();
-            
-            CustomMessageBox.Show("Thêm thành công món " + parameter.txtName.Text.ToString());
-        }
+        
         public void Edit(ListViewItem listViewItem)
         {
             DISH editType = listViewItem.DataContext as DISH;
