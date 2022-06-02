@@ -84,7 +84,7 @@
                                             HorizontalAlignment="Left"
                                             Margin="40 0">
                                             <Rectangle.Fill>
-                                                <ImageBrush ImageSource="{Binding DISHMAGE}" Stretch="UniformToFill" />
+                                                <ImageBrush ImageSource="{Binding DISHIMAGE}" Stretch="UniformToFill" />
                                             </Rectangle.Fill>
                                         </Rectangle>
                                         <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="330" HorizontalAlignment="Right">

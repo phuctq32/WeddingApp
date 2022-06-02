@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Azure.Storage.Blobs;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -22,7 +23,9 @@ namespace WeddingApp.ViewModels
         public ICommand SelectImageCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public string SelectedImage;
-
+        private string containerName = "container";
+        private string connectionString = "DefaultEndpointsProtocol=https;AccountName=imagedish;AccountKey=udbl5BJAHZv8wzmuFf/jE5di0ysn9a8Z8H9ZEBCwUhnFUq8zo0mVqgSdL6Im3rKQeb7uJid2xbA62haXbZ93VA==;EndpointSuffix=core.windows.net";
+        DISH newProduct = new DISH();
         public AddDishVM()
         {
             LoadedCommand = new RelayCommand<AddDishWindow>(p =>true, p => Loaded(p));
@@ -74,33 +77,50 @@ namespace WeddingApp.ViewModels
                 parameter.txtPrice.Text = "";
                 return;
             }
-            DISH newProduct = new DISH();
+            
             newProduct.DISHNAME = parameter.txtName.Text;
             newProduct.COST = Convert.ToInt32(parameter.txtPrice.Text);
             newProduct.TYPEID = Data.Ins.DB.DISHTYPEs.Where(x=>x.TYPENAME == parameter.OutlinedComboBox.Text).SingleOrDefault().TYPEID;
-            newProduct.DISHIMAGE = "pack://application:,,,/WeddingApp;component/Resources/Images/" + Path.GetFileName(SelectedImage);
             newProduct.DISHDESCRIPTION = parameter.txtDescription.Text;
             Data.Ins.DB.DISHES.Add(newProduct);
             Data.Ins.DB.SaveChanges();
             parameter.addDishWindow.Close();
-            CopyImage();
+            UploadImage();
             CustomMessageBox.Show("Thêm thành công món " + parameter.txtName.Text.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
 
-        private void CopyImage()
+        private void UploadImage()
         {
-            // This will get the current WORKING directory (i.e. \bin\Debug)
-            string workingDirectory = Environment.CurrentDirectory;
-            // or: Directory.GetCurrentDirectory() gives the same result
 
-            // This will get the current PROJECT bin directory (ie ../bin/)
-            string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
+            BlobContainerClient containerClient = new BlobContainerClient(connectionString, containerName);
 
-            // This will get the current PROJECT directory
-            System.IO.File.Copy(SelectedImage, projectDirectory + "\\Resources\\Images\\" + Path.GetFileName(SelectedImage), true);
+            //Update Image
 
+            //Get name of Image
 
+            string[] filename = Path.GetFileName(SelectedImage).Split('.');
+
+            
+            //Start upload
+
+            using (MemoryStream stream = new MemoryStream(File.ReadAllBytes(SelectedImage)))
+            {
+                //Upload new Image
+                try
+                {
+                    containerClient.UploadBlob(newProduct.DISHID + "." + filename[1], stream);
+                }
+                catch
+                {
+                    CustomMessageBox.Show("Cập nhật ảnh không thành công", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                }
+            }
+
+            //Update new Image link
+
+            //PRODUCT product = Data.Ins.DB.PRODUCTs.Where(x => x.ID_ == Current_Product.ID_).SingleOrDefault();
+            newProduct.DISHIMAGE = "https://imagedish.blob.core.windows.net/container/" + newProduct.DISHID + "." + filename[1];
         }
     }
 }

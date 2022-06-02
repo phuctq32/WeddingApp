@@ -69,7 +69,11 @@ namespace WeddingApp.ViewModels
             editDishWindow.txtPrice1.Text = editType.COST.ToString();
             editDishWindow.txtName1.Text = editType.DISHNAME;
             editDishWindow.txtDescription.Text = editType.DISHDESCRIPTION;
-           // editDishWindow.OutlinedComboBox.Text = editType.DISHTYPE.ToString();
+            List<DISHTYPE> dISHTYPEs = Data.Ins.DB.DISHTYPEs.ToList();
+            foreach (var item in dISHTYPEs)
+            {
+                editDishWindow.OutlinedComboBox.Items.Add(item.TYPENAME);
+            }
             editDishWindow.ShowDialog();
         }
         public void Delete(ListViewItem listViewItem)
