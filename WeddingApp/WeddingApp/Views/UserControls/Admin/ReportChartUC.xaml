@@ -16,7 +16,7 @@
                         x:Name="monthComboBox"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
                         IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                        materialDesign:HintAssist.Hint="Chọn năm"
+                        materialDesign:HintAssist.Hint="Chọn tháng"
                         Width="auto"
                         Margin="5 10">
                 <ComboBoxItem>1</ComboBoxItem>

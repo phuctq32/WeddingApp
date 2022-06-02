@@ -19,7 +19,6 @@ namespace WeddingApp.ViewModels
 {
     internal class DashBoardVM : ViewModelBase
     {
-
         public ICommand SwitchTabCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public ICommand btnExportCommand { get; set; }
@@ -36,7 +35,6 @@ namespace WeddingApp.ViewModels
 
         public DashBoardVM()
         {
-
             SwitchTabCommand = new RelayCommand<DashBoardUC>(p => true, (p) => SwitchTab(p));
             LoadedCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => Loaded(parameter));
             btnExportCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
@@ -65,35 +63,40 @@ namespace WeddingApp.ViewModels
             Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
             Formatter = value => value.ToString();
         }
+
+        private ReportChartUC monthChartUC = new ReportChartUC();
+        private ReportChartUC yearChartUC = new ReportChartUC();
+
         private void SwitchTab(DashBoardUC dashBoardindow)
         {
             int index = dashBoardindow.statusListViewUser.SelectedIndex;
             List<ListViewItem> listViewItems = dashBoardindow.statusListViewUser.Items.Cast<ListViewItem>().ToList();
             ListViewItem listViewItem = listViewItems[index];
+
             switch (listViewItem.Name)
             {
                 case "Ngày":
                     dashBoardindow.selectGrid.Children.Clear();
                     dashBoardindow.selectGrid.Children.Add(new CompletedInvoiceListUC());
                     break;
+
                 case "Tháng":
                     dashBoardindow.selectGrid.Children.Clear();
-                    dashBoardindow.selectGrid.Children.Add(new ReportChartUC());
-                    ReportChartUC rp = new ReportChartUC();
-                    
+                    dashBoardindow.selectGrid.Children.Add(monthChartUC);
+                    monthChartUC.yearComboBox.Visibility = Visibility.Collapsed;
                     break;
+
                 case "Năm":
                     dashBoardindow.selectGrid.Children.Clear();
-                    dashBoardindow.selectGrid.Children.Add(new ReportChartUC());
+                    dashBoardindow.selectGrid.Children.Add(yearChartUC);
+                    yearChartUC.monthComboBox.Visibility = Visibility.Collapsed;
                     break;
-
             }
-
-
-
         }
 
-        private void Loaded(DashBoardUC parameter) { }
+        private void Loaded(DashBoardUC parameter)
+        { }
+
         /* {
             TotalProduct = Data.Ins.DB.PRODUCTs.Where(x => x.ACTIVE_ == 1).Count();
             TotalCustomer = Data.Ins.DB.USERS.Count() - 1;
@@ -132,6 +135,7 @@ namespace WeddingApp.ViewModels
 
             YFormatter = value => value.ToString("N0");
         }*/
+
         private void btnExport(DashBoardUC parameter)
         {
             CustomMessageBox.Show("Đang xuất file ", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -155,17 +159,10 @@ namespace WeddingApp.ViewModels
                 return;
             }
 
-
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-
-
-
-
-
 
             try
             {
-
                 using (ExcelPackage p = new ExcelPackage())
                 {
                     // đặt tên người tạo file
@@ -243,12 +240,11 @@ namespace WeddingApp.ViewModels
                          // rowIndex tương ứng từng dòng dữ liệu
                          rowIndex++;
 
-                         //gán giá trị cho từng cell                      
+                         //gán giá trị cho từng cell
                          ws.Cells[rowIndex, colIndex++].Value = item.Name;
 
                          // lưu ý phải .ToShortDateString để dữ liệu khi in ra Excel là ngày như ta vẫn thấy.Nếu không sẽ ra tổng số :v
                          ws.Cells[rowIndex, colIndex++].Value = item.Birthday.ToShortDateString();
-
                      }*/
                     colIndex = 1;
                     rowIndex++;
@@ -259,16 +255,11 @@ namespace WeddingApp.ViewModels
                     File.WriteAllBytes(filePath, bin);
                 }
                 MessageBox.Show("Xuất excel thành công!");
-
-
-
             }
             catch //(Exception EE)
             {
                 MessageBox.Show("Có lỗi khi lưu file!");
             }
-            
-
         }
     }
 }
