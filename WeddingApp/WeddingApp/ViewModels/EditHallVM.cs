@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WeddingApp.Views;
 using WeddingApp.Models;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace WeddingApp.ViewModels
 {
@@ -25,9 +26,25 @@ namespace WeddingApp.ViewModels
         }
         public void Edit(EditWeddingHallWindow editWeddingHallWindow)
         {
-            editBallroom.BALLROOMNAME = editWeddingHallWindow.txtHallname.Text;
-            editBallroom.MAXIMUMTABLE = Convert.ToInt16(editWeddingHallWindow.txtMaxTable);
-            Data.Ins.DB.SaveChanges();
+            string HallName = editWeddingHallWindow.txtHallname.Text;
+            if (Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == HallName).Count() > 1)
+            {
+                CustomMessageBox.Show("Sảnh đã tồn tại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                if (!Regex.IsMatch(editWeddingHallWindow.txtMaxTable.Text, "^[0-9]"))
+                {
+                    CustomMessageBox.Show("Vui lòng nhập số lượng bàn tối đa", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
+                else
+                {
+                    editBallroom.BALLROOMNAME = editWeddingHallWindow.txtHallname.Text;
+                    editBallroom.MAXIMUMTABLE = Convert.ToInt16(editWeddingHallWindow.txtMaxTable.Text);
+                    Data.Ins.DB.SaveChanges();
+                    CustomMessageBox.Show("Thay đổi thành công", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                }
+            }
         }
     }
 }

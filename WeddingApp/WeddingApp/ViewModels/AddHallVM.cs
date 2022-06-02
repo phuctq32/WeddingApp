@@ -7,6 +7,7 @@ using System.Windows.Input;
 using WeddingApp.Views;
 using WeddingApp.Models;
 using System.Windows.Controls;
+using System.Text.RegularExpressions;
 
 namespace WeddingApp.ViewModels
 {
@@ -42,18 +43,26 @@ namespace WeddingApp.ViewModels
         public void Add(AddWeddingHallWindow addWeddingHallWindow)
         {
             string HallName = addWeddingHallWindow.txtHallname.Text;
-            if(Data.Ins.DB.BALLROOMs.Where(x=>x.BALLROOMNAME == HallName).Count() >0)
+            if (Data.Ins.DB.BALLROOMs.Where(x=>x.BALLROOMNAME == HallName).Count() >0)
             {
                 CustomMessageBox.Show("Sảnh đã tồn tại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
             }
             else
             {
-                BALLROOM newBallroom = new BALLROOM();
-                newBallroom.BALLROOMNAME = HallName;
-                newBallroom.MAXIMUMTABLE = Convert.ToInt16(addWeddingHallWindow.txtMaxtable.Text);
-                newBallroom.TYPEID = Convert.ToInt32(addWeddingHallWindow.comboBoxType.Text);
-                Data.Ins.DB.BALLROOMs.Add(newBallroom);
-                Data.Ins.DB.SaveChanges();
+                if (!Regex.IsMatch(addWeddingHallWindow.txtMaxtable.Text, "^[0-9]"))
+                {
+                    CustomMessageBox.Show("Vui lòng nhập số lượng bàn tối đa", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
+                else
+                {
+                    BALLROOM newBallroom = new BALLROOM();
+                    newBallroom.BALLROOMNAME = HallName;
+                    newBallroom.MAXIMUMTABLE = Convert.ToInt16(addWeddingHallWindow.txtMaxtable.Text);
+                    newBallroom.TYPEID = Data.Ins.DB.BALLROOMTYPEs.Where(x => x.TYPENAME == addWeddingHallWindow.comboBoxType.Text).SingleOrDefault().TYPEID;
+                    Data.Ins.DB.BALLROOMs.Add(newBallroom);
+                    Data.Ins.DB.SaveChanges();
+                    CustomMessageBox.Show("Thêm thành công", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                }
             }
         }
     }

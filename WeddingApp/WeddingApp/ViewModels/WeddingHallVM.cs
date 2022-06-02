@@ -52,7 +52,7 @@ namespace WeddingApp.ViewModels
         public void Delete(ListViewItem listViewItem)
         {
             BALLROOM bALLROOM = listViewItem.DataContext as BALLROOM;
-            if(CustomMessageBox.Show("Xóa sảnh cưới?", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.Yes)
+            if(CustomMessageBox.Show("Xóa sảnh cưới?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
                 Data.Ins.DB.BALLROOMs.Remove(bALLROOM);
                 Data.Ins.DB.SaveChanges();

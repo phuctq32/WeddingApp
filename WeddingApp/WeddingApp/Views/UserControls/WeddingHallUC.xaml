@@ -186,7 +186,7 @@
                   ToolTip="MaterialDesignIconForegroundButton"
                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Foreground="Black"
-                                Command="{Binding DeleteHallCommand}"
+                                Command="{Binding Source={StaticResource weddingHallVM}, Path = DeleteHallCommand}"
                                 CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                 <materialDesign:PackIcon Kind="Delete" />
                             </Button>

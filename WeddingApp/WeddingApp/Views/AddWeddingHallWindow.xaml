@@ -172,8 +172,8 @@
                                 Margin="0 20 0 0"
                                 FontSize="20"
                                 Foreground="White"
-                                Command="{Binding SaveInfoCommand}"
-                                CommandParameter="{Binding ElementName=changeInfoWD}"> 
+                                Command="{Binding AddHallCommand}"
+                                CommandParameter="{Binding ElementName=AddHallUC}"> 
                             </Button>
                         </StackPanel>
                     </Grid>
