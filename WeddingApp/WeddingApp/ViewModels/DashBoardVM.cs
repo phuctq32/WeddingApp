@@ -27,6 +27,7 @@ namespace WeddingApp.ViewModels
         public ICommand btnExportCommand { get; set; }
         public int TotalProduct { get; set; }
         public int TotalValue { get; set; }
+        
         public int TotalReceipt { get; set; }
         public int TotalCustomer { get; set; }
         public SeriesCollection SeriesCollection { get; set; }
@@ -36,14 +37,18 @@ namespace WeddingApp.ViewModels
         DateTime now = DateTime.Now;
         // private List<ReC> receipts;
         int month = 1;
-        int day = 0;
+        int day = 1;
+        int tmp = 0;
         public DashBoardVM()
         {
             SwitchTabCommand = new RelayCommand<DashBoardUC>(p => true, (p) => SwitchTab(p));
             LoadedCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => Loaded(parameter));
-            btnExportCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
+            btnExportCommand = new RelayCommand<ReportChartUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
             selectCommand = new RelayCommand<ComboBox>((parameter) => true, (parameter) => selectMonth(parameter));
-
+            TotalValue = 234;
+            
+            TotalReceipt = 200;
+            TotalCustomer = 300;
             SeriesCollection = new SeriesCollection
 
                     {
@@ -57,22 +62,32 @@ namespace WeddingApp.ViewModels
 
         private ReportChartUC monthChartUC = new ReportChartUC();
         private ReportChartUC yearChartUC = new ReportChartUC();
-
+        List<INVOICE> invoiceList;
+        int value;
         private void selectMonth(ComboBox item)
         {
+           TotalValue = 0;
             for (int i = 0; i < day; i++)
             {
                 SeriesCollection[0].Values.RemoveAt(0);
             }
-            month = item.SelectedIndex+1;
+            month = item.SelectedIndex + 1 ;
             day = DateTime.DaysInMonth(2022, month);
-            //Labels = new string[day];
+            invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == month).ToList();
+            value = 0;
+            Labels = new string[day];
             for (int i = 1; i <= day; i++)
             {
                 Labels[i - 1] = "Ngày " + i.ToString();
-
+                foreach (var invoice in invoiceList)
+                {
+                    if (invoice.PAID.Day == i) value += Convert.ToInt32(invoice.TOTALCOST);
+                }
                 /*data = Data.Ins.DB.*/
-                SeriesCollection[0].Values.Add(i + 0d);
+                SeriesCollection[0].Values.Add(value + 0d);
+                TotalValue += value;
+                value = 0;
+               
             }
 
         }
@@ -81,39 +96,46 @@ namespace WeddingApp.ViewModels
             int index = dashBoardindow.statusListViewUser.SelectedIndex;
             List<ListViewItem> listViewItems = dashBoardindow.statusListViewUser.Items.Cast<ListViewItem>().ToList();
             ListViewItem listViewItem = listViewItems[index];
-
             switch (listViewItem.Name)
             {
                 case "Ngày":
                     dashBoardindow.selectGrid.Children.Clear();
                     dashBoardindow.selectGrid.Children.Add(new CompletedInvoiceListUC());
                     break;
-
                 case "Tháng":
-                    dashBoardindow.selectGrid.Children.Clear();
-                    dashBoardindow.selectGrid.Children.Add(monthChartUC);
+                    //TotalValue = 0;
+                    
 
-
-                    for (int i = 0; i < day; i++)
+                    if (tmp == 1)
                     {
-                        SeriesCollection[0].Values.RemoveAt(0);
+                        for (int i = 0; i < day; i++)
+                        {
+                            SeriesCollection[0].Values.RemoveAt(0);
+                        }
                     }
-                      
 
                     month = now.Month;
                     day = DateTime.DaysInMonth(2022, month);
-                    
+
+                    invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == now.Month).ToList();
+                    value = 0;
 
                     Labels = new string[40];
                     for (int i = 1; i <= day; i++)
                     {
-                        Labels[i - 1] = "Ngày " + i.ToString();
+                        value = 0;
+                        Labels[i - 1] =  "Ngày "+ i.ToString();
+                        foreach (var invoice in invoiceList)
+                        {
+                            if (invoice.PAID.Day == i) value += Convert.ToInt32(invoice.TOTALCOST); 
+                    }
+                        SeriesCollection[0].Values.Add(value + 0d);
+                       TotalValue += value;
+                        
 
-                        /*data = Data.Ins.DB.*/
-                        SeriesCollection[0].Values.Add(i + 0d);
                     }
 
-
+                    monthChartUC.time.Labels = Labels;
                     //adding series will update and animate the chart automatically
 
 
@@ -121,36 +143,48 @@ namespace WeddingApp.ViewModels
 
 
                     Formatter = value => value.ToString();
+                    tmp = 1;
 
-                    monthChartUC.monthComboBox.SelectedIndex = now.Month;
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(monthChartUC);
+
+                    monthChartUC.monthComboBox.SelectedIndex = now.Month -1;
                     monthChartUC.yearComboBox.Visibility = Visibility.Collapsed;
+
                     break;
 
                 case "Năm":
-
-                    dashBoardindow.selectGrid.Children.Clear();
-                    dashBoardindow.selectGrid.Children.Add(yearChartUC);
-
-                    for (int i = 0; i < day; i++)
+                    TotalValue = 0;
+                    
+                    if (tmp == 1)
                     {
-                        SeriesCollection[0].Values.RemoveAt(0);
+                        for (int i = 0; i < day; i++)
+                        {
+                            SeriesCollection[0].Values.RemoveAt(0);
+                        }
                     }
 
                     //-----------------------------
                     day = 12;
 
+                    List<INVOICE> invoiceYearList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).ToList();
+                    Labels = new string[40];
                     
-
-                    Labels = new string[day];
-                    for (int i = 1; i <= day; i++)
+                    for (int i = 1; i <= 12; i++)
                     {
-                        Labels[i - 1] = "Tháng " + i.ToString();
-
+                        
+                        Labels[i - 1] = "Tháng "+ i.ToString();
+                        value = 0;
+                        foreach (var invoice in invoiceYearList)
+                        {
+                            if (invoice.PAID.Month == i) value += Convert.ToInt32(invoice.TOTALCOST);
+                        }
                         /*data = Data.Ins.DB.*/
-                        SeriesCollection[0].Values.Add(i + 0d);
+                        SeriesCollection[0].Values.Add(value + 0d);
+                        TotalValue += value;
+                        
                     }
-
-
+                    yearChartUC.time.Labels = Labels;
                     //adding series will update and animate the chart automatically
 
 
@@ -158,8 +192,10 @@ namespace WeddingApp.ViewModels
 
 
                     Formatter = value => value.ToString();
+                    tmp = 1;
                     //-----------------------------
-
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(yearChartUC);
                     yearChartUC.yearComboBox.SelectedIndex = 0;
                     yearChartUC.monthComboBox.Visibility = Visibility.Collapsed;
                     break;
@@ -208,7 +244,7 @@ namespace WeddingApp.ViewModels
             YFormatter = value => value.ToString("N0");
         }*/
 
-        private void btnExport(DashBoardUC parameter)
+        private void btnExport(ReportChartUC parameter)
         {
             CustomMessageBox.Show("Đang xuất file ", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             string filePath = "";
@@ -227,8 +263,8 @@ namespace WeddingApp.ViewModels
             // nếu đường dẫn null hoặc rỗng thì báo không hợp lệ và return hàm
             if (string.IsNullOrEmpty(filePath))
             {
-                MessageBox.Show("Đường dẫn báo cáo không hợp lệ");
-                return;
+
+                CustomMessageBox.Show("Đường dẫn không hợp lệ", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -250,7 +286,7 @@ namespace WeddingApp.ViewModels
                     ExcelWorksheet ws = p.Workbook.Worksheets[0];
 
                     // đặt tên cho sheet
-                    ws.Name = "Kteam sheet";
+                    ws.Name = "Wedding sheet";
                     // fontsize mặc định cho cả sheet
                     ws.Cells.Style.Font.Size = 11;
                     // font family mặc định cho cả sheet
@@ -274,7 +310,7 @@ namespace WeddingApp.ViewModels
                     // căn giữa
                     ws.Cells[1, 1, 1, countColHeader].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
-                    int colIndex = 1;
+                    int colIndex = 2;
                     int rowIndex = 2;
 
                     //tạo các header từ column header đã tạo từ bên trên
@@ -319,18 +355,23 @@ namespace WeddingApp.ViewModels
                          ws.Cells[rowIndex, colIndex++].Value = item.Birthday.ToShortDateString();
                      }*/
                     colIndex = 1;
+                   
                     rowIndex++;
-                    ws.Cells[rowIndex, colIndex++].Value = "abc";
-                    ws.Cells[rowIndex, colIndex++].Value = "xyz";
+                     for (int i = 1; i <= 12; i++)
+                        {
+                        ws.Cells[rowIndex++, colIndex].Value = "a"+i;
+                    }
                     //Lưu file lại
                     Byte[] bin = p.GetAsByteArray();
                     File.WriteAllBytes(filePath, bin);
                 }
-                MessageBox.Show("Xuất excel thành công!");
+
+                CustomMessageBox.Show("Xuất excel thành công", System.Windows.MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             catch //(Exception EE)
             {
-                MessageBox.Show("Có lỗi khi lưu file!");
+
+                CustomMessageBox.Show("Có lỗi khi lưu file!", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
