@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeddingApp.Views" 
+        xmlns:local="clr-namespace:WeddingApp.Views"
         mc:Ignorable="d"
         Title="EditServiceWindow"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        xmlns:uc="clr-namespace:WeddingApp.Views.UserControls" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         Height="600" Width="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -22,8 +22,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
          x:Name="editServiceWD"
-        DataContext="{StaticResource editServiceVM}"
-        >
+        DataContext="{StaticResource editServiceVM}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}"
@@ -201,7 +200,7 @@
                 VerticalAlignment="Center"
                 Margin="10 0"
                         Command="{Binding CloseButtonCommand}"
-                        CommandParameter="{Binding ElementName=editServiceVM}"></Button>
+                        CommandParameter="{Binding ElementName=editServiceWD}"></Button>
                 </StackPanel>
             </Grid>
             <Rectangle
