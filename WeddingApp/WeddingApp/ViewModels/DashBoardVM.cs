@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WeddingApp.Views.UserControls.Admin;
 
@@ -18,7 +19,8 @@ namespace WeddingApp.ViewModels
 {
     internal class DashBoardVM : ViewModelBase
     {
-        
+
+        public ICommand SwitchTabCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public ICommand btnExportCommand { get; set; }
         public int TotalProduct { get; set; }
@@ -30,16 +32,18 @@ namespace WeddingApp.ViewModels
         public Func<double, string> Formatter { get; set; }
         public Func<double, string> YFormatter { get; set; }
 
-       // private List<ReC> receipts;
+        // private List<ReC> receipts;
 
         public DashBoardVM()
         {
+
+            SwitchTabCommand = new RelayCommand<DashBoardUC>(p => true, (p) => SwitchTab(p));
             LoadedCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => Loaded(parameter));
             btnExportCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
 
             DateTime now = DateTime.Now;
             SeriesCollection = new SeriesCollection
-            
+
             {
                 new ColumnSeries
                 {
@@ -61,8 +65,35 @@ namespace WeddingApp.ViewModels
             Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
             Formatter = value => value.ToString();
         }
+        private void SwitchTab(DashBoardUC dashBoardindow)
+        {
+            int index = dashBoardindow.statusListViewUser.SelectedIndex;
+            List<ListViewItem> listViewItems = dashBoardindow.statusListViewUser.Items.Cast<ListViewItem>().ToList();
+            ListViewItem listViewItem = listViewItems[index];
+            switch (listViewItem.Name)
+            {
+                case "Ngày":
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(new CompletedInvoiceListUC());
+                    break;
+                case "Tháng":
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(new ReportChartUC());
+                    ReportChartUC rp = new ReportChartUC();
+                    
+                    break;
+                case "Năm":
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(new ReportChartUC());
+                    break;
 
-       private void Loaded(DashBoardUC parameter) { }
+            }
+
+
+
+        }
+
+        private void Loaded(DashBoardUC parameter) { }
         /* {
             TotalProduct = Data.Ins.DB.PRODUCTs.Where(x => x.ACTIVE_ == 1).Count();
             TotalCustomer = Data.Ins.DB.USERS.Count() - 1;
@@ -101,7 +132,7 @@ namespace WeddingApp.ViewModels
 
             YFormatter = value => value.ToString("N0");
         }*/
-        private void  btnExport(DashBoardUC parameter )
+        private void btnExport(DashBoardUC parameter)
         {
             CustomMessageBox.Show("Đang xuất file ", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             string filePath = "";
@@ -236,9 +267,7 @@ namespace WeddingApp.ViewModels
             {
                 MessageBox.Show("Có lỗi khi lưu file!");
             }
-
-
-
+            
 
         }
     }

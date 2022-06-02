@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WeddingApp.Views.UserControls.Admin"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              DataContext="{StaticResource dashBoardVM}"
              x:Name="dashBoardWD"
              mc:Ignorable="d"
@@ -27,7 +27,9 @@
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
 
-                    <ListViewItem>
+                    <ListViewItem
+                         x:Name="Ngày">
+                        
                         <ListViewItem.Template>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
                                 <Border Height="40" Width="150" x:Name="border" BorderBrush="Transparent" BorderThickness="0 0 0 4" Margin="20 0">
@@ -48,7 +50,8 @@
                         </ListViewItem.Template>
                     </ListViewItem>
 
-                    <ListViewItem>
+                    <ListViewItem
+                        x:Name="Tháng">
                         <ListViewItem.Template>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
                                 <Border Height="40" Width="150" x:Name="border" BorderBrush="Transparent" BorderThickness="0 0 0 4" Margin="20 0">
@@ -69,7 +72,8 @@
                         </ListViewItem.Template>
                     </ListViewItem>
 
-                    <ListViewItem>
+                    <ListViewItem
+                        x:Name="Năm">
                         <ListViewItem.Template>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
                                 <Border Height="40" Width="160" x:Name="border" BorderBrush="Transparent" BorderThickness="0 0 0 4" Margin="20 0">
@@ -89,11 +93,18 @@
                             </ControlTemplate>
                         </ListViewItem.Template>
                     </ListViewItem>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SwitchTabCommand}"
+                                                       CommandParameter="{Binding ElementName=dashBoardWD}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ListView>
             </Grid>
             <Grid
                 x:Name="selectGrid"
                 Grid.Row="1">
+                <local:CompletedInvoiceListUC></local:CompletedInvoiceListUC>
             </Grid>
         </Grid>
     </materialDesign:TransitioningContent>
