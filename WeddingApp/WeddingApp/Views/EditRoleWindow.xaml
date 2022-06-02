@@ -177,7 +177,9 @@
                         Width="100"
                         Height="35"
                         materialDesign:ButtonAssist.CornerRadius="5"
-                        Margin="350 0 0 20"/>
+                        Margin="350 0 0 20"
+                        Command="{Binding EditRoleCommand}"
+                        CommandParameter="{Binding ElementName=EditRoleWD}"/>
                 </StackPanel>
             </Grid>
 
