@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WeddingApp.Views;
 using WeddingApp.Models;
+using System.Text.RegularExpressions;
 
 namespace WeddingApp.ViewModels
 {
@@ -50,7 +51,7 @@ namespace WeddingApp.ViewModels
                 addWeddingHallTypeWindow.txtHallTypeName.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(addWeddingHallTypeWindow.txtMinPrice.Text))
+            else if (!Regex.IsMatch(addWeddingHallTypeWindow.txtMinPrice.Text, "^[0-9]"))
             {
                 CustomMessageBox.Show("Vui lòng nhập đơn giá bàn tối thiểu", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 addWeddingHallTypeWindow.txtMinPrice.Focus();

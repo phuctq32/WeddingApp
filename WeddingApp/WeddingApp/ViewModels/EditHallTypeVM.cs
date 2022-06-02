@@ -26,8 +26,16 @@ namespace WeddingApp.ViewModels
         }
         public void Edit(EditWeddingHallTypeWindow editWeddingHallTypeWindow)
         {
-            editBallroomType.MINIMUMCOST = Convert.ToInt32(editWeddingHallTypeWindow.txtMinPrice.Text);
-            Data.Ins.DB.SaveChanges();
+            int minimumcost = Convert.ToInt32(editWeddingHallTypeWindow.txtMinPrice.Text);
+            if (Data.Ins.DB.BALLROOMTYPEs.Where(x => x.MINIMUMCOST == minimumcost).Count() > 0)
+            {
+                CustomMessageBox.Show("Loại sảnh đã tồn tại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                editBallroomType.MINIMUMCOST = Convert.ToInt32(editWeddingHallTypeWindow.txtMinPrice.Text);
+                Data.Ins.DB.SaveChanges();
+            }
         }
     }
 }

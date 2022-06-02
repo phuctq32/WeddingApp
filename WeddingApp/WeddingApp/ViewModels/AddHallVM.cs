@@ -43,7 +43,11 @@ namespace WeddingApp.ViewModels
         public void Add(AddWeddingHallWindow addWeddingHallWindow)
         {
             string HallName = addWeddingHallWindow.txtHallname.Text;
-            if (Data.Ins.DB.BALLROOMs.Where(x=>x.BALLROOMNAME == HallName).Count() >0)
+            if(string.IsNullOrEmpty(HallName))
+            {
+                CustomMessageBox.Show("Vui lòng nhập tên sảnh", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+            else if (Data.Ins.DB.BALLROOMs.Where(x=>x.BALLROOMNAME == HallName).Count() >0)
             {
                 CustomMessageBox.Show("Sảnh đã tồn tại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
             }
