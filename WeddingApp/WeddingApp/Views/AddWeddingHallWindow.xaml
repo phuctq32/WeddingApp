@@ -10,6 +10,7 @@
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
         Height="600"
         Width="440"
+        DataContext="{StaticResource addHallVM}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -22,7 +23,14 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
+        x:Name="AddHallUC"
         SizeToContent="Height">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=AddHallUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
             <Grid Margin="10">
@@ -61,7 +69,7 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtFullname"
+                                    x:Name="txtHallname"
                                     TabIndex="2"
                                 materialDesign:HintAssist.Hint="Tên sảnh"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -87,7 +95,7 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtPhone"
+                                    x:Name="txtMaxtable"
                                     TabIndex="1"
                                 materialDesign:HintAssist.Hint="Số lượng bàn tối đa"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -114,7 +122,9 @@
                                         Margin="10,10,20,-18" />
                                 <ComboBox
                                       materialDesign:HintAssist.Hint="Loại sảnh"
+                                    x:Name="comboBoxType"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                    Foreground="Black"                                    
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                     Width="100">
                                     <ComboBox.ItemsPanel>
@@ -134,7 +144,7 @@
                                     VerticalAlignment="Center"
                                     Margin="10,10,20,-18" />
                                 <TextBox
-                                    x:Name="txtAddress"
+                                    x:Name="txtMinPrice"
                                     TabIndex="2"
                                 materialDesign:HintAssist.Hint="Đơn giá bàn tối thiểu"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -153,17 +163,17 @@
 
                             <Button
                                 x:Name="saveBtn"
-                            TabIndex="5"
-                            IsDefault="True"
-                            Style="{StaticResource GreenBtn}"
-                            Content="Thêm"
-                            Width="200"
-                            Height="40"
-                            Margin="0 20 0 0"
-                            FontSize="20"
-                            Foreground="White"
-                            Command="{Binding SaveInfoCommand}"
-                            CommandParameter="{Binding ElementName=changeInfoWD}">
+                                TabIndex="5"
+                                IsDefault="True"
+                                Style="{StaticResource GreenBtn}"
+                                Content="Thêm"
+                                Width="200"
+                                Height="40"
+                                Margin="0 20 0 0"
+                                FontSize="20"
+                                Foreground="White"
+                                Command="{Binding AddHallCommand}"
+                                CommandParameter="{Binding ElementName=AddHallUC}"> 
                             </Button>
                         </StackPanel>
                     </Grid>

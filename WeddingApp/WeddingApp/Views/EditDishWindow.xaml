@@ -62,8 +62,6 @@
                         IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
                         materialDesign:HintAssist.Hint="Loại của món ăn"
                         Width="256">
-                        <ComboBoxItem>Món chính</ComboBoxItem>
-                        <ComboBoxItem>Tráng miệng</ComboBoxItem>
                     </ComboBox>
                     <!--tên món ăn-->
                     <StackPanel Orientation="Horizontal" Margin="0 10">
@@ -210,7 +208,7 @@
                 VerticalAlignment="Center"
                 Margin="10 0"
                         Command="{Binding CloseButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        CommandParameter="{Binding ElementName=EditDishWindowUC}"></Button>
                 </StackPanel>
             </Grid>
             <Rectangle

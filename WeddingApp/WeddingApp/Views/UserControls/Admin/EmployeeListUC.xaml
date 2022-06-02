@@ -90,7 +90,7 @@
                                     <!--tên nhân viên-->
                                     <TextBlock
                                     Grid.Column="0"
-                                        Margin="25 15 0 10"
+                                        Margin="55,5,10,5"
                                         Text="{Binding EMPLOYEENAME}"
                                         FontSize="22"
                                         VerticalAlignment="Center"

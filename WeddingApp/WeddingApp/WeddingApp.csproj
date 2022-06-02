@@ -92,9 +92,11 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -183,10 +185,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddDishVM.cs" />
+    <Compile Include="ViewModels\AddHallTypeVM.cs" />
+    <Compile Include="ViewModels\AddHallVM.cs" />
+    <Compile Include="ViewModels\AddRoleVM.cs" />
     <Compile Include="ViewModels\AddEmployeeVM.cs" />
     <Compile Include="ViewModels\ChangeEmployeeVM.cs" />
+    <Compile Include="ViewModels\CompleteInvoiceVM.cs" />
+    <Compile Include="ViewModels\CompleteInvoiceWindowVM.cs" />
     <Compile Include="ViewModels\ControlBarVM.cs" />
     <Compile Include="ViewModels\DashBoardVM.cs" />
+    <Compile Include="ViewModels\EditHallTypeVM.cs" />
+    <Compile Include="ViewModels\EditHallVM.cs" />
+    <Compile Include="ViewModels\EditRoleVM.cs" />
+    <Compile Include="ViewModels\HallTypeListVM.cs" />
+    <Compile Include="ViewModels\InvoiceListVM.cs" />
+    <Compile Include="ViewModels\InvoiceVM.cs" />
+    <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\MenuVM.cs" />
+    <Compile Include="ViewModels\ServiceVM.cs" />
+    <Compile Include="ViewModels\RoleListVM.cs" />
+    <Compile Include="ViewModels\SetWeddingInfoVM.cs" />
     <Compile Include="ViewModels\DishListVM.cs" />
     <Compile Include="ViewModels\DishTypeVM.cs" />
     <Compile Include="ViewModels\EditDishListVM.cs" />
@@ -194,11 +214,17 @@
     <Compile Include="ViewModels\EmployeeListVM.cs" />
     <Compile Include="ViewModels\ServiceListVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WeddingDetailVM.cs" />
+    <Compile Include="ViewModels\WeddingHallVM.cs" />
+    <Compile Include="ViewModels\WeddingListVM.cs" />
     <Compile Include="Views\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddRoleWindow.xaml.cs">
+      <DependentUpon>AddRoleWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
@@ -212,6 +238,9 @@
     <Compile Include="Views\ChangeEmployeeInformationWindow.xaml.cs">
       <DependentUpon>ChangeEmployeeInformationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CompletedInvoiceWindow.xaml.cs">
+      <DependentUpon>CompletedInvoiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomMessageBoxWindow.xaml.cs">
       <DependentUpon>CustomMessageBoxWindow.xaml</DependentUpon>
     </Compile>
@@ -220,6 +249,9 @@
     </Compile>
     <Compile Include="Views\EditDishWindow.xaml.cs">
       <DependentUpon>EditDishWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditRoleWindow.xaml.cs">
+      <DependentUpon>EditRoleWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditServiceWindow.xaml.cs">
       <DependentUpon>EditServiceWindow.xaml</DependentUpon>
@@ -282,6 +314,9 @@
     <Compile Include="Views\UserControls\ServiceSelectionUC.xaml.cs">
       <DependentUpon>ServiceSelectionUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\SetWeddingInformationUC.xaml.cs">
+      <DependentUpon>SetWeddingInformationUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\WeddingHallUC.xaml.cs">
       <DependentUpon>WeddingHallUC.xaml</DependentUpon>
     </Compile>
@@ -315,6 +350,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddRoleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -331,6 +370,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CompletedInvoiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomMessageBoxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -340,6 +383,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditDishWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditRoleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -416,6 +463,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ServiceSelectionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\SetWeddingInformationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -497,10 +548,10 @@
       <LastGenOutput>WeddingDB.cs</LastGenOutput>
     </Content>
     <Content Include="WeddingDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="WeddingDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>WeddingDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>

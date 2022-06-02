@@ -1,0 +1,294 @@
+﻿<UserControl x:Class="WeddingApp.Views.UserControls.SetWeddingInfomationUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeddingApp.Views.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             x:Name="setInfoUC"
+             DataContext="{StaticResource setWeddingInfoVM}"
+             d:DesignHeight="710" d:DesignWidth="1120">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=setInfoUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock
+                        Text="Nhập thông tin"
+                        FontSize="40"
+                        Foreground="{StaticResource Orange2}"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Margin="0 20 0 0"/>
+                </Grid>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="50 0 0 0 ">
+                    <materialDesign:PackIcon
+                        Kind="Phone"
+                        Width="30"
+                        Height="30"
+                        Foreground="{StaticResource Gray}"
+                        VerticalAlignment="Center"
+                        Margin="10 20 20 0" />
+                    <TextBox
+                        x:Name="txtphone"
+                        materialDesign:HintAssist.Hint="Số điện thoại"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Foreground="Black"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                        materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        Height="50"
+                        Padding="2,0,0,0">
+                    </TextBox>
+                </StackPanel>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        Margin="50 0 0 0 ">
+                        <materialDesign:PackIcon
+                            Kind="GenderMale"
+                            Width="30"
+                            Height="30"
+                            Foreground="{StaticResource Gray}"
+                            VerticalAlignment="Center"
+                            Margin="10 20 20 0" />
+                        <TextBox
+                            x:Name="txtbride"
+                            materialDesign:HintAssist.Hint="Tên chú rể"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Foreground="Black"
+                            FontSize="20"
+                            FontWeight="Medium"
+                            materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                            Width="300"
+                            VerticalContentAlignment="Center"
+                            Height="50"
+                            Padding="2,0,0,0">
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Margin="50 0 0 0 ">
+                        <materialDesign:PackIcon
+                            Kind="GenderFemale"
+                            Width="30"
+                            Height="30"
+                            Foreground="{StaticResource Gray}"
+                            VerticalAlignment="Center"
+                            Margin="10 20 20 0" />
+                        <TextBox
+                            x:Name="txtgroom"
+                            materialDesign:HintAssist.Hint="Tên cô dâu"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Foreground="Black"
+                            FontSize="20"
+                            FontWeight="Medium"
+                            materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                            Width="300"
+                            VerticalContentAlignment="Center"
+                            Height="50"
+                            Padding="2,0,0,0">
+                        </TextBox>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel
+                    Grid.Row="3"
+                    Orientation="Horizontal"
+                    Margin="50 0 0 0 ">
+                    <materialDesign:PackIcon
+                        Kind="CalendarMonth"
+                        Width="30"
+                        Height="30"
+                        Foreground="{StaticResource Gray}"
+                        VerticalAlignment="Center"
+                        Margin="10 20 20 0" />
+                    <DatePicker
+                        x:Name="date"
+                        materialDesign:HintAssist.Hint="Chọn ngày"
+                        Foreground="Black"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                        materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                        Width="200"
+                        Height="50"
+                        VerticalContentAlignment="Center">
+                    </DatePicker>
+                </StackPanel>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    Margin="50 0 0 0 ">
+
+                        <materialDesign:PackIcon
+                        Kind="BankOutline"
+                        Width="30"
+                        Height="30"
+                        Foreground="{StaticResource Gray}"
+                        VerticalAlignment="Center"
+                        Margin="10 20 20 0" />
+                        <ComboBox
+                        x:Name="hallComboBox"
+                        materialDesign:HintAssist.Hint="Chọn sảnh"
+                        Foreground="Black"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                        materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                        Width="150"
+                        VerticalContentAlignment="Center"
+                        Height="50"
+                        Padding="2,0,0,0">
+                        </ComboBox>
+                        
+                    </StackPanel>
+                    <StackPanel
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    Margin="50 0 0 0 ">
+                        <materialDesign:PackIcon
+                        Kind="Timer"
+                        Width="30"
+                        Height="30"
+                        Foreground="{StaticResource Gray}"
+                        VerticalAlignment="Center"
+                        Margin="10 20 20 0" />
+                        <ComboBox
+                        x:Name="ShiftComboBox"
+                        materialDesign:HintAssist.Hint="Chọn ca"
+                        Foreground="Black"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                        materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                        Width="150"
+                        VerticalContentAlignment="Center"
+                        Height="50"
+                        Padding="2,0,0,0">
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        Margin="50 0 0 0 ">
+                        <materialDesign:PackIcon
+                            Kind="TableFurniture"
+                            Width="30"
+                            Height="30"
+                            Foreground="{StaticResource Gray}"
+                            VerticalAlignment="Center"
+                            Margin="10 20 20 0" />
+                        <ComboBox
+                            x:Name="comboBoxTableAmount"
+                            materialDesign:HintAssist.Hint="Số bàn"
+                            Foreground="Black"
+                            FontSize="20"
+                            FontWeight="Medium"
+                            materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                            Width="100"
+                            VerticalContentAlignment="Center"
+                            IsEnabled="False"
+                            Height="50"
+                            Padding="2,0,0,0">
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Margin="50 0 0 0 ">
+                        <materialDesign:PackIcon
+                            Kind="TableFurniture"
+                            Width="30"
+                            Height="30"
+                            Foreground="{StaticResource Gray}"
+                            VerticalAlignment="Center"
+                            Margin="10 20 20 0" />
+                        <ComboBox
+                            x:Name="comboBoxreversedTableAmount"
+                            materialDesign:HintAssist.Hint="Số bàn dự trữ"
+                            Foreground="Black"
+                            FontSize="20"
+                            FontWeight="Medium"
+                            materialDesign:HintAssist.Foreground="{StaticResource Gray}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Gray}"
+                            Width="150"
+                            VerticalContentAlignment="Center"
+                            Height="50"
+                            IsEnabled="False"
+                            Padding="2,0,0,0">
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="6">
+                    <Button
+                        Style="{StaticResource SearchBtn}"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        Margin="0 10 30 30"
+                        Height="35"
+                        Width="80"
+                        FontSize="40" 
+                        Command="{Binding NextStepCommand}"
+                        CommandParameter="{Binding ElementName=setInfoUC}">
+                        <Button.Content>
+                            <materialDesign:PackIcon Kind="ArrowRightThick" Width="30" Height="30"/>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -23,5 +23,10 @@ namespace WeddingApp.Views
         {
             InitializeComponent();
         }
+
+        private void controlBar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

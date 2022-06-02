@@ -3,20 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             DataContext="{StaticResource menuVM}"
+             x:Name="menuUC"
+             d:DesignHeight="710" d:DesignWidth="1120">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=menuUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
             <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-                <Grid>
+                <Grid Grid.Row="0">
+                    <Button
+                        Style="{StaticResource SearchBtn}"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        Margin="30 20 0 20"
+                        Height="35"
+                        Width="80"
+                        FontSize="40"
+                        Command="{Binding PreviousUCCommand}"
+                        CommandParameter="{Binding ElementName=menuUC}">
+                        <Button.Content>
+                            <materialDesign:PackIcon Kind="ArrowLeftThick" Width="30" Height="30"/>
+                        </Button.Content>
+                    </Button>
+                    <TextBlock
+                        Text="Chọn món ăn"
+                        FontSize="40"
+                        Foreground="{StaticResource Orange2}"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Margin="0 20 0 0"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="7*" />
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
 
-                    <Grid x:Name="menu" Grid.Column="0" Margin="10 20 10 0">
+                    <Grid x:Name="menu" Grid.Column="0" Margin="20 40 10 0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="120"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
@@ -53,7 +92,7 @@
                                     AcceptsReturn="True"
                                     VerticalScrollBarVisibility="Disabled">
                                             <TextBox.InputBindings>
-                                                <KeyBinding Command="{Binding Path=SearchCommand}" CommandParameter="{Binding ElementName=CreateOrderWD}" Key="Enter" />
+                                                <KeyBinding Command="{Binding Path=SearchCommand}" CommandParameter="{Binding ElementName=menuUC}" Key="Enter" />
                                             </TextBox.InputBindings>
                                         </TextBox>
                                     </DockPanel>
@@ -87,7 +126,7 @@
                             <Button
                             x:Name="BtnSearch"
                             Command="{Binding SearchCommand}"
-                            CommandParameter="{Binding ElementName=CreateOrderWD}"
+                            CommandParameter="{Binding ElementName=menuUC}"
                             Style="{StaticResource SearchBtn}"
                             Width="110"
                             Height="40"
@@ -120,8 +159,9 @@
                                     <DataTemplate>
                                         <Grid x:Name="itemProduct" Margin="10 0">
                                             <StackPanel
-                                    Width="150" Height="270"
-                                    Margin="15 20 15 0">
+                                                Width="150" 
+                                                Height="270"
+                                                Margin="15 20 15 0">
                                                 <!--hình món ăn-->
                                                 <Rectangle
                                                 Width="135"
@@ -130,7 +170,7 @@
                                                 RadiusX="10"
                                                 Margin="0">
                                                     <Rectangle.Fill>
-                                                        <ImageBrush ImageSource="{Binding IMAGE_}" Stretch="UniformToFill" />
+                                                        <ImageBrush ImageSource="{Binding DISHIMAGE}" Stretch="UniformToFill" />
                                                     </Rectangle.Fill>
                                                 </Rectangle>
                                                 <!--tên món ăn-->
@@ -142,7 +182,7 @@
                                                         Height="auto"
                                                         TextWrapping="Wrap"
                                                         VerticalAlignment="Center"
-                                                        Text="{Binding NAME_}">
+                                                        Text="{Binding DISHNAME}">
                                                 </TextBlock>
                                                 <TextBlock x:Name="active" Text="{Binding ACTIVE_}"
                                                    Visibility="Collapsed"></TextBlock>
@@ -154,7 +194,7 @@
                                                 Foreground="Black"
                                                 FontSize="17"
                                                 FontWeight="Medium"
-                                                Text="{Binding PRICE_, StringFormat=N0}"
+                                                Text="{Binding COST, StringFormat=N0}"
                                                 VerticalAlignment="Center"
                                                 Visibility="Visible">
                                                     </TextBlock>
@@ -174,12 +214,12 @@
                                                     FontSize="17"
                                                     FontWeight="Medium"
                                                     VerticalAlignment="Center">
-                                                        <TextBlock.Text>
+                                                        <!--<TextBlock.Text>
                                                             <MultiBinding>
                                                                 <Binding ElementName="price" Path="Text" />
                                                                 <Binding ElementName="discount" Path="Text" />
                                                             </MultiBinding>
-                                                        </TextBlock.Text>
+                                                        </TextBlock.Text>-->
                                                     </TextBlock>
                                                     <Border
                                                     BorderBrush="Red"
@@ -218,6 +258,7 @@
                                         materialDesign:ButtonAssist.CornerRadius="10"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalAlignment="Bottom"
+                                        Command="{Binding Source={StaticResource menuVM}, Path=AddToCartCommand}"
                                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                                 <Button.Content>
                                                     <Grid>
@@ -316,7 +357,7 @@
                                             HorizontalAlignment="Left"
                                             Margin="5 0 10 0">
                                                         <Rectangle.Fill>
-                                                            <ImageBrush ImageSource="{Binding PRODUCT.IMAGE_}" Stretch="UniformToFill" />
+                                                            <ImageBrush ImageSource="{Binding DISHIMAGE}" Stretch="UniformToFill" />
                                                         </Rectangle.Fill>
                                                     </Rectangle>
                                                     <StackPanel Orientation="Vertical" Grid.Column="1">
@@ -324,7 +365,7 @@
                                                         <TextBlock
                                                         MinHeight="45"
                                                         Width="110"
-                                                        Text="{Binding PRODUCT.NAME_}"
+                                                        Text="{Binding DISHNAME}"
                                                         TextWrapping="Wrap"
                                                         FontSize="13"
                                                         FontWeight="SemiBold"
@@ -399,20 +440,20 @@
                                                     Visibility="Collapsed" />
                                                     <TextBlock
                                                     x:Name="price"
-                                                    Text="{Binding PRODUCT.PRICE_, StringFormat=N0}"
-                                                    Visibility="Collapsed" />
+                                                    Text="{Binding COST, StringFormat=N0}"
+                                                    Visibility="Visible" />
                                                     <TextBlock
                                                 FontSize="16"
                                                 FontWeight="DemiBold"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center">
-                                                        <TextBlock.Text>
+                                                        <!--<TextBlock.Text>
                                                             <MultiBinding UpdateSourceTrigger="PropertyChanged">
                                                                 <Binding ElementName="discount" Path="Text" />
                                                                 <Binding ElementName="price" Path="Text" />
                                                                 <Binding ElementName="amount" Path="Text" />
                                                             </MultiBinding>
-                                                        </TextBlock.Text>
+                                                        </TextBlock.Text>-->
                                                     </TextBlock>
                                                 </Grid>
                                                 <Rectangle
@@ -474,7 +515,8 @@
                                 Margin="20 0 0 0" />
                                 <TextBlock
                                 Text="{Binding TotalPrice, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
-                                Foreground="Black"
+                                x:Name="txtTotalprice"
+                                    Foreground="Black"
                                 FontWeight="Medium"
                                 FontSize="16"
                                 Width="110"
@@ -483,14 +525,15 @@
                                 Margin="70 0 0 0" />
                             </StackPanel>
                             <Button
-                            Style="{StaticResource SearchBtn}"
-                            CommandParameter="{Binding ElementName=CreateOrderWD}"
-                            VerticalAlignment="Bottom"
-                            materialDesign:ButtonAssist.CornerRadius="5"
-                            Margin="10 10"
-                            Height="35"
-                            Content="Xác nhận"
-                            FontSize="20" />
+                                Style="{StaticResource SearchBtn}"
+                                Command="{Binding NextUCCommand}"
+                                CommandParameter="{Binding ElementName=menuUC}"
+                                VerticalAlignment="Bottom"
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                Margin="10 10"
+                                Height="35"
+                                Content="Xác nhận"
+                                FontSize="20" />
                         </Grid>
 
                         <Rectangle

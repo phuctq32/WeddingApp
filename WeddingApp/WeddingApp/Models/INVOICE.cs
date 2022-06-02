@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp.Models
+namespace WeddingApp
 {
     using System;
     using System.Collections.Generic;
@@ -24,6 +24,7 @@ namespace WeddingApp.Models
         public decimal REMAININGCOST { get; set; }
         public Nullable<byte> STATUS { get; set; }
         public Nullable<decimal> PENALTIES { get; set; }
+        public Nullable<decimal> TABLECOST { get; set; }
     
         public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual REPORTDETAIL REPORTDETAIL { get; set; }
