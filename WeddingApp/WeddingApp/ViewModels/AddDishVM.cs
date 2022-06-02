@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using WeddingApp.Models;
 using WeddingApp.Views;
 
@@ -35,11 +39,21 @@ namespace WeddingApp.ViewModels
         }
         public void SelectImage(AddDishWindow addDishWindow)
         {
-
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SelectedImage = openFileDialog.FileName;
+                System.Windows.Media.Imaging.BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(SelectedImage, UriKind.Absolute);
+                bitmap.EndInit();
+                addDishWindow.Image.ImageSource = bitmap;
+            }
+            
         }
         public void Add(AddDishWindow parameter)
         {
-            // Check Foodname
+            //Check Foodname
             if (string.IsNullOrEmpty(parameter.txtName.Text))
             {
                 parameter.txtName.Focus();
@@ -63,15 +77,30 @@ namespace WeddingApp.ViewModels
             DISH newProduct = new DISH();
             newProduct.DISHNAME = parameter.txtName.Text;
             newProduct.COST = Convert.ToInt32(parameter.txtPrice.Text);
-            //newProduct.TYPEID = parameter.OutlinedComboBox.SelectedIndex;
-            //newProduct.DISHID = parameter.OutlinedComboBox.SelectedIndex;
-            newProduct.DISHIMAGE = "";
+            newProduct.TYPEID = Data.Ins.DB.DISHTYPEs.Where(x=>x.TYPENAME == parameter.OutlinedComboBox.Text).SingleOrDefault().TYPEID;
+            newProduct.DISHIMAGE = "pack://application:,,,/WeddingApp;component/Resources/Images/" + Path.GetFileName(SelectedImage);
             newProduct.DISHDESCRIPTION = parameter.txtDescription.Text;
             Data.Ins.DB.DISHES.Add(newProduct);
-            //Data.Ins.DB.SaveChanges();
+            Data.Ins.DB.SaveChanges();
             parameter.addDishWindow.Close();
+            CopyImage();
+            CustomMessageBox.Show("Thêm thành công món " + parameter.txtName.Text.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
 
-            CustomMessageBox.Show("Thêm thành công món " + parameter.txtName.Text.ToString());
+
+        private void CopyImage()
+        {
+            // This will get the current WORKING directory (i.e. \bin\Debug)
+            string workingDirectory = Environment.CurrentDirectory;
+            // or: Directory.GetCurrentDirectory() gives the same result
+
+            // This will get the current PROJECT bin directory (ie ../bin/)
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
+
+            // This will get the current PROJECT directory
+            System.IO.File.Copy(SelectedImage, projectDirectory + "\\Resources\\Images\\" + Path.GetFileName(SelectedImage), true);
+
+
         }
     }
 }
