@@ -17,7 +17,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{x:Null}"
-        DataContext="{StaticResource editDishListVM}"
+        DataContext="{StaticResource editDishVM}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Foreground="{x:Null}"
         AllowsTransparency="True"
@@ -61,6 +61,7 @@
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
                         IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
                         materialDesign:HintAssist.Hint="Loại của món ăn"
+                        Foreground="Black"
                         Width="256">
                     </ComboBox>
                     <!--tên món ăn-->
@@ -75,7 +76,7 @@
                         <TextBox
                             materialDesign:HintAssist.Hint="Tên món ăn"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                            x:Name="txtName1"
+                            x:Name="txtName"
                             Foreground="Black"
                             FontSize="16"
                             FontWeight="Medium"
@@ -100,7 +101,7 @@
 
                                 materialDesign:HintAssist.Hint="Giá"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                x:Name="txtPrice1"
+                                x:Name="txtPrice"
                                 Foreground="Black"
                                 FontSize="16"
                                 FontWeight="Medium"
@@ -143,7 +144,7 @@
                 Style="{StaticResource SearchBtn}"
                     materialDesign:ButtonAssist.CornerRadius="10"
                 Command="{Binding SelectImageCommand}"
-                CommandParameter="{Binding ElementName=AddProductWD}"
+                CommandParameter="{Binding ElementName=EditDishWindowUC}"
                 ToolTip="Chọn ảnh"
                 Margin="17,0,23,-42"
                 HorizontalAlignment="Center"
@@ -196,7 +197,7 @@
                 Foreground="White"
                 VerticalAlignment="Center"
                 Margin="10 0"
-                        Command="{Binding EditDishCommand}"
+                        Command="{Binding ConfirmCommand}"
                         CommandParameter="{Binding ElementName=EditDishWindowUC}"></Button>
                     <Button
                 Style="{StaticResource GrayBtn}"

@@ -276,6 +276,7 @@
     <Compile Include="ViewModels\AddHallVM.cs" />
     <Compile Include="ViewModels\AddRoleVM.cs" />
     <Compile Include="ViewModels\AddEmployeeVM.cs" />
+    <Compile Include="ViewModels\AddServiceVM.cs" />
     <Compile Include="ViewModels\ChangeEmployeeVM.cs" />
     <Compile Include="ViewModels\CompleteInvoiceVM.cs" />
     <Compile Include="ViewModels\CompleteInvoiceWindowVM.cs" />
@@ -296,7 +297,6 @@
     <Compile Include="ViewModels\SetWeddingInfoVM.cs" />
     <Compile Include="ViewModels\DishListVM.cs" />
     <Compile Include="ViewModels\DishTypeVM.cs" />
-    <Compile Include="ViewModels\EditDishListVM.cs" />
     <Compile Include="ViewModels\EditServiceVM.cs" />
     <Compile Include="ViewModels\EmployeeListVM.cs" />
     <Compile Include="ViewModels\ServiceListVM.cs" />
@@ -306,6 +306,9 @@
     <Compile Include="ViewModels\WeddingListVM.cs" />
     <Compile Include="Views\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Admin\RoleListUC.xaml.cs">
+      <DependentUpon>RoleListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
@@ -370,8 +373,8 @@
     <Compile Include="Views\UserControls\Admin\EmployeeListUC.xaml.cs">
       <DependentUpon>EmployeeListUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Admin\RoleListUC.xaml.cs">
-      <DependentUpon>RoleListUC.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\Admin\ReportChartUC.xaml.cs">
+      <DependentUpon>ReportChartUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Admin\ServiceListUC.xaml.cs">
       <DependentUpon>ServiceListUC.xaml</DependentUpon>
@@ -514,6 +517,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Admin\EmployeeListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Admin\ReportChartUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

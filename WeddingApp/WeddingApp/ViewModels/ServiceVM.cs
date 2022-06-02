@@ -236,6 +236,28 @@ namespace WeddingApp.ViewModels
             Data.Ins.DB.SaveChanges();
             newInvoice.WEDDINGID = newWedding.WEDDINGID;
             newInvoice.USERNAME = CurrentAccount.Username;
+            if(Data.Ins.DB.REPORTDETAILs.Where(x=>x.REPORTDATE == DateTime.Now).Count() == 0)
+            {
+                if(Data.Ins.DB.SALESREPORTs.Where(x=>x.REPORTMONTH.Month == DateTime.Now.Month && x.REPORTMONTH.Year == DateTime.Now.Year).Count()==0)
+                {
+                    SALESREPORT sALESREPORT = new SALESREPORT();
+                    DateTime a = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                    sALESREPORT.REPORTMONTH = a;
+                    sALESREPORT.PAIDWEDDING = 0;
+                    sALESREPORT.BOOKEDWEDDING = 1;
+                    sALESREPORT.PROFIT = newWedding.DEPOSIT;
+                    Data.Ins.DB.SALESREPORTs.Add(sALESREPORT);
+                }
+                else
+                {
+                    REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL(); 
+                    rEPORTDETAIL.REPORTDATE = DateTime.Now;
+                    rEPORTDETAIL.BOOKEDWEDDING = 1;
+                    rEPORTDETAIL.PAIDWEDDING= 0;
+                    rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
+                    
+                }
+            }
             Data.Ins.DB.INVOICES.Add(newInvoice);
             Data.Ins.DB.SaveChanges();
         }

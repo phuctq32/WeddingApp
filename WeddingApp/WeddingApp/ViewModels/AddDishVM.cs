@@ -22,6 +22,9 @@ namespace WeddingApp.ViewModels
         public ICommand AddProductCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
+        public ICommand CloseButtonCommand { get; set; }
+
+
         public string SelectedImage;
         private string containerName = "container";
         private string connectionString = "DefaultEndpointsProtocol=https;AccountName=imagedish;AccountKey=udbl5BJAHZv8wzmuFf/jE5di0ysn9a8Z8H9ZEBCwUhnFUq8zo0mVqgSdL6Im3rKQeb7uJid2xbA62haXbZ93VA==;EndpointSuffix=core.windows.net";
@@ -31,6 +34,7 @@ namespace WeddingApp.ViewModels
             LoadedCommand = new RelayCommand<AddDishWindow>(p =>true, p => Loaded(p));
             AddProductCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => Add(parameter));
             SelectImageCommand = new RelayCommand<AddDishWindow>(p => true, p => SelectImage(p));
+            CloseButtonCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => CloseButton(parameter));
         }
         public void Loaded(AddDishWindow addDishWindow)
         {
@@ -85,7 +89,10 @@ namespace WeddingApp.ViewModels
             Data.Ins.DB.DISHES.Add(newProduct);
             Data.Ins.DB.SaveChanges();
             parameter.addDishWindow.Close();
-            UploadImage();
+            if (!string.IsNullOrEmpty(SelectedImage))
+            {
+                UploadImage();
+            }
             CustomMessageBox.Show("Thêm thành công món " + parameter.txtName.Text.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
@@ -121,6 +128,16 @@ namespace WeddingApp.ViewModels
 
             //PRODUCT product = Data.Ins.DB.PRODUCTs.Where(x => x.ID_ == Current_Product.ID_).SingleOrDefault();
             newProduct.DISHIMAGE = "https://imagedish.blob.core.windows.net/container/" + newProduct.DISHID + "." + filename[1];
+        }
+        public void CloseButton(AddDishWindow addProductWindow)
+        {
+            //if (!string.IsNullOrEmpty(IMAGE_))
+            //{
+            //    BlobClient blobClient = new BlobClient(connectionString, containerName, Current_Product.ID_ + "." + Current_Product.IMAGE_.Split('.')[5]);
+            //    blobClient.Delete();
+            SelectedImage = "";
+            //}
+            addProductWindow.Close();
         }
     }
 }

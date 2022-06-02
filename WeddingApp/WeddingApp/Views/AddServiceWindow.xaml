@@ -1,4 +1,5 @@
 ﻿<Window x:Class="WeddingApp.Views.AddServiceWindow"
+        x:Name="addServiceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,6 +15,7 @@
         Background="{x:Null}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Foreground="{x:Null}"
+        DataContext="{StaticResource addServiceVM}"
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
@@ -123,7 +125,7 @@
                 Style="{StaticResource SearchBtn}"
                     materialDesign:ButtonAssist.CornerRadius="10"
                 Command="{Binding SelectImageCommand}"
-                CommandParameter="{Binding ElementName=AddProductWD}"
+                CommandParameter="{Binding ElementName=addServiceWindow}"
                 ToolTip="Chọn ảnh"
                 Margin="17,0,23,-42"
                 HorizontalAlignment="Center"
@@ -167,17 +169,17 @@
                         Grid.ColumnSpan="2"
                         HorizontalAlignment="Right">
                     <Button
-                Style="{StaticResource GreenBtn}"
-                Content="Thêm"
-                x:Name="addbtn"
-                Width="120"
-                Height="50"
-                FontSize="20"
-                Foreground="White"
-                VerticalAlignment="Center"
-                Margin="10 0"
-                        Command="{Binding AddButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        Style="{StaticResource GreenBtn}"
+                        Content="Thêm"
+                        x:Name="addbtn"
+                        Width="120"
+                        Height="50"
+                        FontSize="20"
+                        Foreground="White"
+                        VerticalAlignment="Center"
+                        Margin="10 0"
+                        Command="{Binding AddServiceCommand}"
+                        CommandParameter="{Binding ElementName=addServiceWindow}"></Button>
                     <Button
                 Style="{StaticResource GrayBtn}"
                 Content="Huỷ"
@@ -188,7 +190,7 @@
                 VerticalAlignment="Center"
                 Margin="10 0"
                         Command="{Binding CloseButtonCommand}"
-                        CommandParameter="{Binding ElementName=AddProductWD}"></Button>
+                        CommandParameter="{Binding ElementName=addServiceWindow}"></Button>
                 </StackPanel>
             </Grid>
             <Rectangle
