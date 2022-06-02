@@ -20,7 +20,6 @@ namespace WeddingApp.ViewModels
     {
         public ICommand AddServiceCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
-        public ICommand LoadedCommand { get; set; }
         public ICommand CloseButtonCommand { get; set; }
 
         public string SelectedImage;
