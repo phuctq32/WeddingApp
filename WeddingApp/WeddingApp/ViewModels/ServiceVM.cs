@@ -23,7 +23,7 @@ namespace WeddingApp.ViewModels
         public ICommand ConfirmCommand  { get; set; }
         public ServiceSelectionUC thisUC;
         private long totalPrice;
-        private List<SERVE> Listserve;
+        private List<SERVE> serveList;
         private WEDDING newWedding = new WEDDING();
         public long TotalPrice
         {
@@ -32,6 +32,15 @@ namespace WeddingApp.ViewModels
             {
                 totalPrice = value;
                 OnPropertyChanged("TotalPrice");
+            }
+        }
+        public List<SERVE> ServeList
+        {
+            get => serveList;
+            set
+            {
+                serveList = value;
+                OnPropertyChanged(nameof(ServeList));
             }
         }
         public ServiceVM()
@@ -43,13 +52,13 @@ namespace WeddingApp.ViewModels
             CheckedCommand = new RelayCommand<CheckBox>((parameter) => { return true; }, (parameter) => Checked(parameter));
             AllCheckedCommand = new RelayCommand<ServiceSelectionUC>((parameter) => { return true; }, (parameter) => AllChecked(parameter));
             ConfirmCommand = new RelayCommand<ServiceSelectionUC>(p => true, p => Confirm(p));
-            Listserve = new List<SERVE>();
         }
         public void Loaded(ServiceSelectionUC serviceSelectionUC)
         {
             List<SERVICE> service = Data.Ins.DB.SERVICEs.ToList();
             serviceSelectionUC.ServiceList.ItemsSource = service; 
             thisUC = serviceSelectionUC;
+            ServeList = new List<SERVE>();
         }    
         public void PreviousUC()
         {
@@ -75,7 +84,7 @@ namespace WeddingApp.ViewModels
                 parameter.Text = amount.ToString();
             }
 
-            TotalPrice = GetTotalPrice(thisUC.carts);
+            TotalPrice = GetTotalPrice(ServeList);
         }
 
         private void Up(TextBlock parameter)
@@ -97,7 +106,7 @@ namespace WeddingApp.ViewModels
                 cart.AMOUNT = Convert.ToByte(amount);
                 cart.COST = cart.AMOUNT * cart.SERVICECOST;
                 parameter.Text = amount.ToString();
-                TotalPrice = GetTotalPrice(thisUC.carts);
+                TotalPrice = GetTotalPrice(ServeList);
             }
         }
         private void AllChecked(ServiceSelectionUC parameter)
@@ -111,7 +120,8 @@ namespace WeddingApp.ViewModels
                 item.IsChecked = newVal;
             }
             if(newVal)
-            { 
+            {
+                List<SERVE> temp = new List<SERVE>();
                 foreach (SERVICE item in parameter.ServiceList.Items)
                 {
                     SERVE serve = new SERVE();
@@ -119,22 +129,23 @@ namespace WeddingApp.ViewModels
                     serve.SERVICECOST = item.COST;
                     serve.AMOUNT = 1;
                     serve.COST = serve.SERVICECOST * serve.AMOUNT;
-                    parameter.carts.Items.Add(serve);
-
+                    serve.SERVICE = Data.Ins.DB.SERVICEs.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
+                    temp.Add(serve);
                 }
+                ServeList = temp;
             }
             else
             {
-                parameter.carts.Items.Clear();
+                List<SERVE> temp = new List<SERVE>();
+                temp.Clear();
+                ServeList = temp;
             }
-            TotalPrice = GetTotalPrice(parameter.carts);
-            //FoodCount = GetFoodCount(parameter.cartList);
+            TotalPrice = GetTotalPrice(ServeList);
         }
         private void Checked(CheckBox parameter)
         {
             var lv = GetAncestorOfType<ListView>(parameter);
-            var lv1 = GetAncestorOfType<ListViewItem>(parameter);
-            //FoodCount = GetFoodCount(lv);
+            var lvi = GetAncestorOfType<ListViewItem>(parameter);
 
             // Check xem nếu checked hết thì check cái ô trên cùng
             bool isAllChecked = true;
@@ -152,36 +163,36 @@ namespace WeddingApp.ViewModels
             {
                 serviceSelectionUC.selectAllCheckBox.IsChecked = true;
             }
-            SERVICE selectedService = lv1.DataContext as SERVICE;
+            SERVICE selectedService = lvi.DataContext as SERVICE;
             SERVE serve = new SERVE();
             serve.SERVICEID = selectedService.SERVICEID;
             serve.SERVICECOST = selectedService.COST;
             serve.AMOUNT = 1;
             serve.COST = serve.SERVICECOST * serve.AMOUNT;
+            serve.SERVICE = Data.Ins.DB.SERVICEs.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
             if (parameter.IsChecked == true)
             {
-                Listserve.Add(serve);
-                thisUC.carts.Items.Add(serve);
-                TotalPrice = GetTotalPrice(thisUC.carts);
+                List<SERVE> temp = new List<SERVE>();
+                ServeList.ForEach(item => temp.Add(item));
+                temp.Add(serve);
+                ServeList = temp;
             }
             else
             {
-                SERVE deleteServe = Listserve.Find(x => x.SERVICEID == serve.SERVICEID);
-                Listserve.Remove(deleteServe);
-                thisUC.carts.Items.Remove(deleteServe);
-                TotalPrice = GetTotalPrice(thisUC.carts);
+                SERVE serveToDelete = ServeList.Find(x => x.SERVICEID == serve.SERVICEID);
+                List<SERVE> temp = new List<SERVE>();
+                ServeList.ForEach(item => temp.Add(item));
+                temp.Remove(serveToDelete);
+                ServeList = temp;
             }
+            TotalPrice = GetTotalPrice(ServeList);
         }
-        private long GetTotalPrice(ListView listView)
+        private long GetTotalPrice(List<SERVE> serves)
         {
             long res = 0;
-            foreach (SERVE lvi in listView.Items)
+            foreach (var item in serves)
             {
-                //SERVE cart = lvi.DataContext as SERVE;
-                
-                    // ép kiểu Giá = số lượng * giá sản phẩm * discount
-                    res += (long)(Int32)lvi.AMOUNT * (long)(Int32)lvi.SERVICECOST;
-                
+                    res += (long)(Int32)item.AMOUNT * (long)(Int32)item.SERVICECOST;
             }
             return res;
         }
@@ -243,14 +254,14 @@ namespace WeddingApp.ViewModels
         }
         public void ServeSave(ServiceSelectionUC serviceSelectionUC)
         {
-            List<SERVE> ServiceList = new List<SERVE>();
-            foreach(SERVE item in serviceSelectionUC.ServiceList.Items)
+            foreach(SERVE item in ServeList)
             {
                 SERVE serve = new SERVE();
                 serve.SERVICEID = item.SERVICEID;
                 serve.WEDDINGID = newWedding.WEDDINGID;
                 serve.SERVICECOST = item.SERVICECOST;
                 serve.AMOUNT = item.AMOUNT;
+                serve.SERVICE = Data.Ins.DB.SERVICEs.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
                 Data.Ins.DB.SERVEs.Add(serve);
                 Data.Ins.DB.SaveChanges();
             }
