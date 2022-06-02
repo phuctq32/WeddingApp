@@ -11,14 +11,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using WeddingApp.Models;
 using WeddingApp.Views.UserControls.Admin;
 
 namespace WeddingApp.ViewModels
 {
     internal class DashBoardVM : ViewModelBase
     {
-        
+
+        public ICommand selectCommand { get; set; }
+        public ICommand SwitchTabCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public ICommand btnExportCommand { get; set; }
         public int TotalProduct { get; set; }
@@ -29,40 +33,142 @@ namespace WeddingApp.ViewModels
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
         public Func<double, string> YFormatter { get; set; }
-
-       // private List<ReC> receipts;
-
+        DateTime now = DateTime.Now;
+        // private List<ReC> receipts;
+        int month = 1;
+        int day = 0;
         public DashBoardVM()
         {
+            SwitchTabCommand = new RelayCommand<DashBoardUC>(p => true, (p) => SwitchTab(p));
             LoadedCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => Loaded(parameter));
             btnExportCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
+            selectCommand = new RelayCommand<ComboBox>((parameter) => true, (parameter) => selectMonth(parameter));
 
-            DateTime now = DateTime.Now;
             SeriesCollection = new SeriesCollection
-            
-            {
-                new ColumnSeries
-                {
-                    Title = "2015",
-                    Values = new ChartValues<double> { 10, 50, 39, 50 }
-                }
-            };
 
-            //adding series will update and animate the chart automatically
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = "2016",
-                Values = new ChartValues<double> { 11, 56, 42 }
-            });
-
-            //also adding values updates and animates the chart automatically
-            SeriesCollection[1].Values.Add(48d);
-
-            Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
-            Formatter = value => value.ToString();
+                    {
+                        new ColumnSeries
+                        {
+                            Title = "Doanh Thu",
+                            Values = new ChartValues<double> {}
+                        }
+                    };
         }
 
-       private void Loaded(DashBoardUC parameter) { }
+        private ReportChartUC monthChartUC = new ReportChartUC();
+        private ReportChartUC yearChartUC = new ReportChartUC();
+
+        private void selectMonth(ComboBox item)
+        {
+            for (int i = 0; i < day; i++)
+            {
+                SeriesCollection[0].Values.RemoveAt(0);
+            }
+            month = item.SelectedIndex+1;
+            day = DateTime.DaysInMonth(2022, month);
+            //Labels = new string[day];
+            for (int i = 1; i <= day; i++)
+            {
+                Labels[i - 1] = "Ngày " + i.ToString();
+
+                /*data = Data.Ins.DB.*/
+                SeriesCollection[0].Values.Add(i + 0d);
+            }
+
+        }
+        private void SwitchTab(DashBoardUC dashBoardindow)
+        {
+            int index = dashBoardindow.statusListViewUser.SelectedIndex;
+            List<ListViewItem> listViewItems = dashBoardindow.statusListViewUser.Items.Cast<ListViewItem>().ToList();
+            ListViewItem listViewItem = listViewItems[index];
+
+            switch (listViewItem.Name)
+            {
+                case "Ngày":
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(new CompletedInvoiceListUC());
+                    break;
+
+                case "Tháng":
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(monthChartUC);
+
+
+                    for (int i = 0; i < day; i++)
+                    {
+                        SeriesCollection[0].Values.RemoveAt(0);
+                    }
+                      
+
+                    month = now.Month;
+                    day = DateTime.DaysInMonth(2022, month);
+                    
+
+                    Labels = new string[40];
+                    for (int i = 1; i <= day; i++)
+                    {
+                        Labels[i - 1] = "Ngày " + i.ToString();
+
+                        /*data = Data.Ins.DB.*/
+                        SeriesCollection[0].Values.Add(i + 0d);
+                    }
+
+
+                    //adding series will update and animate the chart automatically
+
+
+                    //also adding values updates and animates the chart automatically
+
+
+                    Formatter = value => value.ToString();
+
+                    monthChartUC.monthComboBox.SelectedIndex = now.Month;
+                    monthChartUC.yearComboBox.Visibility = Visibility.Collapsed;
+                    break;
+
+                case "Năm":
+
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(yearChartUC);
+
+                    for (int i = 0; i < day; i++)
+                    {
+                        SeriesCollection[0].Values.RemoveAt(0);
+                    }
+
+                    //-----------------------------
+                    day = 12;
+
+                    
+
+                    Labels = new string[day];
+                    for (int i = 1; i <= day; i++)
+                    {
+                        Labels[i - 1] = "Tháng " + i.ToString();
+
+                        /*data = Data.Ins.DB.*/
+                        SeriesCollection[0].Values.Add(i + 0d);
+                    }
+
+
+                    //adding series will update and animate the chart automatically
+
+
+                    //also adding values updates and animates the chart automatically
+
+
+                    Formatter = value => value.ToString();
+                    //-----------------------------
+
+                    yearChartUC.yearComboBox.SelectedIndex = 0;
+                    yearChartUC.monthComboBox.Visibility = Visibility.Collapsed;
+                    break;
+            }
+        }
+
+        private void Loaded(DashBoardUC parameter)
+        { }
+
         /* {
             TotalProduct = Data.Ins.DB.PRODUCTs.Where(x => x.ACTIVE_ == 1).Count();
             TotalCustomer = Data.Ins.DB.USERS.Count() - 1;
@@ -101,7 +207,8 @@ namespace WeddingApp.ViewModels
 
             YFormatter = value => value.ToString("N0");
         }*/
-        private void  btnExport(DashBoardUC parameter )
+
+        private void btnExport(DashBoardUC parameter)
         {
             CustomMessageBox.Show("Đang xuất file ", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             string filePath = "";
@@ -124,17 +231,10 @@ namespace WeddingApp.ViewModels
                 return;
             }
 
-
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-
-
-
-
-
 
             try
             {
-
                 using (ExcelPackage p = new ExcelPackage())
                 {
                     // đặt tên người tạo file
@@ -212,12 +312,11 @@ namespace WeddingApp.ViewModels
                          // rowIndex tương ứng từng dòng dữ liệu
                          rowIndex++;
 
-                         //gán giá trị cho từng cell                      
+                         //gán giá trị cho từng cell
                          ws.Cells[rowIndex, colIndex++].Value = item.Name;
 
                          // lưu ý phải .ToShortDateString để dữ liệu khi in ra Excel là ngày như ta vẫn thấy.Nếu không sẽ ra tổng số :v
                          ws.Cells[rowIndex, colIndex++].Value = item.Birthday.ToShortDateString();
-
                      }*/
                     colIndex = 1;
                     rowIndex++;
@@ -228,18 +327,11 @@ namespace WeddingApp.ViewModels
                     File.WriteAllBytes(filePath, bin);
                 }
                 MessageBox.Show("Xuất excel thành công!");
-
-
-
             }
             catch //(Exception EE)
             {
                 MessageBox.Show("Có lỗi khi lưu file!");
             }
-
-
-
-
         }
     }
 }
