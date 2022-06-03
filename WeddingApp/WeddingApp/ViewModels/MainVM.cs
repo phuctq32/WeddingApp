@@ -73,6 +73,14 @@ namespace WeddingApp.ViewModels
             mainwindow1.ucWindow.Children.Clear();
             mainwindow1.ucWindow.Children.Add(NextUCs.First());
         }
+        public static void ReturnFirstPage()
+        {
+            NextUCs.Push(new ServiceSelectionUC());
+            NextUCs.Push(new MenuUC());
+            NextUCs.Push(new SetWeddingInfomationUC());
+            mainwindow1.ucWindow.Children.Clear();
+            mainwindow1.ucWindow.Children.Add(NextUCs.First());
+        }
         public static void PreviousUC()
         {
             mainwindow1.ucWindow.Children.Clear();

@@ -278,6 +278,7 @@ namespace WeddingApp.ViewModels
                 MenuSave(menuUC);
                 ServeSave(serviceSelectionUC);
                 CustomMessageBox.Show("Đặt tiệc thành công!", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Asterisk);
+                MainVM.ReturnFirstPage();
             }
         }
 
@@ -297,7 +298,8 @@ namespace WeddingApp.ViewModels
         public void InvoiceSave(ServiceSelectionUC serviceSelectionUC, MenuUC menuUC)
         {
             INVOICE newInvoice = new INVOICE();
-            newInvoice.WEDDINGCOST = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",", ""));
+            newInvoice.TABLECOST = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",", ""));
+            newInvoice.WEDDINGCOST = (decimal)newInvoice.TABLECOST * newWedding.TABLEAMOUNT;
             newInvoice.SERVICECOST = Convert.ToInt32(serviceSelectionUC.totalPrice.Text.Replace(",", ""));
             newInvoice.STATUS = 1;
             newInvoice.TOTALCOST = newInvoice.WEDDINGCOST + newInvoice.SERVICECOST;
@@ -334,8 +336,7 @@ namespace WeddingApp.ViewModels
         }
         public void MenuSave(MenuUC menuUC)
         {
-            List<MENU> menuList = new List<MENU>();
-            foreach (DISH item in menuUC.ViewListProducts.Items)
+            foreach (DISH item in menuUC.carts.Items)
             {
                 MENU menu = new MENU();
                 menu.WEDDINGID = newWedding.WEDDINGID;
@@ -354,6 +355,7 @@ namespace WeddingApp.ViewModels
                 serve.WEDDINGID = newWedding.WEDDINGID;
                 serve.SERVICECOST = item.SERVICECOST;
                 serve.AMOUNT = item.AMOUNT;
+                serve.COST = item.SERVICECOST * item.AMOUNT;
                 serve.SERVICE = Data.Ins.DB.SERVICEs.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
                 Data.Ins.DB.SERVEs.Add(serve);
                 Data.Ins.DB.SaveChanges();

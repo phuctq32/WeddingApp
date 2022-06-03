@@ -61,7 +61,7 @@
                                 Height="80"
                                 Width="720"
                                 Padding="8"
-                                UniformCornerRadius="6" Margin="5 0 0 10">
+                                UniformCornerRadius="6" Margin="5 10 0 10">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="300"></ColumnDefinition>
@@ -90,7 +90,6 @@
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
                                             Foreground="Black"
-                                            Grid.Column="2"
                                             TextWrapping="Wrap" />
                                     </Grid>
 
@@ -101,7 +100,7 @@
                                        Foreground="Black"
                                        TextWrapping="Wrap"
                                        Grid.Column="1"
-                                        Text="{Binding DISHCOST}">
+                                        Text="{Binding DISHCOST, StringFormat=N0}">
                                     </TextBlock>
                                     <!--ghi chú-->
                                     <TextBlock

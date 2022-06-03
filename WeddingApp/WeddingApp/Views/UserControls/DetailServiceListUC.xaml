@@ -105,7 +105,7 @@
                                        Foreground="Black"
                                        TextWrapping="Wrap"
                                        Grid.Column="2"
-                                            Text="{Binding SERVICECOST}">
+                                            Text="{Binding SERVICECOST, StringFormat=N0}">
                                         </TextBlock>
                                     </Grid>
                                     <Rectangle
@@ -115,7 +115,8 @@
                                 RadiusY="10"
                                 RadiusX="10"
                                 Panel.ZIndex="-2"
-                                Margin="10">
+                                Margin="10"
+                                        Effect="{StaticResource dropShadow}">
                                     </Rectangle>
                                 </Grid>
                             </DataTemplate>
