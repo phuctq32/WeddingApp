@@ -25,7 +25,7 @@
 
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight,Duration=0:0:0.5}">
         <Grid x:Name="print">
-            <uc:ControlBarUC x:Name="controlBar" Margin="18,10,2,10.4" Panel.ZIndex="99" Loaded="controlBar_Loaded"></uc:ControlBarUC>
+            <uc:ControlBarUC x:Name="controlBar" Margin="18,10,10,10.4" Panel.ZIndex="99" Loaded="controlBar_Loaded"></uc:ControlBarUC>
             <Grid>
                 <Grid>
                     <Grid.RowDefinitions>
