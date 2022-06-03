@@ -119,7 +119,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Rectangle Fill="Black" Height="1" Opacity="0.5" Grid.ColumnSpan="4" VerticalAlignment="Top" />
                                         <!--STT-->
-                                        <TextBlock  Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Index}"/>
+                                        <TextBlock  Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding SelectedIndex}"/>
                                         <!--Tên dịch vụ-->
                                         <TextBlock
                                                 Text="{Binding SERVICE.SERVICENAME}"
