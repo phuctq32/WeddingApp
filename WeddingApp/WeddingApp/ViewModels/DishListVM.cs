@@ -11,6 +11,7 @@ using WeddingApp.Views.UserControls.Admin;
 using System.Windows.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace WeddingApp.ViewModels
 {
@@ -43,18 +44,44 @@ namespace WeddingApp.ViewModels
         public ICommand EditProductCommand { get; set; } // nút sửa
         public ICommand DeleteProductCommand { get; set; }
         public ICommand CloseButtonCommand { get; set; }
+        public ICommand ToggleButtonCommand     { get; set; }
         public DishListVM ()
         {
-            LoadedCommand = new RelayCommand<DishListUC>(p => p == null ? false : true, p => Load(p));
+            LoadedCommand = new RelayCommand<DishListUC>(p =>true, p => Load(p));
             OpenAddDishListWindowCommand = new RelayCommand<DishListUC>((parameter) => { return true; }, (parameter) => OpenAddDishListWindow(parameter));
             EditProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Edit(parameter));
             DeleteProductCommand = new RelayCommand<ListViewItem>(parameter => true, parameter => Delete(parameter));
             CloseButtonCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => CloseButton(parameter));
+            ToggleButtonCommand = new RelayCommand<ListViewItem>(p => true, p => Toggle(p));
+
         }
         private void Load(DishListUC p)
         {
             ListDish = Data.Ins.DB.DISHES.ToList();
             p.ListView.ItemsSource = ListDish;
+            foreach(var item in FindVisualChildren<ToggleButton>(p.ListView))
+            {
+                var lvi = GetAncestorOfType<ListViewItem>(item);
+                DISH thisDish = lvi.DataContext as DISH;
+                if(thisDish.STATUS == 0)
+                {
+                    item.IsChecked = false;
+                }
+            }
+        }
+        public void Toggle(ListViewItem listViewItem)
+        {
+            DISH thisDIsh = listViewItem.DataContext as DISH;
+            var tb = GetVisualChild<ToggleButton>(listViewItem);
+            if (tb.IsChecked == true)
+            {
+                thisDIsh.STATUS = 1;
+            }
+            else
+            {
+                thisDIsh.STATUS = 0;
+            }
+            Data.Ins.DB.SaveChanges();
         }
         public void OpenAddDishListWindow(DishListUC parameter)
         {

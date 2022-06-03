@@ -25,6 +25,7 @@ namespace WeddingApp
         public decimal COST { get; set; }
         public string SERVICEDESCRIPTION { get; set; }
         public string SERVICEIMAGE { get; set; }
+        public Nullable<byte> STATUS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SERVE> SERVEs { get; set; }

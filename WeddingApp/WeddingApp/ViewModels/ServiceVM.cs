@@ -60,7 +60,7 @@ namespace WeddingApp.ViewModels
         public void Loaded(ServiceSelectionUC serviceSelectionUC)
         {
             thisUC = serviceSelectionUC;
-            List<SERVICE> service = Data.Ins.DB.SERVICEs.ToList();
+            List<SERVICE> service = Data.Ins.DB.SERVICEs.Where(x=>x.STATUS == 1).ToList();
             serviceSelectionUC.ServiceList.ItemsSource = service;
         }
         public void NextUC(MenuUC menuUC)

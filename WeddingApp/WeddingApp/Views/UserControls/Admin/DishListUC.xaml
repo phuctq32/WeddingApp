@@ -121,10 +121,11 @@
                                             <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                         </Button>
                                         <ToggleButton
-
-  Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
-  ToolTip="Trạng thái"
-  IsChecked="True" />
+                                            Command="{Binding Source={StaticResource dishListVM}, Path=ToggleButtonCommand}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"
+                                            Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
+                                            ToolTip="Trạng thái"
+                                            IsChecked="True" />
                                     </StackPanel>
                                 </Grid>
                                 <Rectangle

@@ -62,7 +62,7 @@ namespace WeddingApp.ViewModels
         }
         public void Loaded(MenuUC menuUC)
         {
-            List<DISH> dishList = Data.Ins.DB.DISHES.ToList();
+            List<DISH> dishList = Data.Ins.DB.DISHES.Where(x=>x.STATUS == 1).ToList();
             menuUC.ViewListProducts.ItemsSource = dishList;
             thisUC = menuUC;
             menuUC.combox.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);

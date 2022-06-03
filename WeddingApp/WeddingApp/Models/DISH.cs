@@ -26,6 +26,7 @@ namespace WeddingApp
         public string DISHDESCRIPTION { get; set; }
         public string DISHIMAGE { get; set; }
         public int TYPEID { get; set; }
+        public Nullable<byte> STATUS { get; set; }
     
         public virtual DISHTYPE DISHTYPE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

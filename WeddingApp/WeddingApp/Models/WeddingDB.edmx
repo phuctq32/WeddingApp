@@ -33,6 +33,7 @@
           <Property Name="DISHDESCRIPTION" Type="ntext" />
           <Property Name="DISHIMAGE" Type="varchar" MaxLength="256" />
           <Property Name="TYPEID" Type="int" Nullable="false" />
+          <Property Name="STATUS" Type="tinyint" />
         </EntityType>
         <EntityType Name="DISHTYPE">
           <Key>
@@ -148,6 +149,7 @@
           <Property Name="COST" Type="money" Nullable="false" />
           <Property Name="SERVICEDESCRIPTION" Type="ntext" />
           <Property Name="SERVICEIMAGE" Type="varchar" MaxLength="256" />
+          <Property Name="STATUS" Type="tinyint" />
         </EntityType>
         <EntityType Name="SHIFTS">
           <Key>
@@ -454,6 +456,7 @@
           <Property Name="TYPEID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DISHTYPE" Relationship="Self.FK_DISHED_TYPEID" FromRole="DISHES" ToRole="DISHTYPE" />
           <NavigationProperty Name="MENUs" Relationship="Self.FK_MENU_DISHID" FromRole="DISHES" ToRole="MENU" />
+          <Property Name="STATUS" Type="Byte" />
         </EntityType>
         <EntityType Name="DISHTYPE">
           <Key>
@@ -588,6 +591,7 @@
           <Property Name="SERVICEDESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SERVICEIMAGE" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SERVEs" Relationship="Self.FK_SERVE_SERVICEID" FromRole="SERVICE" ToRole="SERVE" />
+          <Property Name="STATUS" Type="Byte" />
         </EntityType>
         <EntityType Name="SHIFT">
           <Key>
@@ -908,6 +912,7 @@
           <EntitySetMapping Name="DISHES">
             <EntityTypeMapping TypeName="WeddingDBModel.DISH">
               <MappingFragment StoreEntitySet="DISHES">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 <ScalarProperty Name="DISHID" ColumnName="DISHID" />
                 <ScalarProperty Name="DISHNAME" ColumnName="DISHNAME" />
                 <ScalarProperty Name="COST" ColumnName="COST" />
@@ -1036,6 +1041,7 @@
           <EntitySetMapping Name="SERVICEs">
             <EntityTypeMapping TypeName="WeddingDBModel.SERVICE">
               <MappingFragment StoreEntitySet="SERVICE">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 <ScalarProperty Name="SERVICEID" ColumnName="SERVICEID" />
                 <ScalarProperty Name="SERVICENAME" ColumnName="SERVICENAME" />
                 <ScalarProperty Name="COST" ColumnName="COST" />
