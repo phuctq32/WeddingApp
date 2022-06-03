@@ -19,7 +19,6 @@ namespace WeddingApp.ViewModels
         private WEDDING newWedding = new WEDDING();
 
         public ICommand LoadedCommand { get; set; }
-        public ICommand PreviousUCCommand { get; set; }
         public ICommand CheckedCommand { get; set; }
         public ICommand AllCheckedCommand { get; set; }
         public ICommand DownCommand { get; set; }
@@ -48,24 +47,20 @@ namespace WeddingApp.ViewModels
         public ServiceVM()
         {
             LoadedCommand = new RelayCommand<ServiceSelectionUC>(p => true, p => Loaded(p));
-            PreviousUCCommand = new RelayCommand<ServiceSelectionUC>(p => true, p => PreviousUC());
             DownCommand = new RelayCommand<TextBlock>(p => true, p => Down(p));
             UpCommand = new RelayCommand<TextBlock>(p => true, p => Up(p));
             CheckedCommand = new RelayCommand<CheckBox>((parameter) => { return true; }, (parameter) => Checked(parameter));
             AllCheckedCommand = new RelayCommand<ServiceSelectionUC>((parameter) => { return true; }, (parameter) => AllChecked(parameter));
             ConfirmCommand = new RelayCommand<ServiceSelectionUC>(p => true, p => Confirm(p));
             DeleteCartCommand = new RelayCommand<ListViewItem>(p => p == null ? false : true, (p) => DeleteCart(p));
+            ServeList = new List<SERVE>();
         }
         public void Loaded(ServiceSelectionUC serviceSelectionUC)
         {
             List<SERVICE> service = Data.Ins.DB.SERVICEs.ToList();
             serviceSelectionUC.ServiceList.ItemsSource = service;
-            ServeList = new List<SERVE>();
         }    
-        public void PreviousUC()
-        {
-            MainVM.PreviousUC();
-        }
+        
         private void Down(TextBlock parameter)
         {
             short amount = short.Parse(parameter.Text.ToString());

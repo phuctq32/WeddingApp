@@ -26,7 +26,8 @@ namespace WeddingApp.ViewModels
         public ICommand HoverItemCommand { get; set; }
         public ICommand CancelHoverItemCommand { get; set; }
         public ICommand DeleteCartCommand { get; set; }
-        
+        public ICommand PreviousUCCommand1 { get; set; }
+
         public List<DISH> SelectedDishes
         {
             get => selectedDishes;
@@ -57,7 +58,9 @@ namespace WeddingApp.ViewModels
             SearchCommand = new RelayCommand<MenuUC>(p => true, p => Search(p));
             HoverItemCommand = new RelayCommand<Button>((paramter) => paramter == null ? false : true, (parameter) => HoverItem(parameter));
             CancelHoverItemCommand = new RelayCommand<Button>((paramter) => paramter == null ? false : true, (parameter) => CancelHoverItem(parameter));
-            DeleteCartCommand = new RelayCommand<ListViewItem>(p => p == null ? false : true, (p) => DeleteCart(p)); 
+            DeleteCartCommand = new RelayCommand<ListViewItem>(p => p == null ? false : true, (p) => DeleteCart(p));
+            PreviousUCCommand1 = new RelayCommand<ServiceSelectionUC>(p => true, p => PreviousUC1());
+            SelectedDishes = new List<DISH>();
         }
         public void Loaded(MenuUC menuUC)
         {
@@ -65,7 +68,23 @@ namespace WeddingApp.ViewModels
             menuUC.ViewListProducts.ItemsSource = dishList;
             thisUC = menuUC;
             menuUC.combox.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
-            SelectedDishes = new List<DISH>();
+        }
+        public void PreviousUC1()
+        {
+            MainVM.PreviousUC();
+            List<DISH> temp = new List<DISH>();
+            SelectedDishes.ForEach(dish => temp.Add(dish));
+            SelectedDishes = temp;
+            foreach (var lvi in FindVisualChildren<ListViewItem>(thisUC.ViewListProducts))
+            {
+                DISH dish = lvi.DataContext as DISH;
+                if (SelectedDishes.Contains(dish))
+                {
+                    Button button = GetVisualChild<Button>(lvi);
+                    button.IsEnabled = false;
+                }
+            }
+
         }
         public void SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
