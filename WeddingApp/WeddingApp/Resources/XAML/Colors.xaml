@@ -4,8 +4,8 @@
     <SolidColorBrush x:Key="GrayBackground" Color="#e0f2f1"></SolidColorBrush>
     <SolidColorBrush x:Key="DarkGreen" Color="#2e7d3e"></SolidColorBrush>
     <SolidColorBrush x:Key="LightGreen" Color="#1ed760"></SolidColorBrush>
-    <SolidColorBrush x:Key="Orange1" Color="#ff6f00"></SolidColorBrush>
-    <SolidColorBrush x:Key="Orange2" Color="#ff8f00"></SolidColorBrush>
-    <SolidColorBrush x:Key="Orange3" Color="#f9a825"></SolidColorBrush>
-    <SolidColorBrush x:Key="Orange4" Color="#ffcc80"></SolidColorBrush>
+    <SolidColorBrush x:Key="Orange1" Color="#389ce7"></SolidColorBrush>
+    <SolidColorBrush x:Key="Orange2" Color="#2d9bf7"></SolidColorBrush>
+    <SolidColorBrush x:Key="Orange3" Color="#4fc3f7"></SolidColorBrush>
+    <SolidColorBrush x:Key="Orange4" Color="#82d4fa"></SolidColorBrush>
 </ResourceDictionary>

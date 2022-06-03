@@ -29,7 +29,7 @@
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Left"
                         materialDesign:ButtonAssist.CornerRadius="5"
-                    Command="{Binding PreviousUCCommand}"
+                    Command="{Binding Source={StaticResource menuVM}, Path=PreviousUCCommand1}"
                     CommandParameter="{Binding ElementName=ServiceUC}"
                         Margin="30 20 0 20"
                         Height="35"
@@ -254,7 +254,7 @@
                                                     <!--tên món ăn-->
                                                     <TextBlock
                                                         MinHeight="45"
-                                                        Width="110"
+                                                        Width="auto"
                                                         Text="{Binding SERVICE.SERVICENAME}"
                                                         TextWrapping="Wrap"
                                                         FontSize="14"
