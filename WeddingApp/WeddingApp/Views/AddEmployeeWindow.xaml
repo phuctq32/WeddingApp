@@ -29,8 +29,8 @@
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
             <Grid>
-                <uc:ControlBarUC Margin="0,-40,0,0"></uc:ControlBarUC>
-                <StackPanel>
+                <uc:ControlBarUC Margin="0,10,10,0"></uc:ControlBarUC>
+                <StackPanel Margin="0 30 0 0">
                     <!--nhập thông tin đăng ký-->
                     <!--nhập thông tin đăng ký-->
                     <Label
@@ -258,7 +258,7 @@
             RadiusX="10"
             Panel.ZIndex="-2"
             Effect="{StaticResource dropShadow}"
-            Margin="10,0,10,10">
+            Margin="10,10,10,50">
             </Rectangle>
         </Grid>
     </materialDesign:TransitioningContent>

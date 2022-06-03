@@ -31,7 +31,7 @@
     </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid x:Name="print">
-            <uc:ControlBarUC x:Name="controlBar" Margin="10" Panel.ZIndex="99"></uc:ControlBarUC>
+            <uc:ControlBarUC x:Name="controlBar" Margin="10" ></uc:ControlBarUC>
             <Grid Width="790" Margin="0 0 0 20">
                 <Grid>
                     <Grid.RowDefinitions>

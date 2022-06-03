@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeddingApp.Views"
         mc:Ignorable="d"
-        Title="ChangeEmployeeInformationWindow" 
+        Title="ChangeEmployeeInformationWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
-        Height="780"
+        Height="auto"
         Width="440"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -34,32 +34,27 @@
     </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
         <Grid>
-            <Grid Margin="10">
-                <uc:ControlBarUC Margin="0,-40,0,0"></uc:ControlBarUC>
-                <StackPanel>
-                    <!--nhập thông tin đăng ký-->
-                    <!--nhập thông tin đăng ký-->
-                    <!--nhập thông tin đăng ký-->
-                    <!--nhập thông tin đăng ký-->
-                    <!--nhập thông tin đăng ký-->
+            <Grid>
+                <uc:ControlBarUC Margin="0,10,10,0"></uc:ControlBarUC>
+                <StackPanel Margin="0 30 0 0">
                     <!--nhập thông tin đăng ký-->
                     <!--nhập thông tin đăng ký-->
                     <Label
                 x:Name="lblAddEmployee"
-                Content="Thêm nhân viên"
+                Content="Thay đổi thông tin"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Foreground="{StaticResource Orange1}"
                 Padding="0"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                FontSize="40"
+                FontSize="36"
                 FontWeight="Bold"
                 Margin="60,0,60,25" Height="46" />
                     <!--nhập thông tin đăng ký-->
                     <Grid
                         x:Name="grdInformation"
-                        Margin="10 50"
+                        Margin="10 50 10 0"
                         VerticalAlignment="Stretch"
                         HorizontalAlignment="Center"
                         Visibility="Visible">
@@ -90,11 +85,11 @@
                                 Width="250"
                                 VerticalContentAlignment="Center"
                                 Height="50"
-                                Padding="2,0,0,0"/>
+                                Padding="2,0,0,0" />
                             </StackPanel>
                             <!--Tên đăng nhập-->
                             <StackPanel x:Name="usernameStack"
-                                Orientation="Horizontal" Margin="0 20">
+                                Orientation="Horizontal" Margin="0 10">
                                 <materialDesign:PackIcon
                                         Kind="AccountCircle"
                                         Width="30"
@@ -116,10 +111,10 @@
                                     Width="250"
                                     VerticalContentAlignment="Center"
                                     Height="50"
-                                    Padding="2,0,0,0"/>
+                                    Padding="2,0,0,0" />
                             </StackPanel>
                             <!--password-->
-                            <StackPanel Orientation="Horizontal" Margin="0 20">
+                            <StackPanel Orientation="Horizontal" Margin="0 10">
                                 <materialDesign:PackIcon
                                     Kind="Password"
                                     Width="30"
@@ -140,17 +135,17 @@
                                     Height="50"
                                     FontSize="16"
                                     FontWeight="Medium"
-                                    Padding="2,0,0,0" >
+                                    Padding="2,0,0,0">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="PasswordChanged">
-                                            <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
-                                                   CommandParameter="{Binding ElementName=PasswordBox}"/>
+                                            <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                   CommandParameter="{Binding ElementName=PasswordBox}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </PasswordBox>
                             </StackPanel>
                             <!--repassword-->
-                            <StackPanel Orientation="Horizontal" Margin="0 20">
+                            <StackPanel Orientation="Horizontal" Margin="0 10">
                                 <materialDesign:PackIcon
                                     Kind="Password"
                                     Width="30"
@@ -171,18 +166,18 @@
                                     Height="50"
                                     FontSize="16"
                                     FontWeight="Medium"
-                                    Padding="2,0,0,0" >
+                                    Padding="2,0,0,0">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="PasswordChanged">
-                                            <i:InvokeCommandAction Command="{Binding RePasswordChangedCommand}" 
-                                                   CommandParameter="{Binding ElementName=RePasswordBox}"/>
+                                            <i:InvokeCommandAction Command="{Binding RePasswordChangedCommand}"
+                                                   CommandParameter="{Binding ElementName=RePasswordBox}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </PasswordBox>
                             </StackPanel>
                             <!--lương-->
                             <!-- chức vụ -->
-                            <StackPanel Orientation="Horizontal" Margin="0 20">
+                            <StackPanel Orientation="Horizontal" Margin="0 10">
                                 <materialDesign:PackIcon
                                     Kind="Money"
                                     Width="30"
@@ -213,7 +208,7 @@
                                 </ComboBox>
                             </StackPanel>
                             <!--địa chỉ-->
-                            <StackPanel Orientation="Horizontal" Margin="0 20">
+                            <StackPanel Orientation="Horizontal" Margin="0 10">
                                 <materialDesign:PackIcon
                                     Kind="Money"
                                     Width="30"
@@ -235,10 +230,10 @@
                                 Width="250"
                                 VerticalContentAlignment="Center"
                                 Height="50"
-                                Padding="2,0,0,0"/>
+                                Padding="2,0,0,0" />
                             </StackPanel>
                             <!--ngày vào làm-->
-                            <StackPanel Orientation="Horizontal" Margin="20 20">
+                            <StackPanel Orientation="Horizontal" Margin="20 10">
                                 <DatePicker Foreground="Black"
                                             x:Name="txtDate"
                                   SelectedDate="{Binding Date, Mode=TwoWay}"
@@ -257,7 +252,7 @@
                             FontSize="20"
                             Foreground="White"
                             Command="{Binding ChangeEmployeeCommand}"
-                            CommandParameter="{Binding ElementName=ChangeEmployeeWD}"/>
+                            CommandParameter="{Binding ElementName=ChangeEmployeeWD}" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -271,7 +266,7 @@
             RadiusX="10"
             Panel.ZIndex="-2"
             Effect="{StaticResource dropShadow}"
-            Margin="10,-31,10,10">
+            Margin="10 10 10 50">
             </Rectangle>
         </Grid>
     </materialDesign:TransitioningContent>
