@@ -8,8 +8,7 @@
              xmlns:local="clr-namespace:WeddingApp.Views.UserControls.Admin" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              MinHeight="120" Width="1110"
-              DataContext="{StaticResource employeeListVM}"
-             >
+              DataContext="{StaticResource employeeListVM}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}"
@@ -66,7 +65,7 @@
                     Grid.Column="3"
                     Margin="0 10 0 0"
                     Command="{Binding OpenAddEmployeeWindowCommand}"
-                    CommandParameter="{Binding ElementName=employeeListUC}"/>
+                    CommandParameter="{Binding ElementName=employeeListUC}" />
                 </Grid>
                 <!--header-->
 
@@ -74,8 +73,7 @@
                 <ListView x:Name="ListView"
                           Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          ItemsSource="{Binding ListEmployee, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
-                    >
+                          ItemsSource="{Binding ListEmployee, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -116,7 +114,7 @@
                                     Foreground="Black"
                                     FontSize="19"
                                     FontWeight="Medium"
-                                    Text="{Binding STARTWORKING, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding STARTWORKING, StringFormat={} {0:dd/MM/yyyy}, UpdateSourceTrigger=PropertyChanged}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
                                     </TextBlock>
@@ -129,7 +127,7 @@
                                           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                              Command="{Binding Source ={StaticResource employeeListVM}, Path=OpenChangeEmployeeInformationWindowCommand}"
                                           CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
-                                            
+
                                             <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                         </Button>
                                         <Button
@@ -137,8 +135,7 @@
                                           ToolTip="Xoá nhân viên"
                                           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                              Command="{Binding Source ={StaticResource employeeListVM}, Path=DeleteEmployeeCommand}"
-                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"
-                                            >
+                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                             <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
                                         </Button>
                                     </StackPanel>
@@ -155,7 +152,7 @@
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    
+
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="Background" Value="Transparent" />

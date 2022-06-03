@@ -278,6 +278,7 @@ namespace WeddingApp.ViewModels
                 MenuSave(menuUC);
                 ServeSave(serviceSelectionUC);
                 CustomMessageBox.Show("Đặt tiệc thành công!", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Asterisk);
+                MainVM.ReturnFirstPage();
             }
         }
 
@@ -354,6 +355,7 @@ namespace WeddingApp.ViewModels
                 serve.WEDDINGID = newWedding.WEDDINGID;
                 serve.SERVICECOST = item.SERVICECOST;
                 serve.AMOUNT = item.AMOUNT;
+                serve.COST = item.SERVICECOST * item.AMOUNT;
                 serve.SERVICE = Data.Ins.DB.SERVICEs.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
                 Data.Ins.DB.SERVEs.Add(serve);
                 Data.Ins.DB.SaveChanges();
