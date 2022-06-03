@@ -50,6 +50,7 @@ namespace WeddingApp.ViewModels
         int month = 1;
         int day = 1;
         int tmp = 0;
+        int[] arr = new int[32];
         public DashBoardVM()
         {
             SwitchTabCommand = new RelayCommand<DashBoardUC>(p => true, (p) => SwitchTab(p));
@@ -85,7 +86,9 @@ namespace WeddingApp.ViewModels
                 /*data = Data.Ins.DB.*/
                 SeriesCollection[0].Values.Add(value + 0d);
                 TotalValue += value;
+                arr[i - 1] = value;
                 value = 0;
+                
 
             }
         }
@@ -134,10 +137,6 @@ namespace WeddingApp.ViewModels
                     setTotalInMonth(month);
 
                     monthChartUC.time.Labels = Labels;
-                    //adding series will update and animate the chart automatically
-
-
-                    //also adding values updates and animates the chart automatically
 
 
                     Formatter = value => value.ToString();
@@ -163,11 +162,10 @@ namespace WeddingApp.ViewModels
                     day = 12;
 
                     List<INVOICE> invoiceYearList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).ToList();
-                    TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).Count();
+                    TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year  ).Count();
                     TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).Count();
 
                     Labels = new string[40];
-
                     for (int i = 1; i <= 12; i++)
                     {
                         
@@ -180,14 +178,11 @@ namespace WeddingApp.ViewModels
                         /*data = Data.Ins.DB.*/
                         SeriesCollection[0].Values.Add(value + 0d);
                         TotalValue += value;
-                        
+                        arr[i - 1] = value;
+
                     }
                     yearChartUC.time.Labels = Labels;
-                    //adding series will update and animate the chart automatically
-
-
-                    //also adding values updates and animates the chart automatically
-
+                    
 
                     Formatter = value => value.ToString();
                     tmp = 1;
@@ -241,7 +236,7 @@ namespace WeddingApp.ViewModels
 
             YFormatter = value => value.ToString("N0");
         }*/
-
+       
         private void btnExport(ReportChartUC parameter)
         {
             CustomMessageBox.Show("Đang xuất file ", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -302,71 +297,88 @@ namespace WeddingApp.ViewModels
                     // merge các column lại từ column 1 đến số column header
                     // gán giá trị cho cell vừa merge là Thống kê thông tni User Kteam
                     ws.Cells[1, 1].Value = "Báo cáo doanh thu  Wedding App";
-                    ws.Cells[1, 1, 1, countColHeader].Merge = true;
+                    ws.Cells[1, 1, 2, 4].Merge = true;
                     // in đậm
-                    ws.Cells[1, 1, 1, countColHeader].Style.Font.Bold = true;
+                    ws.Cells[1, 1, 2, 2].Style.Font.Bold = true;
                     // căn giữa
-                    ws.Cells[1, 1, 1, countColHeader].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    ws.Cells[1, 1, 2, 2].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    ws.Cells[1, 1, 2, 2].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                    ws.Cells[5, 1].Value = "Thời Gian";
+                    ws.Cells[5, 1].Style.Font.Bold = true;
+                    ws.Cells[5, 2].Value = "Doanh Thu";
+                    ws.Cells[5, 2].Style.Font.Bold = true;
 
-                    int colIndex = 2;
-                    int rowIndex = 2;
+                    ws.Cells[5, 6].Value = "Tổng Doanh Thu : ";
+                    ws.Cells[5, 8].Value =TotalValue;
+
+                    ws.Cells[5, 6, 5, 7].Merge = true;
+                    ws.Cells[6, 6].Value = "Số Đơn Hàng : ";
+                    ws.Cells[6, 8].Value =  TotalReceipt;
+                    ws.Cells[6, 6, 6, 7].Merge = true;
+                    ws.Cells[7, 6].Value = "Số Khách Hàng: ";
+                    ws.Cells[7, 8].Value = TotalCustomer;
+                    ws.Cells[7, 6, 7, 7].Merge = true;
+
+
 
                     //tạo các header từ column header đã tạo từ bên trên
-                    foreach (var item in arrColumnHeader)
+                    for (int i = 0; i < day; i++)
                     {
-                        var cell = ws.Cells[rowIndex, colIndex];
-
-                        //set màu thành gray
-                        var fill = cell.Style.Fill;
-                        fill.PatternType = ExcelFillStyle.Solid;
-                        //fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
-
-                        //căn chỉnh các border
-                        var border = cell.Style.Border;
-                        border.Bottom.Style =
-                            border.Top.Style =
-                            border.Left.Style =
-                            border.Right.Style = ExcelBorderStyle.Thin;
-
-                        //gán giá trị
-                        cell.Value = item;
-
-                        colIndex++;
-                    }
-
-                    // lấy ra danh sách UserInfo từ ItemSource của DataGrid
-                    /* List<UserInfo> userList = dtgExcel.ItemsSource.Cast<UserInfo>().ToList();
-
-                     // với mỗi item trong danh sách sẽ ghi trên 1 dòng
-                     foreach (var item in userList)
-                     {
-                         // bắt đầu ghi từ cột 1. Excel bắt đầu từ 1 không phải từ 0
-                         colIndex = 1;
-
-                         // rowIndex tương ứng từng dòng dữ liệu
-                         rowIndex++;
-
-                         //gán giá trị cho từng cell
-                         ws.Cells[rowIndex, colIndex++].Value = item.Name;
-
-                         // lưu ý phải .ToShortDateString để dữ liệu khi in ra Excel là ngày như ta vẫn thấy.Nếu không sẽ ra tổng số :v
-                         ws.Cells[rowIndex, colIndex++].Value = item.Birthday.ToShortDateString();
-                     }*/
-                    colIndex = 1;
-                   
-                    rowIndex++;
-                     for (int i = 1; i <= 12; i++)
                         {
-                        ws.Cells[rowIndex++, colIndex].Value = "a"+i;
+                            var cell = ws.Cells[i+6, 2];
+
+                            //set màu thành gray
+                            var fill = cell.Style.Fill;
+                            fill.PatternType = ExcelFillStyle.Solid;
+                            fill.BackgroundColor.SetColor(System.Drawing.Color.YellowGreen);
+
+                            //căn chỉnh các border
+                            var border = cell.Style.Border;
+                            border.Bottom.Style =
+                                border.Top.Style =
+                                border.Left.Style =
+                                border.Right.Style = ExcelBorderStyle.Thick;
+
+                            //gán giá trị
+                            cell.Value = arr[i]; 
+                        }
                     }
+                    
+                    for (int i = 0; i < day; i++)
+                    {
+                        {
+                            var cell = ws.Cells[i+6, 1];
+
+                            //set màu thành gray
+                            var fill = cell.Style.Fill;
+                            fill.PatternType = ExcelFillStyle.Solid;
+                            fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
+
+                            //căn chỉnh các border
+                            var border = cell.Style.Border;
+                            border.Bottom.Style =
+                                border.Top.Style =
+                                border.Left.Style =
+                                border.Right.Style = ExcelBorderStyle.Thick;
+
+                            //gán giá trị
+                            if (day > 20)
+                                cell.Value = "Ngày " + (i + 1);
+                            else
+                                cell.Value = "Tháng " + (i + 1);
+
+                        }
+                    }
+
+
                     //Lưu file lại
-                    Byte[] bin = p.GetAsByteArray();
+                    Byte[] bin  = p.GetAsByteArray();
                     File.WriteAllBytes(filePath, bin);
                 }
 
                 CustomMessageBox.Show("Xuất excel thành công", System.Windows.MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-            catch //(Exception EE)
+            catch (Exception)
             {
 
                 CustomMessageBox.Show("Có lỗi khi lưu file!", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);

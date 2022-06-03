@@ -62,7 +62,7 @@
                 <!--list item-->
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      x:Name="ListView" d:ItemsSource="{d:SampleData ItemCount=5}">
+                      x:Name="ListView">
                     <!--ItemsSource="{Binding Source={StaticResource dishListVM}, Path=ListDish, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
 
                     <ListView.ItemTemplate>
