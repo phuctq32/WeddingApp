@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ namespace WeddingApp.ViewModels
     {
         
         public ICommand ChangeEmployeeCommand { get; set; }
+
+
+        public ICommand selectCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
         public ICommand RePasswordChangedCommand { get; set; }
@@ -54,17 +58,28 @@ namespace WeddingApp.ViewModels
         {
             get => date; set { date = value; OnPropertyChanged(); }
         }
-
         public ChangeEmployeeVM()
         {
-            
+
             //LoadedCommand = new RelayCommand<ChangeEmployeeInformationWindow>(parameter => true, parameter => Loaded(parameter));
+            selectCommand = new RelayCommand<ComboBox>((parameter) => true, (parameter) => Select(parameter));
             ChangeEmployeeCommand = new RelayCommand<ChangeEmployeeInformationWindow>((parameter) => { return true; }, (parameter) => SaveChangesEmployee(parameter));
             PasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { Password = parameter.Password; });
             RePasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { RePassword = parameter.Password; });
+            
+        }
+
+        
+            private void Select(ComboBox item)
+        {
+
+            if (item.SelectedIndex == 0)
+                Roleid = "NV";
+            else
+                if (item.SelectedIndex == 1)
+                Roleid = "GD";
 
         }
-        
         public void SaveChangesEmployee(ChangeEmployeeInformationWindow parameter)
         {
 
@@ -81,11 +96,11 @@ namespace WeddingApp.ViewModels
 
 
             //Check Password
-            if (!string.IsNullOrEmpty(parameter.PasswordBox.Password))
+            if (string.IsNullOrEmpty(parameter.PasswordBox.Password))
             {
                 parameter.PasswordBox.Focus();
                 parameter.PasswordBox.Password = "";
-                //CustomMessageBox.Show("Mật khẩu trống", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show("Mật khẩu trống", MessageBoxButton.OK, MessageBoxImage.Warning);
                 employee.PASSWORD = Password;
                 return;
             }
@@ -124,13 +139,17 @@ namespace WeddingApp.ViewModels
                 CustomMessageBox.Show("Lương chỉ được nhập số!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            string passEncode = MD5Hash(Base64Encode(Password));
 
-    
             try
             {
+               
+
                 //try to update database
                 employee.EMPLOYEENAME = parameter.txtEmployeeName.Text;
                 employee.USERNAME = parameter.txtUsername.Text;
+                employee.PASSWORD = passEncode;
+                employee.STARTWORKING = Date;
                 employee.SALARY = Convert.ToInt32(parameter.txtSalary.Text);
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Thay đổi thành công!", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -140,6 +159,25 @@ namespace WeddingApp.ViewModels
                 CustomMessageBox.Show("Thay đổi không thành công!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             parameter.Close();
+        }
+
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
+        public static string MD5Hash(string input)
+        {
+            StringBuilder hash = new StringBuilder();
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
+
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hash.Append(bytes[i].ToString("x2"));
+            }
+            return hash.ToString();
         }
     }
     

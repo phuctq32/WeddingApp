@@ -197,9 +197,17 @@
                                     Width="150"
                                     VerticalContentAlignment="Center"
                                     Height="50"
-                                    IsEnabled="False"
+                                    IsEnabled="True"
                                     Padding="2,8,0,0"
                                     ItemsSource="{Binding}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding selectCommand}"
+                                        CommandParameter="{Binding ElementName=comboBoxRoleList}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <ComboBoxItem>Nhân Viên</ComboBoxItem>
+                                    <ComboBoxItem>Quản lý</ComboBoxItem>
                                     <ComboBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <VirtualizingStackPanel />
@@ -236,10 +244,13 @@
                             <StackPanel Orientation="Horizontal" Margin="20 10">
                                 <DatePicker Foreground="Black"
                                             x:Name="txtDate"
-                                  SelectedDate="{Binding Date, Mode=TwoWay}"
+                                  SelectedDate="{Binding Date, Mode=TwoWay,StringFormat={} {0:dd/MM/yyyy}}"
+                                  
                                   Width="250"
                                   materialDesign:HintAssist.Hint="Chọn ngày vào làm"
-                                  Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                  Style="{StaticResource MaterialDesignOutlinedDatePicker}" >
+                                    
+                                </DatePicker>
                             </StackPanel>
                             <Button
                             TabIndex="5"

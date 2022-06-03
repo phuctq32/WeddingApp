@@ -26,9 +26,21 @@ namespace WeddingApp.ViewModels
         public ICommand LoadedCommand { get; set; }
         public ICommand btnExportCommand { get; set; }
         public int TotalProduct { get; set; }
-        public int TotalValue { get; set; }
-        public int TotalReceipt { get; set; }
-        public int TotalCustomer { get; set; }
+
+        private int toltalValue;
+        public int TotalValue
+        { get => toltalValue; set { toltalValue = value; OnPropertyChanged(); } }
+
+        private int toltalReceipt;
+        public int TotalReceipt 
+        { get => toltalReceipt; set { toltalReceipt = value; OnPropertyChanged(); } }
+
+
+        private int totalCustomer;
+        public int TotalCustomer
+        { get => totalCustomer; set { totalCustomer = value; OnPropertyChanged(); } }
+
+
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
@@ -36,14 +48,16 @@ namespace WeddingApp.ViewModels
         DateTime now = DateTime.Now;
         // private List<ReC> receipts;
         int month = 1;
-        int day = 0;
+        int day = 1;
+        int tmp = 0;
+        int[] arr = new int[32];
         public DashBoardVM()
         {
             SwitchTabCommand = new RelayCommand<DashBoardUC>(p => true, (p) => SwitchTab(p));
             LoadedCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => Loaded(parameter));
-            btnExportCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
+            btnExportCommand = new RelayCommand<ReportChartUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
             selectCommand = new RelayCommand<ComboBox>((parameter) => true, (parameter) => selectMonth(parameter));
-
+            month = now.Month;
             SeriesCollection = new SeriesCollection
 
                     {
@@ -54,112 +68,127 @@ namespace WeddingApp.ViewModels
                         }
                     };
         }
-
-        private ReportChartUC monthChartUC = new ReportChartUC();
-        private ReportChartUC yearChartUC = new ReportChartUC();
-
-        private void selectMonth(ComboBox item)
+        public void setTotalInMonth(int setInMonth)
         {
-            for (int i = 0; i < day; i++)
-            {
-                SeriesCollection[0].Values.RemoveAt(0);
-            }
-            month = item.SelectedIndex+1;
-            day = DateTime.DaysInMonth(2022, month);
-            //Labels = new string[day];
+            TotalValue = 0;
+            invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).ToList();
+            TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).Count();
+            TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).Count();
+            value = 0;
+            Labels = new string[day];
             for (int i = 1; i <= day; i++)
             {
                 Labels[i - 1] = "Ngày " + i.ToString();
-
+                foreach (var invoice in invoiceList)
+                {
+                    if (invoice.PAID.Day == i) value += Convert.ToInt32(invoice.TOTALCOST);
+                }
                 /*data = Data.Ins.DB.*/
-                SeriesCollection[0].Values.Add(i + 0d);
+                SeriesCollection[0].Values.Add(value + 0d);
+                TotalValue += value;
+                arr[i - 1] = value;
+                value = 0;
+                
+
             }
+        }
+        private ReportChartUC monthChartUC = new ReportChartUC();
+        private ReportChartUC yearChartUC = new ReportChartUC();
+        List<INVOICE> invoiceList;
+        int value;
+        private void selectMonth(ComboBox item)
+        {
+
+           TotalValue = 0;
+            if (tmp == 1)
+                for (int i = 0; i < day; i++)
+            {
+                SeriesCollection[0].Values.RemoveAt(0);
+            }
+            month = item.SelectedIndex + 1 ;
+            day = DateTime.DaysInMonth(2022, month);
+
+            setTotalInMonth(month);
 
         }
         private void SwitchTab(DashBoardUC dashBoardindow)
         {
             int index = dashBoardindow.statusListViewUser.SelectedIndex;
             List<ListViewItem> listViewItems = dashBoardindow.statusListViewUser.Items.Cast<ListViewItem>().ToList();
-            ListViewItem listViewItem = listViewItems[index];
 
+            ListViewItem listViewItem = listViewItems[index];
             switch (listViewItem.Name)
             {
                 case "Ngày":
                     dashBoardindow.selectGrid.Children.Clear();
                     dashBoardindow.selectGrid.Children.Add(new CompletedInvoiceListUC());
                     break;
-
                 case "Tháng":
-                    dashBoardindow.selectGrid.Children.Clear();
-                    dashBoardindow.selectGrid.Children.Add(monthChartUC);
+                    if (tmp == 1)
+                        for (int i = 0; i < day; i++)
+                        {
+                            SeriesCollection[0].Values.RemoveAt(0);
+                        }
+                  
 
-
-                    for (int i = 0; i < day; i++)
-                    {
-                        SeriesCollection[0].Values.RemoveAt(0);
-                    }
-                      
-
-                    month = now.Month;
-                    day = DateTime.DaysInMonth(2022, month);
                     
+                    day = DateTime.DaysInMonth(2022, month);
 
-                    Labels = new string[40];
-                    for (int i = 1; i <= day; i++)
-                    {
-                        Labels[i - 1] = "Ngày " + i.ToString();
+                    setTotalInMonth(month);
 
-                        /*data = Data.Ins.DB.*/
-                        SeriesCollection[0].Values.Add(i + 0d);
-                    }
-
-
-                    //adding series will update and animate the chart automatically
-
-
-                    //also adding values updates and animates the chart automatically
+                    monthChartUC.time.Labels = Labels;
 
 
                     Formatter = value => value.ToString();
+                    tmp = 1;
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(monthChartUC);
 
-                    monthChartUC.monthComboBox.SelectedIndex = now.Month;
+                    monthChartUC.monthComboBox.SelectedIndex = month - 1 ;
                     monthChartUC.yearComboBox.Visibility = Visibility.Collapsed;
+
                     break;
 
                 case "Năm":
-
-                    dashBoardindow.selectGrid.Children.Clear();
-                    dashBoardindow.selectGrid.Children.Add(yearChartUC);
-
-                    for (int i = 0; i < day; i++)
-                    {
-                        SeriesCollection[0].Values.RemoveAt(0);
-                    }
+                    TotalValue = 0;
+                    if (tmp==1)
+                        for (int i = 0; i < day; i++)
+                        {
+                            SeriesCollection[0].Values.RemoveAt(0);
+                        }
+                    
 
                     //-----------------------------
                     day = 12;
 
+                    List<INVOICE> invoiceYearList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).ToList();
+                    TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year  ).Count();
+                    TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).Count();
+
+                    Labels = new string[40];
+                    for (int i = 1; i <= 12; i++)
+                    {
+                        
+                        Labels[i - 1] = "Tháng "+ i.ToString();
+                        value = 0;
+                        foreach (var invoice in invoiceYearList)
+                        {
+                            if (invoice.PAID.Month == i) value += Convert.ToInt32(invoice.TOTALCOST);
+                        }
+                        /*data = Data.Ins.DB.*/
+                        SeriesCollection[0].Values.Add(value + 0d);
+                        TotalValue += value;
+                        arr[i - 1] = value;
+
+                    }
+                    yearChartUC.time.Labels = Labels;
                     
 
-                    Labels = new string[day];
-                    for (int i = 1; i <= day; i++)
-                    {
-                        Labels[i - 1] = "Tháng " + i.ToString();
-
-                        /*data = Data.Ins.DB.*/
-                        SeriesCollection[0].Values.Add(i + 0d);
-                    }
-
-
-                    //adding series will update and animate the chart automatically
-
-
-                    //also adding values updates and animates the chart automatically
-
-
                     Formatter = value => value.ToString();
+                    tmp = 1;
                     //-----------------------------
-
+                    dashBoardindow.selectGrid.Children.Clear();
+                    dashBoardindow.selectGrid.Children.Add(yearChartUC);
                     yearChartUC.yearComboBox.SelectedIndex = 0;
                     yearChartUC.monthComboBox.Visibility = Visibility.Collapsed;
                     break;
@@ -207,8 +236,8 @@ namespace WeddingApp.ViewModels
 
             YFormatter = value => value.ToString("N0");
         }*/
-
-        private void btnExport(DashBoardUC parameter)
+       
+        private void btnExport(ReportChartUC parameter)
         {
             CustomMessageBox.Show("Đang xuất file ", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             string filePath = "";
@@ -227,8 +256,8 @@ namespace WeddingApp.ViewModels
             // nếu đường dẫn null hoặc rỗng thì báo không hợp lệ và return hàm
             if (string.IsNullOrEmpty(filePath))
             {
-                MessageBox.Show("Đường dẫn báo cáo không hợp lệ");
-                return;
+
+                CustomMessageBox.Show("Đường dẫn không hợp lệ", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -250,7 +279,7 @@ namespace WeddingApp.ViewModels
                     ExcelWorksheet ws = p.Workbook.Worksheets[0];
 
                     // đặt tên cho sheet
-                    ws.Name = "Kteam sheet";
+                    ws.Name = "Wedding sheet";
                     // fontsize mặc định cho cả sheet
                     ws.Cells.Style.Font.Size = 11;
                     // font family mặc định cho cả sheet
@@ -268,69 +297,91 @@ namespace WeddingApp.ViewModels
                     // merge các column lại từ column 1 đến số column header
                     // gán giá trị cho cell vừa merge là Thống kê thông tni User Kteam
                     ws.Cells[1, 1].Value = "Báo cáo doanh thu  Wedding App";
-                    ws.Cells[1, 1, 1, countColHeader].Merge = true;
+                    ws.Cells[1, 1, 2, 4].Merge = true;
                     // in đậm
-                    ws.Cells[1, 1, 1, countColHeader].Style.Font.Bold = true;
+                    ws.Cells[1, 1, 2, 2].Style.Font.Bold = true;
                     // căn giữa
-                    ws.Cells[1, 1, 1, countColHeader].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    ws.Cells[1, 1, 2, 2].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    ws.Cells[1, 1, 2, 2].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                    ws.Cells[5, 1].Value = "Thời Gian";
+                    ws.Cells[5, 1].Style.Font.Bold = true;
+                    ws.Cells[5, 2].Value = "Doanh Thu";
+                    ws.Cells[5, 2].Style.Font.Bold = true;
 
-                    int colIndex = 1;
-                    int rowIndex = 2;
+                    ws.Cells[5, 6].Value = "Tổng Doanh Thu : ";
+                    ws.Cells[5, 8].Value =TotalValue;
+
+                    ws.Cells[5, 6, 5, 7].Merge = true;
+                    ws.Cells[6, 6].Value = "Số Đơn Hàng : ";
+                    ws.Cells[6, 8].Value =  TotalReceipt;
+                    ws.Cells[6, 6, 6, 7].Merge = true;
+                    ws.Cells[7, 6].Value = "Số Khách Hàng: ";
+                    ws.Cells[7, 8].Value = TotalCustomer;
+                    ws.Cells[7, 6, 7, 7].Merge = true;
+
+
 
                     //tạo các header từ column header đã tạo từ bên trên
-                    foreach (var item in arrColumnHeader)
+                    for (int i = 0; i < day; i++)
                     {
-                        var cell = ws.Cells[rowIndex, colIndex];
+                        {
+                            var cell = ws.Cells[i+6, 2];
 
-                        //set màu thành gray
-                        var fill = cell.Style.Fill;
-                        fill.PatternType = ExcelFillStyle.Solid;
-                        //fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
+                            //set màu thành gray
+                            var fill = cell.Style.Fill;
+                            fill.PatternType = ExcelFillStyle.Solid;
+                            fill.BackgroundColor.SetColor(System.Drawing.Color.YellowGreen);
 
-                        //căn chỉnh các border
-                        var border = cell.Style.Border;
-                        border.Bottom.Style =
-                            border.Top.Style =
-                            border.Left.Style =
-                            border.Right.Style = ExcelBorderStyle.Thin;
+                            //căn chỉnh các border
+                            var border = cell.Style.Border;
+                            border.Bottom.Style =
+                                border.Top.Style =
+                                border.Left.Style =
+                                border.Right.Style = ExcelBorderStyle.Thick;
 
-                        //gán giá trị
-                        cell.Value = item;
+                            //gán giá trị
+                            cell.Value = arr[i]; 
+                        }
+                    }
+                    
+                    for (int i = 0; i < day; i++)
+                    {
+                        {
+                            var cell = ws.Cells[i+6, 1];
 
-                        colIndex++;
+                            //set màu thành gray
+                            var fill = cell.Style.Fill;
+                            fill.PatternType = ExcelFillStyle.Solid;
+                            fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
+
+                            //căn chỉnh các border
+                            var border = cell.Style.Border;
+                            border.Bottom.Style =
+                                border.Top.Style =
+                                border.Left.Style =
+                                border.Right.Style = ExcelBorderStyle.Thick;
+
+                            //gán giá trị
+                            if (day > 20)
+                                cell.Value = "Ngày " + (i + 1);
+                            else
+                                cell.Value = "Tháng " + (i + 1);
+
+                        }
                     }
 
-                    // lấy ra danh sách UserInfo từ ItemSource của DataGrid
-                    /* List<UserInfo> userList = dtgExcel.ItemsSource.Cast<UserInfo>().ToList();
 
-                     // với mỗi item trong danh sách sẽ ghi trên 1 dòng
-                     foreach (var item in userList)
-                     {
-                         // bắt đầu ghi từ cột 1. Excel bắt đầu từ 1 không phải từ 0
-                         colIndex = 1;
-
-                         // rowIndex tương ứng từng dòng dữ liệu
-                         rowIndex++;
-
-                         //gán giá trị cho từng cell
-                         ws.Cells[rowIndex, colIndex++].Value = item.Name;
-
-                         // lưu ý phải .ToShortDateString để dữ liệu khi in ra Excel là ngày như ta vẫn thấy.Nếu không sẽ ra tổng số :v
-                         ws.Cells[rowIndex, colIndex++].Value = item.Birthday.ToShortDateString();
-                     }*/
-                    colIndex = 1;
-                    rowIndex++;
-                    ws.Cells[rowIndex, colIndex++].Value = "abc";
-                    ws.Cells[rowIndex, colIndex++].Value = "xyz";
                     //Lưu file lại
-                    Byte[] bin = p.GetAsByteArray();
+                    Byte[] bin  = p.GetAsByteArray();
                     File.WriteAllBytes(filePath, bin);
                 }
-                MessageBox.Show("Xuất excel thành công!");
+
+                CustomMessageBox.Show("Xuất excel thành công", System.Windows.MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-            catch //(Exception EE)
+            catch (Exception)
             {
-                MessageBox.Show("Có lỗi khi lưu file!");
+
+                CustomMessageBox.Show("Có lỗi khi lưu file!", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

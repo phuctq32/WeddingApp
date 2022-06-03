@@ -24,5 +24,10 @@ namespace WeddingApp.Views.UserControls.Admin
         {
             InitializeComponent();
         }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

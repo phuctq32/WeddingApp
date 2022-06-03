@@ -189,9 +189,17 @@
                                     Width="150"
                                     VerticalContentAlignment="Center"
                                     Height="50"
-                                    IsEnabled="False"
+                                    IsEnabled="True"
                                     Padding="2,8,0,0"
                                     ItemsSource="{Binding}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding selectCommand}"
+                                        CommandParameter="{Binding ElementName=comboBoxRoleList}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <ComboBoxItem>Nhân Viên</ComboBoxItem>
+                                    <ComboBoxItem>Quản lý</ComboBoxItem>
                                     <ComboBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <VirtualizingStackPanel />
@@ -231,7 +239,21 @@
                                             SelectedDate="{Binding Date, Mode=TwoWay}"
                                   Width="250"
                                   materialDesign:HintAssist.Hint="Chọn ngày vào làm"
-                                  Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                  Style="{StaticResource MaterialDesignOutlinedDatePicker}" >
+                                    
+                                    <DatePicker.Resources>
+            <Style TargetType="{x:Type DatePickerTextBox}">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <TextBox x:Name="PART_TextBox" 
+                                Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}, StringFormat={}{0:yyyy/MM/dd}}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </DatePicker.Resources>
+                                </DatePicker>
                             </StackPanel>
                             <Button
                             TabIndex="5"
