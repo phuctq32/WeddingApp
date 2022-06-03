@@ -52,6 +52,7 @@ namespace WeddingApp.ViewModels
             EditRoleWindow editRoleWindow = new EditRoleWindow();
 
             //editRoleWindow.functionList.ItemsSource = Data.Ins.DB.FUNCTIONS.ToList();
+            editRoleWindow.RoleNameTxt.Text = role.ROLENAME.ToString();
             editRoleWindow.Show();
             foreach (var p in permissions)
             {
@@ -65,7 +66,6 @@ namespace WeddingApp.ViewModels
                     }
                 }
             }
-            editRoleWindow.RoleNameTxt.Text = role.ROLENAME.ToString();
         }
         private void DeleteRole(ListViewItem parameter)
         {

@@ -23,7 +23,7 @@ namespace WeddingApp.ViewModels
         public ICommand CloseButtonCommand { get; set; }
 
         public string SelectedImage;
-        private string containerName = "container";
+        private string containerName = "service";
         private string connectionString = "DefaultEndpointsProtocol=https;AccountName=imagedish;AccountKey=udbl5BJAHZv8wzmuFf/jE5di0ysn9a8Z8H9ZEBCwUhnFUq8zo0mVqgSdL6Im3rKQeb7uJid2xbA62haXbZ93VA==;EndpointSuffix=core.windows.net";
 
         private SERVICE service = new SERVICE();
@@ -114,7 +114,7 @@ namespace WeddingApp.ViewModels
             //Update new Image link
 
             //PRODUCT product = Data.Ins.DB.PRODUCTs.Where(x => x.ID_ == Current_Product.ID_).SingleOrDefault();
-            service.SERVICEIMAGE = "https://imagedish.blob.core.windows.net/container/" + service.SERVICEID + "." + filename[1];
+            service.SERVICEIMAGE = "https://imagedish.blob.core.windows.net/service/" + service.SERVICEID + "." + filename[1];
         }
 
         public void CloseButton(AddServiceWindow addProductWindow)

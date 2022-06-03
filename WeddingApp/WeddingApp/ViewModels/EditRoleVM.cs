@@ -12,7 +12,7 @@ namespace WeddingApp.ViewModels
 {
     internal class EditRoleVM : ViewModelBase
     {
-        private ROLE currentRole;
+        private ROLE currentRole = new ROLE();
         private List<FUNCTION> functions;
         private List<FUNCTION> selectedFunctions;
         public List<FUNCTION> Functions
@@ -99,33 +99,35 @@ namespace WeddingApp.ViewModels
                 {
                     currentRole.ROLENAME = parameter.RoleNameTxt.Text.Trim();
                     List<PERMISSION> currentPermissions = Data.Ins.DB.PERMISSIONs.ToList();
-                    int max = -1;
-                    for (int i = 0; i < currentPermissions.Count; i++)
-                    {
-                        if (currentPermissions[i].PERMISSIONID > max)
-                        {
-                            max = currentPermissions[i].PERMISSIONID;
-                        }
-                    }
+                    
 
                     List<PERMISSION> editedRolePermissions = new List<PERMISSION>();
                     foreach (var lvi in FindVisualChildren<ListViewItem>(parameter.functionList))
                     {
                         FUNCTION func = lvi.DataContext as FUNCTION;
                         CheckBox checkBox = GetVisualChild<CheckBox>(lvi);
+                        PERMISSION p = new PERMISSION();
+                        p.FUNCTIONID = func.FUNCTIONID;
+                        p.ROLEID = currentRole.ROLEID;
                         if (checkBox.IsChecked == true)
                         {
-                            PERMISSION p = new PERMISSION();
-                            p.PERMISSIONID = max++;
-                            p.FUNCTIONID = func.FUNCTIONID;
-                            if (!Data.Ins.DB.PERMISSIONs.Contains(p))
+                            currentPermissions.ForEach(item =>
                             {
-                                Data.Ins.DB.PERMISSIONs.Add(p);
-                            }
-                            else
+                                if (!(item.ROLEID == p.ROLEID && item.FUNCTIONID == p.FUNCTIONID))
+                                {
+                                    Data.Ins.DB.PERMISSIONs.Add(p);
+                                }
+                            });
+                        }
+                        else
+                        {
+                            currentPermissions.ForEach(item =>
                             {
-                                max--;
-                            }
+                                if (item.ROLEID == p.ROLEID && item.FUNCTIONID == p.FUNCTIONID)
+                                {
+                                    Data.Ins.DB.PERMISSIONs.Remove(item);
+                                }
+                            });
                         }
                     }
                     Data.Ins.DB.SaveChanges();

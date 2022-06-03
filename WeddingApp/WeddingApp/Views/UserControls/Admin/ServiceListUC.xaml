@@ -83,7 +83,7 @@
                                             HorizontalAlignment="Left"
                                             Margin="40 0">
                                             <Rectangle.Fill>
-                                                <ImageBrush Stretch="UniformToFill" />
+                                                <ImageBrush Stretch="UniformToFill" ImageSource="{Binding SERVICEIMAGE}" />
                                             </Rectangle.Fill>
                                         </Rectangle>
                                         <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="330" HorizontalAlignment="Right">

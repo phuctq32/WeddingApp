@@ -60,7 +60,7 @@ namespace WeddingApp.ViewModels
             SERVICE service = listViewItem.DataContext as SERVICE;
             EditServiceWindow editServiceWindow = new EditServiceWindow();
             editServiceWindow.txtName.Text = service.SERVICENAME;
-            editServiceWindow.txtCost.Text = service.COST.ToString();
+            editServiceWindow.txtCost.Text = Convert.ToInt32(service.COST).ToString();
             editServiceWindow.txtDescription.Text = service.SERVICEDESCRIPTION;
             editServiceWindow.ShowDialog();
             load(serviceListUC);
