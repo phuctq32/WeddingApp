@@ -641,11 +641,8 @@
       <DependentUpon>WeddingDB.edmx</DependentUpon>
       <LastGenOutput>WeddingDB.cs</LastGenOutput>
     </Content>
-    <Content Include="WeddingDB.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="WeddingDB.mdf" />
     <Content Include="WeddingDB_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>WeddingDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>
