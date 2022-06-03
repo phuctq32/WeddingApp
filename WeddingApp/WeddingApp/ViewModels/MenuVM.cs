@@ -14,13 +14,12 @@ using System.Windows;
 
 namespace WeddingApp.ViewModels
 {
-    internal class MenuVM :ViewModelBase
+    internal class MenuVM : ViewModelBase
     {
         private long totalPrice;
         private List<DISH> selectedDishes;
         public ICommand LoadedCommand { get; set; }
         public ICommand PreviousUCCommand { get; set; }
-        public ICommand NextUCCommand { get; set; }
         public ICommand AddToCartCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand HoverItemCommand { get; set; }
@@ -53,7 +52,6 @@ namespace WeddingApp.ViewModels
         {
             LoadedCommand = new RelayCommand<MenuUC>(p => true, p => Loaded(p));
             PreviousUCCommand = new RelayCommand<MenuUC>(p => true, p => PreviousUC(p));
-            NextUCCommand = new RelayCommand<MenuUC>(p => true, p => NextUC(p));
             AddToCartCommand = new RelayCommand<ListViewItem>(p => true, p => AddToCart(p));
             SearchCommand = new RelayCommand<MenuUC>(p => true, p => Search(p));
             HoverItemCommand = new RelayCommand<Button>((paramter) => paramter == null ? false : true, (parameter) => HoverItem(parameter));
@@ -193,23 +191,7 @@ namespace WeddingApp.ViewModels
         {
             MainVM.PreviousUC();
         }
-        public void NextUC(MenuUC menuUC)
-        {
-            int minimumCost = Convert.ToInt32(Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == MainVM.WeddingHall).SingleOrDefault().BALLROOMTYPE.MINIMUMCOST);
-            if (menuUC.carts.Items.Count < 5)
-            {
-                CustomMessageBox.Show("Vui lòng chọn tối thiểu 5 món", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-            }
-            else if(totalPrice < minimumCost)
-            {
-                CultureInfo cultureInfo = CultureInfo.GetCultureInfo("vi-VN");
-                CustomMessageBox.Show("Vui lòng chọn đơn giá tối thiểu " + minimumCost.ToString("C0", cultureInfo), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-            }
-            else
-            {
-                MainVM.NextUC();
-            }
-        }
+
         private void DeleteCart(ListViewItem parameter)
         {
             DISH dishToDelete = parameter.DataContext as DISH;
