@@ -418,7 +418,7 @@
                             </StackPanel>
                             <Button
                                 Style="{StaticResource SearchBtn}"
-                                Command="{Binding NextUCCommand}"
+                                Command="{Binding Source={StaticResource serviceVM},Path= NextUCCommand}"
                                 CommandParameter="{Binding ElementName=menuUC}"
                                 VerticalAlignment="Bottom"
                                 materialDesign:ButtonAssist.CornerRadius="5"

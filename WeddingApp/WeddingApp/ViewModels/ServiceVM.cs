@@ -23,9 +23,10 @@ namespace WeddingApp.ViewModels
         public ICommand AllCheckedCommand { get; set; }
         public ICommand DownCommand { get; set; }
         public ICommand UpCommand { get; set; }
-        public ICommand ConfirmCommand  { get; set; }
+        public ICommand NextUCCommand { get; set; }
+        public ICommand ConfirmCommand { get; set; }
         public ICommand DeleteCartCommand { get; set; }
-        
+        public ServiceSelectionUC thisUC;
         public long TotalPrice
         {
             get => totalPrice;
@@ -53,20 +54,68 @@ namespace WeddingApp.ViewModels
             AllCheckedCommand = new RelayCommand<ServiceSelectionUC>((parameter) => { return true; }, (parameter) => AllChecked(parameter));
             ConfirmCommand = new RelayCommand<ServiceSelectionUC>(p => true, p => Confirm(p));
             DeleteCartCommand = new RelayCommand<ListViewItem>(p => p == null ? false : true, (p) => DeleteCart(p));
+            NextUCCommand = new RelayCommand<MenuUC>(p => true, p => NextUC(p));
             ServeList = new List<SERVE>();
         }
         public void Loaded(ServiceSelectionUC serviceSelectionUC)
         {
+            thisUC = serviceSelectionUC;
             List<SERVICE> service = Data.Ins.DB.SERVICEs.ToList();
             serviceSelectionUC.ServiceList.ItemsSource = service;
-        }    
-        
+        }
+        public void NextUC(MenuUC menuUC)
+        {
+            int minimumCost = Convert.ToInt32(Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == MainVM.WeddingHall).SingleOrDefault().BALLROOMTYPE.MINIMUMCOST);
+            long menuPrice = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",", ""));
+            if (menuUC.carts.Items.Count < 5)
+            {
+                CustomMessageBox.Show("Vui lòng chọn tối thiểu 5 món", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+            else if (menuPrice < minimumCost)
+            {
+                CultureInfo cultureInfo = CultureInfo.GetCultureInfo("vi-VN");
+                CustomMessageBox.Show("Vui lòng chọn đơn giá tối thiểu " + minimumCost.ToString("C0", cultureInfo), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+            else
+            {
+                MainVM.NextUC();
+                if (thisUC != null)
+                {
+                    List<SERVE> temp = new List<SERVE>();
+                    ServeList.ForEach(serve => temp.Add(serve));
+                    ServeList = temp;
+                    foreach (var checkBox in FindVisualChildren<CheckBox>(thisUC.ServiceList))
+                    {
+                        var lvi = GetAncestorOfType<ListViewItem>(checkBox);
+                        SERVICE service = lvi.DataContext as SERVICE;
+                        foreach (var item in ServeList)
+                        {
+                            if (item.SERVICEID == service.SERVICEID)
+                            {
+                                checkBox.IsChecked = true;
+                            }
+                        }
+                    }
+                    bool isALlChecked = true;
+                    foreach (var item in FindVisualChildren<CheckBox>(thisUC.ServiceList))
+                    {
+                        if (item.IsChecked == false)
+                        {
+                            isALlChecked = false;
+                            break;
+                        }
+                    }
+                    thisUC.selectAllCheckBox.IsChecked = isALlChecked;
+                }
+
+            }
+        }
         private void Down(TextBlock parameter)
         {
             short amount = short.Parse(parameter.Text.ToString());
 
             //Lấy <đối tượng> là cha của parameter bằng GetAncestorOfType
-            
+
             var lvi = GetAncestorOfType<ListViewItem>(parameter);
 
             //Xét trường hợp xóa món ăn nếu giảm số lượng xuống 0
@@ -116,7 +165,7 @@ namespace WeddingApp.ViewModels
             {
                 item.IsChecked = newVal;
             }
-            if(newVal)
+            if (newVal)
             {
                 List<SERVE> temp = new List<SERVE>();
                 foreach (SERVICE item in parameter.ServiceList.Items)
@@ -189,7 +238,7 @@ namespace WeddingApp.ViewModels
             long res = 0;
             foreach (var item in serves)
             {
-                    res += (long)(Int32)item.AMOUNT * (long)(Int32)item.SERVICECOST;
+                res += (long)(Int32)item.AMOUNT * (long)(Int32)item.SERVICECOST;
             }
             return res;
         }
@@ -220,7 +269,7 @@ namespace WeddingApp.ViewModels
 
         public void Confirm(ServiceSelectionUC serviceSelectionUC)
         {
-            if(CustomMessageBox.Show("Xác nhận đặt tiệc?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
+            if (CustomMessageBox.Show("Xác nhận đặt tiệc?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
                 MenuUC menuUC = (MenuUC)MainVM.PreviousUCs.Pop();
                 SetWeddingInfomationUC setWeddingInfomationUC = (SetWeddingInfomationUC)MainVM.PreviousUCs.Pop();
@@ -248,11 +297,12 @@ namespace WeddingApp.ViewModels
         public void InvoiceSave(ServiceSelectionUC serviceSelectionUC, MenuUC menuUC)
         {
             INVOICE newInvoice = new INVOICE();
+            newInvoice.WEDDINGCOST = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",", ""));
             newInvoice.SERVICECOST = Convert.ToInt32(serviceSelectionUC.totalPrice.Text.Replace(",", ""));
-            newInvoice.WEDDINGCOST = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",", "")) * newWedding.TABLEAMOUNT + newInvoice.SERVICECOST;
             newInvoice.STATUS = 1;
             newInvoice.TOTALCOST = newInvoice.WEDDINGCOST + newInvoice.SERVICECOST;
             newInvoice.REMAININGCOST = newInvoice.TOTALCOST * (decimal)0.9;
+            newInvoice.PAID = newWedding.WEDDINGDATE;
             newWedding.DEPOSIT = newInvoice.TOTALCOST * (decimal)0.1;
             Data.Ins.DB.WEDDINGs.Add(newWedding);
             Data.Ins.DB.SaveChanges();
@@ -264,7 +314,7 @@ namespace WeddingApp.ViewModels
                 {
                     SALESREPORT sALESREPORT = new SALESREPORT();
                     DateTime a = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                    sALESREPORT.REPORTMONTH = a;
+                    sALESREPORT.REPORTMONTH = DateTime.Parse(a.ToShortDateString());
                     sALESREPORT.PAIDWEDDING = 0;
                     sALESREPORT.BOOKEDWEDDING = 1;
                     sALESREPORT.PROFIT = newWedding.DEPOSIT;
@@ -273,58 +323,19 @@ namespace WeddingApp.ViewModels
                 else
                 {
                     REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL();
-                    rEPORTDETAIL.REPORTDATE = DateTime.Now;
+                    rEPORTDETAIL.REPORTDATE = DateTime.Parse(DateTime.Now.ToShortDateString());
                     rEPORTDETAIL.BOOKEDWEDDING = 1;
                     rEPORTDETAIL.PAIDWEDDING = 0;
                     rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
-                    rEPORTDETAIL.RATIO = 1;
-                    rEPORTDETAIL.REPORTMONTH = Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH.Month == DateTime.Now.Month && x.REPORTMONTH.Year == DateTime.Now.Year).SingleOrDefault().REPORTMONTH;
-                    Data.Ins.DB.REPORTDETAILs.Add(rEPORTDETAIL);
                 }
             }
-            else
-            {
-                REPORTDETAIL rEPORTDETAIL = Data.Ins.DB.REPORTDETAILs.Where(x => x.REPORTDATE == DateTime.Now).SingleOrDefault();
-                rEPORTDETAIL.BOOKEDWEDDING += 1;
-                rEPORTDETAIL.PROFIT += newWedding.DEPOSIT;
-                rEPORTDETAIL.RATIO = rEPORTDETAIL.PAIDWEDDING / (rEPORTDETAIL.PAIDWEDDING + rEPORTDETAIL.BOOKEDWEDDING);
-                SALESREPORT sALESREPORT = Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH == rEPORTDETAIL.REPORTMONTH).SingleOrDefault();
-                sALESREPORT.BOOKEDWEDDING += 1;
-                sALESREPORT.PROFIT += newWedding.DEPOSIT;
-            }
-            // ......
-            if (Data.Ins.DB.REPORTDETAILs.Where(x => x.REPORTDATE == newWedding.WEDDINGDATE).Count() == 0)
-            {
-                if (Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH.Month == newWedding.WEDDINGDATE.Month && x.REPORTMONTH.Year == newWedding.WEDDINGDATE.Year).Count() == 0)
-                {
-                    SALESREPORT sALESREPORT = new SALESREPORT();
-                    DateTime a = new DateTime(newWedding.WEDDINGDATE.Year, newWedding.WEDDINGDATE.Month, 1);
-                    sALESREPORT.REPORTMONTH = a;
-                    sALESREPORT.PAIDWEDDING = 0;
-                    sALESREPORT.BOOKEDWEDDING = 0;
-                    sALESREPORT.PROFIT = 0;
-                    Data.Ins.DB.SALESREPORTs.Add(sALESREPORT);
-                }
-                else
-                {
-                    REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL();
-                    rEPORTDETAIL.REPORTDATE = newWedding.WEDDINGDATE;
-                    rEPORTDETAIL.BOOKEDWEDDING = 0;
-                    rEPORTDETAIL.PAIDWEDDING = 0;
-                    rEPORTDETAIL.PROFIT = 0;
-                    rEPORTDETAIL.RATIO = 0;
-                    rEPORTDETAIL.REPORTMONTH = Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH.Month == newWedding.WEDDINGDATE.Month && x.REPORTMONTH.Year == newWedding.WEDDINGDATE.Year).SingleOrDefault().REPORTMONTH;
-                    Data.Ins.DB.REPORTDETAILs.Add(rEPORTDETAIL);
-                }
-            }
-            newInvoice.PAID = newWedding.WEDDINGDATE;
             Data.Ins.DB.INVOICES.Add(newInvoice);
             Data.Ins.DB.SaveChanges();
         }
         public void MenuSave(MenuUC menuUC)
         {
-            List<MENU> menuList = new List<MENU>(); 
-            foreach(DISH item in menuUC.ViewListProducts.Items)
+            List<MENU> menuList = new List<MENU>();
+            foreach (DISH item in menuUC.ViewListProducts.Items)
             {
                 MENU menu = new MENU();
                 menu.WEDDINGID = newWedding.WEDDINGID;
@@ -336,7 +347,7 @@ namespace WeddingApp.ViewModels
         }
         public void ServeSave(ServiceSelectionUC serviceSelectionUC)
         {
-            foreach(SERVE item in ServeList)
+            foreach (SERVE item in ServeList)
             {
                 SERVE serve = new SERVE();
                 serve.SERVICEID = item.SERVICEID;
