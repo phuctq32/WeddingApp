@@ -34,7 +34,7 @@
                            HorizontalAlignment="Left"
                            FontWeight="Medium"
                            Foreground="Black"
-                           Grid.Column="0" Width="120" Height="51" Margin="145,29,140,0"/>
+                           Grid.Column="0" Width="120" Height="51" Margin="145,29,140,0" />
                     <TextBlock Text="Giá"
                            FontSize="24"
                            VerticalAlignment="Center"
@@ -62,9 +62,8 @@
                 <ListView Grid.Row="1" Grid.ColumnSpan="4"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                             x:Name="ListView"
-                           ItemsSource="{Binding ListService, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}"
-                          >
-                    
+                           ItemsSource="{Binding ListService, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}">
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid MinHeight="120" Width="1110">
@@ -121,14 +120,11 @@
                                           CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                             <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                         </Button>
-                                        <Button
-                                          Style="{StaticResource MaterialDesignIconForegroundButton}"
-                                          ToolTip="Xoá món ăn"
-                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                             Command="{Binding Source ={StaticResource serviceListVM}, Path=DeleteServiceCommand}"
-                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
-                                            <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" />
-                                        </Button>
+                                        <ToggleButton
+
+  Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
+  ToolTip="Trạng thái"
+  IsChecked="True" />
                                     </StackPanel>
                                 </Grid>
                                 <Rectangle
