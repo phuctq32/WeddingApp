@@ -67,7 +67,11 @@ namespace WeddingApp.ViewModels
                 CustomMessageBox.Show("Tên món ăn đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
+            if(Data.Ins.DB.DISHES.Where(x=>x.DISHNAME == parameter.txtName.Text).Count() > 0)
+            {
+                CustomMessageBox.Show("Tên món ăn đã tồn tại!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             //if (!Regex.IsMatch(parameter.txtName.Text, @"^[a-zA-Z0-9_]+$"))
             //{
             //    parameter.txtName.Focus();
