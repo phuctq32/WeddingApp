@@ -60,11 +60,11 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tên cô dâu: " FontSize="15" Margin="5" />
-                                    <TextBlock x:Name="txtBride" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtBride" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Đãi tiệc:" FontSize="15" Margin="5" />
-                                    <TextBlock x:Name ="txtWeddingDate" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name ="txtWeddingDate" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Mã tiệc cưới: " FontSize="15" Margin="5" />
@@ -78,28 +78,26 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Đơn giá bàn: " FontSize="15" Margin="5" />
-                                    <TextBlock x:Name="txtTableCost" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtTableCost" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tổng tiền bàn: " FontSize="15" Margin="5" />
-                                    <TextBlock x:Name="txtWeddingCost" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtWeddingCost" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
                         <!--header-->
                         <Grid Margin="10 30 10 0" Height="18">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.3*" />
                                 <ColumnDefinition Width="1.7*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1.5*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="STT" Grid.Column="0" FontSize="12" FontWeight="DemiBold" />
-                            <TextBlock Text="Dịch vụ" Grid.Column="1" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Center" />
-                            <TextBlock Text="Số lượng" Grid.Column="2" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Center" />
-                            <TextBlock Text="Đơn giá" Grid.Column="3" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Right" />
-                            <TextBlock Text="Thành tiền" Grid.Column="4" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Right" />
+                            <TextBlock Text="Dịch vụ" Grid.Column="0" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Center" />
+                            <TextBlock Text="Số lượng" Grid.Column="1" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Center" />
+                            <TextBlock Text="Đơn giá" Grid.Column="2" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Right" />
+                            <TextBlock Text="Thành tiền" Grid.Column="3" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Right" />
                         </Grid>
                         <!--LISTVIEW RECEIPT_DETAIL-->
                         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="listView">
@@ -107,15 +105,12 @@
                                 <DataTemplate>
                                     <Grid HorizontalAlignment="Stretch" MinHeight="38" Width="730">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.3*" />
                                             <ColumnDefinition Width="1.7*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1.5*" />
                                         </Grid.ColumnDefinitions>
-                                        <Rectangle Fill="Black" Height="1" Opacity="0.5" Grid.ColumnSpan="4" VerticalAlignment="Top" />
-                                        <!--STT-->
-                                        <TextBlock  Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Index}" />
+                                        <Rectangle Fill="Black" Height="1" Opacity="0.5" Grid.ColumnSpan="5" VerticalAlignment="Top" />
                                         <!--Tên dịch vụ-->
                                         <TextBlock
                                                 Text="{Binding SERVICE.SERVICENAME}"
@@ -123,18 +118,18 @@
                                                 FontWeight="Medium"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center"
-                                                Grid.Column="1">
+                                                Grid.Column="0">
                                         </TextBlock>
                                         <!--Số lượng-->
                                         <TextBlock x:Name="txtServiceAmount" Margin="0 0 7 0"
                                                    Text="{Binding AMOUNT}"
-                                                   Grid.Column="2" HorizontalAlignment="Center"
+                                                   Grid.Column="1" HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    Visibility="Visible" />
                                         <!--Đơn giá-->
-                                        <TextBlock x:Name="txtServiceCost" Text="{Binding SERVICECOST, StringFormat=N0}" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock x:Name="txtServiceCost" Text="{Binding SERVICECOST, StringFormat=N0}" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" />
                                         <!--Thành tiền-->
-                                        <TextBlock x:Name="txtCalculate" Grid.Column="4" HorizontalAlignment="Right" FontWeight="Medium"
+                                        <TextBlock x:Name="txtCalculate" Grid.Column="3" HorizontalAlignment="Right" FontWeight="Medium"
                                                TextWrapping="Wrap" VerticalAlignment="Center"
                                                    Text="{Binding COST, StringFormat=N0}">
                                         </TextBlock>
@@ -159,7 +154,7 @@
 
                     <StackPanel Grid.Row="2" Margin="20 0" VerticalAlignment="Center">
                         <Rectangle Fill="Black" Height="1" Margin="5 0" Opacity="0.5" />
-                        <Grid Margin="10">
+                        <Grid Margin="10 10 10 20">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tổng tiền dịch vụ: " FontSize="15" Margin="5" />
@@ -167,19 +162,19 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tổng tiền hoá đơn: " FontSize="15" Margin="5" />
-                                    <TextBlock x:Name="txtTotalCost" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtTotalCost" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tiền đặt cọc:" FontSize="15" Margin="5" />
-                                    <TextBlock x:Name="txtDeposit" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtDeposit" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Tiền phạt:" FontSize="15" Margin="5" />
-                                    <TextBlock x:Name="txtPenalty" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtPenalty" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Còn lại:" FontSize="15" Margin="5" />
-                                    <TextBlock x:Name="txtRemaining" FontSize="12" Margin="5" FontWeight="DemiBold" />
+                                    <TextBlock x:Name="txtRemaining" FontSize="15" Margin="5" FontWeight="DemiBold" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -194,7 +189,7 @@
             RadiusX="10"
             Panel.ZIndex="-2"
             Effect="{StaticResource dropShadow}"
-            Margin="10">
+            Margin="10 10 10 0">
             </Rectangle>
         </Grid>
     </materialDesign:TransitioningContent>

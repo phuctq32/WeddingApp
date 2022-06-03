@@ -226,8 +226,9 @@
                             </StackPanel>
                             <!--ngày vào làm-->
                             <StackPanel Orientation="Horizontal" Margin="20 20">
-                                <DatePickerTextBox Foreground="Black"
+                                <DatePicker Foreground="Black"
                                             x:Name="txtDate"
+                                            SelectedDate="{Binding Date, Mode=TwoWay}"
                                   Width="250"
                                   materialDesign:HintAssist.Hint="Chọn ngày vào làm"
                                   Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
