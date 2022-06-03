@@ -153,7 +153,7 @@
                         <!--ĐƠN GIÁ BÀN TỐI THIỂU-->
                         <TextBlock
                             Grid.Column="4"
-                            Text="{Binding BALLROOMTYPE.MINIMUMCOST, UpdateSourceTrigger=PropertyChanged}"
+                            Text="{Binding BALLROOMTYPE.MINIMUMCOST,StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"

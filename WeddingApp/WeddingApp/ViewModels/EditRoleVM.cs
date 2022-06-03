@@ -43,7 +43,7 @@ namespace WeddingApp.ViewModels
         private void Load(EditRoleWindow parameter)
         {
             Functions = Data.Ins.DB.FUNCTIONS.ToList();
-            currentRole = Data.Ins.DB.ROLES.Where(role => role.ROLENAME == parameter.RoleNameTxt.ToString()).SingleOrDefault();
+            currentRole = Data.Ins.DB.ROLES.Where(role => role.ROLENAME == parameter.RoleNameTxt.Text.ToString()).SingleOrDefault();
         }
         private void AllChecked(EditRoleWindow parameter)
         {

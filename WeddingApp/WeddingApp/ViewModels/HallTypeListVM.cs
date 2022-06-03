@@ -41,7 +41,7 @@ namespace WeddingApp.ViewModels
             EditWeddingHallTypeWindow editWeddingHallTypeWindow = new EditWeddingHallTypeWindow();
             editWeddingHallTypeWindow.TypeName.Items.Add(editType.TYPENAME);
             editWeddingHallTypeWindow.TypeName.SelectedIndex = 0;
-            editWeddingHallTypeWindow.txtMinPrice.Text = editType.MINIMUMCOST.ToString();
+            editWeddingHallTypeWindow.txtMinPrice.Text = Convert.ToInt32(editType.MINIMUMCOST).ToString();
             editWeddingHallTypeWindow.ShowDialog();
         }
         public void Delete(ListViewItem listViewItem)
