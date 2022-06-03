@@ -248,8 +248,8 @@ namespace WeddingApp.ViewModels
         public void InvoiceSave(ServiceSelectionUC serviceSelectionUC, MenuUC menuUC)
         {
             INVOICE newInvoice = new INVOICE();
-            newInvoice.WEDDINGCOST = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",",""));
             newInvoice.SERVICECOST = Convert.ToInt32(serviceSelectionUC.totalPrice.Text.Replace(",", ""));
+            newInvoice.WEDDINGCOST = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",", "")) * newWedding.TABLEAMOUNT + newInvoice.SERVICECOST;
             newInvoice.STATUS = 1;
             newInvoice.TOTALCOST = newInvoice.WEDDINGCOST + newInvoice.SERVICECOST;
             newInvoice.REMAININGCOST = newInvoice.TOTALCOST * (decimal)0.9;
@@ -258,9 +258,9 @@ namespace WeddingApp.ViewModels
             Data.Ins.DB.SaveChanges();
             newInvoice.WEDDINGID = newWedding.WEDDINGID;
             newInvoice.USERNAME = CurrentAccount.Username;
-            if(Data.Ins.DB.REPORTDETAILs.Where(x=>x.REPORTDATE == DateTime.Now).Count() == 0)
+            if (Data.Ins.DB.REPORTDETAILs.Where(x => x.REPORTDATE == DateTime.Now).Count() == 0)
             {
-                if(Data.Ins.DB.SALESREPORTs.Where(x=>x.REPORTMONTH.Month == DateTime.Now.Month && x.REPORTMONTH.Year == DateTime.Now.Year).Count()==0)
+                if (Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH.Month == DateTime.Now.Month && x.REPORTMONTH.Year == DateTime.Now.Year).Count() == 0)
                 {
                     SALESREPORT sALESREPORT = new SALESREPORT();
                     DateTime a = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
@@ -272,13 +272,52 @@ namespace WeddingApp.ViewModels
                 }
                 else
                 {
-                    REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL(); 
+                    REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL();
                     rEPORTDETAIL.REPORTDATE = DateTime.Now;
                     rEPORTDETAIL.BOOKEDWEDDING = 1;
-                    rEPORTDETAIL.PAIDWEDDING= 0;
+                    rEPORTDETAIL.PAIDWEDDING = 0;
                     rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
+                    rEPORTDETAIL.RATIO = 1;
+                    rEPORTDETAIL.REPORTMONTH = Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH.Month == DateTime.Now.Month && x.REPORTMONTH.Year == DateTime.Now.Year).SingleOrDefault().REPORTMONTH;
+                    Data.Ins.DB.REPORTDETAILs.Add(rEPORTDETAIL);
                 }
             }
+            else
+            {
+                REPORTDETAIL rEPORTDETAIL = Data.Ins.DB.REPORTDETAILs.Where(x => x.REPORTDATE == DateTime.Now).SingleOrDefault();
+                rEPORTDETAIL.BOOKEDWEDDING += 1;
+                rEPORTDETAIL.PROFIT += newWedding.DEPOSIT;
+                rEPORTDETAIL.RATIO = rEPORTDETAIL.PAIDWEDDING / (rEPORTDETAIL.PAIDWEDDING + rEPORTDETAIL.BOOKEDWEDDING);
+                SALESREPORT sALESREPORT = Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH == rEPORTDETAIL.REPORTMONTH).SingleOrDefault();
+                sALESREPORT.BOOKEDWEDDING += 1;
+                sALESREPORT.PROFIT += newWedding.DEPOSIT;
+            }
+            // ......
+            if (Data.Ins.DB.REPORTDETAILs.Where(x => x.REPORTDATE == newWedding.WEDDINGDATE).Count() == 0)
+            {
+                if (Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH.Month == newWedding.WEDDINGDATE.Month && x.REPORTMONTH.Year == newWedding.WEDDINGDATE.Year).Count() == 0)
+                {
+                    SALESREPORT sALESREPORT = new SALESREPORT();
+                    DateTime a = new DateTime(newWedding.WEDDINGDATE.Year, newWedding.WEDDINGDATE.Month, 1);
+                    sALESREPORT.REPORTMONTH = a;
+                    sALESREPORT.PAIDWEDDING = 0;
+                    sALESREPORT.BOOKEDWEDDING = 0;
+                    sALESREPORT.PROFIT = 0;
+                    Data.Ins.DB.SALESREPORTs.Add(sALESREPORT);
+                }
+                else
+                {
+                    REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL();
+                    rEPORTDETAIL.REPORTDATE = newWedding.WEDDINGDATE;
+                    rEPORTDETAIL.BOOKEDWEDDING = 0;
+                    rEPORTDETAIL.PAIDWEDDING = 0;
+                    rEPORTDETAIL.PROFIT = 0;
+                    rEPORTDETAIL.RATIO = 0;
+                    rEPORTDETAIL.REPORTMONTH = Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH.Month == newWedding.WEDDINGDATE.Month && x.REPORTMONTH.Year == newWedding.WEDDINGDATE.Year).SingleOrDefault().REPORTMONTH;
+                    Data.Ins.DB.REPORTDETAILs.Add(rEPORTDETAIL);
+                }
+            }
+            newInvoice.PAID = newWedding.WEDDINGDATE;
             Data.Ins.DB.INVOICES.Add(newInvoice);
             Data.Ins.DB.SaveChanges();
         }

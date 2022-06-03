@@ -23,7 +23,7 @@ namespace WeddingApp.ViewModels
         public ICommand CloseButtonCommand { get; set; }
 
         public string SelectedImage;
-        public DISH editDish = new DISH();
+        public DISH editDish;
         private string containerName = "container";
         private string connectionString = "DefaultEndpointsProtocol=https;AccountName=imagedish;AccountKey=udbl5BJAHZv8wzmuFf/jE5di0ysn9a8Z8H9ZEBCwUhnFUq8zo0mVqgSdL6Im3rKQeb7uJid2xbA62haXbZ93VA==;EndpointSuffix=core.windows.net";
         public EditDishVM()
@@ -34,6 +34,7 @@ namespace WeddingApp.ViewModels
         }
         public void Confirm(EditDishWindow editDishWindow)
         {
+            editDish = Data.Ins.DB.DISHES.Where(x => x.DISHNAME == editDishWindow.txtName.Text).SingleOrDefault();
             //Check Foodname
             if (string.IsNullOrEmpty(editDishWindow.txtName.Text))
             {
@@ -41,7 +42,11 @@ namespace WeddingApp.ViewModels
                 CustomMessageBox.Show("Tên món ăn đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
+            if (Data.Ins.DB.DISHES.Where(x => x.DISHNAME == editDishWindow.txtName.Text && x.DISHID!= editDish.DISHID).Count() > 0)
+            {
+                CustomMessageBox.Show("Tên món ăn đã tồn tại!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             //if (!Regex.IsMatch(parameter.txtName.Text, @"^[a-zA-Z0-9_]+$"))
             //{
             //    parameter.txtName.Focus();
@@ -60,7 +65,6 @@ namespace WeddingApp.ViewModels
             editDish.COST = Convert.ToInt32(editDishWindow.txtPrice.Text);
             editDish.TYPEID = Data.Ins.DB.DISHTYPEs.Where(x => x.TYPENAME == editDishWindow.OutlinedComboBox.Text).SingleOrDefault().TYPEID;
             editDish.DISHDESCRIPTION = editDishWindow.txtDescription.Text;
-            Data.Ins.DB.DISHES.Add(editDish);
             Data.Ins.DB.SaveChanges();
             editDishWindow.Close();
             if (!string.IsNullOrEmpty(SelectedImage))

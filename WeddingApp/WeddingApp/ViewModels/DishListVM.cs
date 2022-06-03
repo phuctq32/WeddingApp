@@ -66,7 +66,7 @@ namespace WeddingApp.ViewModels
         {
             DISH editType = listViewItem.DataContext as DISH;
             EditDishWindow editDishWindow = new EditDishWindow();
-            editDishWindow.txtPrice.Text = editType.COST.ToString();
+            editDishWindow.txtPrice.Text = Convert.ToInt32(editType.COST).ToString();
             editDishWindow.txtName.Text = editType.DISHNAME;
             editDishWindow.txtDescription.Text = editType.DISHDESCRIPTION;
             List<DISHTYPE> dISHTYPEs = Data.Ins.DB.DISHTYPEs.ToList();
