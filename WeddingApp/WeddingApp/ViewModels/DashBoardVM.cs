@@ -26,10 +26,21 @@ namespace WeddingApp.ViewModels
         public ICommand LoadedCommand { get; set; }
         public ICommand btnExportCommand { get; set; }
         public int TotalProduct { get; set; }
-        public int TotalValue { get; set; }
-        
-        public int TotalReceipt { get; set; }
-        public int TotalCustomer { get; set; }
+
+        private int toltalValue;
+        public int TotalValue
+        { get => toltalValue; set { toltalValue = value; OnPropertyChanged(); } }
+
+        private int toltalReceipt;
+        public int TotalReceipt 
+        { get => toltalReceipt; set { toltalReceipt = value; OnPropertyChanged(); } }
+
+
+        private int totalCustomer;
+        public int TotalCustomer
+        { get => totalCustomer; set { totalCustomer = value; OnPropertyChanged(); } }
+
+
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
@@ -45,10 +56,7 @@ namespace WeddingApp.ViewModels
             LoadedCommand = new RelayCommand<DashBoardUC>((parameter) => parameter == null ? false : true, (parameter) => Loaded(parameter));
             btnExportCommand = new RelayCommand<ReportChartUC>((parameter) => parameter == null ? false : true, (parameter) => btnExport(parameter));
             selectCommand = new RelayCommand<ComboBox>((parameter) => true, (parameter) => selectMonth(parameter));
-            TotalValue = 234;
-            
-            TotalReceipt = 200;
-            TotalCustomer = 300;
+            month = now.Month;
             SeriesCollection = new SeriesCollection
 
                     {
@@ -59,21 +67,12 @@ namespace WeddingApp.ViewModels
                         }
                     };
         }
-
-        private ReportChartUC monthChartUC = new ReportChartUC();
-        private ReportChartUC yearChartUC = new ReportChartUC();
-        List<INVOICE> invoiceList;
-        int value;
-        private void selectMonth(ComboBox item)
+        public void setTotalInMonth(int setInMonth)
         {
-           TotalValue = 0;
-            for (int i = 0; i < day; i++)
-            {
-                SeriesCollection[0].Values.RemoveAt(0);
-            }
-            month = item.SelectedIndex + 1 ;
-            day = DateTime.DaysInMonth(2022, month);
-            invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == month).ToList();
+            TotalValue = 0;
+            invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).ToList();
+            TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).Count();
+            TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).Count();
             value = 0;
             Labels = new string[day];
             for (int i = 1; i <= day; i++)
@@ -87,14 +86,33 @@ namespace WeddingApp.ViewModels
                 SeriesCollection[0].Values.Add(value + 0d);
                 TotalValue += value;
                 value = 0;
-               
+
             }
+        }
+        private ReportChartUC monthChartUC = new ReportChartUC();
+        private ReportChartUC yearChartUC = new ReportChartUC();
+        List<INVOICE> invoiceList;
+        int value;
+        private void selectMonth(ComboBox item)
+        {
+
+           TotalValue = 0;
+            if (tmp == 1)
+                for (int i = 0; i < day; i++)
+            {
+                SeriesCollection[0].Values.RemoveAt(0);
+            }
+            month = item.SelectedIndex + 1 ;
+            day = DateTime.DaysInMonth(2022, month);
+
+            setTotalInMonth(month);
 
         }
         private void SwitchTab(DashBoardUC dashBoardindow)
         {
             int index = dashBoardindow.statusListViewUser.SelectedIndex;
             List<ListViewItem> listViewItems = dashBoardindow.statusListViewUser.Items.Cast<ListViewItem>().ToList();
+
             ListViewItem listViewItem = listViewItems[index];
             switch (listViewItem.Name)
             {
@@ -103,37 +121,17 @@ namespace WeddingApp.ViewModels
                     dashBoardindow.selectGrid.Children.Add(new CompletedInvoiceListUC());
                     break;
                 case "Tháng":
-                    //TotalValue = 0;
-                    
-
                     if (tmp == 1)
-                    {
                         for (int i = 0; i < day; i++)
                         {
                             SeriesCollection[0].Values.RemoveAt(0);
                         }
-                    }
+                  
 
-                    month = now.Month;
+                    
                     day = DateTime.DaysInMonth(2022, month);
 
-                    invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == now.Month).ToList();
-                    value = 0;
-
-                    Labels = new string[40];
-                    for (int i = 1; i <= day; i++)
-                    {
-                        value = 0;
-                        Labels[i - 1] =  "Ngày "+ i.ToString();
-                        foreach (var invoice in invoiceList)
-                        {
-                            if (invoice.PAID.Day == i) value += Convert.ToInt32(invoice.TOTALCOST); 
-                    }
-                        SeriesCollection[0].Values.Add(value + 0d);
-                       TotalValue += value;
-                        
-
-                    }
+                    setTotalInMonth(month);
 
                     monthChartUC.time.Labels = Labels;
                     //adding series will update and animate the chart automatically
@@ -144,32 +142,32 @@ namespace WeddingApp.ViewModels
 
                     Formatter = value => value.ToString();
                     tmp = 1;
-
                     dashBoardindow.selectGrid.Children.Clear();
                     dashBoardindow.selectGrid.Children.Add(monthChartUC);
 
-                    monthChartUC.monthComboBox.SelectedIndex = now.Month -1;
+                    monthChartUC.monthComboBox.SelectedIndex = month - 1 ;
                     monthChartUC.yearComboBox.Visibility = Visibility.Collapsed;
 
                     break;
 
                 case "Năm":
                     TotalValue = 0;
-                    
-                    if (tmp == 1)
-                    {
+                    if (tmp==1)
                         for (int i = 0; i < day; i++)
                         {
                             SeriesCollection[0].Values.RemoveAt(0);
                         }
-                    }
+                    
 
                     //-----------------------------
                     day = 12;
 
                     List<INVOICE> invoiceYearList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).ToList();
+                    TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).Count();
+                    TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).Count();
+
                     Labels = new string[40];
-                    
+
                     for (int i = 1; i <= 12; i++)
                     {
                         
