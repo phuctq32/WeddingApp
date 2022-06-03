@@ -109,14 +109,7 @@ namespace WeddingApp.ViewModels
                     Data.Ins.DB.ROLES.Add(newRole);
 
                     List<PERMISSION> currentPermissions = Data.Ins.DB.PERMISSIONs.ToList();
-                    int max = -1;
-                    for (int i = 0; i < currentPermissions.Count; i++)
-                    {
-                        if (currentPermissions[i].PERMISSIONID > max)
-                        {
-                            max = currentPermissions[i].PERMISSIONID;
-                        }
-                    }
+                    
 
                     List<PERMISSION> newRolePermissions = new List<PERMISSION>();
                     foreach (var lvi in FindVisualChildren<ListViewItem>(parameter.functionList))
@@ -126,7 +119,6 @@ namespace WeddingApp.ViewModels
                         if (checkBox.IsChecked == true)
                         {
                             PERMISSION p = new PERMISSION();
-                            p.PERMISSIONID = max++;
                             p.ROLEID = roleID;
                             p.FUNCTIONID = func.FUNCTIONID;
                             Data.Ins.DB.PERMISSIONs.Add(p);
@@ -135,6 +127,7 @@ namespace WeddingApp.ViewModels
 
                     Data.Ins.DB.SaveChanges();
                     CustomMessageBox.Show("Thêm thành công!", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Asterisk);
+                    parameter.Close();
                 }
                 catch
                 {
