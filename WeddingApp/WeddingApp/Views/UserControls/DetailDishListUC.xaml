@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WeddingApp.Views.UserControls"
+             xmlns:local="clr-namespace:WeddingApp.Views.UserControls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              Foreground="Black">
@@ -20,9 +20,9 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="400"></ColumnDefinition>
-                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
                         <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Món ăn"
                            FontSize="20"
@@ -48,18 +48,25 @@
                            Foreground="Black"
                            Grid.Column="2" />
                 </Grid>
+
                 <ListView x:Name="ListDishUse"
                             Grid.Row="1"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                              ScrollViewer.CanContentScroll="False" d:ItemsSource="{d:SampleData ItemCount=5}">
+                              ScrollViewer.CanContentScroll="False">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Height="120" Width="750">
+                            <materialDesign:Card
+                                Background="White"
+                                Foreground="Black"
+                                Height="80"
+                                Width="720"
+                                Padding="8"
+                                UniformCornerRadius="6" Margin="5 0 0 10">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="400"></ColumnDefinition>
-                                        <ColumnDefinition Width="1.2*"></ColumnDefinition>
                                         <ColumnDefinition Width="300"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <!--hình, tên, giá giảm và chưa giảm của 1 món ăn-->
                                     <Grid Grid.Column="0">
@@ -75,20 +82,18 @@
                                                 <ImageBrush ImageSource="{Binding DISH.DISHIMAGE}" Stretch="UniformToFill" />
                                             </Rectangle.Fill>
                                         </Rectangle>
-                                        <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom" Width="300" HorizontalAlignment="Right">
-                                            <!--tên món ăn-->
-                                            <TextBlock
-                                            Margin="0 20 0 0"
+                                        <!--tên món ăn-->
+                                        <TextBlock
+                                            Margin="0 0 0 0"
                                             Text="{Binding DISH.DISHNAME}"
                                             FontSize="17"
                                             VerticalAlignment="Center"
-                                            HorizontalAlignment="Left"
+                                            HorizontalAlignment="Center"
                                             Foreground="Black"
                                             Grid.Column="2"
                                             TextWrapping="Wrap" />
-                                        </StackPanel>
                                     </Grid>
-                                    <!--giá tiền tổng cộng của mỗi món ăn bên UI đã tính bằng converter rồi -->
+
                                     <TextBlock
                                        FontSize="18"
                                        VerticalAlignment="Center"
@@ -109,16 +114,7 @@
                                         Text="{Binding NOTE}">
                                     </TextBlock>
                                 </Grid>
-                                <Rectangle
-                                Fill="White"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                RadiusY="10"
-                                RadiusX="10"
-                                Panel.ZIndex="-2"
-                                Margin="10">
-                                </Rectangle>
-                            </Grid>
+                            </materialDesign:Card>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.ItemsPanel>

@@ -130,6 +130,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Opacity" Value="0.8"></Setter>
             </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" Value="Silver" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 

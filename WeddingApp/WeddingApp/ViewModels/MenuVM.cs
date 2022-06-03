@@ -16,6 +16,8 @@ namespace WeddingApp.ViewModels
 {
     internal class MenuVM :ViewModelBase
     {
+        private long totalPrice;
+        private List<DISH> selectedDishes;
         public ICommand LoadedCommand { get; set; }
         public ICommand PreviousUCCommand { get; set; }
         public ICommand NextUCCommand { get; set; }
@@ -23,7 +25,18 @@ namespace WeddingApp.ViewModels
         public ICommand SearchCommand { get; set; }
         public ICommand HoverItemCommand { get; set; }
         public ICommand CancelHoverItemCommand { get; set; }
-        private long totalPrice;
+        public ICommand DeleteCartCommand { get; set; }
+        public ICommand PreviousUCCommand1 { get; set; }
+
+        public List<DISH> SelectedDishes
+        {
+            get => selectedDishes;
+            set
+            {
+                selectedDishes = value;
+                OnPropertyChanged(nameof(SelectedDishes));
+            }
+        }
         public long TotalPrice
         {
             get => totalPrice;
@@ -45,6 +58,9 @@ namespace WeddingApp.ViewModels
             SearchCommand = new RelayCommand<MenuUC>(p => true, p => Search(p));
             HoverItemCommand = new RelayCommand<Button>((paramter) => paramter == null ? false : true, (parameter) => HoverItem(parameter));
             CancelHoverItemCommand = new RelayCommand<Button>((paramter) => paramter == null ? false : true, (parameter) => CancelHoverItem(parameter));
+            DeleteCartCommand = new RelayCommand<ListViewItem>(p => p == null ? false : true, (p) => DeleteCart(p));
+            PreviousUCCommand1 = new RelayCommand<ServiceSelectionUC>(p => true, p => PreviousUC1());
+            SelectedDishes = new List<DISH>();
         }
         public void Loaded(MenuUC menuUC)
         {
@@ -52,6 +68,23 @@ namespace WeddingApp.ViewModels
             menuUC.ViewListProducts.ItemsSource = dishList;
             thisUC = menuUC;
             menuUC.combox.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
+        }
+        public void PreviousUC1()
+        {
+            MainVM.PreviousUC();
+            List<DISH> temp = new List<DISH>();
+            SelectedDishes.ForEach(dish => temp.Add(dish));
+            SelectedDishes = temp;
+            foreach (var lvi in FindVisualChildren<ListViewItem>(thisUC.ViewListProducts))
+            {
+                DISH dish = lvi.DataContext as DISH;
+                if (SelectedDishes.Contains(dish))
+                {
+                    Button button = GetVisualChild<Button>(lvi);
+                    button.IsEnabled = false;
+                }
+            }
+
         }
         public void SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
@@ -145,11 +178,16 @@ namespace WeddingApp.ViewModels
         public void AddToCart(ListViewItem listViewItem)
         {
             DISH selectedDish = listViewItem.DataContext as DISH;
-            if (!thisUC.carts.Items.Contains(selectedDish))
+            List<DISH> temp = new List<DISH>();
+            SelectedDishes.ForEach(dish => temp.Add(dish));
+            if (!temp.Contains(selectedDish))
             {
-                thisUC.carts.Items.Add(selectedDish);
+                temp.Add(selectedDish);
             }
-            TotalPrice = GetTotalPrice(thisUC.carts);
+            SelectedDishes = temp;
+            TotalPrice = GetTotalPrice(SelectedDishes);
+            Button button = GetVisualChild<Button>(listViewItem);
+            button.IsEnabled = false;
         }
         public void PreviousUC(MenuUC menuUC)
         {
@@ -172,12 +210,33 @@ namespace WeddingApp.ViewModels
                 MainVM.NextUC();
             }
         }
-        private long GetTotalPrice(ListView listView)
+        private void DeleteCart(ListViewItem parameter)
+        {
+            DISH dishToDelete = parameter.DataContext as DISH;
+
+            var menuUC = GetAncestorOfType<MenuUC>(parameter);
+            foreach (var item in FindVisualChildren<ListViewItem>(menuUC.ViewListProducts))
+            {
+                DISH dish = item.DataContext as DISH;
+                if (dish.DISHID == dishToDelete.DISHID)
+                {
+
+                    Button button = GetVisualChild<Button>(item);
+                    button.IsEnabled = true;
+                }
+            }
+            List<DISH> temp = new List<DISH>();
+            SelectedDishes.ForEach(dish => temp.Add(dish));
+            temp.Remove(dishToDelete);
+            SelectedDishes = temp;
+            TotalPrice = GetTotalPrice(SelectedDishes);
+        }
+        private long GetTotalPrice(List<DISH> Dishes)
         {
             long res = 0;
-            foreach (DISH Cart in listView.Items)
+            foreach (var item in Dishes)
             {
-                res += Convert.ToInt32(Cart.COST);
+                res += Convert.ToInt32(item.COST);
             }
             return res;
         }

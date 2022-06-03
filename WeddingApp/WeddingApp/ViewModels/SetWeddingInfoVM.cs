@@ -41,7 +41,7 @@ namespace WeddingApp.ViewModels
         }
         public void NextStep(SetWeddingInfomationUC setWeddingInfomationUC)
         {
-            if (!Regex.IsMatch(setWeddingInfomationUC.txtphone.Text, @"^(0)[7-9]|(3)|(5)[0-9]{8}$"))
+            if (!Regex.IsMatch(setWeddingInfomationUC.txtphone.Text, @"(^(0)[7-9]|(3)|(5))[0-9]{8}$"))
             {
                 CustomMessageBox.Show("Vui lòng nhập đúng số điện thoại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
                 setWeddingInfomationUC.txtphone.Focus();

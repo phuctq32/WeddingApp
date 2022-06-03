@@ -65,12 +65,6 @@ namespace WeddingApp.ViewModels
             });
             SwitchTabCommand = new RelayCommand<MainWindow>(p => true, (p) => SwitchTab(p));
             LogOutCommand = new RelayCommand<MainWindow>(p => true, (p) => LogOut(p));
-            SetWeddingInfomationUC setWeddingInfomationUC = new SetWeddingInfomationUC();
-            MenuUC menuUC = new MenuUC();
-            ServiceSelectionUC serviceSelectionUC = new ServiceSelectionUC();
-            NextUCs.Push(serviceSelectionUC);
-            NextUCs.Push(menuUC);
-            NextUCs.Push(setWeddingInfomationUC);
 
         }
         public static void NextUC()
@@ -87,6 +81,12 @@ namespace WeddingApp.ViewModels
         }
         private void Loaded(MainWindow mainWindow)
         {
+            SetWeddingInfomationUC setWeddingInfomationUC = new SetWeddingInfomationUC();
+            MenuUC menuUC = new MenuUC();
+            ServiceSelectionUC serviceSelectionUC = new ServiceSelectionUC();
+            NextUCs.Push(serviceSelectionUC);
+            NextUCs.Push(menuUC);
+            NextUCs.Push(setWeddingInfomationUC);
 
             List<PERMISSION> list = Data.Ins.DB.PERMISSIONs.Where(x => x.ROLEID == CurrentAccount.Role).ToList();
             List<string> FunctionName = new List<string>();
@@ -166,8 +166,16 @@ namespace WeddingApp.ViewModels
                     mainWindow.ucWindow.Children.Add(new CompletedInvoiceListUC());
                     break;
                 case "SetWeddingInformationUC":
+                    SetWeddingInfomationUC setWeddingInfomationUC = new SetWeddingInfomationUC();
+                    MenuUC menuUC = new MenuUC();
+                    ServiceSelectionUC serviceSelectionUC = new ServiceSelectionUC();
+                    NextUCs.Clear();
+                    PreviousUCs.Clear();
+                    NextUCs.Push(serviceSelectionUC);
+                    NextUCs.Push(menuUC);
+                    NextUCs.Push(setWeddingInfomationUC);
                     mainWindow.ucWindow.Children.Clear();
-                    mainWindow.ucWindow.Children.Add(new SetWeddingInfomationUC());
+                    mainWindow.ucWindow.Children.Add(NextUCs.First());
                     break;
 
                 case "RoleListUC":
@@ -180,6 +188,8 @@ namespace WeddingApp.ViewModels
         {
             if (CustomMessageBox.Show("Bạn có muốn đăng xuất?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
+                NextUCs.Clear();
+                PreviousUCs.Clear();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.Show();
                 mainWindow.Close();

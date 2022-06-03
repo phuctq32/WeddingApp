@@ -29,7 +29,7 @@
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Left"
                         materialDesign:ButtonAssist.CornerRadius="5"
-                    Command="{Binding PreviousUCCommand}"
+                    Command="{Binding Source={StaticResource menuVM}, Path=PreviousUCCommand1}"
                     CommandParameter="{Binding ElementName=ServiceUC}"
                         Margin="30 20 0 20"
                         Height="35"
@@ -111,25 +111,25 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <CheckBox
-                                                x:Name="selectCheckBox"
-                                                Grid.Column="0"
-                                                Margin="40 0"
-                                                Height="13"
-                                                Width="17"
-                                                HorizontalAlignment="Left"
-                                                Background="{StaticResource Orange2}" 
+                                                    x:Name="selectCheckBox"
+                                                    Grid.Column="0"
+                                                    Margin="40 0"
+                                                    Height="13"
+                                                    Width="17"
+                                                    HorizontalAlignment="Left"
+                                                    Background="{StaticResource Orange2}" 
                                                     Command="{Binding Source={StaticResource serviceVM}, Path=CheckedCommand}"
                                                     CommandParameter="{Binding ElementName=selectCheckBox}"/>
                                                 <!--hình, tên, giá giảm và chưa giảm của 1 món ăn-->
                                                 <Grid Grid.Column="1">
                                                     <!--hình ảnh-->
                                                     <Rectangle
-                                            RadiusY="10"
-                                            RadiusX="10"
-                                            Height="80"
-                                            Width="80"
-                                            HorizontalAlignment="Left"
-                                            Margin="0 0 0 0">
+                                                        RadiusY="10"
+                                                        RadiusX="10"
+                                                        Height="80"
+                                                        Width="80"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="0 0 0 0">
                                                         <Rectangle.Fill>
                                                             <ImageBrush ImageSource="{Binding SERVICEIMAGE}" Stretch="UniformToFill" />
                                                         </Rectangle.Fill>
@@ -151,7 +151,7 @@
                                                     FontWeight="DemiBold"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
-                                                    Text="{Binding SERVICECOST}"/>
+                                                    Text="{Binding COST, StringFormat=N0}"/>
                                             </Grid>
 
                                             <!-- background -->
@@ -191,7 +191,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="90" />
                             <RowDefinition />
-                            <RowDefinition Height="100" />
+                            <RowDefinition Height="80" />
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
@@ -204,18 +204,22 @@
                         Margin="0 20" />
                         </Grid>
                         <Grid Grid.Row="1" Margin="10">
-                            <ScrollViewer Margin="10 0">
-                                <ListView x:Name="carts" ScrollViewer.CanContentScroll="False">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Width="310" Height="100" Margin="0 0 20 0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="30" />
-                                                    <ColumnDefinition Width="180" />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid Grid.Column="0" Margin="10 10 0 10">
-                                                    <Button
+                            <ListView 
+                                x:Name="carts" 
+                                ScrollViewer.CanContentScroll="False" 
+                                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                ItemsSource="{Binding Path=ServeList, UpdateSourceTrigger=PropertyChanged}"
+                                Margin="10 0">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="310" Height="100" Margin="0 0 20 0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="180" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0" Margin="10 10 0 10">
+                                                <Button
                                                     x:Name="deleteBtn"
                                                     Content="x"
                                                     FontSize="30"
@@ -225,15 +229,16 @@
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
                                                     Visibility="Collapsed"
+                                                    Command="{Binding Source={StaticResource serviceVM}, Path=DeleteCartCommand}"
                                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
-                                                </Grid>
-                                                <Grid Grid.Column="1" Margin="0 10">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="auto" />
-                                                        <ColumnDefinition />
-                                                    </Grid.ColumnDefinitions>
-                                                    <!--hình ảnh-->
-                                                    <Rectangle
+                                            </Grid>
+                                            <Grid Grid.Column="1" Margin="0 10">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <!--hình ảnh-->
+                                                <Rectangle
                                                         Grid.Column="0"
                                                         RadiusY="10"
                                                         RadiusX="10"
@@ -241,42 +246,42 @@
                                                         Width="67"
                                                         HorizontalAlignment="Left"
                                                         Margin="5 0 10 0">
-                                                        <Rectangle.Fill>
-                                                            <ImageBrush ImageSource="{Binding SERVICE.SERVICEIMAGE}" Stretch="UniformToFill" />
-                                                        </Rectangle.Fill>
-                                                    </Rectangle>
-                                                    <StackPanel Orientation="Vertical" Grid.Column="1">
-                                                        <!--tên món ăn-->
-                                                        <TextBlock
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="{Binding SERVICE.SERVICEIMAGE}" Stretch="UniformToFill" />
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                                    <!--tên món ăn-->
+                                                    <TextBlock
                                                         MinHeight="45"
-                                                        Width="110"
-                                                        Text="{Binding SERVICENAME}"
+                                                        Width="auto"
+                                                        Text="{Binding SERVICE.SERVICENAME}"
                                                         TextWrapping="Wrap"
                                                         FontSize="14"
                                                         FontWeight="SemiBold"
                                                             Foreground="Black"
                                                         Margin="0 8 10 0" />
-                                                        <Grid x:Name="spinner" Width="65" Height="20" HorizontalAlignment="Left">
-                                                            <Border>
-                                                                <Border.OpacityMask>
-                                                                    <VisualBrush>
-                                                                        <VisualBrush.Visual>
-                                                                            <Border
+                                                    <Grid x:Name="spinner" Width="65" Height="20" HorizontalAlignment="Left">
+                                                        <Border>
+                                                            <Border.OpacityMask>
+                                                                <VisualBrush>
+                                                                    <VisualBrush.Visual>
+                                                                        <Border
                                                                         Background="Black"
                                                                         SnapsToDevicePixels="True"
                                                                         CornerRadius="4"
                                                                         Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
                                                                         Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}" />
-                                                                        </VisualBrush.Visual>
-                                                                    </VisualBrush>
-                                                                </Border.OpacityMask>
-                                                                <Grid>
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="20" />
-                                                                        <ColumnDefinition />
-                                                                        <ColumnDefinition Width="20" />
-                                                                    </Grid.ColumnDefinitions>
-                                                                    <TextBlock
+                                                                    </VisualBrush.Visual>
+                                                                </VisualBrush>
+                                                            </Border.OpacityMask>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="20" />
+                                                                    <ColumnDefinition />
+                                                                    <ColumnDefinition Width="20" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBlock
                                                                     x:Name="amount"
                                                                     FontWeight="Medium"
                                                                     FontSize="10"
@@ -285,7 +290,7 @@
                                                                     Padding="0"
                                                                     Grid.Column="1"
                                                                     Text="1" />
-                                                                    <Button
+                                                                <Button
                                                                     Style="{StaticResource up_down_spinner_btn}"
                                                                     Grid.Column="0"
                                                                     Grid.Row="0"
@@ -297,7 +302,7 @@
                                                                     FontSize="16"
                                                                         Command="{Binding Source={StaticResource serviceVM}, Path=DownCommand}"
                                                                     CommandParameter="{Binding ElementName=amount}" />
-                                                                    <Button
+                                                                <Button
                                                                     Style="{StaticResource up_down_spinner_btn}"
                                                                     Grid.Column="2"
                                                                     Grid.Row="1"
@@ -307,31 +312,31 @@
                                                                     VerticalContentAlignment="Center"
                                                                     HorizontalContentAlignment="Center"
                                                                     FontSize="14"
-                                                                        Command="{Binding Source={StaticResource serviceVM}, Path=UpCommand}"
+                                                                    Command="{Binding Source={StaticResource serviceVM}, Path=UpCommand}"
                                                                     CommandParameter="{Binding ElementName=amount}" />
-                                                                    <Border
+                                                                <Border
                                                                     BorderBrush="Gray"
                                                                     IsHitTestVisible="False"
                                                                     BorderThickness="1"
                                                                     CornerRadius="4"
                                                                     Grid.RowSpan="2"
                                                                     Grid.ColumnSpan="3" />
-                                                                </Grid>
-                                                            </Border>
-                                                        </Grid>
-                                                    </StackPanel>
-                                                </Grid>
-                                                <Grid Grid.Column="2" Margin="0 10 10 10">
-                                                    <TextBlock
+                                                            </Grid>
+                                                        </Border>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Grid>
+                                            <Grid Grid.Column="2" Margin="0 10 10 10">
+                                                <TextBlock
                                                     x:Name="price"
                                                     Text="{Binding SERVICECOST, StringFormat=N0}"
                                                     Visibility="Visible"
-                                                        FontSize="16"
+                                                    FontSize="16"
                                                     FontWeight="DemiBold"
                                                     VerticalAlignment="Center"
                                                     HorizontalAlignment="Center"/>
-                                                </Grid>
-                                                <Rectangle
+                                            </Grid>
+                                            <Rectangle
                                                 Grid.ColumnSpan="4"
                                                 Fill="White"
                                                 HorizontalAlignment="Stretch"
@@ -340,7 +345,7 @@
                                                 RadiusX="10"
                                                 Margin="10"
                                                 Panel.ZIndex="-2" />
-                                                <i:Interaction.Triggers>
+                                            <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseEnter">
                                                         <i:InvokeCommandAction
                                                         Command="{Binding Source={StaticResource menuVM}, Path=HoverItemCommand}"
@@ -352,30 +357,28 @@
                                                         CommandParameter="{Binding ElementName=deleteBtn}" />
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="{x:Type ListViewItem}">
-                                            <Setter Property="Background" Value="Transparent" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                        <ContentPresenter />
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                </ListView>
-                            </ScrollViewer>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
                             <Rectangle
-                            Fill="{StaticResource GrayBackground}"
-                            RadiusY="1"
-                            RadiusX="1"
-                            Panel.ZIndex="-2"
-                            Margin="10,0,10,0" />
+                                Fill="{StaticResource GrayBackground}"
+                                RadiusY="1"
+                                RadiusX="1"
+                                Panel.ZIndex="-2"
+                                Margin="10,0,10,0" />
                         </Grid>
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
 
