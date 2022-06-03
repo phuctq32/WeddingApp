@@ -118,7 +118,7 @@
                         </Grid.ColumnDefinitions>
                         <!--mã sảnh-->
                         <TextBlock
-                            Text="1"
+                            Text="{Binding INVOICEID}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
