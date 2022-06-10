@@ -120,13 +120,12 @@ namespace WeddingApp.ViewModels
         }
         public void SelectionChanged1(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
-            
             thisUC.hallComboBox.IsEnabled = true;
             thisUC.hallComboBox.Items.Clear();
             List<BALLROOM> ballroom = Data.Ins.DB.BALLROOMs.ToList();
             foreach(var item in ballroom)
             {
-                if (!(Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == thisUC.date.SelectedDate && x.SHIFT.SHIFTNAME == thisUC.ShiftComboBox.Text && x.BALLROOMID == item.BALLROOMID).Count() > 0))
+                if (!(Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == thisUC.date.SelectedDate && x.SHIFT.SHIFTNAME == thisUC.ShiftComboBox.SelectedItem.ToString() && x.BALLROOMID == item.BALLROOMID).Count() > 0))
                 {
                     thisUC.hallComboBox.Items.Add(item.BALLROOMNAME);
                 }
