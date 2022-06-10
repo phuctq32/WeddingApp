@@ -71,9 +71,9 @@ namespace WeddingApp.ViewModels
         public void setTotalInMonth(int setInMonth)
         {
             TotalValue = 0;
-            invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).ToList();
-            TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).Count();
-            TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth).Count();
+            invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth && x.STATUS == 2).ToList();
+            TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth && x.STATUS == 2).Count();
+            TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth && x.STATUS == 2).Count();
             value = 0;
             Labels = new string[day];
             for (int i = 1; i <= day; i++)
@@ -92,8 +92,8 @@ namespace WeddingApp.ViewModels
 
             }
         }
-        private ReportChartUC monthChartUC = new ReportChartUC();
-        private ReportChartUC yearChartUC = new ReportChartUC();
+        //private ReportChartUC monthChartUC = new ReportChartUC();
+        //private ReportChartUC yearChartUC = new ReportChartUC();
         List<INVOICE> invoiceList;
         int value;
         private void selectMonth(ComboBox item)
@@ -124,6 +124,7 @@ namespace WeddingApp.ViewModels
                     dashBoardindow.selectGrid.Children.Add(new CompletedInvoiceListUC());
                     break;
                 case "Tháng":
+                    ReportChartUC monthChartUC1 = new ReportChartUC();
                     if (tmp == 1)
                         for (int i = 0; i < day; i++)
                         {
@@ -136,20 +137,21 @@ namespace WeddingApp.ViewModels
 
                     setTotalInMonth(month);
 
-                    monthChartUC.time.Labels = Labels;
+                    monthChartUC1.time.Labels = Labels;
 
 
                     Formatter = value => value.ToString();
                     tmp = 1;
                     dashBoardindow.selectGrid.Children.Clear();
-                    dashBoardindow.selectGrid.Children.Add(monthChartUC);
+                    dashBoardindow.selectGrid.Children.Add(monthChartUC1);
 
-                    monthChartUC.monthComboBox.SelectedIndex = month - 1 ;
-                    monthChartUC.yearComboBox.Visibility = Visibility.Collapsed;
+                    monthChartUC1.monthComboBox.SelectedIndex = month - 1 ;
+                    monthChartUC1.yearComboBox.Visibility = Visibility.Collapsed;
 
                     break;
 
                 case "Năm":
+                    ReportChartUC yearChartUC1 = new ReportChartUC();
                     TotalValue = 0;
                     if (tmp==1)
                         for (int i = 0; i < day; i++)
@@ -161,9 +163,9 @@ namespace WeddingApp.ViewModels
                     //-----------------------------
                     day = 12;
 
-                    List<INVOICE> invoiceYearList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).ToList();
-                    TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year  ).Count();
-                    TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year).Count();
+                    List<INVOICE> invoiceYearList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year && x.STATUS == 2).ToList();
+                    TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year && x.STATUS == 2).Count();
+                    TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year && x.STATUS == 2).Count();
 
                     Labels = new string[40];
                     for (int i = 1; i <= 12; i++)
@@ -181,16 +183,16 @@ namespace WeddingApp.ViewModels
                         arr[i - 1] = value;
 
                     }
-                    yearChartUC.time.Labels = Labels;
+                    yearChartUC1.time.Labels = Labels;
                     
 
                     Formatter = value => value.ToString();
                     tmp = 1;
                     //-----------------------------
                     dashBoardindow.selectGrid.Children.Clear();
-                    dashBoardindow.selectGrid.Children.Add(yearChartUC);
-                    yearChartUC.yearComboBox.SelectedIndex = 0;
-                    yearChartUC.monthComboBox.Visibility = Visibility.Collapsed;
+                    dashBoardindow.selectGrid.Children.Add(yearChartUC1);
+                    yearChartUC1.yearComboBox.SelectedIndex = 0;
+                    yearChartUC1.monthComboBox.Visibility = Visibility.Collapsed;
                     break;
             }
         }

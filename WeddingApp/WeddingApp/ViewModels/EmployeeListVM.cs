@@ -59,8 +59,13 @@ namespace WeddingApp.ViewModels
             ChangeEmployeeInformationWindow changeEmployeeWindow = new ChangeEmployeeInformationWindow();
             changeEmployeeWindow.txtEmployeeName.Text = changeEmployee.EMPLOYEENAME;
             changeEmployeeWindow.txtUsername.Text = changeEmployee.USERNAME;
-            changeEmployeeWindow.txtSalary.Text = changeEmployee.SALARY.ToString();
+            changeEmployeeWindow.txtSalary.Text = Convert.ToInt32(changeEmployee.SALARY).ToString();
             changeEmployeeWindow.txtDate.Text = changeEmployee.STARTWORKING.ToString();
+            foreach(ROLE item in Data.Ins.DB.ROLES.ToList())
+            {
+                changeEmployeeWindow.comboBoxRoleList.Items.Add(item.ROLENAME);
+            }
+            changeEmployeeWindow.comboBoxRoleList.Text = changeEmployee.ROLE.ROLENAME.ToString();
             changeEmployeeWindow.ShowDialog();
             load(employeeListUC);
         }

@@ -24,5 +24,10 @@ namespace WeddingApp.Views.UserControls
         {
             InitializeComponent();
         }
+
+        private void date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

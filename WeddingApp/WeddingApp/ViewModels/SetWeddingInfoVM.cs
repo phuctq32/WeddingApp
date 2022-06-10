@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WeddingApp.Views.UserControls;
 using WeddingApp.Models;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
-using System.Globalization;
-
 namespace WeddingApp.ViewModels
 {
     internal class SetWeddingInfoVM : ViewModelBase
@@ -37,8 +33,12 @@ namespace WeddingApp.ViewModels
                 setWeddingInfomationUC.ShiftComboBox.Items.Add(item.SHIFTNAME);
             }
             setWeddingInfomationUC.hallComboBox.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(SelectionChanged);
+            setWeddingInfomationUC.ShiftComboBox.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(SelectionChanged1);
             thisUC = setWeddingInfomationUC;
         }
+
+       
+
         public void NextStep(SetWeddingInfomationUC setWeddingInfomationUC)
         {
             if (!Regex.IsMatch(setWeddingInfomationUC.txtphone.Text, @"(^(0)[7-9]|(3)|(5))[0-9]{8}$"))
@@ -87,16 +87,6 @@ namespace WeddingApp.ViewModels
                     }
                     else
                     {
-                        DateTime WeddingDate = DateTime.Parse(setWeddingInfomationUC.date.SelectedDate.Value.ToString());
-                        List<WEDDING> wedding = Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == WeddingDate).ToList();
-                        foreach(var item in wedding)
-                        {
-                            if(item.SHIFT.SHIFTNAME == setWeddingInfomationUC.ShiftComboBox.Text && item.BALLROOM.BALLROOMNAME == setWeddingInfomationUC.hallComboBox.Text)
-                            {
-                                CustomMessageBox.Show("Sảnh đã được đặt", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                                return;
-                            }
-                        }
                         MainVM.WeddingHall = setWeddingInfomationUC.hallComboBox.Text;
                         MainVM.NextUC();
                     }
@@ -126,6 +116,20 @@ namespace WeddingApp.ViewModels
             for(int i = 1;i<= SelectedBallroom.MAXIMUMTABLE/10;i++)
             {
                 thisUC.comboBoxreversedTableAmount.Items.Add(i);
+            }
+        }
+        public void SelectionChanged1(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+        {
+            
+            thisUC.hallComboBox.IsEnabled = true;
+            thisUC.hallComboBox.Items.Clear();
+            List<BALLROOM> ballroom = Data.Ins.DB.BALLROOMs.ToList();
+            foreach(var item in ballroom)
+            {
+                if (!(Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == thisUC.date.SelectedDate && x.SHIFT.SHIFTNAME == thisUC.ShiftComboBox.Text && x.BALLROOMID == item.BALLROOMID).Count() > 0))
+                {
+                    thisUC.hallComboBox.Items.Add(item.BALLROOMNAME);
+                }
             }
         }
     }

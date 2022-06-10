@@ -62,6 +62,11 @@ namespace WeddingApp.ViewModels
             thisUC = serviceSelectionUC;
             List<SERVICE> service = Data.Ins.DB.SERVICEs.Where(x=>x.STATUS == 1).ToList();
             serviceSelectionUC.ServiceList.ItemsSource = service;
+            List<SERVE> temp = new List<SERVE>();
+            ServeList.ForEach(item => temp.Add(item));
+            temp.Clear();
+            ServeList = temp;
+            TotalPrice = GetTotalPrice(ServeList);
         }
         public void NextUC(MenuUC menuUC)
         {

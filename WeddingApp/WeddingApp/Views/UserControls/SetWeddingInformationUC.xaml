@@ -180,6 +180,7 @@
                         Width="150"
                         VerticalContentAlignment="Center"
                         Height="50"
+                            IsEnabled="False"
                         Padding="2,0,0,0">
                         </ComboBox>
                         

@@ -199,15 +199,15 @@
                                     Height="50"
                                     IsEnabled="True"
                                     Padding="2,8,0,0"
-                                    ItemsSource="{Binding}">
-                                    <i:Interaction.Triggers>
+                                    >
+                                    <!--<i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
                                             <i:InvokeCommandAction Command="{Binding selectCommand}"
                                         CommandParameter="{Binding ElementName=comboBoxRoleList}" />
                                         </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <ComboBoxItem>Nhân Viên</ComboBoxItem>
-                                    <ComboBoxItem>Quản lý</ComboBoxItem>
+                                    </i:Interaction.Triggers>-->
+                                    <!--<ComboBoxItem>Nhân Viên</ComboBoxItem>
+                                    <ComboBoxItem>Quản lý</ComboBoxItem>-->
                                     <ComboBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <VirtualizingStackPanel />

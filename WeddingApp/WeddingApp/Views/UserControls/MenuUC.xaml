@@ -291,7 +291,7 @@
                                 <ListView 
                                     x:Name="carts" 
                                     ScrollViewer.CanContentScroll="False"
-                                    ItemsSource="{Binding Path=SelectedDishes, UpdateSourceTrigger=PropertyChanged}">
+                                    ItemsSource="{Binding Path=SelectedDishes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Width="310" Height="100" Margin="0 0 20 0">

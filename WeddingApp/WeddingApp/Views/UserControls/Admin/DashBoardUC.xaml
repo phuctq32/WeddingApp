@@ -33,7 +33,7 @@
                         <ListViewItem.Template>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
                                 <Border Height="40" Width="150" x:Name="border" BorderBrush="Transparent" BorderThickness="0 0 0 4" Margin="20 0">
-                                    <TextBlock x:Name="text" Text="Ngày" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"></TextBlock>
+                                    <TextBlock x:Name="text" Text="Tất cả" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"></TextBlock>
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">

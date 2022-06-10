@@ -62,7 +62,7 @@ namespace WeddingApp.ViewModels
         {
 
             //LoadedCommand = new RelayCommand<ChangeEmployeeInformationWindow>(parameter => true, parameter => Loaded(parameter));
-            selectCommand = new RelayCommand<ComboBox>((parameter) => true, (parameter) => Select(parameter));
+            //selectCommand = new RelayCommand<ComboBox>((parameter) => true, (parameter) => Select(parameter));
             ChangeEmployeeCommand = new RelayCommand<ChangeEmployeeInformationWindow>((parameter) => { return true; }, (parameter) => SaveChangesEmployee(parameter));
             PasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { Password = parameter.Password; });
             RePasswordChangedCommand = new RelayCommand<PasswordBox>((parameter) => { return true; }, (parameter) => { RePassword = parameter.Password; });
@@ -70,16 +70,16 @@ namespace WeddingApp.ViewModels
         }
 
         
-            private void Select(ComboBox item)
-        {
+        //    private void Select(ComboBox item)
+        //{
 
-            if (item.SelectedIndex == 0)
-                Roleid = "NV";
-            else
-                if (item.SelectedIndex == 1)
-                Roleid = "GD";
+        //    if (item.SelectedIndex == 0)
+        //        Roleid = "NV";
+        //    else
+        //        if (item.SelectedIndex == 1)
+        //        Roleid = "GD";
 
-        }
+        //}
         public void SaveChangesEmployee(ChangeEmployeeInformationWindow parameter)
         {
 
@@ -125,7 +125,11 @@ namespace WeddingApp.ViewModels
                 CustomMessageBox.Show("Nhập lại mật khẩu không đúng!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
+            if(!string.IsNullOrEmpty(parameter.comboBoxRoleList.Text))
+            {
+                CustomMessageBox.Show("Chức vụ đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }    
             // Check SALARY
             if (string.IsNullOrEmpty(parameter.txtSalary.Text))
             {
@@ -148,6 +152,7 @@ namespace WeddingApp.ViewModels
                 //try to update database
                 employee.EMPLOYEENAME = parameter.txtEmployeeName.Text;
                 employee.USERNAME = parameter.txtUsername.Text;
+                employee.ROLEID = Data.Ins.DB.ROLES.Where(x => x.ROLENAME == parameter.comboBoxRoleList.Text).SingleOrDefault().ROLEID;
                 employee.PASSWORD = passEncode;
                 employee.STARTWORKING = Date;
                 employee.SALARY = Convert.ToInt32(parameter.txtSalary.Text);

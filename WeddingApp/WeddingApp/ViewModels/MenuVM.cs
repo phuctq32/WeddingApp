@@ -66,6 +66,11 @@ namespace WeddingApp.ViewModels
             menuUC.ViewListProducts.ItemsSource = dishList;
             thisUC = menuUC;
             menuUC.combox.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
+            List<DISH> temp = new List<DISH>();
+            SelectedDishes.ForEach(item => temp.Add(item));
+            temp.Clear();
+            SelectedDishes = temp;
+            TotalPrice = GetTotalPrice(SelectedDishes);
         }
         public void PreviousUC1()
         {

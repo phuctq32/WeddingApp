@@ -198,6 +198,9 @@ namespace WeddingApp.ViewModels
             {
                 NextUCs.Clear();
                 PreviousUCs.Clear();
+                NextUCs.Push(new ServiceSelectionUC());
+                NextUCs.Push(new MenuUC());//......
+                NextUCs.Push(new SetWeddingInfomationUC());
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.Show();
                 mainWindow.Close();
