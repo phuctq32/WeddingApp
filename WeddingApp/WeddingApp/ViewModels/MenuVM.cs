@@ -62,10 +62,16 @@ namespace WeddingApp.ViewModels
         }
         public void Loaded(MenuUC menuUC)
         {
+            menuUC.comboxTypeDish.Items.Add("Tất cả");
+            foreach(var item in Data.Ins.DB.DISHTYPEs.ToList())
+            {
+                menuUC.comboxTypeDish.Items.Add(item.TYPENAME);
+            }
             List<DISH> dishList = Data.Ins.DB.DISHES.Where(x=>x.STATUS == 1).ToList();
             menuUC.ViewListProducts.ItemsSource = dishList;
             thisUC = menuUC;
-            menuUC.combox.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
+            menuUC.combox.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged); 
+            menuUC.comboxTypeDish.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged2);
             List<DISH> temp = new List<DISH>();
             SelectedDishes.ForEach(item => temp.Add(item));
             temp.Clear();
@@ -88,6 +94,19 @@ namespace WeddingApp.ViewModels
                 }
             }
 
+        }
+        public void SelectionChanged2(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+        {
+            if(thisUC.comboxTypeDish.SelectedIndex == 0)
+            {
+                List<DISH> dishList = Data.Ins.DB.DISHES.Where(x => x.STATUS == 1).ToList();
+                thisUC.ViewListProducts.ItemsSource = dishList;
+            }
+            else
+            {
+                List<DISH> dishList = Data.Ins.DB.DISHES.Where(x => x.STATUS == 1 && x.DISHTYPE.TYPENAME == thisUC.comboxTypeDish.SelectedItem.ToString()).ToList();
+                thisUC.ViewListProducts.ItemsSource = dishList;
+            }
         }
         public void SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
