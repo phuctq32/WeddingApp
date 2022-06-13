@@ -22,8 +22,8 @@ namespace WeddingApp
     
         public int SHIFTID { get; set; }
         public string SHIFTNAME { get; set; }
-        public System.TimeSpan SHIFTSTART { get; set; }
-        public System.TimeSpan SHIFTEND { get; set; }
+        public System.TimeSpan STARTTIME { get; set; }
+        public System.TimeSpan ENDTIME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WEDDING> WEDDINGs { get; set; }
