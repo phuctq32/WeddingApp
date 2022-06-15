@@ -42,7 +42,7 @@ namespace WeddingApp.ViewModels
             weddingDetailWindow.txtDeposit.Text = selectedWedding.DEPOSIT.ToString("C0", cultureInfo);
             weddingDetailWindow.txtWeddingDate.Text = selectedWedding.WEDDINGDATE.ToString("dd/MM/yyyy");
             weddingDetailWindow.txtTableAmount.Text = selectedWedding.TABLEAMOUNT.ToString();
-            weddingDetailWindow.txtShift.Text = selectedWedding.SHIFT.SHIFTSTART.ToString();
+            weddingDetailWindow.txtShift.Text = selectedWedding.SHIFT.SHIFTNAME.ToString();
             weddingDetailWindow.txtReserve.Text = selectedWedding.RESERVEAMOUNT.ToString();
             weddingDetailWindow.txtHall.Text = selectedWedding.BALLROOM.BALLROOMNAME.ToString();
             weddingDetailWindow.txtDeposit2.Text = selectedWedding.DEPOSIT.ToString("C0", cultureInfo);
