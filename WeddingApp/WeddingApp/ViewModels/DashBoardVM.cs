@@ -71,9 +71,9 @@ namespace WeddingApp.ViewModels
         public void setTotalInMonth(int setInMonth)
         {
             TotalValue = 0;
-            invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth && x.STATUS == 2).ToList();
-            TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth && x.STATUS == 2).Count();
-            TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Month == setInMonth && x.STATUS == 2).Count();
+            invoiceList = Data.Ins.DB.INVOICES.Where(x => x.PAYDAY.Month == setInMonth && x.STATUS == 2).ToList();
+            TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAYDAY.Month == setInMonth && x.STATUS == 2).Count();
+            TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAYDAY.Month == setInMonth && x.STATUS == 2).Count();
             value = 0;
             Labels = new string[day];
             for (int i = 1; i <= day; i++)
@@ -81,7 +81,7 @@ namespace WeddingApp.ViewModels
                 Labels[i - 1] = "Ngày " + i.ToString();
                 foreach (var invoice in invoiceList)
                 {
-                    if (invoice.PAID.Day == i) value += Convert.ToInt32(invoice.TOTALCOST);
+                    if (invoice.PAYDAY.Day == i) value += Convert.ToInt32(invoice.TOTALCOST);
                 }
                 /*data = Data.Ins.DB.*/
                 SeriesCollection[0].Values.Add(value + 0d);
@@ -163,9 +163,9 @@ namespace WeddingApp.ViewModels
                     //-----------------------------
                     day = 12;
 
-                    List<INVOICE> invoiceYearList = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year && x.STATUS == 2).ToList();
-                    TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year && x.STATUS == 2).Count();
-                    TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAID.Year == now.Year && x.STATUS == 2).Count();
+                    List<INVOICE> invoiceYearList = Data.Ins.DB.INVOICES.Where(x => x.PAYDAY.Year == now.Year && x.STATUS == 2).ToList();
+                    TotalReceipt = Data.Ins.DB.INVOICES.Where(x => x.PAYDAY.Year == now.Year && x.STATUS == 2).Count();
+                    TotalCustomer = Data.Ins.DB.INVOICES.Where(x => x.PAYDAY.Year == now.Year && x.STATUS == 2).Count();
 
                     Labels = new string[40];
                     for (int i = 1; i <= 12; i++)
@@ -175,7 +175,7 @@ namespace WeddingApp.ViewModels
                         value = 0;
                         foreach (var invoice in invoiceYearList)
                         {
-                            if (invoice.PAID.Month == i) value += Convert.ToInt32(invoice.TOTALCOST);
+                            if (invoice.PAYDAY.Month == i) value += Convert.ToInt32(invoice.TOTALCOST);
                         }
                         /*data = Data.Ins.DB.*/
                         SeriesCollection[0].Values.Add(value + 0d);

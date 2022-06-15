@@ -495,7 +495,7 @@
           <Property Name="TOTALCOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="SERVICECOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="WEDDINGCOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="PAID" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PAYDAY" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="WEDDINGID" Type="Int32" Nullable="false" />
           <Property Name="REMAININGCOST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
@@ -716,7 +716,7 @@
               <PropertyRef Name="REPORTDATE" />
             </Principal>
             <Dependent Role="INVOICES">
-              <PropertyRef Name="PAID" />
+              <PropertyRef Name="PAYDAY" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -958,7 +958,7 @@
                 <ScalarProperty Name="TOTALCOST" ColumnName="TOTALCOST" />
                 <ScalarProperty Name="SERVICECOST" ColumnName="SERVICECOST" />
                 <ScalarProperty Name="WEDDINGCOST" ColumnName="WEDDINGCOST" />
-                <ScalarProperty Name="PAID" ColumnName="PAID" />
+                <ScalarProperty Name="PAYDAY" ColumnName="PAID" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
                 <ScalarProperty Name="WEDDINGID" ColumnName="WEDDINGID" />
                 <ScalarProperty Name="REMAININGCOST" ColumnName="REMAININGCOST" />

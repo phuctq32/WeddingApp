@@ -66,7 +66,7 @@ namespace WeddingApp.ViewModels
             {
                 thisInvoice.STATUS = 2;
                 thisInvoice.PENALTIES = (decimal)penalty;
-                thisInvoice.PAID = DateTime.Parse(DateTime.Now.ToShortDateString());
+                thisInvoice.PAYDAY = DateTime.Parse(DateTime.Now.ToShortDateString());
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Thanh toán thành công", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
             }

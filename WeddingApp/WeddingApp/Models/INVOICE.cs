@@ -18,7 +18,7 @@ namespace WeddingApp
         public decimal TOTALCOST { get; set; }
         public decimal SERVICECOST { get; set; }
         public decimal WEDDINGCOST { get; set; }
-        public System.DateTime PAID { get; set; }
+        public System.DateTime PAYDAY { get; set; }
         public string USERNAME { get; set; }
         public int WEDDINGID { get; set; }
         public decimal REMAININGCOST { get; set; }

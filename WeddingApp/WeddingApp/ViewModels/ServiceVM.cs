@@ -309,7 +309,7 @@ namespace WeddingApp.ViewModels
             newInvoice.STATUS = 1;
             newInvoice.TOTALCOST = newInvoice.WEDDINGCOST + newInvoice.SERVICECOST;
             newInvoice.REMAININGCOST = newInvoice.TOTALCOST * (decimal)0.9;
-            newInvoice.PAID = newWedding.WEDDINGDATE;
+            newInvoice.PAYDAY = newWedding.WEDDINGDATE;
             newWedding.DEPOSIT = newInvoice.TOTALCOST * (decimal)0.1;
             Data.Ins.DB.WEDDINGs.Add(newWedding);
             Data.Ins.DB.SaveChanges();
