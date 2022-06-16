@@ -334,6 +334,7 @@ namespace WeddingApp.ViewModels
                     rEPORTDETAIL.BOOKEDWEDDINGAMOUNT = 1;
                     rEPORTDETAIL.PAIDWEDDINGAMOUNT = 0;
                     rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
+                    Data.Ins.DB.REPORTDETAILS.Add(rEPORTDETAIL);
                 }
             }
             Data.Ins.DB.INVOICES.Add(newInvoice);
