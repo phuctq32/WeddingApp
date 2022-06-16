@@ -6,12 +6,13 @@ using WeddingApp.Views.UserControls;
 using WeddingApp.Models;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
+
 namespace WeddingApp.ViewModels
 {
     internal class SetWeddingInfoVM : ViewModelBase
     {
         public ICommand NextStepCommand { get; set; }
-        public ICommand LoadedCommand { get; set;}
+        public ICommand LoadedCommand { get; set; }
 
         public SetWeddingInfomationUC thisUC;
 
@@ -20,6 +21,7 @@ namespace WeddingApp.ViewModels
             NextStepCommand = new RelayCommand<SetWeddingInfomationUC>(p => true, p => NextStep(p));
             LoadedCommand = new RelayCommand<SetWeddingInfomationUC>(p => true, p => Loaded(p));
         }
+
         public void Loaded(SetWeddingInfomationUC setWeddingInfomationUC)
         {
             List<BALLROOM> listRoom = Data.Ins.DB.BALLROOMS.ToList();
@@ -28,7 +30,7 @@ namespace WeddingApp.ViewModels
                 setWeddingInfomationUC.hallComboBox.Items.Add(item.BALLROOMNAME);
             }
             List<SHIFT> listShift = Data.Ins.DB.SHIFTS.ToList();
-            foreach(var item in listShift)
+            foreach (var item in listShift)
             {
                 setWeddingInfomationUC.ShiftComboBox.Items.Add(item.SHIFTNAME);
             }
@@ -36,8 +38,6 @@ namespace WeddingApp.ViewModels
             setWeddingInfomationUC.ShiftComboBox.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(SelectionChanged1);
             thisUC = setWeddingInfomationUC;
         }
-
-       
 
         public void NextStep(SetWeddingInfomationUC setWeddingInfomationUC)
         {
@@ -47,7 +47,7 @@ namespace WeddingApp.ViewModels
                 setWeddingInfomationUC.txtphone.Focus();
                 return;
             }
-            if(string.IsNullOrEmpty(setWeddingInfomationUC.txtbride.Text))
+            if (string.IsNullOrEmpty(setWeddingInfomationUC.txtbride.Text))
             {
                 CustomMessageBox.Show("Vui lòng nhập tên chú rể", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 setWeddingInfomationUC.txtbride.Focus();
@@ -55,7 +55,7 @@ namespace WeddingApp.ViewModels
             }
             else
             {
-                if(!Regex.IsMatch(setWeddingInfomationUC.txtbride.Text, @"([A-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+)((\s{1}[A-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+){1,})"))
+                if (!Regex.IsMatch(setWeddingInfomationUC.txtbride.Text, @"([A-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+)((\s{1}[A-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+){1,})"))
                 {
                     CustomMessageBox.Show("Vui lòng nhập đúng tên chú rể", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                     setWeddingInfomationUC.txtbride.Focus();
@@ -101,6 +101,7 @@ namespace WeddingApp.ViewModels
                 CustomMessageBox.Show("Vui lòng nhập đầy đủ thông tin về ngày tiệc!", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
         }
+
         public void SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
             string name = thisUC.hallComboBox.SelectedItem.ToString();
@@ -109,21 +110,22 @@ namespace WeddingApp.ViewModels
             thisUC.comboBoxreversedTableAmount.IsEnabled = true;
             thisUC.comboBoxTableAmount.Items.Clear();
             thisUC.comboBoxreversedTableAmount.Items.Clear();
-            for(int i = 1;i<=SelectedBallroom.MAXIMUMTABLE; i++)
+            for (int i = 1; i <= SelectedBallroom.MAXIMUMTABLE; i++)
             {
                 thisUC.comboBoxTableAmount.Items.Add(i);
             }
-            for(int i = 1;i<= SelectedBallroom.MAXIMUMTABLE/10;i++)
+            for (int i = 1; i <= SelectedBallroom.MAXIMUMTABLE / 10; i++)
             {
                 thisUC.comboBoxreversedTableAmount.Items.Add(i);
             }
         }
+
         public void SelectionChanged1(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
             thisUC.hallComboBox.IsEnabled = true;
             thisUC.hallComboBox.Items.Clear();
             List<BALLROOM> ballroom = Data.Ins.DB.BALLROOMS.ToList();
-            foreach(var item in ballroom)
+            foreach (var item in ballroom)
             {
                 if (!(Data.Ins.DB.WEDDINGS.Where(x => x.WEDDINGDATE == thisUC.date.SelectedDate && x.SHIFT.SHIFTNAME == thisUC.ShiftComboBox.SelectedItem.ToString() && x.BALLROOMID == item.BALLROOMID).Count() > 0))
                 {

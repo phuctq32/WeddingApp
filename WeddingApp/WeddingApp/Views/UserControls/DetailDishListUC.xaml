@@ -71,19 +71,21 @@
                                     <!--hình, tên, giá giảm và chưa giảm của 1 món ăn-->
                                     <Grid Grid.Column="0">
                                         <!--hình ảnh-->
-                                        <Rectangle
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle
                                             RadiusY="10"
                                             RadiusX="10"
                                             Height="80"
                                             Width="80"
                                             HorizontalAlignment="Left"
-                                            Margin="40 0">
-                                            <Rectangle.Fill>
-                                                <ImageBrush ImageSource="{Binding DISH.DISHIMAGE}" Stretch="UniformToFill" />
-                                            </Rectangle.Fill>
-                                        </Rectangle>
-                                        <!--tên món ăn-->
-                                        <TextBlock
+                                            Margin="10 0">
+                                                <Rectangle.Fill>
+                                                    <ImageBrush ImageSource="{Binding DISH.DISHIMAGE}" Stretch="UniformToFill" />
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                            <!--tên món ăn-->
+                                            <TextBlock
+                                                Width="200"
                                             Margin="0 0 0 0"
                                             Text="{Binding DISH.DISHNAME}"
                                             FontSize="17"
@@ -91,6 +93,7 @@
                                             HorizontalAlignment="Center"
                                             Foreground="Black"
                                             TextWrapping="Wrap" />
+                                        </StackPanel>
                                     </Grid>
 
                                     <TextBlock

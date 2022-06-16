@@ -1,4 +1,4 @@
-﻿    <UserControl x:Class="WeddingApp.Views.UserControls.InvoiceListUC"
+﻿<UserControl x:Class="WeddingApp.Views.UserControls.InvoiceListUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -96,8 +96,7 @@
                         Foreground="Black"
                         Grid.Column="6"
                         TextWrapping="Wrap"
-                        TextAlignment="Center" 
-                        />
+                        TextAlignment="Center" />
         </Grid>
         <!--SOURCE CỦA LISTVIEW NÀY LÀ 1 LIST RECEIPT-->
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="invoiceList" ItemsSource="{Binding ListInvoice}">
@@ -125,7 +124,7 @@
 
                         <!--tên sảnh-->
                         <TextBlock
-                            Text="{Binding WEDDING.GROOM}"
+                            Text="{Binding WEDDING.GROOMNAME}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -135,7 +134,7 @@
                             TextWrapping="Wrap" />
                         <!--Loại sảnh-->
                         <TextBlock
-                            Text="{Binding WEDDING.BRIDE}"
+                            Text="{Binding WEDDING.BRIDENAME}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -162,7 +161,7 @@
 
                         <TextBlock
                             Grid.Column="5"
-                            Text="{Binding WEDDING.SHIFT.SHIFTSTART}"
+                            Text="{Binding WEDDING.SHIFT.STARTTIME}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"

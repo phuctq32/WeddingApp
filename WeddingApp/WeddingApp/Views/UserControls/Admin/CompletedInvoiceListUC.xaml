@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WeddingApp.Views.UserControls.Admin" 
+             xmlns:local="clr-namespace:WeddingApp.Views.UserControls.Admin"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              x:Name="CompleteInvoiceUC"
@@ -127,7 +127,7 @@
 
                         <!--tên sảnh-->
                         <TextBlock
-                            Text="{Binding WEDDING.GROOM}"
+                            Text="{Binding WEDDING.GROOMNAME}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -137,7 +137,7 @@
                             TextWrapping="Wrap" />
                         <!--Loại sảnh-->
                         <TextBlock
-                            Text="{Binding WEDDING.BRIDE}"
+                            Text="{Binding WEDDING.BRIDENAME}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -164,7 +164,7 @@
 
                         <TextBlock
                             Grid.Column="5"
-                            Text="{Binding WEDDING.SHIFT.SHIFTSTART}"
+                            Text="{Binding WEDDING.SHIFT.STARTTIME}"
                             FontSize="20"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Center"

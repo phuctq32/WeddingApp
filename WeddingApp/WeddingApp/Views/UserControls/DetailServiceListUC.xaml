@@ -71,6 +71,9 @@
                                             Width="80"
                                             HorizontalAlignment="Left"
                                             Margin="40 0">
+                                                <Rectangle.Fill>
+                                                    <ImageBrush ImageSource="{Binding SERVICE.SERVICEIMAGE}" Stretch="UniformToFill" />
+                                                </Rectangle.Fill>
                                             </Rectangle>
                                             <StackPanel Orientation="Vertical" Height="120" VerticalAlignment="Bottom"
                                                     Width="auto"

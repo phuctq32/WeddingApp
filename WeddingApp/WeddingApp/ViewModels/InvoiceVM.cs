@@ -12,7 +12,7 @@ using System.Globalization;
 
 namespace WeddingApp.ViewModels
 {
-    internal class InvoiceVM:ViewModelBase
+    internal class InvoiceVM : ViewModelBase
     {
         public ICommand LoadedCommand { get; set; }
 
@@ -25,16 +25,17 @@ namespace WeddingApp.ViewModels
         public PARAMETER isPenalty = Data.Ins.DB.PARAMETERS.Where(x => x.PARAMETERID == "PHAT").SingleOrDefault();
         public PARAMETER Penalty = Data.Ins.DB.PARAMETERS.Where(x => x.PARAMETERID == "MUCPHAT").SingleOrDefault();
         public INVOICE thisInvoice;
-        CultureInfo cultureInfo = CultureInfo.GetCultureInfo("vi-VN");
+        private CultureInfo cultureInfo = CultureInfo.GetCultureInfo("vi-VN");
+
         public InvoiceVM()
         {
             LoadedCommand = new RelayCommand<InvoiceWindow>(parameter => true, parameter => Loaded(parameter));
             PayButtonCommand = new RelayCommand<InvoiceWindow>(parameter => true, parameter => Pay(parameter));
             PenaltyCheckedCommand = new RelayCommand<InvoiceWindow>(parameter => true, parameter => Check(parameter));
         }
+
         public void Loaded(InvoiceWindow invoiceWindow)
         {
-
             thisWD = invoiceWindow;
             int WeddingID = Convert.ToInt32(invoiceWindow.txtWeddingID.Text);
             List<USEDSERVICE> listServe = Data.Ins.DB.USEDSERVICES.Where(x => x.WEDDINGID == WeddingID).ToList();
@@ -48,7 +49,7 @@ namespace WeddingApp.ViewModels
                 invoiceWindow.chkPenalty.IsChecked = false;
             }
             thisInvoice = Data.Ins.DB.INVOICES.Where(x => x.WEDDINGID == WeddingID).SingleOrDefault();
-            
+
             if (thisInvoice.WEDDING.WEDDINGDATE < DateTime.Now && isPenalty.PARAMETERVALUE == 1)
             {
                 TimeSpan a = thisInvoice.WEDDING.WEDDINGDATE.Date - DateTime.Now.Date;
@@ -60,17 +61,20 @@ namespace WeddingApp.ViewModels
             }
             invoiceWindow.txtPenalty.Text = penalty.ToString("C0", cultureInfo);
         }
+
         public void Pay(InvoiceWindow invoiceWindow)
         {
-            if(CustomMessageBox.Show("Thanh toán hóa đơn hiện tại?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
+            if (CustomMessageBox.Show("Thanh toán hóa đơn hiện tại?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
                 thisInvoice.STATUS = 2;
                 thisInvoice.PENALTY = (decimal)penalty;
                 thisInvoice.PAYDAY = DateTime.Parse(DateTime.Now.ToShortDateString());
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Thanh toán thành công", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                invoiceWindow.Close();
             }
         }
+
         public void Check(InvoiceWindow invoiceWindow)
         {
             if (Penalty.PARAMETERVALUE == 1)
