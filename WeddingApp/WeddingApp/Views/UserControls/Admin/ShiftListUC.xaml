@@ -1,0 +1,178 @@
+﻿<UserControl x:Class="WeddingApp.Views.UserControls.Admin.ShiftListUC"
+             x:Name="shiftListUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeddingApp.Views.UserControls.Admin"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d"
+             DataContext="{StaticResource shiftListVM}"
+             d:DesignHeight="710" d:DesignWidth="1120">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"
+                                   CommandParameter="{Binding ElementName=shiftListUC}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="White" Margin="15 10 15 0" CornerRadius="5"></Border>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="STT"
+                           FontSize="30"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontWeight="Medium"
+                           Foreground="Black"
+                           Grid.Column="0"
+                           Margin="0 0 0 0"/>
+                <TextBlock Text="Tên ca"
+                           FontSize="30"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontWeight="Medium"
+                           Foreground="Black"
+                           Grid.Column="1"/>
+                <TextBlock Text="Giờ bắt đầu"
+                           FontSize="30"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontWeight="Medium"
+                           Foreground="Black"
+                           Grid.Column="2"/>
+                <TextBlock Text="Giờ kết thúc"
+                           FontSize="30"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontWeight="Medium"
+                           Foreground="Black"
+                           Grid.Column="3"/>
+                <Button
+                    Style="{StaticResource GreenBtn}"
+                    materialDesign:ButtonAssist.CornerRadius="15"
+                    Content="Thêm"
+                    Width="120"
+                    Height="50"
+                    FontSize="25"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Grid.Column="4"
+                    Margin="0 10 40 0"
+                    Command="{Binding AddShiftCommand}"
+                    CommandParameter="{Binding ElementName=shiftListUC}" />
+            </Grid>
+
+            <ListView 
+                Grid.Row="1" 
+                Grid.ColumnSpan="3"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                x:Name="shiftList"
+                ItemsSource="{Binding Shifts, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid MinHeight="110" Width="1110">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <!--Shift ID-->
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Margin="0 15 0 10"
+                                    Text="2"
+                                    FontSize="30"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Foreground="Black" />
+                                <!--Shift name-->
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10 5"
+                                    Foreground="Black"
+                                    FontSize="30"
+                                    Text="Sáng"
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"/>
+
+                                <!--Start Time-->
+                                <TextBlock
+                                    Grid.Column="2"
+                                    Margin="10 5"
+                                    Foreground="Black"
+                                    FontSize="30"
+                                    Text="7:30 AM"
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"/>
+                                <!--End Time-->
+                                <TextBlock
+                                    Grid.Column="3"
+                                    Margin="10 5"
+                                    Foreground="Black"
+                                    FontSize="30"
+                                    Text="12:30 PM"
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"/>
+                                <!--button sửa-->
+                                <Button
+                                Grid.Column="4"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource editBtn}"
+                                ToolTip="Chỉnh sửa chức vụ"
+                                Command="{Binding Source={StaticResource shiftListVM}, Path=EditShiftCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                </Button>
+                            </Grid>
+                            <Rectangle
+                                Fill="White"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                RadiusY="10"
+                                RadiusX="10"
+                                Panel.ZIndex="-2"
+                                Margin="10"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <ContentPresenter />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
+
+
+    </Grid>
+</UserControl>

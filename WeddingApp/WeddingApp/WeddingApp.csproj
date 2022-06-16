@@ -303,6 +303,7 @@
     <Compile Include="ViewModels\EditServiceVM.cs" />
     <Compile Include="ViewModels\EmployeeListVM.cs" />
     <Compile Include="ViewModels\ServiceListVM.cs" />
+    <Compile Include="ViewModels\ShiftListVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeddingDetailVM.cs" />
     <Compile Include="ViewModels\WeddingHallVM.cs" />
@@ -381,6 +382,9 @@
     </Compile>
     <Compile Include="Views\UserControls\Admin\ServiceListUC.xaml.cs">
       <DependentUpon>ServiceListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Admin\ShiftListUC.xaml.cs">
+      <DependentUpon>ShiftListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Admin\WeddingHallTypeListUC.xaml.cs">
       <DependentUpon>WeddingHallTypeListUC.xaml</DependentUpon>
@@ -532,6 +536,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Admin\ServiceListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Admin\ShiftListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
