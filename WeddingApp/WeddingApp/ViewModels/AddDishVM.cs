@@ -18,24 +18,24 @@ namespace WeddingApp.ViewModels
 {
     internal class AddDishVM : ViewModelBase
     {
-
         public ICommand AddProductCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
         public ICommand CloseButtonCommand { get; set; }
 
-
         public string SelectedImage;
         private string containerName = "container";
         private string connectionString = "DefaultEndpointsProtocol=https;AccountName=imagedish;AccountKey=udbl5BJAHZv8wzmuFf/jE5di0ysn9a8Z8H9ZEBCwUhnFUq8zo0mVqgSdL6Im3rKQeb7uJid2xbA62haXbZ93VA==;EndpointSuffix=core.windows.net";
-        DISH newProduct = new DISH();
+        private DISH newProduct = new DISH();
+
         public AddDishVM()
         {
-            LoadedCommand = new RelayCommand<AddDishWindow>(p =>true, p => Loaded(p));
+            LoadedCommand = new RelayCommand<AddDishWindow>(p => true, p => Loaded(p));
             AddProductCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => Add(parameter));
             SelectImageCommand = new RelayCommand<AddDishWindow>(p => true, p => SelectImage(p));
             CloseButtonCommand = new RelayCommand<AddDishWindow>((parameter) => true, (parameter) => CloseButton(parameter));
         }
+
         public void Loaded(AddDishWindow addDishWindow)
         {
             List<DISHTYPE> dISHTYPEs = Data.Ins.DB.DISHTYPES.ToList();
@@ -44,6 +44,7 @@ namespace WeddingApp.ViewModels
                 addDishWindow.OutlinedComboBox.Items.Add(item.DISHTYPENAME);
             }
         }
+
         public void SelectImage(AddDishWindow addDishWindow)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -56,8 +57,8 @@ namespace WeddingApp.ViewModels
                 bitmap.EndInit();
                 addDishWindow.Image.ImageSource = bitmap;
             }
-            
         }
+
         public void Add(AddDishWindow parameter)
         {
             //Check Foodname
@@ -67,7 +68,7 @@ namespace WeddingApp.ViewModels
                 CustomMessageBox.Show("Tên món ăn đang trống!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if(Data.Ins.DB.DISHES.Where(x=>x.DISHNAME == parameter.txtName.Text).Count() > 0)
+            if (Data.Ins.DB.DISHES.Where(x => x.DISHNAME == parameter.txtName.Text).Count() > 0)
             {
                 CustomMessageBox.Show("Tên món ăn đã tồn tại!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -85,10 +86,10 @@ namespace WeddingApp.ViewModels
                 parameter.txtPrice.Text = "";
                 return;
             }
-            
+
             newProduct.DISHNAME = parameter.txtName.Text;
             newProduct.DISHCOST = Convert.ToInt32(parameter.txtPrice.Text);
-            newProduct.DISHTYPEID = Data.Ins.DB.DISHTYPES.Where(x=>x.DISHTYPENAME == parameter.OutlinedComboBox.Text).SingleOrDefault().DISHTYPEID;
+            newProduct.DISHTYPEID = Data.Ins.DB.DISHTYPES.Where(x => x.DISHTYPENAME == parameter.OutlinedComboBox.Text).SingleOrDefault().DISHTYPEID;
             newProduct.DISHDESCRIPTION = parameter.txtDescription.Text;
             Data.Ins.DB.DISHES.Add(newProduct);
             Data.Ins.DB.SaveChanges();
@@ -100,10 +101,8 @@ namespace WeddingApp.ViewModels
             CustomMessageBox.Show("Thêm thành công món " + parameter.txtName.Text.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
-
         private void UploadImage()
         {
-
             BlobContainerClient containerClient = new BlobContainerClient(connectionString, containerName);
 
             //Update Image
@@ -112,7 +111,6 @@ namespace WeddingApp.ViewModels
 
             string[] filename = Path.GetFileName(SelectedImage).Split('.');
 
-            
             //Start upload
 
             using (MemoryStream stream = new MemoryStream(File.ReadAllBytes(SelectedImage)))
@@ -121,6 +119,7 @@ namespace WeddingApp.ViewModels
                 try
                 {
                     containerClient.UploadBlob(newProduct.DISHID + "." + filename[1], stream);
+                    newProduct.DISHIMAGE = "https://imagedish.blob.core.windows.net/container/" + newProduct.DISHID + "." + filename[1];
                 }
                 catch
                 {
@@ -131,8 +130,8 @@ namespace WeddingApp.ViewModels
             //Update new Image link
 
             //PRODUCT product = Data.Ins.DB.PRODUCTs.Where(x => x.ID_ == Current_Product.ID_).SingleOrDefault();
-            newProduct.DISHIMAGE = "https://imagedish.blob.core.windows.net/container/" + newProduct.DISHID + "." + filename[1];
         }
+
         public void CloseButton(AddDishWindow addProductWindow)
         {
             //if (!string.IsNullOrEmpty(IMAGE_))
