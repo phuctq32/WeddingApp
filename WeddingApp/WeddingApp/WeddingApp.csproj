@@ -289,6 +289,7 @@
     <Compile Include="ViewModels\EditHallTypeVM.cs" />
     <Compile Include="ViewModels\EditHallVM.cs" />
     <Compile Include="ViewModels\EditRoleVM.cs" />
+    <Compile Include="ViewModels\EditShiftVM.cs" />
     <Compile Include="ViewModels\HallTypeListVM.cs" />
     <Compile Include="ViewModels\InvoiceListVM.cs" />
     <Compile Include="ViewModels\InvoiceVM.cs" />
@@ -310,6 +311,9 @@
     <Compile Include="ViewModels\WeddingListVM.cs" />
     <Compile Include="Views\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddShiftWindow.xaml.cs">
+      <DependentUpon>AddShiftWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Admin\RoleListUC.xaml.cs">
       <DependentUpon>RoleListUC.xaml</DependentUpon>
@@ -452,6 +456,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddShiftWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -190,6 +190,10 @@ namespace WeddingApp.ViewModels
                     mainWindow.ucWindow.Children.Clear();
                     mainWindow.ucWindow.Children.Add(new RoleListUC());
                     break;
+                case "ShiftListUC":
+                    mainWindow.ucWindow.Children.Clear();
+                    mainWindow.ucWindow.Children.Add(new ShiftListUC());
+                    break;
             }
         }
         private void LogOut(MainWindow mainWindow)
