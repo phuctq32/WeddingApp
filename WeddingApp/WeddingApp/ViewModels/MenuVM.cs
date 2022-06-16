@@ -63,9 +63,9 @@ namespace WeddingApp.ViewModels
         public void Loaded(MenuUC menuUC)
         {
             menuUC.comboxTypeDish.Items.Add("Tất cả");
-            foreach(var item in Data.Ins.DB.DISHTYPEs.ToList())
+            foreach(var item in Data.Ins.DB.DISHTYPES.ToList())
             {
-                menuUC.comboxTypeDish.Items.Add(item.TYPENAME);
+                menuUC.comboxTypeDish.Items.Add(item.DISHTYPENAME);
             }
             List<DISH> dishList = Data.Ins.DB.DISHES.Where(x=>x.STATUS == 1).ToList();
             menuUC.ViewListProducts.ItemsSource = dishList;
@@ -104,7 +104,7 @@ namespace WeddingApp.ViewModels
             }
             else
             {
-                List<DISH> dishList = Data.Ins.DB.DISHES.Where(x => x.STATUS == 1 && x.DISHTYPE.TYPENAME == thisUC.comboxTypeDish.SelectedItem.ToString()).ToList();
+                List<DISH> dishList = Data.Ins.DB.DISHES.Where(x => x.STATUS == 1 && x.DISHTYPE.DISHTYPENAME == thisUC.comboxTypeDish.SelectedItem.ToString()).ToList();
                 thisUC.ViewListProducts.ItemsSource = dishList;
             }
         }
@@ -114,11 +114,11 @@ namespace WeddingApp.ViewModels
             switch (thisUC.combox.SelectedIndex)
             {
                 case 0:
-                    SortedDish = Data.Ins.DB.DISHES.OrderBy(p => p.COST).ToList();
+                    SortedDish = Data.Ins.DB.DISHES.OrderBy(p => p.DISHCOST).ToList();
                     thisUC.ViewListProducts.ItemsSource = SortedDish;
                     break;
                 case 1:
-                    SortedDish = Data.Ins.DB.DISHES.OrderByDescending(p => p.COST).ToList();
+                    SortedDish = Data.Ins.DB.DISHES.OrderByDescending(p => p.DISHCOST).ToList();
                     thisUC.ViewListProducts.ItemsSource = SortedDish;
                     break;
             }
@@ -242,7 +242,7 @@ namespace WeddingApp.ViewModels
             long res = 0;
             foreach (var item in Dishes)
             {
-                res += Convert.ToInt32(item.COST);
+                res += Convert.ToInt32(item.DISHCOST);
             }
             return res;
         }

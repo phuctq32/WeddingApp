@@ -60,7 +60,7 @@ namespace WeddingApp.ViewModels
             changeEmployeeWindow.txtEmployeeName.Text = changeEmployee.EMPLOYEENAME;
             changeEmployeeWindow.txtUsername.Text = changeEmployee.USERNAME;
             changeEmployeeWindow.txtSalary.Text = Convert.ToInt32(changeEmployee.SALARY).ToString();
-            changeEmployeeWindow.txtDate.Text = changeEmployee.STARTWORKING.ToString();
+            changeEmployeeWindow.txtDate.Text = changeEmployee.STARTWORKINGDAY.ToString();
             foreach(ROLE item in Data.Ins.DB.ROLES.ToList())
             {
                 changeEmployeeWindow.comboBoxRoleList.Items.Add(item.ROLENAME);

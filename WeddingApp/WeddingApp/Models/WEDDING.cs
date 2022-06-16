@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -18,13 +18,13 @@ namespace WeddingApp
         public WEDDING()
         {
             this.INVOICES = new HashSet<INVOICE>();
-            this.MENUs = new HashSet<MENU>();
-            this.SERVEs = new HashSet<SERVE>();
+            this.MENUS = new HashSet<MENU>();
+            this.USEDSERVICES = new HashSet<USEDSERVICE>();
         }
     
         public int WEDDINGID { get; set; }
-        public string GROOM { get; set; }
-        public string BRIDE { get; set; }
+        public string GROOMNAME { get; set; }
+        public string BRIDENAME { get; set; }
         public string TELEPHONE { get; set; }
         public decimal DEPOSIT { get; set; }
         public System.DateTime WEDDINGDATE { get; set; }
@@ -38,9 +38,9 @@ namespace WeddingApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INVOICE> INVOICES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MENU> MENUs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SERVE> SERVEs { get; set; }
+        public virtual ICollection<MENU> MENUS { get; set; }
         public virtual SHIFT SHIFT { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USEDSERVICE> USEDSERVICES { get; set; }
     }
 }

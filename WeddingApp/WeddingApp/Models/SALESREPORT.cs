@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,15 +17,15 @@ namespace WeddingApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SALESREPORT()
         {
-            this.REPORTDETAILs = new HashSet<REPORTDETAIL>();
+            this.REPORTDETAILS = new HashSet<REPORTDETAIL>();
         }
     
         public System.DateTime REPORTMONTH { get; set; }
-        public Nullable<short> BOOKEDWEDDING { get; set; }
-        public Nullable<short> PAIDWEDDING { get; set; }
+        public Nullable<short> BOOKEDWEDDINGAMOUNT { get; set; }
+        public Nullable<short> PAIDWEDDINGAMOUNT { get; set; }
         public Nullable<decimal> PROFIT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REPORTDETAIL> REPORTDETAILs { get; set; }
+        public virtual ICollection<REPORTDETAIL> REPORTDETAILS { get; set; }
     }
 }

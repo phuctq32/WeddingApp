@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,17 +17,17 @@ namespace WeddingApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BALLROOM()
         {
-            this.WEDDINGs = new HashSet<WEDDING>();
+            this.WEDDINGS = new HashSet<WEDDING>();
         }
     
         public int BALLROOMID { get; set; }
         public string BALLROOMNAME { get; set; }
         public short MAXIMUMTABLE { get; set; }
-        public int TYPEID { get; set; }
+        public int BALLROOMTYPEID { get; set; }
         public string NOTE { get; set; }
     
         public virtual BALLROOMTYPE BALLROOMTYPE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WEDDING> WEDDINGs { get; set; }
+        public virtual ICollection<WEDDING> WEDDINGS { get; set; }
     }
 }

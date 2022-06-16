@@ -38,10 +38,10 @@ namespace WeddingApp.ViewModels
         }
         public void Loaded(AddDishWindow addDishWindow)
         {
-            List<DISHTYPE> dISHTYPEs = Data.Ins.DB.DISHTYPEs.ToList();
+            List<DISHTYPE> dISHTYPEs = Data.Ins.DB.DISHTYPES.ToList();
             foreach (var item in dISHTYPEs)
             {
-                addDishWindow.OutlinedComboBox.Items.Add(item.TYPENAME);
+                addDishWindow.OutlinedComboBox.Items.Add(item.DISHTYPENAME);
             }
         }
         public void SelectImage(AddDishWindow addDishWindow)
@@ -87,8 +87,8 @@ namespace WeddingApp.ViewModels
             }
             
             newProduct.DISHNAME = parameter.txtName.Text;
-            newProduct.COST = Convert.ToInt32(parameter.txtPrice.Text);
-            newProduct.TYPEID = Data.Ins.DB.DISHTYPEs.Where(x=>x.TYPENAME == parameter.OutlinedComboBox.Text).SingleOrDefault().TYPEID;
+            newProduct.DISHCOST = Convert.ToInt32(parameter.txtPrice.Text);
+            newProduct.DISHTYPEID = Data.Ins.DB.DISHTYPES.Where(x=>x.DISHTYPENAME == parameter.OutlinedComboBox.Text).SingleOrDefault().DISHTYPEID;
             newProduct.DISHDESCRIPTION = parameter.txtDescription.Text;
             Data.Ins.DB.DISHES.Add(newProduct);
             Data.Ins.DB.SaveChanges();

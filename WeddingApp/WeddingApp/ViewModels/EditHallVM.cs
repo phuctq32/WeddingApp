@@ -22,12 +22,12 @@ namespace WeddingApp.ViewModels
         }
         public void Loaded(EditWeddingHallWindow editWeddingHallWindow)
         {
-            editBallroom = Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == editWeddingHallWindow.txtHallname.Text).SingleOrDefault();
+            editBallroom = Data.Ins.DB.BALLROOMS.Where(x => x.BALLROOMNAME == editWeddingHallWindow.txtHallname.Text).SingleOrDefault();
         }
         public void Edit(EditWeddingHallWindow editWeddingHallWindow)
         {
             string HallName = editWeddingHallWindow.txtHallname.Text;
-            if (Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == HallName && x.BALLROOMID != editBallroom.BALLROOMID).Count() > 0)
+            if (Data.Ins.DB.BALLROOMS.Where(x => x.BALLROOMNAME == HallName && x.BALLROOMID != editBallroom.BALLROOMID).Count() > 0)
             {
                 CustomMessageBox.Show("Sảnh đã tồn tại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
             }

@@ -22,12 +22,12 @@ namespace WeddingApp.ViewModels
         }
         public void Loaded(EditWeddingHallTypeWindow editWeddingHallTypeWindow)
         {
-            editBallroomType = Data.Ins.DB.BALLROOMTYPEs.Where(x => x.TYPENAME == editWeddingHallTypeWindow.TypeName.Text).SingleOrDefault();
+            editBallroomType = Data.Ins.DB.BALLROOMTYPES.Where(x => x.BALLROOMTYPENAME == editWeddingHallTypeWindow.TypeName.Text).SingleOrDefault();
         }
         public void Edit(EditWeddingHallTypeWindow editWeddingHallTypeWindow)
         {
             int minimumcost = Convert.ToInt32(editWeddingHallTypeWindow.txtMinPrice.Text);
-            if (Data.Ins.DB.BALLROOMTYPEs.Where(x => x.MINIMUMCOST == minimumcost).Count() > 0)
+            if (Data.Ins.DB.BALLROOMTYPES.Where(x => x.MINIMUMCOST == minimumcost).Count() > 0)
             {
                 CustomMessageBox.Show("Loại sảnh đã tồn tại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
             }

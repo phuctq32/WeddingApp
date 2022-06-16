@@ -44,7 +44,7 @@ namespace WeddingApp.ViewModels
 
         public void load(ServiceListUC parameter)
         {
-            ListService = Data.Ins.DB.SERVICEs.ToList();
+            ListService = Data.Ins.DB.SERVICES.ToList();
             serviceListUC = parameter;
         }
 
@@ -60,7 +60,7 @@ namespace WeddingApp.ViewModels
             SERVICE service = listViewItem.DataContext as SERVICE;
             EditServiceWindow editServiceWindow = new EditServiceWindow();
             editServiceWindow.txtName.Text = service.SERVICENAME;
-            editServiceWindow.txtCost.Text = Convert.ToInt32(service.COST).ToString();
+            editServiceWindow.txtCost.Text = Convert.ToInt32(service.SERVICECOST).ToString();
             editServiceWindow.txtDescription.Text = service.SERVICEDESCRIPTION;
             editServiceWindow.ShowDialog();
             load(serviceListUC);
@@ -71,9 +71,9 @@ namespace WeddingApp.ViewModels
             SERVICE service = listViewItem.DataContext as SERVICE;
             if (CustomMessageBox.Show("Xóa dịch vụ ?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
-                Data.Ins.DB.SERVICEs.Remove(service);
+                Data.Ins.DB.SERVICES.Remove(service);
                 Data.Ins.DB.SaveChanges();
-                ListService = Data.Ins.DB.SERVICEs.ToList();
+                ListService = Data.Ins.DB.SERVICES.ToList();
                 CustomMessageBox.Show("Xóa thành công", MessageBoxButton.OK);
             }
         }

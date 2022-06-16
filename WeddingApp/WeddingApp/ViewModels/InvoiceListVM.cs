@@ -46,8 +46,8 @@ namespace WeddingApp.ViewModels
             InvoiceWindow invoiceWindow = new InvoiceWindow();
             
             invoiceWindow.txtWeddingID.Text = paidInvoice.WEDDINGID.ToString();
-            invoiceWindow.txtGroom.Text = paidInvoice.WEDDING.GROOM;
-            invoiceWindow.txtBride.Text = paidInvoice.WEDDING.BRIDE;
+            invoiceWindow.txtGroom.Text = paidInvoice.WEDDING.GROOMNAME;
+            invoiceWindow.txtBride.Text = paidInvoice.WEDDING.BRIDENAME;
             invoiceWindow.txtDeposit.Text = paidInvoice.WEDDING.DEPOSIT.ToString("C0", cultureInfo);
             invoiceWindow.txtRemaining.Text = paidInvoice.REMAININGCOST.ToString("C0", cultureInfo);
             invoiceWindow.txtTableAmount.Text = paidInvoice.WEDDING.TABLEAMOUNT.ToString();

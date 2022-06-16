@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -20,8 +20,8 @@ namespace WeddingApp
             this.DISHES = new HashSet<DISH>();
         }
     
-        public int TYPEID { get; set; }
-        public string TYPENAME { get; set; }
+        public int DISHTYPEID { get; set; }
+        public string DISHTYPENAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DISH> DISHES { get; set; }

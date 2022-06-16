@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace WeddingApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SHIFT()
         {
-            this.WEDDINGs = new HashSet<WEDDING>();
+            this.WEDDINGS = new HashSet<WEDDING>();
         }
     
         public int SHIFTID { get; set; }
@@ -26,6 +26,6 @@ namespace WeddingApp
         public System.TimeSpan ENDTIME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WEDDING> WEDDINGs { get; set; }
+        public virtual ICollection<WEDDING> WEDDINGS { get; set; }
     }
 }

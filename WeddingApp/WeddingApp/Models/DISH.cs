@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,19 +17,19 @@ namespace WeddingApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DISH()
         {
-            this.MENUs = new HashSet<MENU>();
+            this.MENUS = new HashSet<MENU>();
         }
     
         public int DISHID { get; set; }
         public string DISHNAME { get; set; }
-        public decimal COST { get; set; }
+        public decimal DISHCOST { get; set; }
         public string DISHDESCRIPTION { get; set; }
         public string DISHIMAGE { get; set; }
-        public int TYPEID { get; set; }
+        public int DISHTYPEID { get; set; }
         public Nullable<byte> STATUS { get; set; }
     
         public virtual DISHTYPE DISHTYPE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MENU> MENUs { get; set; }
+        public virtual ICollection<MENU> MENUS { get; set; }
     }
 }

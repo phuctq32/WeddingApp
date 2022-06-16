@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,17 +17,17 @@ namespace WeddingApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SERVICE()
         {
-            this.SERVEs = new HashSet<SERVE>();
+            this.USEDSERVICES = new HashSet<USEDSERVICE>();
         }
     
         public int SERVICEID { get; set; }
         public string SERVICENAME { get; set; }
-        public decimal COST { get; set; }
+        public decimal SERVICECOST { get; set; }
         public string SERVICEDESCRIPTION { get; set; }
         public string SERVICEIMAGE { get; set; }
         public Nullable<byte> STATUS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SERVE> SERVEs { get; set; }
+        public virtual ICollection<USEDSERVICE> USEDSERVICES { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace WeddingApp.ViewModels
         public void Load(EditServiceWindow parameter)
         {
             editServiceWD = parameter;
-            service = Data.Ins.DB.SERVICEs.Where(x => x.SERVICENAME == parameter.txtName.Text).SingleOrDefault();
+            service = Data.Ins.DB.SERVICES.Where(x => x.SERVICENAME == parameter.txtName.Text).SingleOrDefault();
             editServiceWD.txtCost.Text = String.Format("{0:N0}", editServiceWD.txtCost.Text);
         }
         public void SelectImage(EditServiceWindow addDishWindow)
@@ -79,7 +79,7 @@ namespace WeddingApp.ViewModels
             {
                 //try to update database
                 service.SERVICENAME = parameter.txtName.Text;
-                service.COST = Convert.ToInt32(parameter.txtCost.Text);
+                service.SERVICECOST = Convert.ToInt32(parameter.txtCost.Text);
                 service.SERVICEDESCRIPTION = parameter.txtDescription.Text;
                 UploadImage();
                 Data.Ins.DB.SaveChanges();

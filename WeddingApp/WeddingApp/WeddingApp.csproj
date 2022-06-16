@@ -208,71 +208,71 @@
     <Compile Include="CustomMessageBox.cs" />
     <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Models\BALLROOM.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BALLROOMTYPE.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\DISH.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DISHTYPE.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EMPLOYEE.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FUNCTION.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\INVOICE.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MENU.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PARAMETER.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PERMISSION.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\REPORTDETAIL.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ROLE.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SALESREPORT.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SERVE.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SERVICE.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SHIFT.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USEDSERVICE.cs">
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WEDDING.cs">
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WeddingDB.Context.cs">
+    <Compile Include="Models\WeddingData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WeddingDB.Context.tt</DependentUpon>
+      <DependentUpon>WeddingData.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WeddingDB.cs">
+    <Compile Include="Models\WeddingData.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WeddingDB.tt</DependentUpon>
+      <DependentUpon>WeddingData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WeddingDB.Designer.cs">
+    <Compile Include="Models\WeddingData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WeddingDB.edmx</DependentUpon>
+      <DependentUpon>WeddingData.edmx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AddDishVM.cs" />
     <Compile Include="ViewModels\AddHallTypeVM.cs" />
@@ -606,12 +606,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\WeddingDB.edmx">
+    <EntityDeploy Include="Models\WeddingData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WeddingDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>WeddingData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\WeddingDB.edmx.diagram">
-      <DependentUpon>WeddingDB.edmx</DependentUpon>
+    <None Include="Models\WeddingData.edmx.diagram">
+      <DependentUpon>WeddingData.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -622,7 +622,25 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\WeddingData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WeddingData.edmx</DependentUpon>
+      <LastGenOutput>WeddingData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\WeddingData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WeddingData.edmx</DependentUpon>
+      <LastGenOutput>WeddingData.cs</LastGenOutput>
+    </Content>
+    <Content Include="WeddingDatabase.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WeddingDatabase_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>WeddingDatabase.mdf</DependentUpon>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\login-image.png" />
   </ItemGroup>
@@ -643,24 +661,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="app-icon.ico" />
-    <Content Include="Models\WeddingDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WeddingDB.edmx</DependentUpon>
-      <LastGenOutput>WeddingDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\WeddingDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WeddingDB.edmx</DependentUpon>
-      <LastGenOutput>WeddingDB.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\Images\app-icon.png" />
-    <Content Include="WeddingDB.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="WeddingDB_log.ldf">
-      <DependentUpon>WeddingDB.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\error_icon.png" />

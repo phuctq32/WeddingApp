@@ -15,7 +15,7 @@ namespace WeddingApp.ViewModels
     internal class ServiceVM : ViewModelBase
     {
         private long totalPrice;
-        private List<SERVE> serveList;
+        private List<USEDSERVICE> serveList;
         private WEDDING newWedding = new WEDDING();
 
         public ICommand LoadedCommand { get; set; }
@@ -36,7 +36,7 @@ namespace WeddingApp.ViewModels
                 OnPropertyChanged("TotalPrice");
             }
         }
-        public List<SERVE> ServeList
+        public List<USEDSERVICE> ServeList
         {
             get => serveList;
             set
@@ -55,14 +55,14 @@ namespace WeddingApp.ViewModels
             ConfirmCommand = new RelayCommand<ServiceSelectionUC>(p => true, p => Confirm(p));
             DeleteCartCommand = new RelayCommand<ListViewItem>(p => p == null ? false : true, (p) => DeleteCart(p));
             NextUCCommand = new RelayCommand<MenuUC>(p => true, p => NextUC(p));
-            ServeList = new List<SERVE>();
+            ServeList = new List<USEDSERVICE>();
         }
         public void Loaded(ServiceSelectionUC serviceSelectionUC)
         {
             thisUC = serviceSelectionUC;
-            List<SERVICE> service = Data.Ins.DB.SERVICEs.Where(x=>x.STATUS == 1).ToList();
+            List<SERVICE> service = Data.Ins.DB.SERVICES.Where(x=>x.STATUS == 1).ToList();
             serviceSelectionUC.ServiceList.ItemsSource = service;
-            List<SERVE> temp = new List<SERVE>();
+            List<USEDSERVICE> temp = new List<USEDSERVICE>();
             ServeList.ForEach(item => temp.Add(item));
             temp.Clear();
             ServeList = temp;
@@ -70,7 +70,7 @@ namespace WeddingApp.ViewModels
         }
         public void NextUC(MenuUC menuUC)
         {
-            int minimumCost = Convert.ToInt32(Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == MainVM.WeddingHall).SingleOrDefault().BALLROOMTYPE.MINIMUMCOST);
+            int minimumCost = Convert.ToInt32(Data.Ins.DB.BALLROOMS.Where(x => x.BALLROOMNAME == MainVM.WeddingHall).SingleOrDefault().BALLROOMTYPE.MINIMUMCOST);
             long menuPrice = Convert.ToInt32(menuUC.txtTotalprice.Text.Replace(",", ""));
             if (menuUC.carts.Items.Count < 5)
             {
@@ -86,7 +86,7 @@ namespace WeddingApp.ViewModels
                 MainVM.NextUC();
                 if (thisUC != null)
                 {
-                    List<SERVE> temp = new List<SERVE>();
+                    List<USEDSERVICE> temp = new List<USEDSERVICE>();
                     ServeList.ForEach(serve => temp.Add(serve));
                     ServeList = temp;
                     foreach (var checkBox in FindVisualChildren<CheckBox>(thisUC.ServiceList))
@@ -126,12 +126,12 @@ namespace WeddingApp.ViewModels
             //Xét trường hợp xóa món ăn nếu giảm số lượng xuống 0
 
             //Giảm số lượng của sản phẩm
-            SERVE cart = lvi.DataContext as SERVE;
+            USEDSERVICE cart = lvi.DataContext as USEDSERVICE;
             if (amount > 1)
             {
                 amount--;
                 cart.AMOUNT = Convert.ToByte(amount);
-                cart.COST = cart.AMOUNT * cart.SERVICECOST;
+                cart.TOTALCOST = cart.AMOUNT * cart.SERVICECOST;
                 parameter.Text = amount.ToString();
             }
 
@@ -150,12 +150,12 @@ namespace WeddingApp.ViewModels
             {
                 //Lấy <đối tượng> là cha của parameter bằng GetAncestorOfType
                 var lvi = GetAncestorOfType<ListViewItem>(parameter);
-                SERVE cart = lvi.DataContext as SERVE;
+                USEDSERVICE cart = lvi.DataContext as USEDSERVICE;
 
                 //Tăng số lượng của sản phẩm
                 amount++;
                 cart.AMOUNT = Convert.ToByte(amount);
-                cart.COST = cart.AMOUNT * cart.SERVICECOST;
+                cart.TOTALCOST = cart.AMOUNT * cart.SERVICECOST;
                 parameter.Text = amount.ToString();
                 TotalPrice = GetTotalPrice(ServeList);
             }
@@ -172,22 +172,22 @@ namespace WeddingApp.ViewModels
             }
             if (newVal)
             {
-                List<SERVE> temp = new List<SERVE>();
+                List<USEDSERVICE> temp = new List<USEDSERVICE>();
                 foreach (SERVICE item in parameter.ServiceList.Items)
                 {
-                    SERVE serve = new SERVE();
+                    USEDSERVICE serve = new USEDSERVICE();
                     serve.SERVICEID = item.SERVICEID;
-                    serve.SERVICECOST = item.COST;
+                    serve.SERVICECOST = item.SERVICECOST;
                     serve.AMOUNT = 1;
-                    serve.COST = serve.SERVICECOST * serve.AMOUNT;
-                    serve.SERVICE = Data.Ins.DB.SERVICEs.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
+                    serve.TOTALCOST = serve.SERVICECOST * serve.AMOUNT;
+                    serve.SERVICE = Data.Ins.DB.SERVICES.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
                     temp.Add(serve);
                 }
                 ServeList = temp;
             }
             else
             {
-                List<SERVE> temp = new List<SERVE>();
+                List<USEDSERVICE> temp = new List<USEDSERVICE>();
                 temp.Clear();
                 ServeList = temp;
             }
@@ -215,30 +215,30 @@ namespace WeddingApp.ViewModels
                 serviceSelectionUC.selectAllCheckBox.IsChecked = true;
             }
             SERVICE selectedService = lvi.DataContext as SERVICE;
-            SERVE serve = new SERVE();
+            USEDSERVICE serve = new USEDSERVICE();
             serve.SERVICEID = selectedService.SERVICEID;
-            serve.SERVICECOST = selectedService.COST;
+            serve.SERVICECOST = selectedService.SERVICECOST;
             serve.AMOUNT = 1;
-            serve.COST = serve.SERVICECOST * serve.AMOUNT;
-            serve.SERVICE = Data.Ins.DB.SERVICEs.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
+            serve.TOTALCOST = serve.SERVICECOST * serve.AMOUNT;
+            serve.SERVICE = Data.Ins.DB.SERVICES.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
             if (parameter.IsChecked == true)
             {
-                List<SERVE> temp = new List<SERVE>();
+                List<USEDSERVICE> temp = new List<USEDSERVICE>();
                 ServeList.ForEach(item => temp.Add(item));
                 temp.Add(serve);
                 ServeList = temp;
             }
             else
             {
-                SERVE serveToDelete = ServeList.Find(x => x.SERVICEID == serve.SERVICEID);
-                List<SERVE> temp = new List<SERVE>();
+                USEDSERVICE serveToDelete = ServeList.Find(x => x.SERVICEID == serve.SERVICEID);
+                List<USEDSERVICE> temp = new List<USEDSERVICE>();
                 ServeList.ForEach(item => temp.Add(item));
                 temp.Remove(serveToDelete);
                 ServeList = temp;
             }
             TotalPrice = GetTotalPrice(ServeList);
         }
-        private long GetTotalPrice(List<SERVE> serves)
+        private long GetTotalPrice(List<USEDSERVICE> serves)
         {
             long res = 0;
             foreach (var item in serves)
@@ -249,7 +249,7 @@ namespace WeddingApp.ViewModels
         }
         private void DeleteCart(ListViewItem parameter)
         {
-            SERVE serveToDelete = parameter.DataContext as SERVE;
+            USEDSERVICE serveToDelete = parameter.DataContext as USEDSERVICE;
 
             var serviceSelectionUC = GetAncestorOfType<ServiceSelectionUC>(parameter);
             foreach (var lvi in FindVisualChildren<ListViewItem>(serviceSelectionUC.ServiceList))
@@ -265,7 +265,7 @@ namespace WeddingApp.ViewModels
                 }
             }
 
-            List<SERVE> temp = new List<SERVE>();
+            List<USEDSERVICE> temp = new List<USEDSERVICE>();
             ServeList.ForEach(item => temp.Add(item));
             temp.Remove(serveToDelete);
             ServeList = temp;
@@ -289,10 +289,10 @@ namespace WeddingApp.ViewModels
 
         public void WeddingInformationSave(SetWeddingInfomationUC setWeddingInfomationUC)
         {
-            newWedding.BALLROOMID = Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == setWeddingInfomationUC.hallComboBox.Text).SingleOrDefault().BALLROOMID;
+            newWedding.BALLROOMID = Data.Ins.DB.BALLROOMS.Where(x => x.BALLROOMNAME == setWeddingInfomationUC.hallComboBox.Text).SingleOrDefault().BALLROOMID;
             newWedding.BOOKINGDATE = DateTime.Parse(DateTime.Now.ToShortDateString());
-            newWedding.BRIDE = setWeddingInfomationUC.txtbride.Text;
-            newWedding.GROOM = setWeddingInfomationUC.txtgroom.Text;
+            newWedding.BRIDENAME = setWeddingInfomationUC.txtbride.Text;
+            newWedding.GROOMNAME = setWeddingInfomationUC.txtgroom.Text;
             newWedding.TELEPHONE = setWeddingInfomationUC.txtphone.Text;
             newWedding.RESERVEAMOUNT = Convert.ToByte(setWeddingInfomationUC.comboBoxreversedTableAmount.Text);
             newWedding.TABLEAMOUNT = Convert.ToByte(setWeddingInfomationUC.comboBoxTableAmount.Text);
@@ -311,28 +311,28 @@ namespace WeddingApp.ViewModels
             newInvoice.REMAININGCOST = newInvoice.TOTALCOST * (decimal)0.9;
             newInvoice.PAYDAY = newWedding.WEDDINGDATE;
             newWedding.DEPOSIT = newInvoice.TOTALCOST * (decimal)0.1;
-            Data.Ins.DB.WEDDINGs.Add(newWedding);
+            Data.Ins.DB.WEDDINGS.Add(newWedding);
             Data.Ins.DB.SaveChanges();
             newInvoice.WEDDINGID = newWedding.WEDDINGID;
             newInvoice.USERNAME = CurrentAccount.Username;
-            if (Data.Ins.DB.REPORTDETAILs.Where(x => x.REPORTDATE == DateTime.Now).Count() == 0)
+            if (Data.Ins.DB.REPORTDETAILS.Where(x => x.REPORTDATE == DateTime.Now).Count() == 0)
             {
-                if (Data.Ins.DB.SALESREPORTs.Where(x => x.REPORTMONTH.Month == DateTime.Now.Month && x.REPORTMONTH.Year == DateTime.Now.Year).Count() == 0)
+                if (Data.Ins.DB.SALESREPORTS.Where(x => x.REPORTMONTH.Month == DateTime.Now.Month && x.REPORTMONTH.Year == DateTime.Now.Year).Count() == 0)
                 {
                     SALESREPORT sALESREPORT = new SALESREPORT();
                     DateTime a = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     sALESREPORT.REPORTMONTH = DateTime.Parse(a.ToShortDateString());
-                    sALESREPORT.PAIDWEDDING = 0;
-                    sALESREPORT.BOOKEDWEDDING = 1;
+                    sALESREPORT.PAIDWEDDINGAMOUNT = 0;
+                    sALESREPORT.BOOKEDWEDDINGAMOUNT = 1;
                     sALESREPORT.PROFIT = newWedding.DEPOSIT;
-                    Data.Ins.DB.SALESREPORTs.Add(sALESREPORT);
+                    Data.Ins.DB.SALESREPORTS.Add(sALESREPORT);
                 }
                 else
                 {
                     REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL();
                     rEPORTDETAIL.REPORTDATE = DateTime.Parse(DateTime.Now.ToShortDateString());
-                    rEPORTDETAIL.BOOKEDWEDDING = 1;
-                    rEPORTDETAIL.PAIDWEDDING = 0;
+                    rEPORTDETAIL.BOOKEDWEDDINGAMOUNT = 1;
+                    rEPORTDETAIL.PAIDWEDDINGAMOUNT = 0;
                     rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
                 }
             }
@@ -346,23 +346,23 @@ namespace WeddingApp.ViewModels
                 MENU menu = new MENU();
                 menu.WEDDINGID = newWedding.WEDDINGID;
                 menu.DISHID = item.DISHID;
-                menu.DISHCOST = item.COST;
-                Data.Ins.DB.MENUs.Add(menu);
+                menu.DISHCOST = item.DISHCOST;
+                Data.Ins.DB.MENUS.Add(menu);
                 Data.Ins.DB.SaveChanges();
             }
         }
         public void ServeSave(ServiceSelectionUC serviceSelectionUC)
         {
-            foreach (SERVE item in ServeList)
+            foreach (USEDSERVICE item in ServeList)
             {
-                SERVE serve = new SERVE();
+                USEDSERVICE serve = new USEDSERVICE();
                 serve.SERVICEID = item.SERVICEID;
                 serve.WEDDINGID = newWedding.WEDDINGID;
                 serve.SERVICECOST = item.SERVICECOST;
                 serve.AMOUNT = item.AMOUNT;
-                serve.COST = item.SERVICECOST * item.AMOUNT;
-                serve.SERVICE = Data.Ins.DB.SERVICEs.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
-                Data.Ins.DB.SERVEs.Add(serve);
+                serve.TOTALCOST = item.SERVICECOST * item.AMOUNT;
+                serve.SERVICE = Data.Ins.DB.SERVICES.Where(s => s.SERVICEID == serve.SERVICEID).SingleOrDefault();
+                Data.Ins.DB.USEDSERVICES.Add(serve);
                 Data.Ins.DB.SaveChanges();
             }
         }

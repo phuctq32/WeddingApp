@@ -23,10 +23,10 @@ namespace WeddingApp.Models
             }
         }
 
-        public WeddingDBEntities DB { get; set; }
+        public WeddingDatabaseEntities DB { get; set; }
         private Data()
         {
-            DB = new WeddingDBEntities();
+            DB = new WeddingDatabaseEntities();
         }
     }
 }

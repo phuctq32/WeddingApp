@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -21,8 +21,8 @@ namespace WeddingApp
         }
     
         public System.DateTime REPORTDATE { get; set; }
-        public Nullable<short> BOOKEDWEDDING { get; set; }
-        public Nullable<short> PAIDWEDDING { get; set; }
+        public Nullable<short> BOOKEDWEDDINGAMOUNT { get; set; }
+        public Nullable<short> PAIDWEDDINGAMOUNT { get; set; }
         public Nullable<decimal> PROFIT { get; set; }
         public Nullable<double> RATIO { get; set; }
         public Nullable<System.DateTime> REPORTMONTH { get; set; }

@@ -74,9 +74,9 @@ namespace WeddingApp.ViewModels
             }
 
             service.SERVICENAME = parameter.txtName.Text;
-            service.COST = Convert.ToInt32(parameter.txtPrice.Text);
+            service.SERVICECOST = Convert.ToInt32(parameter.txtPrice.Text);
             service.SERVICEDESCRIPTION = parameter.txtDescription.Text;
-            Data.Ins.DB.SERVICEs.Add(service);
+            Data.Ins.DB.SERVICES.Add(service);
             Data.Ins.DB.SaveChanges();
             parameter.addServiceWindow.Close();
             if (!string.IsNullOrEmpty(SelectedImage))

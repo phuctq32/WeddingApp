@@ -62,8 +62,8 @@ namespace WeddingApp.ViewModels
             }
 
             editDish.DISHNAME = editDishWindow.txtName.Text;
-            editDish.COST = Convert.ToInt32(editDishWindow.txtPrice.Text);
-            editDish.TYPEID = Data.Ins.DB.DISHTYPEs.Where(x => x.TYPENAME == editDishWindow.OutlinedComboBox.Text).SingleOrDefault().TYPEID;
+            editDish.DISHCOST = Convert.ToInt32(editDishWindow.txtPrice.Text);
+            editDish.DISHTYPEID = Data.Ins.DB.DISHTYPES.Where(x => x.DISHTYPENAME == editDishWindow.OutlinedComboBox.Text).SingleOrDefault().DISHTYPEID;
             editDish.DISHDESCRIPTION = editDishWindow.txtDescription.Text;
             Data.Ins.DB.SaveChanges();
             editDishWindow.Close();

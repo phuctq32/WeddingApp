@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace WeddingApp
         public string EMPLOYEENAME { get; set; }
         public string PASSWORD { get; set; }
         public decimal SALARY { get; set; }
-        public Nullable<System.DateTime> STARTWORKING { get; set; }
+        public Nullable<System.DateTime> STARTWORKINGDAY { get; set; }
         public string ROLEID { get; set; }
     
         public virtual ROLE ROLE { get; set; }

@@ -22,8 +22,8 @@ namespace WeddingApp.ViewModels
         public InvoiceWindow thisWD;
         private double penalty;
 
-        public PARAMETER isPenalty = Data.Ins.DB.PARAMETERs.Where(x => x.PARAMETERID == "PHAT").SingleOrDefault();
-        public PARAMETER Penalty = Data.Ins.DB.PARAMETERs.Where(x => x.PARAMETERID == "MUCPHAT").SingleOrDefault();
+        public PARAMETER isPenalty = Data.Ins.DB.PARAMETERS.Where(x => x.PARAMETERID == "PHAT").SingleOrDefault();
+        public PARAMETER Penalty = Data.Ins.DB.PARAMETERS.Where(x => x.PARAMETERID == "MUCPHAT").SingleOrDefault();
         public INVOICE thisInvoice;
         CultureInfo cultureInfo = CultureInfo.GetCultureInfo("vi-VN");
         public InvoiceVM()
@@ -37,7 +37,7 @@ namespace WeddingApp.ViewModels
 
             thisWD = invoiceWindow;
             int WeddingID = Convert.ToInt32(invoiceWindow.txtWeddingID.Text);
-            List<SERVE> listServe = Data.Ins.DB.SERVEs.Where(x => x.WEDDINGID == WeddingID).ToList();
+            List<USEDSERVICE> listServe = Data.Ins.DB.USEDSERVICES.Where(x => x.WEDDINGID == WeddingID).ToList();
             invoiceWindow.listView.ItemsSource = listServe;
             if (Penalty.PARAMETERVALUE == 1)
             {
@@ -65,7 +65,7 @@ namespace WeddingApp.ViewModels
             if(CustomMessageBox.Show("Thanh toán hóa đơn hiện tại?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
                 thisInvoice.STATUS = 2;
-                thisInvoice.PENALTIES = (decimal)penalty;
+                thisInvoice.PENALTY = (decimal)penalty;
                 thisInvoice.PAYDAY = DateTime.Parse(DateTime.Now.ToShortDateString());
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Thanh toán thành công", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);

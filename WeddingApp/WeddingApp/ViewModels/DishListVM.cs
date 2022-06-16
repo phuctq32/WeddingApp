@@ -93,15 +93,15 @@ namespace WeddingApp.ViewModels
         {
             DISH editType = listViewItem.DataContext as DISH;
             EditDishWindow editDishWindow = new EditDishWindow();
-            editDishWindow.txtPrice.Text = Convert.ToInt32(editType.COST).ToString();
+            editDishWindow.txtPrice.Text = Convert.ToInt32(editType.DISHCOST).ToString();
             editDishWindow.txtName.Text = editType.DISHNAME;
             editDishWindow.txtDescription.Text = editType.DISHDESCRIPTION;
-            List<DISHTYPE> dISHTYPEs = Data.Ins.DB.DISHTYPEs.ToList();
+            List<DISHTYPE> dISHTYPEs = Data.Ins.DB.DISHTYPES.ToList();
             foreach (var item in dISHTYPEs)
             {
-                editDishWindow.OutlinedComboBox.Items.Add(item.TYPENAME);
+                editDishWindow.OutlinedComboBox.Items.Add(item.DISHTYPENAME);
             }
-            editDishWindow.OutlinedComboBox.Text = editType.DISHTYPE.TYPENAME;
+            editDishWindow.OutlinedComboBox.Text = editType.DISHTYPE.DISHTYPENAME;
             editDishWindow.ShowDialog();
         }
         public void Delete(ListViewItem listViewItem)

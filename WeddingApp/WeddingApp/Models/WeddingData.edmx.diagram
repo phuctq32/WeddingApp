@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="62576e3da5294755a29dfe9833ae69bf" Name="Diagram1">
+        <EntityTypeShape EntityType="WeddingDatabaseModel.BALLROOM" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.BALLROOMTYPE" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.DISH" Width="1.5" PointX="8.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.DISHTYPE" Width="1.5" PointX="6" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.EMPLOYEE" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.FUNCTION" Width="1.5" PointX="6" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.INVOICE" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.MENU" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.PARAMETER" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.PERMISSION" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.REPORTDETAIL" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.ROLE" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.SALESREPORT" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.SERVICE" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.SHIFT" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.USEDSERVICE" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDatabaseModel.WEDDING" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_BALLROOMS_BALLROOMTYPEID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_WEDDINGS_BALLROOMID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_DISHES_DISHTYPEID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_MENUS_DISHID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_EMPLOYEES_ROLEID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_INVOICES_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_PERMISSION_FUNCTIONID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_INVOICES_PAYDAY" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_INVOICES_WEDDINGID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_MENUS_WEDDINGID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_PERMISSION_ROLEID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_REPORTDETAILS_REPORTMONTH" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_USEDSERVICES_SERVICEID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_WEDDINGS_SHIFTID" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDatabaseModel.FK_USEDSERVICESS_WEDDINGID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

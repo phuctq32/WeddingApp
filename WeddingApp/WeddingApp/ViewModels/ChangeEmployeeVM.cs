@@ -154,7 +154,7 @@ namespace WeddingApp.ViewModels
                 employee.USERNAME = parameter.txtUsername.Text;
                 employee.ROLEID = Data.Ins.DB.ROLES.Where(x => x.ROLENAME == parameter.comboBoxRoleList.Text).SingleOrDefault().ROLEID;
                 employee.PASSWORD = passEncode;
-                employee.STARTWORKING = Date;
+                employee.STARTWORKINGDAY = Date;
                 employee.SALARY = Convert.ToInt32(parameter.txtSalary.Text);
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Thay đổi thành công!", MessageBoxButton.OK, MessageBoxImage.Information);
