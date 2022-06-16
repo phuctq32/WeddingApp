@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -93,7 +94,7 @@ namespace WeddingApp.ViewModels
 
                 string passEncode = MD5Hash(Base64Encode(Password));
                 int accCount = Data.Ins.DB.EMPLOYEES.Where(x => x.USERNAME == UserName && x.PASSWORD == passEncode).Count();
-
+                List<EMPLOYEE> a = Data.Ins.DB.EMPLOYEES.ToList();
                 if (accCount > 0)
                 {
                     // check username

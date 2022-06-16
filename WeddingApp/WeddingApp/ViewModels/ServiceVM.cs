@@ -327,15 +327,14 @@ namespace WeddingApp.ViewModels
                     sALESREPORT.PROFIT = newWedding.DEPOSIT;
                     Data.Ins.DB.SALESREPORTS.Add(sALESREPORT);
                 }
-                else
-                {
-                    REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL();
-                    rEPORTDETAIL.REPORTDATE = DateTime.Parse(DateTime.Now.ToShortDateString());
-                    rEPORTDETAIL.BOOKEDWEDDINGAMOUNT = 1;
-                    rEPORTDETAIL.PAIDWEDDINGAMOUNT = 0;
-                    rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
-                    Data.Ins.DB.REPORTDETAILS.Add(rEPORTDETAIL);
-                }
+
+                REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL();
+                rEPORTDETAIL.REPORTDATE = DateTime.Parse(DateTime.Now.ToShortDateString());
+                rEPORTDETAIL.BOOKEDWEDDINGAMOUNT = 1;
+                rEPORTDETAIL.PAIDWEDDINGAMOUNT = 0;
+                rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
+                Data.Ins.DB.REPORTDETAILS.Add(rEPORTDETAIL);
+
             }
             Data.Ins.DB.INVOICES.Add(newInvoice);
             Data.Ins.DB.SaveChanges();
