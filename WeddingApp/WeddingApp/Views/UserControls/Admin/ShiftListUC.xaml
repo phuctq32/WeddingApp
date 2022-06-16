@@ -99,7 +99,7 @@
                                 <TextBlock
                                     Grid.Column="0"
                                     Margin="0 15 0 10"
-                                    Text="2"
+                                    Text="{Binding SHIFTID}"
                                     FontSize="30"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
@@ -110,7 +110,7 @@
                                     Margin="10 5"
                                     Foreground="Black"
                                     FontSize="30"
-                                    Text="Sáng"
+                                    Text="{Binding SHIFTNAME}"
                                     TextWrapping="Wrap"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"/>
@@ -121,7 +121,7 @@
                                     Margin="10 5"
                                     Foreground="Black"
                                     FontSize="30"
-                                    Text="7:30 AM"
+                                    Text="{Binding STARTTIME}"
                                     TextWrapping="Wrap"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"/>
@@ -131,7 +131,7 @@
                                     Margin="10 5"
                                     Foreground="Black"
                                     FontSize="30"
-                                    Text="12:30 PM"
+                                    Text="{Binding ENDTIME}"
                                     TextWrapping="Wrap"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"/>
