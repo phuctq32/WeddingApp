@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WeddingDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WeddingDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BALLROOMS">
           <Key>
             <PropertyRef Name="BALLROOMID" />
@@ -150,9 +150,9 @@
         </EntityType>
         <EntityType Name="USEDSERVICES">
           <Key>
-            <PropertyRef Name="SERVEID" />
+            <PropertyRef Name="USEDSERVICEID" />
           </Key>
-          <Property Name="SERVEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USEDSERVICEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WEDDINGID" Type="int" Nullable="false" />
           <Property Name="SERVICEID" Type="int" Nullable="false" />
           <Property Name="SERVICECOST" Type="money" />
@@ -435,8 +435,7 @@
             <End Role="WEDDINGS" EntitySet="WEDDINGS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WeddingDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -608,9 +607,8 @@
         </EntityType>
         <EntityType Name="USEDSERVICE">
           <Key>
-            <PropertyRef Name="SERVEID" />
+            <PropertyRef Name="USEDSERVICEID" />
           </Key>
-          <Property Name="SERVEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="WEDDINGID" Type="Int32" Nullable="false" />
           <Property Name="SERVICEID" Type="Int32" Nullable="false" />
           <Property Name="SERVICECOST" Type="Decimal" Precision="19" Scale="4" />
@@ -619,6 +617,7 @@
           <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SERVICE" Relationship="Self.FK_USEDSERVICES_SERVICEID" FromRole="USEDSERVICES" ToRole="SERVICES" />
           <NavigationProperty Name="WEDDING" Relationship="Self.FK_USEDSERVICESS_WEDDINGID" FromRole="USEDSERVICES" ToRole="WEDDINGS" />
+          <Property Name="USEDSERVICEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="WEDDING">
           <Key>
@@ -1067,7 +1066,7 @@
           <EntitySetMapping Name="USEDSERVICES">
             <EntityTypeMapping TypeName="WeddingDatabaseModel.USEDSERVICE">
               <MappingFragment StoreEntitySet="USEDSERVICES">
-                <ScalarProperty Name="SERVEID" ColumnName="SERVEID" />
+                <ScalarProperty Name="USEDSERVICEID" ColumnName="USEDSERVICEID" />
                 <ScalarProperty Name="WEDDINGID" ColumnName="WEDDINGID" />
                 <ScalarProperty Name="SERVICEID" ColumnName="SERVICEID" />
                 <ScalarProperty Name="SERVICECOST" ColumnName="SERVICECOST" />

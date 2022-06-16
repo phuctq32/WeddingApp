@@ -14,13 +14,13 @@ namespace WeddingApp.Models
     
     public partial class USEDSERVICE
     {
-        public int SERVEID { get; set; }
         public int WEDDINGID { get; set; }
         public int SERVICEID { get; set; }
         public Nullable<decimal> SERVICECOST { get; set; }
         public Nullable<short> AMOUNT { get; set; }
         public Nullable<decimal> TOTALCOST { get; set; }
         public string NOTE { get; set; }
+        public int USEDSERVICEID { get; set; }
     
         public virtual SERVICE SERVICE { get; set; }
         public virtual WEDDING WEDDING { get; set; }

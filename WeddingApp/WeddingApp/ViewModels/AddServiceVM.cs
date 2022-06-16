@@ -104,6 +104,7 @@ namespace WeddingApp.ViewModels
                 try
                 {
                     containerClient.UploadBlob(service.SERVICEID + "." + filename[1], stream);
+                    service.SERVICEIMAGE = "https://imagedish.blob.core.windows.net/service/" + service.SERVICEID + "." + filename[1];
                 }
                 catch
                 {
@@ -114,7 +115,7 @@ namespace WeddingApp.ViewModels
             //Update new Image link
 
             //PRODUCT product = Data.Ins.DB.PRODUCTs.Where(x => x.ID_ == Current_Product.ID_).SingleOrDefault();
-            service.SERVICEIMAGE = "https://imagedish.blob.core.windows.net/service/" + service.SERVICEID + "." + filename[1];
+            
         }
 
         public void CloseButton(AddServiceWindow addProductWindow)
