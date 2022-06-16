@@ -289,6 +289,7 @@
     <Compile Include="ViewModels\EditHallTypeVM.cs" />
     <Compile Include="ViewModels\EditHallVM.cs" />
     <Compile Include="ViewModels\EditRoleVM.cs" />
+    <Compile Include="ViewModels\EditShiftVM.cs" />
     <Compile Include="ViewModels\HallTypeListVM.cs" />
     <Compile Include="ViewModels\InvoiceListVM.cs" />
     <Compile Include="ViewModels\InvoiceVM.cs" />

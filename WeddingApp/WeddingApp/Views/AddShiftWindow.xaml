@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeddingApp.Views"
         mc:Ignorable="d"
+        DataContext="{StaticResource editShiftVM}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:uc="clr-namespace:WeddingApp.Views.UserControls"
@@ -24,7 +25,7 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}"
-                                   CommandParameter="{Binding ElementName=AddRoleWD}" />
+                                   CommandParameter="{Binding ElementName=add_edit_shift_WD}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:0.2}">
@@ -60,6 +61,7 @@
                             FontSize="30"
                             VerticalAlignment="Center"/>
                         <TextBox
+                            x:Name="shiftNameTxt"
                             Width="150"
                             Style="{StaticResource MaterialDesignTextBox}"
                             materialDesign:HintAssist.Hint="Tên ca"
@@ -78,7 +80,9 @@
                             FontSize="25"
                             VerticalAlignment="Bottom"/>
                         <materialDesign:TimePicker
+                            x:Name="shiftStartTime"
                             IsInvalidTextAllowed="False"
+                            Is24Hours="True"
                             materialDesign:HintAssist.Hint="Chọn thời gian"
                             FontSize="20"
                             FontWeight="Medium"
@@ -93,8 +97,10 @@
                             FontSize="25"
                             VerticalAlignment="Bottom"/>
                         <materialDesign:TimePicker
-                            materialDesign:HintAssist.Hint="Chọn thời gian"
+                            x:Name="shiftEndTime"
                             IsInvalidTextAllowed="False"
+                            Is24Hours="True"
+                            materialDesign:HintAssist.Hint="Chọn thời gian"
                             FontSize="20"
                             FontWeight="Medium"
                             Foreground="{StaticResource Orange2}"
@@ -107,6 +113,7 @@
 
 
                 <Button
+                    x:Name="add_save_btn"
                     Grid.Row="3"
                     Style="{StaticResource GreenBtn}"
                     Content="Thêm"
@@ -116,19 +123,19 @@
                     materialDesign:ButtonAssist.CornerRadius="10"
                     Margin="0 0 0 30"
                     HorizontalAlignment="Center"
-                    Command=""
-                    CommandParameter=""/>
+                    Command="{Binding ClickCommand}"
+                    CommandParameter="{Binding ElementName=add_edit_shift_WD}"/>
             </Grid>
 
             <Rectangle
-            Fill="White"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            RadiusY="10"
-            RadiusX="10"
-            Panel.ZIndex="-2"
-            Effect="{StaticResource dropShadow}"
-            Margin="10">
+                Fill="White"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                RadiusY="10"
+                RadiusX="10"
+                Panel.ZIndex="-2"
+                Effect="{StaticResource dropShadow}"
+                Margin="10">
             </Rectangle>
         </Grid>
     </materialDesign:TransitioningContent>

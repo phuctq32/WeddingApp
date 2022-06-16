@@ -34,4 +34,5 @@
     <viewmodels:EditDishVM x:Key="editDishVM"></viewmodels:EditDishVM>
     <viewmodels:AddServiceVM x:Key="addServiceVM"></viewmodels:AddServiceVM>
     <viewmodels:ShiftListVM x:Key="shiftListVM"></viewmodels:ShiftListVM>
+    <viewmodels:EditShiftVM x:Key="editShiftVM"></viewmodels:EditShiftVM>
 </ResourceDictionary>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeddingApp
+namespace WeddingApp.Models
 {
     using System;
     using System.Collections.Generic;

@@ -137,14 +137,14 @@
                                     HorizontalAlignment="Center"/>
                                 <!--button sửa-->
                                 <Button
-                                Grid.Column="4"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Style="{StaticResource editBtn}"
-                                ToolTip="Chỉnh sửa chức vụ"
-                                Command="{Binding Source={StaticResource shiftListVM}, Path=EditShiftCommand}"
-                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
-                                </Button>
+                                    Grid.Column="4"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource editBtn}"
+                                    ToolTip="Chỉnh sửa chức vụ"
+                                    Command="{Binding Source={StaticResource shiftListVM}, Path=EditShiftCommand}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"/>
+
                             </Grid>
                             <Rectangle
                                 Fill="White"
