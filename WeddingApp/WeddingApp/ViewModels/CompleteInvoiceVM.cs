@@ -33,8 +33,8 @@ namespace WeddingApp.ViewModels
             INVOICE paidInvoice = listViewItem.DataContext as INVOICE;
 
             completedInvoiceWindow.txtWeddingID.Text = paidInvoice.WEDDINGID.ToString();
-            completedInvoiceWindow.txtGroom.Text = paidInvoice.WEDDING.GROOM;
-            completedInvoiceWindow.txtBride.Text = paidInvoice.WEDDING.BRIDE;
+            completedInvoiceWindow.txtGroom.Text = paidInvoice.WEDDING.GROOMNAME;
+            completedInvoiceWindow.txtBride.Text = paidInvoice.WEDDING.BRIDENAME;
             completedInvoiceWindow.txtDeposit.Text = paidInvoice.WEDDING.DEPOSIT.ToString("C0", cultureInfo);
             completedInvoiceWindow.txtRemaining.Text = paidInvoice.REMAININGCOST.ToString("C0", cultureInfo);
             completedInvoiceWindow.txtTableAmount.Text = paidInvoice.WEDDING.TABLEAMOUNT.ToString();
@@ -43,8 +43,8 @@ namespace WeddingApp.ViewModels
             completedInvoiceWindow.txtTotalServiceCost.Text = paidInvoice.SERVICECOST.ToString("C0", cultureInfo);
             completedInvoiceWindow.txtWeddingCost.Text = paidInvoice.WEDDINGCOST.ToString("C0", cultureInfo);
             completedInvoiceWindow.txtWeddingDate.Text = paidInvoice.WEDDING.WEDDINGDATE.ToString("dd/MM/yyyy");
-            completedInvoiceWindow.txtPenalty.Text = Convert.ToInt32(paidInvoice.PENALTIES).ToString("C0", cultureInfo);
-            List<SERVE> sERVEs = Data.Ins.DB.SERVEs.Where(x => x.WEDDINGID == paidInvoice.WEDDINGID).ToList();
+            completedInvoiceWindow.txtPenalty.Text = Convert.ToInt32(paidInvoice.PENALTY).ToString("C0", cultureInfo);
+            List<USEDSERVICE> sERVEs = Data.Ins.DB.USEDSERVICES.Where(x => x.WEDDINGID == paidInvoice.WEDDINGID).ToList();
             completedInvoiceWindow.listView.ItemsSource = sERVEs;
             completedInvoiceWindow.Show();
         }

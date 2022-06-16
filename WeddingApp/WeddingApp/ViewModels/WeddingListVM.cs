@@ -25,19 +25,19 @@ namespace WeddingApp.ViewModels
         public void Load(WeddingListUC weddingListUC)
         {
             List<WEDDING> wEDDINGs = new List<WEDDING>();
-            wEDDINGs = Data.Ins.DB.WEDDINGs.ToList();
+            wEDDINGs = Data.Ins.DB.WEDDINGS.ToList();
             weddingListUC.weddingList.ItemsSource = wEDDINGs;
         }
         public void Open(ListViewItem listViewItem)
         {
             WEDDING selectedWedding = listViewItem.DataContext as WEDDING;
             INVOICE iNVOICE = Data.Ins.DB.INVOICES.Where(x => x.WEDDINGID == selectedWedding.WEDDINGID).SingleOrDefault();
-            List<MENU> menu = Data.Ins.DB.MENUs.Where(x => x.WEDDINGID == selectedWedding.WEDDINGID).ToList();
+            List<MENU> menu = Data.Ins.DB.MENUS.Where(x => x.WEDDINGID == selectedWedding.WEDDINGID).ToList();
             WeddingDetailWindow weddingDetailWindow = new WeddingDetailWindow();
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("vi-VN");
             weddingDetailWindow.txtWeddingID.Text = selectedWedding.WEDDINGID.ToString();
-            weddingDetailWindow.txtGroom.Text = selectedWedding.GROOM;
-            weddingDetailWindow.txtBride.Text = selectedWedding.BRIDE;
+            weddingDetailWindow.txtGroom.Text = selectedWedding.GROOMNAME;
+            weddingDetailWindow.txtBride.Text = selectedWedding.BRIDENAME;
             weddingDetailWindow.txtPhone.Text = selectedWedding.TELEPHONE;
             weddingDetailWindow.txtDeposit.Text = selectedWedding.DEPOSIT.ToString("C0", cultureInfo);
             weddingDetailWindow.txtWeddingDate.Text = selectedWedding.WEDDINGDATE.ToString("dd/MM/yyyy");

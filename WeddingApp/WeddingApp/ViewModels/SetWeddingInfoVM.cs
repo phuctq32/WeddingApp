@@ -22,7 +22,7 @@ namespace WeddingApp.ViewModels
         }
         public void Loaded(SetWeddingInfomationUC setWeddingInfomationUC)
         {
-            List<BALLROOM> listRoom = Data.Ins.DB.BALLROOMs.ToList();
+            List<BALLROOM> listRoom = Data.Ins.DB.BALLROOMS.ToList();
             foreach (var item in listRoom)
             {
                 setWeddingInfomationUC.hallComboBox.Items.Add(item.BALLROOMNAME);
@@ -104,7 +104,7 @@ namespace WeddingApp.ViewModels
         public void SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
             string name = thisUC.hallComboBox.SelectedItem.ToString();
-            BALLROOM SelectedBallroom = Data.Ins.DB.BALLROOMs.Where(x => x.BALLROOMNAME == name).SingleOrDefault();
+            BALLROOM SelectedBallroom = Data.Ins.DB.BALLROOMS.Where(x => x.BALLROOMNAME == name).SingleOrDefault();
             thisUC.comboBoxTableAmount.IsEnabled = true;
             thisUC.comboBoxreversedTableAmount.IsEnabled = true;
             thisUC.comboBoxTableAmount.Items.Clear();
@@ -122,10 +122,10 @@ namespace WeddingApp.ViewModels
         {
             thisUC.hallComboBox.IsEnabled = true;
             thisUC.hallComboBox.Items.Clear();
-            List<BALLROOM> ballroom = Data.Ins.DB.BALLROOMs.ToList();
+            List<BALLROOM> ballroom = Data.Ins.DB.BALLROOMS.ToList();
             foreach(var item in ballroom)
             {
-                if (!(Data.Ins.DB.WEDDINGs.Where(x => x.WEDDINGDATE == thisUC.date.SelectedDate && x.SHIFT.SHIFTNAME == thisUC.ShiftComboBox.SelectedItem.ToString() && x.BALLROOMID == item.BALLROOMID).Count() > 0))
+                if (!(Data.Ins.DB.WEDDINGS.Where(x => x.WEDDINGDATE == thisUC.date.SelectedDate && x.SHIFT.SHIFTNAME == thisUC.ShiftComboBox.SelectedItem.ToString() && x.BALLROOMID == item.BALLROOMID).Count() > 0))
                 {
                     thisUC.hallComboBox.Items.Add(item.BALLROOMNAME);
                 }

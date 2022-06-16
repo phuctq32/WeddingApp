@@ -27,7 +27,7 @@ namespace WeddingApp.ViewModels
         }
         public void Loaded(WeddingHallTypeListUC weddingHallTypeListUC)
         {
-            List<BALLROOMTYPE> listType = Data.Ins.DB.BALLROOMTYPEs.ToList();
+            List<BALLROOMTYPE> listType = Data.Ins.DB.BALLROOMTYPES.ToList();
             weddingHallTypeListUC.ListView.ItemsSource = listType;
         }
         public void Add(WeddingHallTypeListUC weddingHallTypeListUC)
@@ -39,7 +39,7 @@ namespace WeddingApp.ViewModels
         {
             BALLROOMTYPE editType = listViewItem.DataContext as BALLROOMTYPE;
             EditWeddingHallTypeWindow editWeddingHallTypeWindow = new EditWeddingHallTypeWindow();
-            editWeddingHallTypeWindow.TypeName.Items.Add(editType.TYPENAME);
+            editWeddingHallTypeWindow.TypeName.Items.Add(editType.BALLROOMTYPENAME);
             editWeddingHallTypeWindow.TypeName.SelectedIndex = 0;
             editWeddingHallTypeWindow.txtMinPrice.Text = Convert.ToInt32(editType.MINIMUMCOST).ToString();
             editWeddingHallTypeWindow.ShowDialog();
@@ -49,7 +49,7 @@ namespace WeddingApp.ViewModels
             BALLROOMTYPE deleteType = listViewItem.DataContext as BALLROOMTYPE;
             if(CustomMessageBox.Show("Xóa loại sảnh?",System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
-                Data.Ins.DB.BALLROOMTYPEs.Remove(deleteType);
+                Data.Ins.DB.BALLROOMTYPES.Remove(deleteType);
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
             }

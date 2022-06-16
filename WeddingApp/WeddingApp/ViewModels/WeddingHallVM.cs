@@ -30,7 +30,7 @@ namespace WeddingApp.ViewModels
         public void Loaded(WeddingHallUC weddingHallUC)
         {
             List<BALLROOM> bALLROOMs = new List<BALLROOM>();
-            bALLROOMs = Data.Ins.DB.BALLROOMs.ToList();
+            bALLROOMs = Data.Ins.DB.BALLROOMS.ToList();
             weddingHallUC.listBallroom.ItemsSource = bALLROOMs;
         }
         public void Add(WeddingHallUC weddingHallUC)
@@ -44,7 +44,7 @@ namespace WeddingApp.ViewModels
             EditWeddingHallWindow editWeddingHallWindow = new EditWeddingHallWindow();
             editWeddingHallWindow.txtHallname.Text = ballroom.BALLROOMNAME;
             editWeddingHallWindow.txtMaxTable.Text = ballroom.MAXIMUMTABLE.ToString();
-            editWeddingHallWindow.comboBoxHallType.Items.Add(ballroom.BALLROOMTYPE.TYPENAME);
+            editWeddingHallWindow.comboBoxHallType.Items.Add(ballroom.BALLROOMTYPE.BALLROOMTYPENAME);
             editWeddingHallWindow.comboBoxHallType.SelectedIndex = 0;
             editWeddingHallWindow.txtMincost.Text = ballroom.BALLROOMTYPE.MINIMUMCOST.ToString();
             editWeddingHallWindow.ShowDialog();
@@ -54,7 +54,7 @@ namespace WeddingApp.ViewModels
             BALLROOM bALLROOM = listViewItem.DataContext as BALLROOM;
             if(CustomMessageBox.Show("Xóa sảnh cưới?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
-                Data.Ins.DB.BALLROOMs.Remove(bALLROOM);
+                Data.Ins.DB.BALLROOMS.Remove(bALLROOM);
                 Data.Ins.DB.SaveChanges();
                 CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
             }

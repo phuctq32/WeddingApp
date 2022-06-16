@@ -30,14 +30,14 @@ namespace WeddingApp.ViewModels
             {
                 case 0:
                     DetailDishListUC detailDishListUC = new DetailDishListUC();
-                    List<MENU> Menu = Data.Ins.DB.MENUs.Where(x=>x.WEDDINGID == WeddingID).ToList();
+                    List<MENU> Menu = Data.Ins.DB.MENUS.Where(x=>x.WEDDINGID == WeddingID).ToList();
                     detailDishListUC.ListDishUse.ItemsSource = Menu;
                     weddingDetailWindow.listViewdish.Children.Clear();
                     weddingDetailWindow.listViewdish.Children.Add(detailDishListUC);
                     break;
                 case 1:
                     DetailServiceListUC detailServiceListUC = new DetailServiceListUC();
-                    List<SERVE> Serve = Data.Ins.DB.SERVEs.Where(x => x.WEDDINGID == WeddingID).ToList();
+                    List<USEDSERVICE> Serve = Data.Ins.DB.USEDSERVICES.Where(x => x.WEDDINGID == WeddingID).ToList();
                     detailServiceListUC.ListServiceUse.ItemsSource = Serve;
                     weddingDetailWindow.listViewdish.Children.Clear();
                     weddingDetailWindow.listViewdish.Children.Add(detailServiceListUC);

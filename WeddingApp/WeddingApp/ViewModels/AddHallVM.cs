@@ -26,10 +26,10 @@ namespace WeddingApp.ViewModels
         }
         public void Load(AddWeddingHallWindow addWeddingHallWindow)
         {
-            List<BALLROOMTYPE> list = Data.Ins.DB.BALLROOMTYPEs.ToList();
+            List<BALLROOMTYPE> list = Data.Ins.DB.BALLROOMTYPES.ToList();
             foreach (var item in list)
             {
-                addWeddingHallWindow.comboBoxType.Items.Add(item.TYPENAME);
+                addWeddingHallWindow.comboBoxType.Items.Add(item.BALLROOMTYPENAME);
             }
             _name = addWeddingHallWindow.comboBoxType.SelectionBoxItem.ToString();
             thisWindow = addWeddingHallWindow;
@@ -38,7 +38,7 @@ namespace WeddingApp.ViewModels
         public void SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
             string SelectedType = thisWindow.comboBoxType.SelectedItem.ToString();
-            thisWindow.txtMinPrice.Text = Data.Ins.DB.BALLROOMTYPEs.Where(x => x.TYPENAME == SelectedType).SingleOrDefault().MINIMUMCOST.ToString();
+            thisWindow.txtMinPrice.Text = Data.Ins.DB.BALLROOMTYPES.Where(x => x.BALLROOMTYPENAME == SelectedType).SingleOrDefault().MINIMUMCOST.ToString();
         }
         public void Add(AddWeddingHallWindow addWeddingHallWindow)
         {
@@ -47,7 +47,7 @@ namespace WeddingApp.ViewModels
             {
                 CustomMessageBox.Show("Vui lòng nhập tên sảnh", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
-            else if (Data.Ins.DB.BALLROOMs.Where(x=>x.BALLROOMNAME == HallName).Count() >0)
+            else if (Data.Ins.DB.BALLROOMS.Where(x=>x.BALLROOMNAME == HallName).Count() >0)
             {
                 CustomMessageBox.Show("Sảnh đã tồn tại", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
             }
@@ -62,8 +62,8 @@ namespace WeddingApp.ViewModels
                     BALLROOM newBallroom = new BALLROOM();
                     newBallroom.BALLROOMNAME = HallName;
                     newBallroom.MAXIMUMTABLE = Convert.ToInt16(addWeddingHallWindow.txtMaxtable.Text);
-                    newBallroom.TYPEID = Data.Ins.DB.BALLROOMTYPEs.Where(x => x.TYPENAME == addWeddingHallWindow.comboBoxType.Text).SingleOrDefault().TYPEID;
-                    Data.Ins.DB.BALLROOMs.Add(newBallroom);
+                    newBallroom.BALLROOMTYPEID = Data.Ins.DB.BALLROOMTYPES.Where(x => x.BALLROOMTYPENAME == addWeddingHallWindow.comboBoxType.Text).SingleOrDefault().BALLROOMTYPEID;
+                    Data.Ins.DB.BALLROOMS.Add(newBallroom);
                     Data.Ins.DB.SaveChanges();
                     CustomMessageBox.Show("Thêm thành công", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
                 }

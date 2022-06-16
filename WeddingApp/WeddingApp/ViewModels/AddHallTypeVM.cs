@@ -30,16 +30,16 @@ namespace WeddingApp.ViewModels
             {
                 return;
             }
-            if(Data.Ins.DB.BALLROOMTYPEs.Where(x=>x.TYPENAME == HallTypeName || x.MINIMUMCOST == MinPrice).Count() > 0)
+            if(Data.Ins.DB.BALLROOMTYPES.Where(x=>x.BALLROOMTYPENAME == HallTypeName || x.MINIMUMCOST == MinPrice).Count() > 0)
             {
                 CustomMessageBox.Show("Loại sảnh đã tồn tại!", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
             else 
             {
                 BALLROOMTYPE newType = new BALLROOMTYPE();
-                newType.TYPENAME = HallTypeName;
+                newType.BALLROOMTYPENAME = HallTypeName;
                 newType.MINIMUMCOST = MinPrice;
-                Data.Ins.DB.BALLROOMTYPEs.Add(newType);
+                Data.Ins.DB.BALLROOMTYPES.Add(newType);
                 Data.Ins.DB.SaveChanges();
             }
         }
