@@ -27,6 +27,7 @@ namespace WeddingApp.ViewModels
         public ICommand ConfirmCommand { get; set; }
         public ICommand DeleteCartCommand { get; set; }
         public ServiceSelectionUC thisUC;
+
         public long TotalPrice
         {
             get => totalPrice;
@@ -36,6 +37,7 @@ namespace WeddingApp.ViewModels
                 OnPropertyChanged("TotalPrice");
             }
         }
+
         public List<USEDSERVICE> ServeList
         {
             get => serveList;
@@ -45,6 +47,7 @@ namespace WeddingApp.ViewModels
                 OnPropertyChanged(nameof(ServeList));
             }
         }
+
         public ServiceVM()
         {
             LoadedCommand = new RelayCommand<ServiceSelectionUC>(p => true, p => Loaded(p));
@@ -57,10 +60,11 @@ namespace WeddingApp.ViewModels
             NextUCCommand = new RelayCommand<MenuUC>(p => true, p => NextUC(p));
             ServeList = new List<USEDSERVICE>();
         }
+
         public void Loaded(ServiceSelectionUC serviceSelectionUC)
         {
             thisUC = serviceSelectionUC;
-            List<SERVICE> service = Data.Ins.DB.SERVICES.Where(x=>x.STATUS == 1).ToList();
+            List<SERVICE> service = Data.Ins.DB.SERVICES.Where(x => x.STATUS == 1).ToList();
             serviceSelectionUC.ServiceList.ItemsSource = service;
             List<USEDSERVICE> temp = new List<USEDSERVICE>();
             ServeList.ForEach(item => temp.Add(item));
@@ -68,6 +72,7 @@ namespace WeddingApp.ViewModels
             ServeList = temp;
             TotalPrice = GetTotalPrice(ServeList);
         }
+
         public void NextUC(MenuUC menuUC)
         {
             int minimumCost = Convert.ToInt32(Data.Ins.DB.BALLROOMS.Where(x => x.BALLROOMNAME == MainVM.WeddingHall).SingleOrDefault().BALLROOMTYPE.MINIMUMCOST);
@@ -112,9 +117,9 @@ namespace WeddingApp.ViewModels
                     }
                     thisUC.selectAllCheckBox.IsChecked = isALlChecked;
                 }
-
             }
         }
+
         private void Down(TextBlock parameter)
         {
             short amount = short.Parse(parameter.Text.ToString());
@@ -160,6 +165,7 @@ namespace WeddingApp.ViewModels
                 TotalPrice = GetTotalPrice(ServeList);
             }
         }
+
         private void AllChecked(ServiceSelectionUC parameter)
         {
             bool newVal = (parameter.selectAllCheckBox.IsChecked == true);
@@ -193,6 +199,7 @@ namespace WeddingApp.ViewModels
             }
             TotalPrice = GetTotalPrice(ServeList);
         }
+
         private void Checked(CheckBox parameter)
         {
             var lv = GetAncestorOfType<ListView>(parameter);
@@ -238,6 +245,7 @@ namespace WeddingApp.ViewModels
             }
             TotalPrice = GetTotalPrice(ServeList);
         }
+
         private long GetTotalPrice(List<USEDSERVICE> serves)
         {
             long res = 0;
@@ -247,6 +255,7 @@ namespace WeddingApp.ViewModels
             }
             return res;
         }
+
         private void DeleteCart(ListViewItem parameter)
         {
             USEDSERVICE serveToDelete = parameter.DataContext as USEDSERVICE;
@@ -334,7 +343,7 @@ namespace WeddingApp.ViewModels
                 rEPORTDETAIL.PAIDWEDDINGAMOUNT = 0;
                 rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
                 Data.Ins.DB.REPORTDETAILS.Add(rEPORTDETAIL);
-
+                Data.Ins.DB.SaveChanges();
             }
             if (Data.Ins.DB.REPORTDETAILS.Where(x => x.REPORTDATE == newWedding.WEDDINGDATE).Count() == 0)
             {
@@ -355,11 +364,11 @@ namespace WeddingApp.ViewModels
                 rEPORTDETAIL.PAIDWEDDINGAMOUNT = 0;
                 rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
                 Data.Ins.DB.REPORTDETAILS.Add(rEPORTDETAIL);
-
             }
             Data.Ins.DB.INVOICES.Add(newInvoice);
             Data.Ins.DB.SaveChanges();
         }
+
         public void MenuSave(MenuUC menuUC)
         {
             foreach (DISH item in menuUC.carts.Items)
@@ -372,6 +381,7 @@ namespace WeddingApp.ViewModels
                 Data.Ins.DB.SaveChanges();
             }
         }
+
         public void ServeSave(ServiceSelectionUC serviceSelectionUC)
         {
             foreach (USEDSERVICE item in ServeList)
@@ -387,6 +397,5 @@ namespace WeddingApp.ViewModels
                 Data.Ins.DB.SaveChanges();
             }
         }
-
     }
 }
