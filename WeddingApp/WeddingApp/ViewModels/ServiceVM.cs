@@ -336,6 +336,27 @@ namespace WeddingApp.ViewModels
                 Data.Ins.DB.REPORTDETAILS.Add(rEPORTDETAIL);
 
             }
+            if (Data.Ins.DB.REPORTDETAILS.Where(x => x.REPORTDATE == newWedding.WEDDINGDATE).Count() == 0)
+            {
+                if (Data.Ins.DB.SALESREPORTS.Where(x => x.REPORTMONTH.Month == newWedding.WEDDINGDATE.Month && x.REPORTMONTH.Year == newWedding.WEDDINGDATE.Year).Count() == 0)
+                {
+                    SALESREPORT sALESREPORT = new SALESREPORT();
+                    DateTime a = new DateTime(newWedding.WEDDINGDATE.Year, newWedding.WEDDINGDATE.Month, 1);
+                    sALESREPORT.REPORTMONTH = DateTime.Parse(a.ToShortDateString());
+                    sALESREPORT.PAIDWEDDINGAMOUNT = 0;
+                    sALESREPORT.BOOKEDWEDDINGAMOUNT = 1;
+                    sALESREPORT.PROFIT = newWedding.DEPOSIT;
+                    Data.Ins.DB.SALESREPORTS.Add(sALESREPORT);
+                }
+
+                REPORTDETAIL rEPORTDETAIL = new REPORTDETAIL();
+                rEPORTDETAIL.REPORTDATE = DateTime.Parse(newWedding.WEDDINGDATE.ToShortDateString());
+                rEPORTDETAIL.BOOKEDWEDDINGAMOUNT = 1;
+                rEPORTDETAIL.PAIDWEDDINGAMOUNT = 0;
+                rEPORTDETAIL.PROFIT = newWedding.DEPOSIT;
+                Data.Ins.DB.REPORTDETAILS.Add(rEPORTDETAIL);
+
+            }
             Data.Ins.DB.INVOICES.Add(newInvoice);
             Data.Ins.DB.SaveChanges();
         }
