@@ -57,7 +57,8 @@ namespace WeddingApp.ViewModels
 
             IsEdit = true;
             addShiftWindow.ShowDialog();
-            
+            Shifts = Data.Ins.DB.SHIFTS.ToList();
+
         }
 
         private void AddSelectedShift(ShiftListUC parameter)
@@ -66,6 +67,7 @@ namespace WeddingApp.ViewModels
 
             IsEdit = false;
             addShiftWindow.ShowDialog();
+            Shifts = Data.Ins.DB.SHIFTS.ToList();
         }
 
         

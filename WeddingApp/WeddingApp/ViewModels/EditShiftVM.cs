@@ -22,7 +22,7 @@ namespace WeddingApp.ViewModels
         }
         private void Load(AddShiftWindow parameter)
         {
-            editingShift = Data.Ins.DB.SHIFTS.Where(shift => shift.SHIFTNAME == parameter.shiftNameTxt.ToString()).SingleOrDefault();
+            editingShift = Data.Ins.DB.SHIFTS.Where(shift => shift.SHIFTNAME == parameter.shiftNameTxt.Text.ToString()).SingleOrDefault();
         }
 
         private void Click(AddShiftWindow parameter)
@@ -62,6 +62,7 @@ namespace WeddingApp.ViewModels
                 {
                     Data.Ins.DB.SHIFTS.Add(shift);
                     Data.Ins.DB.SaveChanges();
+                    parameter.Close();
                 }
                 catch
                 {
@@ -71,7 +72,7 @@ namespace WeddingApp.ViewModels
         }
         private void Edit(AddShiftWindow parameter)
         {
-            if (CustomMessageBox.Show("Xác nhận thêm ca?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
+            if (CustomMessageBox.Show("Lưu thay đổi?", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
                 
 
@@ -93,6 +94,7 @@ namespace WeddingApp.ViewModels
                     editingShift.ENDTIME = endTime;
 
                     Data.Ins.DB.SaveChanges();
+                    parameter.Close();
                 }
                 catch
                 {

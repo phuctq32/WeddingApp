@@ -106,7 +106,7 @@
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
-                                            Text="{Binding COST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding SERVICECOST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                             VerticalAlignment="Center" HorizontalAlignment="Center">
                                     </TextBlock>
 
@@ -121,10 +121,10 @@
                                             <materialDesign:PackIcon Kind="Edit" Height="30" Width="30" />
                                         </Button>
                                         <ToggleButton
-
-  Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
-  ToolTip="Trạng thái"
-  IsChecked="True" />
+                                            Background="{StaticResource DarkGreen}"
+                                            Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
+                                            ToolTip="Trạng thái"
+                                            IsChecked="True" />
                                     </StackPanel>
                                 </Grid>
                                 <Rectangle
