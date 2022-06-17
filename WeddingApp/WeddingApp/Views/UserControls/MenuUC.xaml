@@ -217,7 +217,7 @@
                                                 Foreground="Black"
                                                 FontSize="17"
                                                 FontWeight="Medium"
-                                                Text="{Binding COST, StringFormat=N0}"
+                                                Text="{Binding DISHCOST, StringFormat=N0}"
                                                 VerticalAlignment="Center"
                                                 Visibility="Visible">
                                                     </TextBlock>
@@ -349,7 +349,7 @@
                                                         Margin="0 8 20 0" />
                                                         <TextBlock
                                                             x:Name="price"
-                                                            Text="{Binding COST, StringFormat=N0}"
+                                                            Text="{Binding DISHCOST, StringFormat=N0}"
                                                             FontSize="15"
                                                             Visibility="Visible" />
                                                     </StackPanel>

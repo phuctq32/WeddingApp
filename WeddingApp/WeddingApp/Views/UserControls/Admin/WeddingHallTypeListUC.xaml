@@ -77,7 +77,7 @@
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
-                                            Text="{Binding TYPENAME, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding BALLROOMTYPENAME, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                             VerticalAlignment="Center" HorizontalAlignment="Left" />
 
                                     <TextBlock

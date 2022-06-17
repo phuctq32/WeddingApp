@@ -106,7 +106,7 @@
                                             Foreground="Black"
                                             FontSize="19"
                                             FontWeight="Medium"
-                                            Text="{Binding COST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding DISHCOST, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"
                                             VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Left">
                                     </TextBlock>
 

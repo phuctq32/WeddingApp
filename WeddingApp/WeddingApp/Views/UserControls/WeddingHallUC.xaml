@@ -135,7 +135,7 @@
                             TextWrapping="Wrap" />
                         <!--Loại sảnh-->
                         <TextBlock
-                            Text="{Binding BALLROOMTYPE.TYPENAME, UpdateSourceTrigger=PropertyChanged}"
+                            Text="{Binding BALLROOMTYPE.BALLROOMTYPENAME, UpdateSourceTrigger=PropertyChanged}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
