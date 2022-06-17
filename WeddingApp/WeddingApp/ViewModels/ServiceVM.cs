@@ -324,7 +324,8 @@ namespace WeddingApp.ViewModels
             Data.Ins.DB.SaveChanges();
             newInvoice.WEDDINGID = newWedding.WEDDINGID;
             newInvoice.USERNAME = CurrentAccount.Username;
-            if (Data.Ins.DB.REPORTDETAILS.Where(x => x.REPORTDATE == DateTime.Now).Count() == 0)
+            DateTime now = DateTime.Now.Date;
+            if (Data.Ins.DB.REPORTDETAILS.Where(x => x.REPORTDATE == now).Count() == 0)
             {
                 if (Data.Ins.DB.SALESREPORTS.Where(x => x.REPORTMONTH.Month == DateTime.Now.Month && x.REPORTMONTH.Year == DateTime.Now.Year).Count() == 0)
                 {

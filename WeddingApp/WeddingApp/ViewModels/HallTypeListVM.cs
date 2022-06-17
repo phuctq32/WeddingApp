@@ -50,8 +50,15 @@ namespace WeddingApp.ViewModels
             if(CustomMessageBox.Show("Xóa loại sảnh?",System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.OK)
             {
                 Data.Ins.DB.BALLROOMTYPES.Remove(deleteType);
-                Data.Ins.DB.SaveChanges();
-                CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
+                try
+                {
+                    Data.Ins.DB.SaveChanges();
+                    CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
+                }
+                catch
+                {
+                    CustomMessageBox.Show("Xóa thất bại", System.Windows.MessageBoxButton.OK);
+                }
             }
         }
     }

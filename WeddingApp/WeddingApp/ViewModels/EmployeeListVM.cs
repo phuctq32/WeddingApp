@@ -75,9 +75,16 @@ namespace WeddingApp.ViewModels
             if (CustomMessageBox.Show("Xóa nhân viên ?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
                 Data.Ins.DB.EMPLOYEES.Remove(employee);
-                Data.Ins.DB.SaveChanges();
-                ListEmployee = Data.Ins.DB.EMPLOYEES.ToList();
-                CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
+                try
+                {
+                    Data.Ins.DB.SaveChanges();
+                    ListEmployee = Data.Ins.DB.EMPLOYEES.ToList();
+                    CustomMessageBox.Show("Xóa thành công", System.Windows.MessageBoxButton.OK);
+                }
+                catch
+                {
+                    CustomMessageBox.Show("Xóa thất bại", System.Windows.MessageBoxButton.OK);
+                }
             }
         }
 
