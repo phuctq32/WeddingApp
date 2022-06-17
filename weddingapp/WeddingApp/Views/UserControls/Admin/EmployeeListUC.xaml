@@ -116,7 +116,7 @@
                                     Foreground="Black"
                                     FontSize="19"
                                     FontWeight="Medium"
-                                    Text="{Binding STARTWORKING, StringFormat={} {0:dd/MM/yyyy}, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding STARTWORKINGDAY, StringFormat={} {0:dd/MM/yyyy}, UpdateSourceTrigger=PropertyChanged}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
                                     </TextBlock>
